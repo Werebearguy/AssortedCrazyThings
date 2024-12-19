@@ -1,0 +1,3480 @@
+Mods: {
+	AssortedCrazyThings: {
+		Buffs: {
+			# Cute Slimes
+			# GuiSai Note for naming cute slime: Geleia (Caracteristica) Fofa // Everything in female bcs yes
+			CuteSlimeBlackBuff: {
+				DisplayName: Geleia Preta Fofa
+				Description: Uma geleia preta fofa está seguindo você
+			}
+
+			CuteSlimeBlueBuff: {
+				DisplayName: Geleia Azul Fofa
+				Description: Uma geleia azul fofa está seguindo você
+			}
+
+			CuteSlimeCorruptBuff: {
+				DisplayName: Geleia Corrupta Fofa
+				Description: Uma geleia corrupta fofa está seguindo você
+			}
+
+			CuteSlimeCorruptJungleBuff: {
+				DisplayName: Geleia Corrupta da Selva Fofa
+				Description: Uma geleia corrupta da selva fofa está seguindo você
+			}
+
+			CuteSlimeCrimsonBuff: {
+				DisplayName: Geleia de Carmim Fofa
+				Description: Uma geleia de carmim fofa está seguindo você
+			}
+
+			CuteSlimeCrimsonJungleBuff: {
+				DisplayName: Geleia de Carmim da Selva Fofa
+				Description: Uma geleia de carmim da selva fofa está seguindo você
+			}
+
+			CuteSlimeDungeonBuff: {
+				DisplayName: Geleia do Calabouço Fofa
+				Description: Uma geleia do calabouço fofa está seguindo você
+			}
+
+			CuteSlimeGoldenBuff: {
+				DisplayName: Geleia Dourada Fofa
+				Description: Uma geleia dourada fofa está seguindo você
+			}
+
+			CuteSlimeGreenBuff: {
+				DisplayName: Geleia Verde Fofa
+				Description: Uma geleia verde fofa está seguindo você
+			}
+
+			CuteSlimeHoneyBuff: {
+				DisplayName: Geleia de Mel Fofa
+				Description: Uma geleia de mel fofa está seguindo você
+			}
+
+			CuteSlimeIceBuff: {
+				DisplayName: Geleia de Gelo Fofa
+				Description: Uma geleia de gelo fofa está seguindo você
+			}
+			
+			CuteSlimeIlluminantBuff: {
+				DisplayName: Geleia Iluminada Fofa
+				Description: Uma geleia iluminada fofa está seguindo você
+			}
+
+			CuteSlimeJungleBuff: {
+				DisplayName: Geleia da Selva Fofa
+				Description: Uma geleia da selva fofa está seguindo você
+			}
+
+			CuteSlimeLavaBuff: {
+				DisplayName: Geleia de Lava Fofa
+				Description: Uma geleia de lava fofa está seguindo você
+			}
+
+			CuteSlimePinkBuff: {
+				DisplayName: Geleia Rosa Fofa
+				Description: Uma geleia rosa fofa está seguindo você
+			}
+
+			CuteSlimePinkIceBuff: {
+				DisplayName: Geleia de Gelo Cor-de-rosa Fofa
+				Description: Uma geleia de gelo cor-de-rosa fofa está seguindo você
+			}
+
+			CuteSlimePrincessBuff: {
+				DisplayName: Geleia Princesa Fofa
+				Description: Uma geleia princesa fofa está seguindo você
+			}
+
+			CuteSlimePurpleBuff: {
+				DisplayName: Geleia Roxa Fofa
+				Description: Uma geleia roxa fofa está seguindo você
+			}
+
+			CuteSlimePurpleIceBuff: {
+				DisplayName: Geleia Roxa de Gelo Fofa
+				Description: Uma geleia roxa de gelo fofa está seguindo você
+			}
+
+			CuteSlimeQueenBuff: {
+				DisplayName: Geleia Rainha Fofa
+				Description: Uma geleia rainha fofa está seguindo você
+			}
+
+			CuteSlimeRainbowBuff: {
+				DisplayName: Geleia Arco-Íris Fofa
+				Description: Uma geleia arco-íris fofa está seguindo você
+			}
+
+			CuteSlimeRedBuff: {
+				DisplayName: Geleia Vermelha Fofa
+				Description: Uma geleia vermelha fofa está seguindo você
+			}
+
+			CuteSlimeRedIceBuff: {
+				DisplayName: Geleia Vermelha de Gelo Fofa
+				Description: Uma geleia vermelha de gelo fofa está seguindo você
+			}
+
+			CuteSlimeSandBuff: {
+				DisplayName: Geleia de Areia Fofa
+				Description: Uma geleia de areia fofa está seguindo você
+			}
+
+			CuteSlimeShimmerBuff: {
+				DisplayName: Geleia Brilhante Fofa
+				Description: Uma geleia brilhante fofa está seguindo você
+			}
+
+			CuteSlimeToxicBuff: {
+				DisplayName: Geleia Tóxica Fofa
+				Description: Uma geleia tóxica fofa está seguindo você
+			}
+
+			CuteSlimeXmasBuff: {
+				DisplayName: Geleia Natalina Fofa
+				Description: Uma geleia natalina fofa está seguindo você
+			}
+
+			CuteSlimeYellowBuff: {
+				DisplayName: Geleia Amarela Fofa
+				Description: Uma geleia amarela fofa está seguindo você
+			}
+
+			# Pets. AoMM versions are auto-generated
+			AbeeminationBuff: {
+				DisplayName: Abelhominação
+				Description: Uma abelhominação está seguindo você
+			}
+
+			AlienHornetBuff: {
+				DisplayName: Vespa Alienígena
+				Description: Uma vespa alienígena está seguindo você
+			}
+
+			AnimatedTomeBuff: {
+				DisplayName: Livro Animado
+				Description: Um livro animado está seguindo você
+			}
+
+			AnomalocarisBuff: {
+				DisplayName: Anomalocaris
+				Description: Um pequeno camarão pré-histórico está seguindo você
+			}
+
+			BabyCrimeraBuff: {
+				DisplayName: Bebê Crimera
+				Description: Uma pequena crimera está seguindo você
+			}
+
+			BabyIchorStickerBuff: {
+				DisplayName: Ichor Pequeninho
+				Description: Um bebê adesivo de ichor está seguindo você
+			}
+
+			BabyOcramBuff: {
+				DisplayName: Bebê Ocram
+				Description: Seja lá o que ja foi, agora segue você
+			}
+
+			BrainofConfusionBuff: {
+				DisplayName: Cérebro da Confusão
+				Description: Um cérebro da confusão está seguindo você
+			}
+
+			ChunkyandMeatballBuff: {
+				DisplayName: Chunky e Bola de Carne
+				Description: Dois irmãos estão seguindo você
+			}
+
+			ChunkySlimeBuff: {
+				DisplayName: Chunky
+				Description: Chunky está seguindo você
+			}
+
+			CompanionDungeonSoulPetBuff: {
+				DisplayName: Alma Companheira
+				CommonDescription: Uma amigavel alma do calabouço está seguindo você
+				Description:
+					'''
+					{$Buffs.CompanionDungeonSoulPetBuff.CommonDescription}
+					Utiliza o espaço de Animal Leve (Iluminação)
+					'''
+			}
+
+			CompanionDungeonSoulPetBuff2: {
+				DisplayName: "{$Buffs.CompanionDungeonSoulPetBuff.DisplayName}"
+				Description:
+					'''
+					{$Buffs.CompanionDungeonSoulPetBuff.CommonDescription}
+					Utiliza o espaço de Animal de Estimação
+					'''
+			}
+
+			CursedSkullBuff: {
+				DisplayName: Caveira Amaldiçoada
+				Description: Não vai te amaldiçoar, eu prometo
+			}
+
+			CuteGastropodBuff: {
+				DisplayName: Gastrópode Fofo
+				Description: Um gastrópode fofo está seguindo você
+			}
+
+			CuteLamiaPetBuff: {
+				DisplayName: Cobrinha
+				Description: Uma cobrinha está seguindo você
+			}
+
+			DemonHeartBuff: {
+				DisplayName: Coração do Demônio
+				Description: Um coração do demônio está seguindo você
+			}
+
+			DetachedHungryBuff: {
+				DisplayName: O Faminto Solto
+				Description: Você pode ser a próxima refeição...
+			}
+
+			DocileDemonEyeBuff: {
+				DisplayName: Olho de Demônio Dócil
+				Description: Um olho de demônio está seguindo você
+			}
+
+			DrumstickElementalBuff: {
+				DisplayName: Elemental de Coxa de Galinha
+				Description: O jantar está seguindo você
+			}
+
+			DynamiteBunnyBuff: {
+				DisplayName: Coelhinho Explosivo
+				Description: Um pequeno coelhinho explosivo está seguindo você
+			}
+
+			EnchantedSwordBuff: {
+				DisplayName: Espada Encantada
+				Description: A Espada Encantada está observando você
+			}
+
+			FailureSlimeBuff: {
+				DisplayName: Geleia Fracassada
+				Description: Uma estranha criatura está seguindo você
+			}
+
+			FairySlimeBuff: {
+				DisplayName: Geleia Fada
+				Description: Uma geleia fada está seguindo você
+			}
+
+			FairySwarmBuff: {
+				DisplayName: Enxame de Fadas
+				Description: Um enxame de fadas está seguindo você
+			}
+
+			GhostMartianBuff: {
+				DisplayName: Fantasma Marciano
+				Description: Um fantasma vingativo do invasor está seguindo você
+			}
+
+			GobletBuff: {
+				DisplayName: Goblinzinho
+				Description: Um pequeno goblin está seguindo você
+			}
+
+			HornedSlimeBuff: {
+				DisplayName: Geleia com Chifres
+				Description: Uma geleia com chifres está seguindo você
+			}
+
+			IlluminantSlimeBuff: {
+				DisplayName: Geleia Iluminada
+				Description: Uma geleia iluminada está seguindo você
+			}
+
+			JoyousSlimeBuff: {
+				DisplayName: Geleia Contente
+				Description: Uma geleia contente está seguindo você
+			}
+
+			LifelikeMechanicalFrogBuff: {
+				DisplayName: Sapo Mecânico Realista
+				Description: O que aconteceu com este sapo na bigorna é certamente um mistério
+			}
+
+			LilWrapsBuff: {
+				DisplayName: Pequeno Embrulho
+				Description: Uma múmia está seguindo você
+			}
+
+			MeatballSlimeBuff: {
+				DisplayName: Bola de Carne
+				Description: Bola de Carne está seguindo você
+			}
+
+			MetroidPetBuff: {
+				DisplayName: Metroid
+				Description: Um parasita espacial está seguindo você
+			}
+
+			MiniAntlionBuff: {
+				DisplayName: Bebê Formiga-Leão
+				Description: Um bebê formiga-leão está seguindo você
+			}
+
+			MiniMegalodonBuff: {
+				DisplayName: Pequeno Megalodonte
+				Description: Ele reconhece sua força... por enquanto
+			}
+
+			NumberMuncherBuff: {
+				DisplayName: Number Muncher
+				Description: Um anfíbio estudado está seguindo você
+			}
+
+			OceanSlimeBuff: {
+				DisplayName: Geleia Oceânica
+				Description: Uma geleia oceânica está seguindo você
+			}
+
+			PetCultistBuff: {
+				DisplayName: Cultistinha
+				Description: A pequeno cultista está seguindo você
+			}
+
+			PetDestroyerBuff: {
+				DisplayName: Pequeno Destruidor
+				Description: Um pequeno Destruidor e duas sondas pequenas estão seguindo você
+			}
+
+			PetEaterofWorldsBuff: {
+				DisplayName: Pequeno Devorador de Mundos
+				Description: Um pequeno Devorador de Mundos está seguindo você
+			}
+
+			PetFishronBuff: {
+				DisplayName: Duque Peixe-Dragão
+				Description: Um pequeno Duque Peixe-Dragão está seguindo você
+			}
+
+			PetGoldfishBuff: {
+				DisplayName: Peixe-Dourado Possuído
+				Description: Um peixe-dourado possuído está seguindo você
+			}
+
+			PetGolemHeadBuff: {
+				DisplayName: Réplica da Cabeça do Golem
+				Description: Uma réplica da cabeça do Golem está observando você
+			}
+
+			PetHarvesterBuff: {
+				DisplayName: Pássaro Teimoso
+				Description: Um pássaro teimoso está seguindo você
+			}
+
+			PetMoonBuff: {
+				DisplayName: Lua Pessoal
+				Description: Uma lua pequena está fornecendo a você uma luz do luar constante
+			}
+
+			PetPlanteraBuff: {
+				DisplayName: Broto da Plantera
+				Description: Um broto da Plantera está seguindo você
+			}
+
+			PetQueenSlimeBuff: {
+				DisplayName: Geleinhas Brincalhonas
+				Description: Um trio de geleinha está seguindo você
+			}
+
+			PetSunBuff: {
+				DisplayName: Sol Pessoal
+				Description: Um pequeno sol está fornecendo a você raios solares constantes
+			}
+
+			PetSunMoonBuff: {
+				DisplayName: Sol e Lua Pessoais
+				Description:
+					'''
+					Um sol e uma lua pequena estão fornecendo a você luz constante
+					'Nenhuma alteração gravitacional desastrosa acontecerá'
+					'''
+			}
+
+			PigronataBuff: {
+				DisplayName: Piñata Suína
+				Description: Uma piñata suína está grata por você não ter quebrado ela
+			}
+
+			PrinceSlimeBuff: {
+				DisplayName: Príncipe Geleia
+				Description: Um príncipe geleia está seguindo você
+			}
+
+			QueenLarvaBuff: {
+				DisplayName: Rainha Larva
+				Description: Uma larva da Abelha Rainha está seguindo você
+			}
+
+			RainbowSlimeBuff: {
+				DisplayName: Geleia Arco-Íris
+				Description: Uma geleia arco-íris está seguindo você
+			}
+
+			SkeletronHandBuff: {
+				DisplayName: Mão Solta do Esqueletron
+				Description: Uma mão do Esqueletron está grudada a você
+			}
+
+			SkeletronPrimeHandBuff: {
+				DisplayName: Mão Solta do Esqueletron Alfa
+				Description: Uma mão do Esqueletron Alfa is attached to you
+			}
+
+			StingSlimeBuff: {
+				DisplayName: Geleia Peçonhenta
+				Description: Uma geleia peçonhenta está seguindo você
+			}
+
+			StrangeRobotBuff: {
+				DisplayName: Robô Estranho
+				Description: Um robô estranho está seguindo você
+			}
+
+			SuspiciousNuggetBuff: {
+				DisplayName: Nugget Suspeito
+				Description: Um nugget suspeito está seguindo você
+			}
+
+			SwarmofCthulhuBuff: {
+				DisplayName: Enxame de Cthulhus
+				Description: Um enxame de Cthulhus está seguindo você
+			}
+
+			TinyTwinsBuff: {
+				DisplayName: Gêmeos Pequenos
+				Description: Os Gêmeos estão observando você
+			}
+
+			TorchGodLightPetBuff: {
+				DisplayName: Tocha Piedosa
+				Description: "'A sua colocação de tochas foi considerada desnecessária. Eu farei isso corretamente.'"
+				EnableSmartCursor: Habilite o 'Cursor Inteligente' para automaticamente posicionar tochas
+				NoTorches: Nenhuma tocha normal foi encontrada para posicionar
+			}
+
+			TorturedSoulBuff: {
+				DisplayName: Alma Torturada
+				Description: Eu não deveria ter sido tão ganancioso, né?
+			}
+
+			TrueObservingEyeBuff: {
+				DisplayName: Verdadeiro Olho Observador
+				Description: Um pequeno Verdadeiro Olho de Cthulhu está seguindo você
+			}
+
+			TurtleSlimeBuff: {
+				DisplayName: Geleia Tartaruga
+				Description: Uma geleia tartaruga está seguindo você
+			}
+
+			VampireBatBuff: {
+				DisplayName: Morcego Vampiro
+				Description: Um vampiro em particular está seguindo você
+			}
+
+			WallFragmentBuff: {
+				DisplayName: Pedaços do Parede
+				Description: Diversos fragmentos do Parede de Carne estão seguindo você
+			}
+
+			YoungHarpyBuff: {
+				DisplayName: Harpia Jovem
+				Description: Uma harpia jovem está seguindo você
+			}
+
+			YoungWyvernBuff: {
+				DisplayName: Serpe Jovem
+				Description: Um serpe jovem está seguindo você
+			}
+
+			WobyBuff: {
+				DisplayName: Woby, 'Um cachorro adorável...'
+				Description: Um canino leal está seguindo você
+			}
+
+			CompanionDungeonSoulMinionBuff: {
+				DisplayName: Lacaio Alma Companheira
+				Description: Uma alma amigável está lutando para você
+				TinyDungeonSouls: Pequena Alma do Calabouço
+			}
+
+			CuteSlimeSpawnEnableBuff: {
+				DisplayName: Cerveja Gelatinosa
+				Description: Sua percepção sobre o que são geleias parece errada...
+				CuteSlimesCanSpawn: Geleias Fofas que podem aparecer
+				None: Nenhuma
+			}
+
+			DroneControllerBuff: {
+				DisplayName: Controlador de Drone
+				Description: Comande um enxame de drones
+			}
+
+			EmpoweringBuff: {
+				DisplayName: Fortalecimento
+				Description: Você fica mais forte enquanto não receber danos
+				IncreasedDamage: Dano Aumentado: {0}%
+			}
+
+			EnhancedHunterBuff: {
+				DisplayName: Instinto-Perigo Aprimorado
+				Description: Permite que você veja a localização de inimigos fora do seu campo de visão
+			}
+
+			EagerUnderlingBuff.DisplayName: Subordinada Ansiosa
+			ShyUnderlingBuff.DisplayName: Subordinada Tímida
+			SeriousUnderlingBuff.DisplayName: Subordinada Séria
+
+			SigilOfTheWingBuff: {
+				DisplayName: Benção das Asas
+				Description: Seu espírito está por um fio
+			}
+
+			BabyHarvesterBuff: {
+				DisplayName: Pássaro Sinistro
+				# Do not translate Description
+				Description: REPLACEME
+				Absorbed: O pássaro absorveu {0} almas
+				Tier1: O que esse pássaro está fazendo?
+				Tier2: Eu me pergunto se ele vai continuar crescendo
+				Tier3: Eu não tenho certeza se ele deve continuar comendo...
+			}
+
+			SoulBurnBuff: {
+				DisplayName: Alma Queimada
+				Description: Rapidamente perdendo a vida
+			}
+
+			SlimePackMinionBuff: {
+				DisplayName: Geleia
+				Description: Uma geleia amigavel da sua mochila está lutando por você
+			}
+
+			SoulBuff: {
+				DisplayName: Alma
+				Description: Liberta uma alma
+			}
+
+			StarRodBuff: {
+				DisplayName: Haste Estelar
+				Description: Estrelas caídas vão aterrissar próximas a você
+			}
+
+			NeurotoxinBuff: {
+				CommonName: Neurotoxina
+				CommonDescription: Rapidamente perdendo a vida
+			}
+
+			Campfire.WyvernCampfireNearby:
+				'''
+				{$Items.WyvernCampfireItem.DisplayName} próximo:
+				Você está protegido de Serpes
+				Penas de harpia não te arremessam
+				'''
+		}
+
+		Common: {
+			ConcatenateTwo: "{0} {1}"
+			AoMMVersion: (Versão do AoMM)
+			Selected: Selecionado: {0}
+			BaseDamage: Dano Base: {0}
+			BaseKnockback: Recuo Base: {0}
+
+			Tooltips: {
+				PetHasAltSkins: A aparência pode ser alterada com  {$Items.VanitySelector.DisplayName}
+				GoblinUnderlingBuff.CommonDescription: Uma subordinada leal está lutando por você
+
+				GoblinUnderlingItem: {
+					CommonTooltip:
+						'''
+						A classe pode ser alterada com [c/{0}:<right>]
+						Elas ficam mais fortes conforme a progressão do jogo
+						Apenas uma pode ser invocada
+						'''
+					CommonTooltipFormat:
+						'''
+						{0}
+						{1}
+						{2}
+						'''
+					CantSwitchClassDuringCombat: Não é possivel alterar a classe durante o combate
+				}
+			}
+		}
+
+		Items: {
+			# Cute Slimes
+			CuteSlime: {
+				AccessoryBlacklisted: Bloqueado
+				AccessoryNone: Nenhum
+				HatSlot: Espaço dedicado para chapéus: {0}
+				BodySlot: Espaço dedicado para camisetas: {0}
+				CarriedSlot: Espaço dedicado para transporte: {0}
+				AccessorySlot: Espaço dedicado para acessórios: {0}
+			}
+
+			CuteSlimeBlackItem: {
+				DisplayName: Geleia Preta Fofa Engarrafada
+				Tooltip: Invoca uma geleia preta fofa para seguir você
+			}
+
+			CuteSlimeBlueItem: {
+				DisplayName: Geleia Azul Fofa Engarrafada
+				Tooltip: Invoca uma geleia azul fofa para seguir você
+			}
+
+			CuteSlimeCorruptItem: {
+				DisplayName: Geleia Corrupta Fofa Engarrafada
+				Tooltip: Invoca uma geleia corrupta fofa para seguir você
+			}
+
+			CuteSlimeCorruptJungleItem: {
+				DisplayName: Geleia Corrupta da Selva Fofa Engarrafada
+				Tooltip: Invoca uma geleia corrupta da selva fofa para seguir você
+			}
+
+			CuteSlimeCrimsonItem: {
+				DisplayName: Geleia de Carmim Fofa Engarrafada
+				Tooltip: Invoca uma geleia de carmim fofa para seguir você
+			}
+
+			CuteSlimeCrimsonJungleItem: {
+				DisplayName: Geleia de Carmim da Selva Fofa Engarrafada
+				Tooltip: Invoca uma geleia de carmim da selva fofa para seguir você
+			}
+
+			CuteSlimeDungeonItem: {
+				DisplayName: Geleia do Calabouço Fofa Engarrafada
+				Tooltip: Invoca uma geleia do calabouço fofa para seguir você
+			}
+
+			CuteSlimeGoldenItem: {
+				DisplayName: Geleia Dourada Fofa Engarrafada
+				Tooltip: Invoca uma geleia dourada fofa para seguir você
+			}
+
+			CuteSlimeGreenItem: {
+				DisplayName: Geleia Verde Fofa Engarrafada
+				Tooltip: Invoca uma geleia verde fofa para seguir você
+			}
+
+			CuteSlimeHoneyItem: {
+				DisplayName: Geleia de Mel Fofa Engarrafada
+				Tooltip: Invoca uma geleia de mel fofa para seguir você
+			}
+
+			CuteSlimeIceItem: {
+				DisplayName: Geleia de Gelo Fofa Engarrafada
+				Tooltip: Invoca uma geleia de gelo fofa para seguir você
+			}
+
+			CuteSlimeIlluminantItem: {
+				DisplayName: Geleia Iluminada Fofa Engarrafada
+				Tooltip: Invoca uma geleia iluminada fofa para seguir você
+			}
+
+			CuteSlimeJungleItem: {
+				DisplayName: Geleia da Selva Fofa Engarrafada
+				Tooltip: Invoca uma geleia da selva fofa para seguir você
+			}
+
+			CuteSlimeLavaItem: {
+				DisplayName: Geleia de Lava Fofa Engarrafada
+				Tooltip: Invoca uma geleia de lava fofa para seguir você
+			}
+
+			CuteSlimePinkItem: {
+				DisplayName: Geleia Rosa Fofa Engarrafada
+				Tooltip: Invoca uma geleia rosa fofa para seguir você
+			}
+
+			CuteSlimePinkIceItem: {
+				DisplayName: Geleia de Gelo Cor-de-rosa Fofa Engarrafada
+				Tooltip: Invoca uma geleia de gelo cor-de-rosa fofa para seguir você
+			}
+
+			CuteSlimePrincessItem: {
+				DisplayName: Geleia Princesa Fofa Engarrafada
+				Tooltip: Invoca uma geleia princesa fofa para seguir você
+			}
+
+			CuteSlimePurpleItem: {
+				DisplayName: Geleia Roxa Fofa Engarrafada
+				Tooltip: Invoca uma geleia roxa fofa para seguir você
+			}
+
+			CuteSlimePurpleIceItem: {
+				DisplayName: Geleia Roxa de Gelo Fofa Engarrafada
+				Tooltip: Invoca uma geleia roxa de gelo fofa para seguir você
+			}
+
+			CuteSlimeQueenItem: {
+				DisplayName: Geleia Rainha Fofa Engarrafada
+				Tooltip: Invoca uma geleia rainha fofa para seguir você
+			}
+
+			CuteSlimeRainbowItem: {
+				DisplayName: Geleia Arco-Íris Fofa Engarrafada
+				Tooltip: Invoca uma geleia arco-íris fofa para seguir você
+			}
+
+			CuteSlimeRedItem: {
+				DisplayName: Geleia Vermelha Fofa Engarrafada
+				Tooltip: Invoca uma geleia vermelha fofa para seguir você
+			}
+
+			CuteSlimeRedIceItem: {
+				DisplayName: Geleia Vermelha de Gelo Fofa Engarrafada
+				Tooltip: Invoca uma geleia vermelha de gelo fofa para seguir você
+			}
+
+			CuteSlimeSandItem: {
+				DisplayName: Geleia de Areia Fofa Engarrafada
+				Tooltip: Invoca uma geleia de areia fofa para seguir você
+			}
+
+			CuteSlimeShimmerItem: {
+				DisplayName: Geleia Brilhante Fofa Engarrafada
+				Tooltip: Invoca uma geleia brilhante fofa para seguir você
+			}
+
+			CuteSlimeToxicItem: {
+				DisplayName: Geleia Tóxica Fofa Engarrafada
+				Tooltip: Invoca uma geleia tóxica fofa para seguir você
+			}
+
+			CuteSlimeXmasItem: {
+				DisplayName: Geleia Natalina Fofa Engarrafada
+				Tooltip: Invoca uma geleia natalina fofa para seguir você
+			}
+
+			CuteSlimeYellowItem: {
+				DisplayName: Geleia Amarela Fofa Engarrafada
+				Tooltip: Invoca uma geleia amarela fofa para seguir você
+			}
+
+			# Pets. AoMM versions are auto-generated
+			AbeeminationItem: {
+				DisplayName: Abelhominação
+				Tooltip:
+					'''
+					Invoca uma abelhominação amigável para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			AlienHornetItem: {
+				DisplayName: Néctar de Vórtice
+				Tooltip: Invoca uma vespa alienígena amigável para seguir você
+			}
+
+			AnimatedTomeItem: {
+				DisplayName: Livro Animado
+				Tooltip:
+					'''
+					Invoca um livro animado amigável para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			AnomalocarisItem: {
+				DisplayName: Camarão Mal-Humorado
+				Tooltip:
+					'''
+					Invoca um camarão pré-histórico amigável para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			BabyCrimeraItem: {
+				DisplayName: Vértebra Suculentaa
+				Tooltip: Invoca um bebê crimera amigável para seguir você
+			}
+
+			BabyIchorStickerItem: {
+				DisplayName: Adesivo de Ichor Dorminhoco
+				Tooltip: Invoca uma bebê adesivo de ichor amigável para seguir você
+			}
+
+			BabyOcramItem: {
+				DisplayName: Bebê Ocram
+				Tooltip: Invoca um Ocram para seguir você
+			}
+
+			BrainofConfusionItem: {
+				DisplayName: Cérebro da Confusão
+				Tooltip: Invoca um Cérebro da Confusão para seguir você sem rumo algum
+			}
+
+			ChunkyandMeatballItem: {
+				DisplayName: Chunky e Bola de Carne
+				Tooltip: Invoca um par de irmãos inesperados para seguir você
+			}
+
+			ChunkySlimeItem: {
+				DisplayName: Chunky Engarrafado
+				Tooltip: Invoca o Chunky bem amigável para seguir você
+			}
+
+			CompanionDungeonSoulPetItem: {
+				DisplayName: Alma Companheira
+				CommonTooltip: Invoca uma alma amigável que iluminará seu caminho
+				Tooltip:
+					'''
+					{$Items.CompanionDungeonSoulPetItem.CommonTooltip}
+					Utiliza o espaço de Animal Leve (Iluminação)
+					'''
+			}
+
+			CompanionDungeonSoulPetItem2: {
+				DisplayName: "{$Items.CompanionDungeonSoulPetItem.DisplayName}"
+				Tooltip:
+					'''
+					{$Items.CompanionDungeonSoulPetItem.CommonTooltip}
+					Utiliza o espaço de Animal de Estimação
+					'''
+			}
+
+			CursedSkullItem: {
+				DisplayName: Caveira Amaldiçoada
+				Tooltip:
+					'''
+					Invoca uma caveira amaldiçoada para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			CuteGastropodItem: {
+				DisplayName: Concha Misteriosa
+				Tooltip: Invoca um gastrópode amigável para seguir você
+			}
+
+			CuteLamiaPetItem: {
+				DisplayName: Shaking Snake Pot
+				Tooltip:
+					'''
+					Invoca uma pequena, amigável cobrinha para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			DemonHeartItem: {
+				DisplayName: Coração do Demônio
+				Tooltip: Invoca um coração do demônio amigável para seguir você
+			}
+
+			DetachedHungryItem: {
+				DisplayName: Fome Inconsciente
+				Tooltip: Invoca o faminto para seguir você
+			}
+
+			DocileDemonEyeItem: {
+				DisplayName: Olho de Demônio Dócil
+				Tooltip:
+					'''
+					Invoca um olho de demônio dócil para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			DrumstickElementalItem: {
+				DisplayName: Coxa de Galinha Mágica
+				Tooltip: Invoca uma deliciosa coxa de galinha para seguir você
+			}
+
+			DynamiteBunnyItem: {
+				DisplayName: Cenouramite
+				Tooltip:
+					'''
+					Invoca um coelhinho explosivo amigável para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			EnchantedSwordItem: {
+				DisplayName: Espada Encantada
+				Tooltip: Invoca uma espada encantada para observar você
+			}
+
+			FailureSlimeItem: {
+				DisplayName: Caveira Gosmenta
+				Tooltip: Invoca uma criatura estranha e amigável para seguir você
+			}
+
+			FairySlimeItem: {
+				DisplayName: Geleia Fada Engarrafada
+				Tooltip: Invoca uma geleia fada amigável para seguir você
+			}
+
+			FairySwarmItem: {
+				DisplayName: Garrafa de Fadas Sortidas
+				Tooltip: Invoca diversas fadas ao seu redor
+			}
+
+			GhostMartianItem: {
+				DisplayName: Medidor K-II
+				Tooltip: Invoca uma fantasma vingativo do invasor para seguir você
+			}
+
+			GobletItem: {
+				DisplayName: Estandarte de Batalha do Goblinzinho
+				Tooltip: Invoca um pequeno goblin amigável para seguir você
+			}
+
+			HornedSlimeItem: {
+				DisplayName: Geleia com Chifres Engarrafada
+				Tooltip: Invoca um geleia com chifres amigável para seguir você
+			}
+
+			IlluminantSlimeItem: {
+				DisplayName: Geleia Iluminada Engarrafada
+				Tooltip: Invoca um geleia iluminada amigável para seguir você
+			}
+
+			JoyousSlimeItem: {
+				DisplayName: Geleia Contente Engarrafada
+				Tooltip:
+					'''
+					Invoca um geleia contente amigável para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			LifelikeMechanicalFrogItem: {
+				DisplayName: Sapo Mecânico Realista
+				Tooltip:
+					'''
+					Invoca um sapinho amigável para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			LilWrapsItem: {
+				DisplayName: Sarcófago Dourado
+				Tooltip:
+					'''
+					Invoca uma múmia amigável para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			MeatballSlimeItem: {
+				DisplayName: Bola de Carne Engarrafada
+				Tooltip: Invoca o bola de carne para seguir você
+			}
+
+			MetroidPetItem: {
+				DisplayName: Recipiente Parasitário
+				Tooltip:
+					'''
+					Invoca uma parasita espacial amigável para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			MiniAntlionItem: {
+				DisplayName: Ovo de Formiga-Leão
+				Tooltip:
+					'''
+					Invoca um bebê formiga-leão amigável para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			MiniMegalodonItem: {
+				DisplayName: Dente do Pequeno Megalodonte
+				Tooltip: Invoca um mini megalodonte amigável que segue você
+			}
+
+			NumberMuncherItem: {
+				DisplayName: Dispositivo de Armazenamento Arcaico
+				Tooltip: Invoca um anfíbio estudado que segue você
+			}
+
+			OceanSlimeItem: {
+				DisplayName: Geleia Oceânica Engarrafada
+				Tooltip:
+					'''
+					Invoca uma geleia oceânica amigável para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			PetCultistItem: {
+				DisplayName: Moeda Pequena Sinistra
+				Tooltip: Invoca um pequeno cultista amigável para seguir você que vai te curar quando machucado
+			}
+
+			PetDestroyerItem: {
+				DisplayName: Núcleo do Destruidor
+				Tooltip: Invoca um pequeno destruidor e duas pequenas sondas para seguir você
+			}
+
+			PetEaterofWorldsItem: {
+				DisplayName: Ovo de Minhoca Rachado
+				Tooltip: Invoca um pequeno Devorador de Mundos amigável para seguir você
+			}
+
+			PetFishronItem: {
+				DisplayName: Bolo de Peixe Encharcado
+				Tooltip:
+					'''
+					Invoca um duque peixe-dragão amigável que voa com você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			PetGoldfishItem: {
+				DisplayName: Ídolo de Peixe Possuído
+				Tooltip:
+					'''
+					Invoca um peixe-dourado que segue você
+					'Você sente que perdeu algo importante ao obter esse ídolo...'
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			PetGolemHeadItem: {
+				DisplayName: Réplica da Cabeça do Golem
+				Tooltip:
+					'''
+					Invoca uma réplica da cabeça do Golem que observa você
+					Atira bolas de fogo saltitantes aos inimigos próximos
+					'''
+			}
+
+			PetHarvesterItem: {
+				DisplayName: Alma do Pássaro Teimoso
+				Tooltip: Invoca um pássaro teimoso amigável para seguir você
+			}
+
+			PetMoonItem: {
+				DisplayName: Lua Engarrafada
+				Tooltip:
+					'''
+					Invoca uma lua pequena que provém a você uma luz do luar constante
+					Indica a fase da lua atual na dica do efeito de pet
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			PetPlanteraItem: {
+				DisplayName: Vaso com Sementes da Plantera
+				Tooltip:
+					'''
+					Invoca um broto da Plantera para observar você
+					'É mesquinha e verde'
+					'''
+			}
+
+			PetQueenSlimeItem: {
+				DisplayName: Geleinhas Brincalhonas
+				Tooltip: Invoca um trio de geleinhas amigáveis para seguir você
+			}
+
+			PetSunItem: {
+				DisplayName: Sol Engarrafado
+				Tooltip:
+					'''
+					Invoca um pequeno sol que fornece a você raios solares constantes
+					Indica a hora atual na dica do efeito de pet
+					'''
+			}
+
+			PetSunMoonItem: {
+				DisplayName: Sol e Lua Engarrafados
+				Tooltip:
+					'''
+					Invoca um pequeno sol e uma pequena lua que provém para você luz constante
+					Indica a hora atual na dica do efeito de pet
+					Indica a fase da lua atual na dica do efeito de pet
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			PigronataItem: {
+				DisplayName: Piñata Suína
+				Tooltip:
+					'''
+					Invoca uma piñata suína amigável para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			PrinceSlimeItem: {
+				DisplayName: Príncipe Geleia Engarrafado
+				Tooltip: Invoca um príncipe geleia amigável para seguir você
+			}
+
+			QueenLarvaItem: {
+				DisplayName: Rainha Larva
+				Tooltip:
+					'''
+					Invoca uma larva da Abelha Rainha amigável para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			RainbowSlimeItem: {
+				DisplayName: Geleia Arco-Íris Engarrafada
+				Tooltip: Invoca uma geleia arco-íris amigável para seguir você
+			}
+
+			SkeletronHandItem: {
+				DisplayName: Mão Solta do Esqueletron 
+				Tooltip:
+					'''
+					Invoca a mão do Esqueletron grudada em você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			SkeletronPrimeHandItem: {
+				DisplayName: Mão Solta do Esqueletron Alfa
+				Tooltip:
+					'''
+					Invoca a mão do Esqueletron Alfa grudada em você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			StingSlimeItem: {
+				DisplayName: Geleia Peçonhenta Engarrafada
+				Tooltip:
+					'''
+					Invoca uma geleia peçonhenta amigável para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			StrangeRobotItem: {
+				DisplayName: Dispositivo Mecânico Estranho
+				Tooltip: Invoca um robô estranho amigável para seguir você
+			}
+
+			SuspiciousNuggetItem: {
+				DisplayName: Nugget Suspeito
+				Tooltip: Invoca um nugget suspeito amigável para seguir você
+			}
+
+			SwarmofCthulhuItem: {
+				DisplayName: Garrafa de Olhos Inquietos
+				Tooltip: Invoca vários olhos ao seu redor
+			}
+
+			TinyTwinsItem: {
+				DisplayName: Gêmeos Pequenos
+				Tooltip: Invoca um um pequeno par dos Gêmeos amigáveis para seguir você
+			}
+
+			TorchGodLightPetItem: {
+				DisplayName: Tocha Piedosa
+				Tooltip:
+					'''
+					Invoca o deus tocha para seguir você
+					Automaticamente posiciona tochas com o 'Cursor Inteligente' ativo
+					'''
+			}
+
+			TorturedSoulItem: {
+				DisplayName: Alma Torturada
+				Tooltip: Invoca uma não tão amigável alma torturada para seguir você
+			}
+
+			TrueObservingEyeItem: {
+				DisplayName: Verdadeiro Olho Observador
+				Tooltip: Invoca um Verdadeiro Olho de Cthulhu para observar você
+			}
+
+			TurtleSlimeItem: {
+				DisplayName: Geleia Tartaruga Engarrafada
+				Tooltip: Invoca um geleia tartaruga amigável para seguir você
+			}
+
+			VampireBatItem: {
+				DisplayName: Asa de Morcego Consertada
+				Tooltip:
+					'''
+					Invoca um vampiro amigável que voa com você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			WallFragmentItem: {
+				DisplayName: Pedaços do Parede
+				Tooltip: Invoca diversos fragmentos do Parede de Carne para seguir você
+			}
+
+			YoungHarpyItem: {
+				DisplayName: Amontoado de Penas Caídas
+				Tooltip:
+					'''
+					Invoca uma harpia amigável para seguir você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			YoungWyvernItem: {
+				DisplayName: Cauda de Serpe
+				Tooltip:
+					'''
+					Invoca um serpe jovem amigável que voa com você
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			WobyItem: {
+				DisplayName: Medalhão do Amante de Cachorros
+				Tooltip: Invoca um canino leal e amigável para seguir você
+			}
+
+			BottledDreams: {
+				DisplayName: Sonhos Engarrafados
+				Tooltip: Permite um pequeno voo após o pulo duplo
+			}
+
+			CrazyBundleOfAssortedBalloons: {
+				DisplayName: Pacote Maluco de Balões Sortidos
+				Tooltip: Possui todos os tipos de efeitos
+			}
+
+			EverburningCandelabra: {
+				DisplayName: Candelabro De Todas as Chamas
+				Tooltip: Aplica diversos tipos de dano de fogo em todos os ataques
+			}
+
+			EverburningCandle: {
+				DisplayName: Vela Sempre Queimando
+				Tooltip: Aplica dano de fogo em todos os ataques
+			}
+
+			EverburningCursedCandle: {
+				DisplayName: Vela das Chamas Amaldiçoadas Sempre Queimando
+				Tooltip: Aplica dano de chama amaldiçoada em todos os ataques
+			}
+
+			EverburningShadowflameCandle: {
+			 	DisplayName: Vela das Chamas das Sombras Sempre Queimando
+				Tooltip: Aplica dano de chamas das sombras em todos os ataques
+			}
+
+			EverfrozenCandle: {
+				DisplayName: Vela Sempre Congelada
+				Tooltip: Aplica dano de queimadura de frio
+			}
+
+			FestiveMirror: {
+				DisplayName: Espelho Festivo
+				Tooltip: Provém imunidade a {$BuffName.Chilled}, {$BuffName.Frozen} e {$BuffName.Stoned}
+			}
+
+			HarvesterWings: {
+				DisplayName: Asas do Ceifador
+				Tooltip:
+					'''
+					{$CommonItemTooltip.FlightAndSlowfall}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy}
+					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
+					'''
+			}
+
+			MassiveBundleOfBalloons: {
+				DisplayName: Pacote de Muitos Balões
+				Tooltip:
+					'''
+					Permite seis pulos extras
+					Nega o dano de queda e aumenta a altura do pulo
+					{$ItemTooltip.HoneyComb}
+					'''
+			}
+
+			SigilOfTheBeak: {
+				DisplayName: Sigilo do Bico
+				Tooltip:
+					'''
+					Invoca almas despedaçadas que seguem os inimigos em combate
+					Frequência e dano aumentam conforme o quanto a sua vida está baixa
+					'''
+			}
+
+			SigilOfTheHarvester: {
+				DisplayName: Sigilo do Ceifador
+				Tooltip:
+					'''
+					'Os aspectos do Ceifador residem em você'
+					{$Items.SigilOfTheBeak.Tooltip}
+					{$Items.SigilOfTheWing.Tooltip}
+					{$Items.SigilOfTheTalon.Tooltip@3}
+					'''
+			}
+
+			SigilOfTheTalon: {
+				DisplayName: Sigilo da Garra
+				Tooltip:
+					'''
+					Permite que seus ganchos causem dano ao usá-los
+					Pode acertar até {0} inimigos
+					'''
+				HookDamage: Causa {0}% de dano com base em sua última arma empunhada (atualmente {1})
+			}
+
+			SigilOfTheWing: {
+				DisplayName: Sigilo da Asa
+				Tooltip:
+					'''
+					Ao morrer, transforma-se em uma alma por {0} segundos, regenerando {1}% da vida máxima
+					Enquanto transformado, você não pode usar itens
+					Possui um tempo de recarga de {2} minutos
+					'''
+				SocialDesc: Tempo de recarga vai diminuir enquanto estiver no espaço dedicado para acessórios sociais
+				EffectReady: Efeito pronto
+				ReadyAgainInMinutes: Pronto novamente em {0} {^0:minuto;minutos}
+				ReadyAgainInSeconds: Pronto novamente em {0} {^0:segundo;segundos}
+			}
+
+			SlipperySoles: {
+				DisplayName: Solas Escorregadias
+				Tooltip: Você escorrega e desliza em blocos
+			}
+
+			SolesOfFireAndIce: {
+				DisplayName: Solas do Fogo e Gelo
+				Tooltip: Permite que você caminhe em água, lava, e camadas de gelo
+			}
+
+			StarInABalloon: {
+				DisplayName: Estrela em Balão
+				Tooltip: "{$BuffDescription.StarInBottle} e altura do pulo"
+			}
+
+			StarWispBalloon: {
+				DisplayName: Balão Estrela-Fantasma
+				Tooltip:
+					'''
+					{$Items.StarInABalloon.Tooltip}
+					Brilha no escuro
+					'''
+			}
+
+			WispInABalloon: {
+				DisplayName: Wisp in a Balloon
+				Tooltip: Brilha no escuro e aumenta a altura do pulo
+			}
+
+			AntiqueKey: {
+				DisplayName: Chave Antiquada
+				Tooltip: "'Uma chave antiga que parece caber na fechadura de uma gaiola próxima...'"
+			}
+
+			SoulSaviorHeaddress: {
+				DisplayName: Cocar do Salvador de Almas
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
+					'''
+				SetBonus:
+					'''
+					Reflete {0}% de dano ao contato por número de lacaios máximos
+					Dano refletido pode ser aumentado com base em efeitos que aumentem o dano de invocação
+					Dano de reflexão atual: {1}%
+					Lacaios sumonados pela {$Items.EverhallowedLantern.DisplayName} se tornam 'fortalecidos' e ganham {2}% de dano extra
+					'''
+			}
+
+			SoulSaviorPlate: {
+				DisplayName: Peitoral do Salvador de Almas
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
+					'''
+			}
+
+			SoulSaviorRobe: {
+				DisplayName: Túnica do Salvador de Almas
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
+					'''
+			}
+
+			CaughtDungeonSoul: {
+				DisplayName: Alma Perdida do Calabouço
+				Tooltip:
+					'''
+					'Uma alma inerte capturada por uma rede'
+					É disperta no seu inventario quando o {$NPCs.HarvesterBoss.DisplayName} é derrotado
+					'''
+				SpawnSoul: Use para invocar uma alma para o {$NPCs.HarvesterBoss.DisplayName} comer
+			}
+
+			CaughtDungeonSoulFreed: {
+				DisplayName: Alma Liberta do Calabouço
+				Tooltip: Dispertada por derrotar o {$NPCs.HarvesterBoss.DisplayName}
+			}
+
+			ChunkysEyeItem: {
+				DisplayName: Olho do Chunky
+				Tooltip: "'Encontre o {$Items.MeatballsEyeItem.DisplayName} e combine ambos no Altar Demoníaco'"
+			}
+
+			CuteSlimeSpawnEnableFlask: {
+				DisplayName: Cerveja Gelatinosa
+				SeeMoreOften: Você verá Geleias Fofas com uma maior frequência durante um curto período
+				See: Permite que você veja Geleias Fofas por um curto período
+			}
+
+			EmpowermentFlask: {
+				DisplayName: Frasco do Fortalecimento
+				Tooltip:
+					'''
+					Aumenta gradativamente o dano ao longo do tempo
+					O bônus é redefinido ao receber dano
+					(O dano de invocação é aumentado minimamente)
+					'''
+			}
+
+			EnhancedHunterPotion: {
+				DisplayName: Poção do Instinto-Perigo Aprimorado
+				Tooltip:
+					'''
+					{$ItemTooltip.HunterPotion}
+					Adicionalmente, permite que você veja a localização de inimigos fora do seu campo de visão
+					O alcance é quase uma tela em cada direção
+					'''
+			}
+
+			HarvesterTreasureBag: {
+				DisplayName: Bolsa do Tesouro({$NPCs.HarvesterBoss.DisplayName})
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			DesiccatedLeather: {
+				DisplayName: Couro Dessecado
+				Tooltip: "'É seco, grudento, e cheira mal'"
+			}
+
+			DroneParts: {
+				DisplayName: Peças de Drone
+				Tooltip: "'Essas peças podem ser reaproveitadas...'"
+			}
+
+			DroneUnlockableBasicLaserDrone.DisplayName: Componente de Laser Básico do Drone
+			DroneUnlockableHealingDrone.DisplayName: Componente de Cura do Drone
+			DroneUnlockableHeavyLaserDrone.DisplayName: Componente de Laser Pesado do Drone
+			DroneUnlockableMissileDrone.DisplayName: Componente de Míssil do Drone
+			DroneUnlockableShieldDrone.DisplayName: Componente de Escudo de Drone
+
+			DroneUnlockable: {
+				UnlockedText: Desbloqueado: {0}
+				Unlocks: Desbloqueia o {0} para o {$Items.DroneController.DisplayName}
+				AlreadyUnlocked: Já foi desbloqueado o {0} para o {$Items.DroneController.DisplayName}
+			}
+
+			CraftOfMiners: {
+				DisplayName: Criação dos Mineiros
+				Tooltip:
+					'''
+					'Use esses punhos para rasgar quaisquer blocos em seu caminho'
+					[c/44942e:'Dedicado ao Anonymous']
+					'''
+			}
+
+			GuideVoodoorang: {
+				DisplayName: Vodurangue do Guia
+				Tooltip: "'Por que você é assim?'"
+			}
+
+			InfinityRocket: {
+				DisplayName: Foguetes Infinitos
+				Tooltip: "'Eles nunca acabam!'"
+			}
+
+			StarForge: {
+				DisplayName: Forja Estelar
+				Tooltip: "'Um suprimento infinito do cosmos'"
+			}
+
+			BrainOfCthulhuGitgud.DisplayName: Livramento da Insanidade
+			DeerclopsGitgud.DisplayName: Efígie do Cervoclope
+			DestroyerGitgud.DisplayName: Caçador de Sonhos Metálico
+			DukeFishronGitgud.DisplayName: Anzol Branco
+			EaterOfWorldsGitgud.DisplayName: Gaivota de Brinquedo
+			EmpressOfLightGitgud.DisplayName: Sapatilhas Usadas
+			EyeOfCthulhuGitgud.DisplayName: Lente Quebrada
+			GolemGitgud.DisplayName: Bateria Solar Recarregável
+			KingSlimeGitgud.DisplayName: Aviso da Inquisição Gosmenta
+			LunaticCultistGitgud.DisplayName: Aviso de Despejo
+			MoonLordGitgud.DisplayName: Lado Iluminado da Lua
+			PlanteraGitgud.DisplayName: Polegar Verde
+			QueenBeeGitgud.DisplayName: Dedal de Mel
+			QueenSlimeGitgud.DisplayName: Bolinho Brilhante
+			SkeletronGitgud.DisplayName: Caixa de Leite de Soja
+			SkeletronPrimeGitgud.DisplayName: Relógio Dez Anos Adiantado
+			TwinsGitgud.DisplayName: Lentes de Contato Metálica
+			WallOfFleshGitgud.DisplayName: Boneco de Vodu do Parede de Carne
+
+			IdolOfDecay: {
+				DisplayName: Ídolo da Decadência
+				Tooltip:
+					'''
+					Invoca a forma final do {$NPCs.HarvesterBoss.DisplayName} no calabouço
+					Usos ilimintados
+					'''
+			}
+
+			KnittingSet: {
+				DisplayName: Conjunto de Tricô
+				Tooltip: "'Um conjunto de ferramentas usadas na criação de roupas fofinhas e acessórios'"
+			}
+
+			MeatballsEyeItem: {
+				DisplayName: Olho do Bola de Carne
+				Tooltip: "'Encontre o {$Items.ChunkysEyeItem.DisplayName} e combine ambos no Altar Demoníaco'"
+			}
+
+			PetAccessory: {
+				Hat: Usado na cabeça
+				Body: Usado no peitoral
+				Carried: Carregado
+				Accessory: Usado como um acessório
+				None: Nenhum
+				Blacklisted: Esse tipo de acessório é desabilitado para a sua geleia em específico
+				NoUse: Você não possuí nenhuma invocação de geleia para equipar isso
+				Disabled: Esse tipo de acessório não está registrado pelso desenvolvedores
+
+				Colors: {
+					Red: Vermelho
+					Orange: Laranja
+					Gold: Dourado
+					Yellow: Amarelo
+					Green: Verde
+					Blue: Azul
+					Purple: Roxo
+					Pink: Rosa
+					White: Branco
+					Gray: Cinza
+					Black: Preto
+					Platinum: Platina
+					Iron: Ferro
+				}
+			}
+
+			PetAccessoryBowtie: {
+				DisplayName: {$Items.PetAccessoryBowtie.ShortName} Fofinha
+				Tooltip: "'Uma gravata borboleta macia para a sua geleia fofa vestir em seu peitoral'"
+				ShortName: Gravata Borboleta
+
+				AccessoryNames: {
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
+				}
+			}
+
+			PetAccessoryBunnyEars: {
+				DisplayName: {$Items.PetAccessoryBunnyEars.ShortName} Fofinhas
+				Tooltip: "'Um par de orelhas do coelhinho da Páscoa para a sua geleia fofa usar em sua cabeça'"
+				ShortName: Orelhas de Coelho
+			}
+
+			PetAccessoryBunnySuit: {
+				DisplayName: {$Items.PetAccessoryBunnySuit.ShortName} Fofinha
+				Tooltip: "'Uma roupa de coelho(?) para a sua geleia fofa vestir em seu peitoral'"
+				ShortName: Roupa de Coelhinha
+
+				AccessoryNames: {
+					Black: "{$Items.PetAccessory.Colors.Black}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
+				}
+			}
+
+			PetAccessoryCrown: {
+				DisplayName: {$Items.PetAccessoryCrown.ShortName} Fofinha
+				Tooltip: "'Uma coroa majestosa para sua geleia fofa usar em sua cabeça'"
+				ShortName: Coroa
+
+				AccessoryNames: {
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Platinum: "{$Items.PetAccessory.Colors.Platinum}"
+				}
+			}
+
+			PetAccessoryHairBow: {
+				DisplayName: {$Items.PetAccessoryHairBow.ShortName} Fofinho
+				Tooltip: "'Um grande laço para a sua geleia fofa usar em sua cabeça'"
+				ShortName: Laço de Cabelo
+
+				AccessoryNames: {
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
+				}
+			}
+
+			PetAccessoryKitchenKnife: {
+				DisplayName: {$Items.PetAccessoryKitchenKnife.ShortName} Fofinha
+				Tooltip: "'Uma faca de cozinha de pelúcia para a sua geleia fofa carregar'"
+				ShortName: Faca de Cozinha
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
+			}
+
+			PetAccessoryMetalHelmet: {
+				DisplayName: {$Items.PetAccessoryMetalHelmet.ShortName} Fofinho
+				Tooltip: "'Um capacete de cavaleiro de pelúcia para a sua geleia fofa usar em sua cabeça'"
+				ShortName: Capacete de Cavaleiro
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
+			}
+
+			PetAccessoryMittens: {
+				DisplayName: {$Items.PetAccessoryMittens.ShortName} Fofinhas
+				Tooltip: "'Luvas quentes para as mãos da sua geleia fofa'"
+				ShortName: Luvas
+
+				AccessoryNames: {
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
+				}
+			}
+
+			PetAccessoryPartyHat: {
+				DisplayName: {$Items.PetAccessoryPartyHat.ShortName} Fofinho
+				Tooltip: "'Um chapéu de festa para a sua geleia fofa usar em sua cabeça'"
+				ShortName: Chapéu de Festa
+			}
+
+			PetAccessoryPumpkinMask: {
+				DisplayName: {$Items.PetAccessoryPumpkinMask.ShortName} Fofinha
+				Tooltip: "'Uma abóbora de tamanho perfeito para a sua geleia fofa usar em sua cabeça'"
+				ShortName: Máscara de Abóbora
+
+				AccessoryNames: {
+					SOrange: Laranja Sinistra
+					IOrange: Laranja Inocente
+					SGreen: Verde Sinistro
+					IGreen: Verde Inocente
+					SWhite: Branco Sinistro
+					IWhite: Branco Inocente
+					SPurple: Roxo Sinistro
+					IPurple: Roxo Inocente
+					SMelon: Melão Sinistro
+					IMelon: Melão Inocente
+				}
+			}
+
+			PetAccessorySlimeHead: {
+				DisplayName: {$Items.PetAccessorySlimeHead.ShortName} Fofinha
+				Tooltip: "'Uma pelúcia de geleia para a sua geleia fofa usar em sua cabeça'"
+				ShortName: Cabeça de Geleia
+
+				AccessoryNames: {
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					Pinky: Rosinha
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
+				}
+			}
+
+			PetAccessoryStaff: {
+				DisplayName: {$Items.PetAccessoryStaff.ShortName} Fofinho
+				Tooltip: "'Um cajado de pelúcia para a sua geleia fofa carregar'"
+				ShortName: Cajado
+
+				AccessoryNames: {
+					Amethyst: Ametista
+					Sapphire: Safira
+					Emerald: Esmeralda
+					Ruby: Rubi
+					Amber: Âmbar
+					Topaz: Topázio
+					Diamond: Diamante
+					Magic: Mágico
+				}
+			}
+
+			PetAccessorySwallowedKey: {
+				DisplayName: {$Items.PetAccessorySwallowedKey.ShortName} Fofinha
+				Tooltip: "'Uma chave de pelúcia para a sua geleia fofa... carregar?'"
+				ShortName: Chave Engolida
+			}
+
+			PetAccessoryTophat: {
+				DisplayName: {$Items.PetAccessoryTophat.ShortName} Fofinha
+				Tooltip: "'Uma cartola elegante para a sua geleia fofa usar em sua cabeça'"
+				ShortName: Cartola
+			}
+
+			PetAccessoryToyBreastplate: {
+				DisplayName: {$Items.PetAccessoryToyBreastplate.ShortName} Fofinho
+				Tooltip: "'Um Peitoral de cavaleiro de pelúcia para a sua geleia fofa vestir em seu peitoral'"
+				ShortName: Peitoral de Cavaleiro
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
+			}
+
+			PetAccessoryToyMace: {
+				DisplayName: {$Items.PetAccessoryToyMace.ShortName} Fofinha
+				Tooltip: "'Uma maça de pelúcia para a sua geleia fofa carregar'"
+				ShortName: Maça do Paladino
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
+			}
+
+			PetAccessoryToyShield: {
+				DisplayName: {$Items.PetAccessoryToyShield.ShortName} Fofinho
+				Tooltip: "'Um escudo de pelúcia para sua geleia fofa carregar'"
+				ShortName: Escudo do Cavaleiro
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
+			}
+
+			PetAccessoryToySpear: {
+				DisplayName: {$Items.PetAccessoryToySpear.ShortName} Fofinha
+				Tooltip: "'Uma lança de pelúcia para sua geleia fofa carregar'"
+				ShortName: Lança de Espartano
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
+			}
+
+			PetAccessoryToySword: {
+				DisplayName: {$Items.PetAccessoryToySword.ShortName} Fofinha
+				Tooltip: "'Uma espada de pelúcia para sua geleia fofa carregar'"
+				ShortName: Espada do Cavaleiro
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
+			}
+
+			PetAccessoryWizardHat: {
+				DisplayName: {$Items.PetAccessoryWizardHat.ShortName} Fofinho
+				Tooltip: "'Um chapéu marrom de mago para a sua geleia fofa usar em sua cabeça'"
+				ShortName: Chapéu de Mago
+			}
+
+			PetAccessoryXmasHat: {
+				DisplayName: {$Items.PetAccessoryXmasHat.ShortName} Fofinho
+				Tooltip: "'Um chapéu festivo para a sua geleia fofa usar em sua cabeça'"
+				ShortName: Chapéu de Natal
+
+				AccessoryNames: {
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+				}
+			}
+
+			AntiqueCageItem: {
+				DisplayName: Gaiola Antiquada
+				Tooltip: ""
+			}
+
+			AntiqueChestItem: {
+				DisplayName: Baú Antiquado
+				Tooltip: ""
+			}
+
+			CuteSlimeStatueItem: {
+				DisplayName: Estátua de Geleia Fofa
+				Tooltip: Você não pode capturar criaturas geradas por estátuas
+			}
+
+			HarvesterRelicItem: {
+				DisplayName: "Relíquia do {$NPCs.HarvesterBoss.DisplayName}"
+				Tooltip: ""
+			}
+
+			HarvesterRelicColoredItem: {
+				DisplayName: "{$Items.HarvesterRelicItem.DisplayName} (Colorida)"
+				Tooltip: ""
+			}
+
+			HarvesterTrophyItem: {
+				DisplayName: "Troféu do {$NPCs.HarvesterBoss.DisplayName}"
+				Tooltip: ""
+			}
+
+			FieldsOfJoyItem: {
+				DisplayName: Campos de Alegria
+				Tooltip: "'C. Paigner'"
+			}
+
+			PretentiousRockItem: {
+				DisplayName: Um Estudo de Ardósia
+				Tooltip: "'C. Paigner'"
+			}
+
+			SCP099Item: {
+				DisplayName: O Retrato
+				Tooltip: "'R. Magritte'"
+			}
+
+			SCP3515Item: {
+				DisplayName: SCP-3515
+				Tooltip: "'Desconhecido'"
+			}
+
+			SlimeBeaconItem: {
+				DisplayName: Sinalizador de Geleia
+				Tooltip: "'Faça as geleias comigo!'"
+				NoMultiplayer: "[c/FFA01D:NÃO FUNCIONA NO MULTI-JOGADOR]"
+			}
+
+			StarRodItem: {
+				DisplayName: Haste Estelar
+				Tooltip: Atrai Estrelas Caída Attracts a noite caso você esteja próximo
+			}
+
+			VanityDresserItem.DisplayName: Cômoda
+
+			WyvernCampfireItem: {
+				DisplayName: Fogueira de Serpe
+				Tooltip: "'Faz com que os serpes desapareçam num passe de mágica!'"
+			}
+
+			ExtendoNetGolden: {
+				DisplayName: Rede de Captura Dourada
+				Tooltip:
+					'''
+					'Captura aqueles animais REALMENTE difíceis de alcançar'
+					Pode pescar animais de lava também!
+					'''
+			}
+
+			ExtendoNetRegular: {
+				DisplayName: Rede de Captura
+				Tooltip: "'Captura aquelas criaturas difíceis de alcançar'"
+			}
+
+			PrettyMask: {
+				DisplayName: Máscara Bonita
+				Tooltip: "'Combina bem com um cachecol vermelho, luvas vermelhas, botas vermelhas e sua roupa de aniversário'"
+			}
+
+			SoulHarvesterMask: {
+				DisplayName: "Máscara do {$NPCs.HarvesterBoss.DisplayName}"
+				Tooltip: ""
+			}
+
+			VanitySelector: {
+				DisplayName: Maleta de Roupa
+				Tooltip:
+					'''
+					Clique com o botão esquerdo para mudar a aparência do seu animal de estimação
+					Clique com o botão direito para mudar a aparência do seu animal leve
+					'''
+			}
+
+			BoneCleavingFang: {
+				DisplayName: Presa Quebra-Ossos
+				Tooltip:
+					'''
+					Acertar inimigos vai carregar a espada, fazendo-a brilhar com poder.
+					Libere o poder acumulado clicando com o botão direito.
+					Quanto mais brilhante for a espada, maior será o poder.
+					O poder da espada desvanece enquanto não é usada
+					'''
+			}
+
+			BoneShatterLongbow: {
+				DisplayName: Arco Longo Quebra-Ossos
+				Tooltip: Flechas de madeira ascendem em almas ardentes
+			}
+
+			BreathOfSpazmatism: {
+				DisplayName: Bafo do Spazmatismo
+				Tooltip:
+					'''
+					Usa gel para disparar uma corrente de chamas amaldiçoadas
+					{$CommonItemTooltip.PercentChanceToSaveAmmo}
+					'''
+			}
+
+			DroneController: {
+				DisplayName: Controlador de Drone
+				Tooltip:
+					'''
+					Invoca um Drone amigável para auxiliar ou lutar por você
+					Summons a friendly Drone to support or fight for you
+					Botão direito para escolher pelos drones disponíveis
+					Segurar o item melhora as habilidades de suporte e ofensivas dos Drones
+					'''
+				Firerate: "{0} cadência de tiro"
+				UnlockMore: Derrote o {$NPCName.TheDestroyer} para desbloquear mais drones
+				CanSpawn: Apenas um {0} pode ser utilizado de uma vez
+				ToUnlock: Crie e use o item '{0}'
+			}
+
+			EverglowLantern: {
+				DisplayName: Lanterna Sempre Brilhante
+				Tooltip:
+					'''
+					Invoca duas Almas do Calabouço a qualquer momento para lutar por você
+					Cada Alma do Calabouço ocupa apenas meio espaço de invocação
+					'''
+			}
+
+			EverhallowedLantern: {
+				DisplayName: Lanterna Sempre Consagrada
+				Tooltip:
+					'''
+					Invoca uma alma para lutar por você
+					Botão direito para escolher entre as formas disponiveis
+					'''
+				MechCondition: Derrote os chefes mecânicos para desbloquear novos lacaios
+				SetBonusBoost: "{0}% Dano incrementado por vestir o conjunto 'Salvador de Almas'"
+			}
+
+			EagerUnderlingItem: {
+				DisplayName: Saco de Guloseimas
+				Tooltip: Invoca uma subordinada ansiosa para lutar por você
+				Flavor: "'Aqui dentro tem uma bola com espinhos, uma moeda e uma... lua?'"
+			}
+
+			ShyUnderlingItem: {
+				DisplayName: Moeda Amassada
+				Tooltip: Invoca uma subordinada tímida para lutar por você
+				Flavor: "'Essa moeda foi utilizada como alvo de testes por um longo período.'"
+			}
+
+			SeriousUnderlingItem: {
+				DisplayName: Boneco Bem-Amado
+				Tooltip: Invoca uma subordinada séria para lutar por você
+				Flavor: "'Um simples boneco vodu feito por palha e feno.'"
+			}
+
+			LegendaryWoodenSword: {
+				DisplayName: Espada de Madeira Lendária
+				Tooltip: ""
+			}
+
+			MagicSlimeSling: {
+				DisplayName: Estilingue Mágico de Slime
+				Tooltip: Atira um gel mágico que se transforma em uma geleia serva ao contato com inimigos
+			}
+
+			PlagueOfToads: {
+				DisplayName: Praga de Sapos
+				Tooltip: Invoca uma nuvem para chover sapos em seus inimigos
+			}
+
+			PocketSand: {
+				DisplayName: Areia de Bolso
+				Tooltip: "'Lança um torrão de areia no inimigo, causando confusão'"
+			}
+
+			SightofRetinazer: {
+				DisplayName: Visão do Retinaser
+				Tooltip: ""
+			}
+
+			SlimeHandlerKnapsack: {
+				DisplayName: Mochila do Domador de Geleia
+				Tooltip:
+					'''
+					Invoca uma geleia amigável, de uma cor aleatória, da sua mochila
+					Botão direito para escolher dentre as formas disponíveis
+					'''
+				Default: Padrão
+				Assorted: Sortida
+				Spiked: Espinhosa
+				SpikedBonus: Atira espinhos enquanto estiver lutando
+				SpikedUnlock: Defeat Plantera
+				TooltipFormat:
+					'''
+					{0}
+					{1}
+					{2}
+					{3}
+					'''
+			}
+
+			Talonstorm: {
+				DisplayName: Tempestade de Garra
+				Tooltip: Invoca uma tempestade de ossos que ataca os inimigos com garras extendiveis
+			}
+
+			TomeOfShadowflameSkulls: {
+				DisplayName: Tomo de Caveira das Chamas das Sombras
+				Tooltip: Inflinge chamas das sombras nos inimigos
+			}
+
+			TrueLegendaryWoodenSword: {
+				DisplayName: Verdadeira Espada de Madeira Lendária
+				Tooltip: "'Verdadeiramente Lendária'"
+			}
+
+			Gitgud: {
+				Or: ou
+				ConsolationPrize: Prêmio de Consolação
+				ReducedDamageTakenBoss: "{0}% de dano reduzido do {1}"
+				BuffImmunity: Imunidade a '{0}' enquanto {1} {^2:está vivo;estão vivos}
+				TimesDied: Vezes que morreu: {0}/{1}
+			}
+
+			SillyBalloonKit: {
+				DisplayName: Kit de Balão Bobinho
+				Tooltip:
+					'''
+					'A great gift for parties, birthdays, and saving the world!'
+					Inflate a fun party balloon to carry around
+					Left click to pick a different balloon
+					'''
+				DemonEyeGreen: Olho de Demônio (Verde)
+				DemonEyePurple: Olho de Demônio (Roxo)
+				DemonEyeRed: Olho de Demônio (Vermelho)
+				FracturedEyeGreen: Olho (Green)
+				FracturedEyePurple: Olho Fraturado (Roxo)
+				FracturedEyeRed: Olho Fraturado (Vermelho)
+				MetalEyeGreen: Olho de Metal (Verde)
+				MetalEyePurple: Olho de Metal (Roxo)
+				MetalEyeRed: Olho de Metal (Vermelho)
+				FracturedMetalEyeGreen: Olho de Metal Fraturadp (Verde)
+				FracturedMetalEyePurple: Olho de Metal Fraturado (Roxo)
+				FracturedMetalEyeRed: Olho de Metal Fraturado (Vermelho)
+				Spazmatism: Spazmatismo
+				Retinazer: Retinaser
+				Cobballoon: Cobalão
+			}
+		}
+
+		NPCs: {
+			AnimatedSpellTome: {
+				DisplayName: Tomo de Magia Animado
+				BestiaryFlavorText: Os mestre magos não precisam procurar por um tomo específico; ele os encontrará quando necessário.
+			}
+
+			AnimatedTome: {
+				DisplayName: Livro Animado
+				BestiaryFlavorText: No passado, este livro era um best seller; ele praticamente voou das estantes!
+			}
+
+			Bass: {
+				DisplayName: Robalo
+				BestiaryFlavorText: Um peixe comum encontrado em águas frescas e calmas de rios e lagos.
+			}
+
+			BloatedBaitThief: {
+				DisplayName: Ladrão de Isca Inchado
+				BestiaryFlavorText: Um robalo ingurgitado com barriga inchada. Algo está se contorcendo por dentro...
+			}
+
+			Chunky: {
+				DisplayName: Chunky
+				BestiaryFlavorText: Uma massa de carne podre com um olho. Parece que o olho e a massa não se dão bem.
+			}
+
+			ChunkysEye: {
+				DisplayName: Olho do Chunky
+				BestiaryFlavorText: Um servo do Cthulhu que estava preso na corrupção. Agora procura por seu irmãozinho perdido.
+			}
+
+			Cloudfish: {
+				DisplayName: Peixe-Nuvem
+				BestiaryFlavorText: É uma nuvem? é um peixe? não, são os dois!
+			}
+
+			CuteGastropod: {
+				DisplayName: Gastrópode Fofo
+				BestiaryFlavorText: Esta variante consagrada de geleia ganhou uma aparência mais amigável depois de conhecer uma pessoa especial.
+			}
+
+			CuteSlimeBlack: {
+				DisplayName: Geleia Preta Fofa
+				BestiaryFlavorText: Harboring great vanity for its ponytail, the easiest way to befriend it is to compliment the hair.
+			}
+
+			CuteSlimeBlue: {
+				DisplayName: Geleia Azul Fofa
+				BestiaryFlavorText: Embora não possua alguma expressão, essa geleia é muito carinhosa e gosta de abraçar qualquer pessoa que se aproxima.
+			}
+
+			CuteSlimeCorrupt: {
+				DisplayName: Geleia Corrupta Fofa
+				BestiaryFlavorText: Olhos vazios e uma cor escura fazem você pensar que essa geleia é perigosa, mas não, ela só é antisocial.
+			}
+
+			CuteSlimeCorruptJungle: {
+				DisplayName: Geleia Corrupta da Selva Fofa
+				BestiaryFlavorText: Geleias são incrivelmente adaptáveis, sendo capacitada de sobreviver em condições severas.
+			}
+
+			CuteSlimeCrimson: {
+				DisplayName: Geleia de Carmim Fofa
+				BestiaryFlavorText: Embora pareça ter uma mente instável, essa geleia é incrivelmente calma e controlada.
+			}
+
+			CuteSlimeCrimsonJungle: {
+				DisplayName: Geleia de Carmim da Selva Fofa
+				BestiaryFlavorText: Quando a selva ficou vermelha, essa geleia se adaptou rapidamente, imitando a grama do carmesim.
+			}
+
+			CuteSlimeDungeon: {
+				DisplayName: Geleia do Calabouço Fofa
+				BestiaryFlavorText: Esta geleia foi criado à imagem de uma antiga feiticeira. Tirando a falta de pernas, é quase perfeito.
+			}
+
+			CuteSlimeGolden.DisplayName: Geleia Dourada Fofa
+
+			CuteSlimeGreen: {
+				DisplayName: Geleia Verde Fofa
+				BestiaryFlavorText: Não se deixe enganar pelos olhos fechados; essa geleia está atenta e pronta para agir a qualquer momento.
+			}
+
+			CuteSlimeHoney: {
+				DisplayName: Geleia de Mel Fofa
+				BestiaryFlavorText: Para se esconder das vespas, essa geleia se cobriu em mel. Isso apenas deixou as vespas mais conscientes de sua presença.
+			}
+
+			CuteSlimeIce: {
+				DisplayName: Geleia de Gelo Fofa
+				BestiaryFlavorText: Seu corpo pode ser frio ao toque, mas sua expressão e maneirismos aquecerão seu coração.
+			}
+
+			CuteSlimeIlluminant: {
+				DisplayName: Geleia Iluminada Fofa
+				BestiaryFlavorText: A natureza errática do Sagrado tornou este lodo bastante brincalhão.
+			}
+
+			CuteSlimeJungle: {
+				DisplayName: Geleia da Selva Fofa
+				BestiaryFlavorText: A vida na selva é difícil para os visitantes de corpo mole, mas esta geleia prova que não é impossível.
+			}
+
+			CuteSlimeLava: {
+				DisplayName: Geleia de Lava Fofa
+				BestiaryFlavorText: Tendo sido acidentalmente empalado por um pedaço de obsidiana, esta geleia lamenta não ter conseguido removê-lo.
+			}
+
+			CuteSlimePink: {
+				DisplayName: Geleia Rosa Fofa
+				BestiaryFlavorText: Diminutivo não significa falta. Apesar do tamanho, essa geleia tem mais coragem do que um grupo inteiro.
+			}
+
+			CuteSlimePinkIce: {
+				DisplayName: Geleia de Gelo Cor-de-rosa Fofa
+				BestiaryFlavorText: O sagrado pode ter efeitos caóticos na vida selvagem, mas essa geleia permanece calma e educada.
+			}
+
+			CuteSlimePurple: {
+				DisplayName: Geleia Roxa Fofa
+				BestiaryFlavorText: Não se deixe enganar pelo sorriso; na verdade, é muito mais feliz do que parece.
+			}
+
+			CuteSlimePurpleIce: {
+				DisplayName: Geleia Roxa de Gelo Fofa
+				BestiaryFlavorText: Assustado com a corrupção, essa geleia está perpetuamente nervosa.
+			}
+
+			CuteSlimeRainbow: {
+				DisplayName: Geleia Arco-Íris Fofa
+				BestiaryFlavorText: A natureza carinhosa e maternal que essa geleia exibe mostra que ela entende a compaixão.
+			}
+
+			CuteSlimeRed: {
+				DisplayName: Geleia Vermelha Fofa
+				BestiaryFlavorText: Uma geleia brincalhona e bastante ativa. Às vezes exagera quando se diverte.
+			}
+
+			CuteSlimeRedIce: {
+				DisplayName: Geleia Vermelha de Gelo Fofa
+				BestiaryFlavorText: É melhor evitar se destacar quando estiver no Carmim, e essa geleia sabe disso muito bem.
+			}
+
+			CuteSlimeSand: {
+				DisplayName: Geleia de Areia Fofa
+				BestiaryFlavorText: A areia grossa que cobre seu corpo o leva a manter distância, mas não recusa um amigo.
+			}
+
+			CuteSlimeShimmer: {
+				DisplayName: Geleia Brilhante Fofa
+				BestiaryFlavorText: Quando exposta ao brilhante misterioso, essa geleia assumiu uma aparência etérea.
+			}
+
+			CuteSlimeToxic: {
+				DisplayName: Geleia Tóxica Fofa
+				BestiaryFlavorText: As aparências enganam; possui apenas metade da monstruosidade que parece!
+			}
+
+			CuteSlimeXmas: {
+				DisplayName: Geleia Natalina Fofa
+				BestiaryFlavorText: O maior presente é um amigo. Essa geleia quer levar esse presente para todos.
+			}
+
+			CuteSlimeYellow: {
+				DisplayName: Geleia Amarela Fofa
+				BestiaryFlavorText: Movendo-se com graça delicada, essa geleia dança sem perder um passo.
+			}
+
+			DemonEyeRecolor.DisplayName: Olho de Demônio
+			DemonEyeWandering.DisplayName: Olho Andarilho
+
+			FairySlime: {
+				DisplayName: Geleia Fada
+				BestiaryFlavorText: Não querendo perder para os seus vizinhos voadores, desenvolveu extensões semelhantes a asas. Não pode voar, mas é feliz independentemente desse fato.
+			}
+
+			GiantGrasshopper: {
+				DisplayName: Gafanhoto Gigante
+				BestiaryFlavorText: Ele pode saltar sobre arbustos inteiros com um único salto.
+			}
+
+			GiantGrasshopperGold: {
+				DisplayName: Gafanhoto Gigante de Ouro
+				BestiaryFlavorText: "{$CommonBestiaryFlavor.GoldCritter}"
+			}
+
+			DungeonSoul.DisplayName: Alma do Calabouço
+			DungeonSoulFreed.DisplayName: "{$NPCs.DungeonSoul.DisplayName}"
+
+			HarvesterBoss: {
+				DisplayName: Colhedor de Almas
+				BestiaryFlavorText: Depois de ter absorvido a essência dos habitantes caídos das masmorras, este pássaro esquelético rapidamente se transformou em um caçador feroz que procurava comer a mão que antes o alimentava.
+				BossChecklistIntegration.SpawnInfo: Procure e abra uma {$Items.AntiqueCageItem.DisplayName} no calabouço, ou use um [i:AssortedCrazyThings/IdolOfDecay]
+			}
+
+			HarvesterTalonLeft.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
+			HarvesterTalonRight.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
+
+			HornedSlime: {
+				DisplayName: Geleia com Chifres
+				BestiaryFlavorText: Os chifres não servem apenas para decoração; eles são capazes de dispersar o calor, permitindo que a geleia permaneça gelatinosa.
+			}
+
+			JoyousSlime: {
+				DisplayName: Geleia Contente
+				BestiaryFlavorText: Uma variante passiva de Geleia com rosto amigável. À noite, tenta estar próximo de um rosto igualmente amigável.
+			}
+
+			Meatball: {
+				DisplayName: Bola de Carne
+				BestiaryFlavorText: Uma massa de carne ensanguentada com um único olho. O olho parece estar lutando na tentativa de escapar.
+			}
+
+			MeatballsEye: {
+				DisplayName: Olho do Bola de Carne
+				BestiaryFlavorText: Um lacaio do Cthulhu que estava preso no carmesim. Ele procura apressadamente seu irmão mais velho.
+			}
+
+			Megalodon: {
+				DisplayName: Megalodonte
+				BestiaryFlavorText: Considerado extinto, este antigo predador tem uma vida tão longa quanto a sua fome sem fim.
+			}
+
+			OceanSlime: {
+				DisplayName: Geleia Oceânica
+				BestiaryFlavorText: As geleias que se perdem no mar enfrentam duas opções; adaptar-se ou ser comido. Felizmente, essas geleias têm um gosto ruim.
+			}
+
+			SpawnOfOcram: {
+				DisplayName: Prole do Ocram
+				BestiaryFlavorText: Filho de um ser antigo, que antes se pensava ter sido perdido no tempo.
+			}
+
+			StingSlime: {
+				DisplayName: Geleia Peçonhenta
+				BestiaryFlavorText: Salta como uma geleia, pica como um escorpião.
+			}
+
+			StoneSoldier: {
+				DisplayName: Soldado de Pedra
+				BestiaryFlavorText: Estátuas de pedra animadas que saíram de uma tumba antiga. Seus olhos são valiosos.
+			}
+
+			StrangeSlime: {
+				DisplayName: Geleia Estranha
+				BestiaryFlavorText: Essas geleias peculiares hospedam plantas estranhas, que crescem para viver. A geleia sempre faz questão de mantê-la em pé.
+			}
+
+			TurtleSlime: {
+				DisplayName: Geleia Tartaruga
+				BestiaryFlavorText: Sabe-se que tartarugas gigantes perdem parte de sua carapaça à medida que crescem. Essas geleias coletam esses fragmentos antigos para proteção.
+			}
+
+			WalkingTombstoneGolden: {
+				DisplayName: Lápide Andante
+				BestiaryFlavorText: Caranguejos terrestres que adotaram uma forma mórbida e cara de camuflagem.
+			}
+
+			YoungHarpy: {
+				DisplayName: Harpia Jovem
+				BestiaryFlavorText: Harpias não são inerentemente hostis. Se fizerem um amigo de infância, sempre serão amigos.
+			}
+
+			CuteSlimes: {
+				SpawnConditionType: {
+					Forest: {
+						Black: Preto
+						Blue: Azul
+						Green: Verde
+						Purple: Roxo
+						Rainbow: Arco-Íris
+						Red: Vermelho
+						Yellow: Amarelo
+					}
+
+					Desert.Sand: Areia
+					Tundra.Ice: Gelo
+					Jungle.Jungle: Selva
+					Underground.Toxic: Tóxico
+					Hell.Lava: Lava
+					Corruption.Corrupt: Corrupta
+					CorruptionIce.PurpleIce: Gelo Roxo
+					CorruptionJungle.CorruptJungle: Selva Corrupta
+					Crimson.Crimson: Carmesim
+					CrimsonIce.RedIce: Gelo Vermelho
+					CrimsonJungle.CrimsonJungle: Selva Carmesim
+					Hallow.Illuminant: Iluminada
+					HallowIce.PinkIce: Gelo Cor-de-rosa
+					Dungeon.Dungeon: Calabouço
+					Xmas.Xmas: Natal
+					Honey.Honey: Mel
+				}
+			}
+		}
+
+		Projectiles: {
+			SigilOfTheBeakProj.DisplayName: Alma Fraturada
+			CompanionDungeonSoulMinion.DisplayName: Alma Companheira
+			BasicLaserDrone.DisplayName: Drone de Laser Básico
+			HealingDrone.DisplayName: Drone de Cura
+			HeavyLaserDrone.DisplayName: Drone de Laser Pesado
+			HeavyLaserDroneLaser.DisplayName: Laser de Drone de Laser
+			MissileDrone.DisplayName: Drone de Míssil
+			MissileDroneRocket.DisplayName: Foguete de Drone de Míssil
+			ShieldDrone.DisplayName: Drone de Escudo
+			GoblinUnderlingWeaponDart.DisplayName: Dardo de Subordinada Goblin
+			EagerUnderlingProj.DisplayName: "{$Buffs.EagerUnderlingBuff.DisplayName}"
+			ShyUnderlingProj.DisplayName: "{$Buffs.ShyUnderlingBuff.DisplayName}"
+			SeriousUnderlingProj.DisplayName: "{$Buffs.SeriousUnderlingBuff.DisplayName}"
+			GoblinUnderlingWeaponTerraBeam.DisplayName: Feixe da Terra de Subordinada Goblin
+			GoblinUnderlingWeaponArrow.DisplayName: Flecha de Subordinada Goblin
+			GoblinUnderlingWeaponBlaster.DisplayName: Explosão de Subordinada Goblin
+			GoblinUnderlingWeaponOrb.DisplayName: Orbe de Subordinada Goblin
+			GoblinUnderlingWeaponDaybreak.DisplayName: Aurora de Subordinada Goblin
+			GoblinUnderlingWeaponDaybreakExplosion.DisplayName: "{$Projectiles.GoblinUnderlingWeaponDaybreak.DisplayName}"
+			MagicSlimeSlingFired.DisplayName: Estilingue de Geleia Mágica
+			MagicSlimeSlingMinion.DisplayName: Lacaio Estilingue de Geleia Mágica
+			PetDestroyerDroneLaser.DisplayName: Laser do Pet Destruidor
+			PetGolemHeadFireball.DisplayName: Bola de Fogo do Pet Cabeça de Golem
+			SlimePackAssortedMinion.DisplayName: Lacaio Geleia da Mochila
+			SlimePackMinion.DisplayName: Lacaio Geleia da Mochila
+			SlimePackMinionSpike.DisplayName: Espinho do Lacaio Geleia da Mochila
+			SlimePackSpikedMinion.DisplayName: Lacaio Geleia da Mochila
+			BabyHarvesterProj.DisplayName: Bebê Pássaro
+			HarvesterAbsorbedSoul.DisplayName: Alma Absorvida
+			HarvesterBone.DisplayName: Osso do Colhedor de Almas
+			HarvesterFracturedSoul.DisplayName: Alma Fraturada
+
+			AbeeminationProj: {
+				DisplayName: Abelhominação
+				Default.Tooltip: Padrão
+				SnowBee.Tooltip: Abelha de Neve
+				OilSpill.Tooltip: Petróleo Derramado
+				MissingIngredients.Tooltip: Faltando Ingredientes
+			}
+
+			AlienHornetProj.DisplayName: Vespa Alienígena
+
+			AnimatedTomeProj: {
+				DisplayName: Livro Animado
+				Green.Tooltip: Verde
+				Blue.Tooltip: Azul
+				Purple.Tooltip: Roxo
+				Pink.Tooltip: Rosa
+				Yellow.Tooltip: Amarelo
+				Spell.Tooltip: Caderno
+			}
+
+			AnomalocarisProj: {
+				DisplayName: Anomalocaris
+				Wild.Tooltip: Selvagem
+				Shrimpy.Tooltip: Camarãozinho
+				Snippy.Tooltip: Agressivo
+			}
+
+			BabyCrimeraProj.DisplayName: Bebê Crimera
+			BabyIchorStickerProj.DisplayName: Bebê Adesivo de Ichor
+			BabyOcramProj.DisplayName: Bebê Ocram
+			BrainofConfusionProj.DisplayName: Cérebro da Confusão
+			ChunkyProj.DisplayName: Chunky
+			ChunkySlimeProj.DisplayName: Geleia Chunky
+			CompanionDungeonSoulPetProj.DisplayName: Alma Companheira
+			CompanionDungeonSoulPetProj2.DisplayName: Alma Companheira
+
+			CursedSkullProj: {
+				DisplayName: Caveira Amaldiçoada
+				Default.Tooltip: Padrão
+				Dragon.Tooltip: Dragão
+			}
+
+			CuteGastropodProj.DisplayName: Gastrópode Fofo
+
+			CuteLamiaPetProj: {
+				DisplayName: Cobrinha
+				Dark.Tooltip: Escuro
+				Light.Tooltip: Claro
+				Dropkick.Tooltip: Dropkick
+			}
+
+			CuteSlimeBlackProj.DisplayName: Geleia Preta Fofa
+			CuteSlimeBlueProj.DisplayName: Geleia Azul Fofa
+			CuteSlimeCorruptProj.DisplayName: Geleia Corrupta Fofa
+			CuteSlimeCorruptJungleProj.DisplayName: Geleia Corrupta da Selva Fofa
+			CuteSlimeCrimsonProj.DisplayName: Geleia de Carmim Fofa
+			CuteSlimeCrimsonJungleProj.DisplayName: Geleia de Carmim da Selva Fofa
+			CuteSlimeDungeonProj.DisplayName: Geleia do Calabouço Fofa
+			CuteSlimeGoldenProj.DisplayName: Geleia Dourada Fofa
+			CuteSlimeGreenProj.DisplayName: Geleia Verde Fofa
+			CuteSlimeHoneyProj.DisplayName: Geleia de Mel Fofa
+			CuteSlimeIceProj.DisplayName: Geleia de Gelo Fofa
+			CuteSlimeIlluminantProj.DisplayName: Geleia Iluminada Fofa
+			CuteSlimeJungleProj.DisplayName: Geleia da Selva Fofa
+			CuteSlimeLavaProj.DisplayName: Geleia de Lava Fofa
+			CuteSlimePinkProj.DisplayName: Geleia Rosa Fofa
+			CuteSlimePinkIceProj.DisplayName: Geleia de Gelo Cor-de-rosa Fofa
+			CuteSlimePrincessProj.DisplayName: Geleia Princesa Fofa
+			CuteSlimePurpleProj.DisplayName: Geleia Roxa Fofa
+			CuteSlimePurpleIceProj.DisplayName: Geleia Roxa de Gelo Fofa
+			CuteSlimeQueenProj.DisplayName: Geleia Rainha Fofa
+			CuteSlimeRainbowProj.DisplayName: Geleia Arco-Íris Fofa
+			CuteSlimeRedProj.DisplayName: Geleia Vermelha Fofa
+			CuteSlimeRedIceProj.DisplayName: Geleia Vermelha de Gelo Fofa
+			CuteSlimeSandProj.DisplayName: Geleia de Areia Fofa
+			CuteSlimeShimmerProj.DisplayName: Geleia Brilhante Fofa
+			CuteSlimeToxicProj.DisplayName: Geleia Tóxica Fofa
+			CuteSlimeXmasProj.DisplayName: Geleia Natalina Fofa
+			CuteSlimeYellowProj.DisplayName: Geleia Amarela Fofa
+			DemonHeartProj.DisplayName: Coração do Demônio
+			DetachedHungryProj.DisplayName: O Faminto Solto
+
+			DocileDemonEyeProj: {
+				DisplayName: Olho de Demônio Dócil
+				Red.Tooltip: Vermelho
+				Green.Tooltip: Verde
+				Purple.Tooltip: Roxo
+				RedFractured.Tooltip: Fraturado Vermelho
+				GreenFractured.Tooltip: Fraturado Verde
+				PurpleFractured.Tooltip: Fraturado Roxo
+				RedMechanical.Tooltip: Mecânico Vermelho
+				GreenMechanical.Tooltip: Mecânico Verde
+				PurpleMechanical.Tooltip: Mecânico Roxo
+				RedLaser.Tooltip: Laser Vermelho
+				GreenLaser.Tooltip: Laser Verde
+				PurpleLaser.Tooltip: Laser Roxo
+				FlyingPumpkin.Tooltip: Abóbora Flying
+				FlyingJack.Tooltip: Jack Voador
+			}
+
+			DrumstickElementalProj.DisplayName: Elemental de Coxa de Galinha
+
+			DynamiteBunnyProj: {
+				DisplayName: Coelhinho Explosivo
+				White.Tooltip: Branco
+				Corrupt.Tooltip: Corrupto
+				Crimtane.Tooltip: Carmesim
+				Angora.Tooltip: Angorá
+				Dutch.Tooltip: Holandês
+				Flemish.Tooltip: Flemish
+				Lop.Tooltip: Lop
+				Silver.Tooltip: Prateado
+				Caerbannog.Tooltip: Caerbannog
+			}
+
+			EnchantedSwordProj.DisplayName: Espada Encantada
+			FailureSlimeProj.DisplayName: Geleia Fracassada
+			FairySlimeProj.DisplayName: Geleia Fada
+			FairySwarmProj.DisplayName: Enxame de Fadas
+			GhostMartianProj.DisplayName: Fantasma Marciano
+			GobletProj.DisplayName: Goblinzinho
+			HornedSlimeProj.DisplayName: Geleia com Chifres
+			IlluminantSlimeProj.DisplayName: Geleia Iluminada
+
+			JoyousSlimeProj: {
+				DisplayName: Geleia Contente
+				Default.Tooltip: Padrão
+				JoyousPumpkin.Tooltip: Abóbora Alegre
+			}
+
+			LifelikeMechanicalFrogProj: {
+				DisplayName: Sapo Mecânico Realista
+				Default.Tooltip: Padrão
+				Crowned.Tooltip: Coroada
+			}
+
+			LilWrapsProj: {
+				DisplayName: Pequeno Embrulho
+				Default.Tooltip: Padrão
+				Dark.Tooltip: Escuro
+				Light.Tooltip: Luz
+				Shadow.Tooltip: Sombra
+				Spectral.Tooltip: Espectral
+			}
+
+			MeatballProj.DisplayName: Bola de Carne
+			MeatballSlimeProj.DisplayName: Geleia Bola de Carne
+
+			MetroidPetProj: {
+				DisplayName: Metroid
+				Metroid.Tooltip: Metroid
+				FailedClone.Tooltip: Clone Fracassado
+				Convergent.Tooltip: Convergente
+				Irradiated.Tooltip: Irradiado
+				Corrupted.Tooltip: Corrupto
+				TheBaby.Tooltip: O Bebê
+			}
+
+			MiniAntlionProj: {
+				DisplayName: Bebê Formiga-Leão
+				Default.Tooltip: Padrão
+				Albino.Tooltip: Albino
+				Larval.Tooltip: Larval
+			}
+
+			MiniMegalodonProj.DisplayName: Pequeno Megalodonte
+			NumberMuncherProj.DisplayName: Number Muncher
+
+			OceanSlimeProj: {
+				DisplayName: Geleia Oceânica
+				Default.Tooltip: Padrão
+				StupidHat.Tooltip: Chapéu Estúpido
+				GnarlyGrin.Tooltip: Sorriso Cruel
+				FlippedJelly.Tooltip: Geléia Virada
+			}
+
+			PetCultistProj: {
+				DisplayName: Cultistinha
+				Lunar.Tooltip: Lunar
+				Solar.Tooltip: Solar
+			}
+
+			PetDestroyer.DisplayName: Pequeno Destruidor
+			PetDestroyerProbe.DisplayName: Sonda do Pequeno Destruidor
+			PetEaterofWorlds.DisplayName: Pequeno Devorador de Mundos
+
+			PetFishronProj: {
+				DisplayName: Pequeno Duque Peixe-Dragão
+				Default.Tooltip: Padrão
+				Sharkron.Tooltip: Tubarãozinho
+				Sharknado.Tooltip: Tubarãozão
+			}
+
+			PetGoldfishProj: {
+				DisplayName: Peixe-Dourado Possuído
+				Default.Tooltip: Padrão
+				Crimson.Tooltip: Carmim
+				Corruption.Tooltip: Corrupção
+				Bunny.Tooltip: Peixoelho
+				Ghostfish.Tooltip: Peixe-Fantasma
+			}
+
+			PetGolemHeadProj.DisplayName: Réplica da Cabeça do Golem
+			PetHarvesterProj.DisplayName: Pássaro Teimoso
+
+			PetMoonProj: {
+				DisplayName: Lua Pessoal
+				Default.Tooltip: Padrão
+				Yellow.Tooltip: Amarelo
+				Ringed.Tooltip: Anelada
+				Mythril.Tooltip: Mithril
+				BrightBlue.Tooltip: Azul Clara
+				Green.Tooltip: Verde
+				Pink.Tooltip: Rosa
+				Orange.Tooltip: Laranja
+				Purple.Tooltip: Roxo
+			}
+
+			PetPlanteraProj.DisplayName: Broto da Plantera
+			PetPlanteraProjTentacle.DisplayName: Tentáculo de Sementes Mesquinhas
+			PetQueenSlimeProj.DisplayName: Irmã Geleia
+			PetSunProj.DisplayName: Sol Pessoal
+
+			PigronataProj: {
+				DisplayName: Piñata Suína
+				Default.Tooltip: Padrão
+				Winter.Tooltip: Inverno
+				Autumn.Tooltip: Outono
+				Spring.Tooltip: Primavera
+				Summer.Tooltip: Verão
+				Halloween.Tooltip: Halloween
+				Christmas.Tooltip: Natal
+			}
+
+			PrinceSlimeProj.DisplayName: Príncipe Geleia
+
+			QueenLarvaProj: {
+				DisplayName: Rainha Larva
+				Default.Tooltip: Padrão
+				PrawnLarva.Tooltip: Larva de Camarão
+				UnexpectedSeed.Tooltip: Semente Inesperada
+				BigKidLarva.Tooltip: Larva de Criança Grande
+				WheresTheBaby.Tooltip: Onde Está o Bebê?
+			}
+
+			RainbowSlimeProj.DisplayName: Geleia Arco-Íris
+
+			SkeletronHandProj: {
+				DisplayName: Mão do Esqueletron de Estimação
+				Default.Tooltip: Padrão
+				OKHand.Tooltip: Mão-OK
+				Peace.Tooltip: Paz
+				RockIt.Tooltip: Rock And Roll
+				Fist.Tooltip: Punho
+			}
+
+			SkeletronPrimeHandProj: {
+				DisplayName: Mão do Esqueletron Alfa de Estimação
+				Cannon.Tooltip: Canhão
+				Saw.Tooltip: Serrote
+				Vice.Tooltip: Vice
+				// Laser.Tooltip: Laser
+			}
+
+			StingSlimeProj: {
+				// DisplayName: Geleia Peçonhenta
+				// Black.Tooltip: Black
+				// Orange.Tooltip: Orange
+			}
+
+			// StrangeRobotProj.DisplayName: Robô Estranho
+			// SuspiciousNuggetProj.DisplayName: Nugget Suspeito
+			// SwarmofCthulhuProj.DisplayName: Enxame de Cthulhus
+			// TinyRetinazerProj.DisplayName: Tiny Retinazer
+			// TinySpazmatismProj.DisplayName: Tiny Spazmatism
+			// TorchGodLightPetProj.DisplayName: Tocha Piedosa
+			// TorturedSoulProj.DisplayName: Alma Torturada
+			// TrueObservingEyeProj.DisplayName: Verdadeiro Olho Observador
+			// TurtleSlimeProj.DisplayName: Geleia Tartaruga
+
+			VampireBatProj: {
+				// DisplayName: Morcego Vampiro
+				// Default.Tooltip: Padrão
+				// Werebat.Tooltip: Werebat
+			}
+
+			// WallFragmentEye1.DisplayName: Wall Eye
+			// WallFragmentEye2.DisplayName: Wall Eye
+
+			WallFragmentMouth: {
+				// DisplayName: Wall Mouth
+				// Default.Tooltip: Padrão
+				// Chinese.Tooltip: Chinese
+			}
+
+			// WobyProj.DisplayName: Woby
+
+			YoungHarpyProj: {
+				// DisplayName: Harpia Jovem
+				// Default.Tooltip: Padrão
+				// Eagle.Tooltip: Eagle
+				// Raven.Tooltip: Raven
+				// Dove.Tooltip: Dove
+				// DefaultLegacy.Tooltip: Default (Legacy)
+				// EagleLegacy.Tooltip: Eagle (Legacy)
+				// RavenLegacy.Tooltip: Raven (Legacy)
+				// DoveLegacy.Tooltip: Dove (Legacy)
+			}
+
+			YoungWyvernProj: {
+				// DisplayName: Serpe Jovem
+				// Default.Tooltip: Padrão
+				// Mythical.Tooltip: Mythical
+				// Arch.Tooltip: Arch
+				// ArchLegacy.Tooltip: Arch (Legacy)
+			}
+
+			// ExtendoNetGoldenProj.DisplayName: EXTENDO!
+			// ExtendoNetRegularProj.DisplayName: EXTENDO!
+			// BoneCleavingFangProj.DisplayName: "{$Items.BoneCleavingFang.DisplayName}"
+			// BoneShatterLongbowProj.DisplayName: "{$Items.BoneShatterLongbow.DisplayName} Arrow"
+			// CandleDustDummy.DisplayName: Candle Dust Dummy
+			// GuideVoodoorangProj.DisplayName: "{$Items.GuideVoodoorang.DisplayName}"
+			// LegendaryWoodenSwordProj.DisplayName: "{$Items.LegendaryWoodenSword.DisplayName}"
+			// PlagueOfToadsCloud.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			// PlagueOfToadsFired.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			// PlagueOfToadsProj.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			// PocketSandProj.DisplayName: "{$Items.PocketSand.DisplayName}"
+			// SightofRetinazerLaser.DisplayName: "{$Items.SightofRetinazer.DisplayName} Laser"
+			// BreathOfSpazmatismProj.DisplayName: "{$Items.BreathOfSpazmatism.DisplayName} Breath"
+			// TalonstormClawProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			// TalonstormFiredProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			// TalonstormProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			// TrueLegendaryWoodenSwordProj.DisplayName: "{$Items.TrueLegendaryWoodenSword.DisplayName}"
+			// AlienHornetShotProj.DisplayName: "{$Projectiles.AlienHornetProj.DisplayName} Shot"
+			// AnimatedTomeShotProj.DisplayName: "{$Projectiles.AnimatedTomeProj.DisplayName} Shot"
+			// BabyIchorStickerShotProj.DisplayName: "{$Projectiles.BabyIchorStickerProj.DisplayName} Shot"
+			// BabyOcramShotProj.DisplayName: "{$Projectiles.BabyOcramProj.DisplayName} Shot"
+			// CuteGastropodShotProj.DisplayName: "{$Projectiles.CuteGastropodProj.DisplayName} Shot"
+			// CuteLamiaPetShotProj.DisplayName: "{$Projectiles.CuteLamiaPetProj.DisplayName} Shot"
+			// DemonHeartShotProj.DisplayName: "{$Projectiles.DemonHeartProj.DisplayName} Shot"
+			// DocileDemonEyeShotProj.DisplayName: "{$Projectiles.DocileDemonEyeProj.DisplayName} Shot"
+			// DrumstickElementalShotProj.DisplayName: "{$Projectiles.DrumstickElementalProj.DisplayName} Shot"
+			// FairySwarmShotProj.DisplayName: "{$Projectiles.FairySwarmSProj.DisplayName} Shot"
+			// GhostMartianShotProj.DisplayName: "{$Projectiles.GhostMartianProj.DisplayName} Shot"
+			// NumberMuncherShotProj.DisplayName: "{$Projectiles.NumberMuncherProj.DisplayName} Shot"
+			// SkeletronPrimeHandBombShotProj.DisplayName: "{$Projectiles.SkeletronPrimeHandProj.DisplayName} Bomb Shot"
+			// SkeletronPrimeHandLaserShotProj.DisplayName: "{$Projectiles.SkeletronPrimeHandProj.DisplayName} Laser Shot"
+			// StrangeRobotShotProj.DisplayName: "{$Projectiles.StrangeRobotProj.DisplayName} Shot"
+			// SwarmofCthulhuShotProj.DisplayName: "{$Projectiles.SwarmofCthulhuProj.DisplayName} Shot"
+			// TinyRetinazerShotProj.DisplayName: "{$Projectiles.TinyRetinazerProj.DisplayName} Shot"
+			// TinySpazmatismShotProj.DisplayName: "{$Projectiles.TinySpazmatismProj.DisplayName} Shot"
+			// TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName} Shot"
+			// WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName} Shot"
+		}
+
+		Tiles: {
+			// MapEntry_Locked: Locked
+			// AntiqueChestTile.MapEntry_Locked: "{$Tiles.MapEntry_Locked} {$Items.AntiqueChestItem.DisplayName}"
+
+			SlimeBeaconTile: {
+				// NotInMultiplayer: NOT IN MULTIPLAYER
+				// Activated: Background Activated
+				// Deactivated: Background Deactivated
+			}
+
+			VanityDresserTile: {
+				/* Mouseover:
+					'''
+					Costume Dresser
+					Left Click to change your Pet's appearance
+					Right Click to change your Light Pet's appearance
+					''' */
+				// WorkProperly: For this to work properly, don't have any item selected
+				// NoCostumesFoundPet: No alt costumes found for pet
+				// NoCostumesFoundLightPet: No alt costumes found for light pet
+			}
+		}
+
+		Conditions: {
+			// UnlockedBiomeTorches: If {$ItemName.TorchGodsFavor} was already used
+			// DroneTypeNotUnlocked: If it isn't unlocked yet
+		}
+
+		DropConditions: {
+			// MatchAppearanceCondition.Description: Drops based on appearance
+			// NotAllDronePartsUnlockedCondition.Description: Drops if not all {$Items.DroneParts.DisplayName} are unlocked yet
+			// NoHasItemWithBankCondition.Description: Only if {0} is not in the closest players inventory or banks
+		}
+
+		Announcements: {
+			// SigilOfTheWingDeath: "{0} has died, but their soul has not given up..."
+			// SoulHarvesterDeath: The Alma do Calabouço have been freed!
+			// SoulHarvesterBossAppear: "{$NPCs.HarvesterBoss.DisplayName} has been awakened!"
+			// SpawnOfOcramAppear: "{$NPCs.SpawnOfOcram.DisplayName} has appeared!"
+			// MegalodonAppear: A {$NPCs.Megalodon.DisplayName} is approaching! Get out of the ocean!
+			// BigEnemyDisappear: The {0} disappeared... for now
+			// SoulHarvesterBabyAppear: You hear a faint cawing from the dungeon.
+			// SoulHarvesterBabyCageAppear: A hungry bird has been released!
+		}
+
+		SoulData: {
+			DungeonSoul: {
+				// DisplayName: Dungeon {^0:Soul;Souls}
+				// Unlock: ""
+				// Description: ""
+			}
+
+			SoulofFright: {
+				// DisplayName: "{^0:Soul;Souls} of Fright"
+				// Unlock: Defeat {$NPCName.SkeletronPrime}
+				// Description: Inflicts {$BuffName.Ichor} and {$BuffName.Venom}
+			}
+
+			SoulofSight: {
+				// DisplayName: "{^0:Soul;Souls} of Sight"
+				// Unlock: Defeat {$Enemies.TheTwins}
+				// Description: Inflicts {$BuffName.CursedInferno}
+			}
+
+			SoulofMight: {
+				// DisplayName: "{^0:Soul;Souls} of Might"
+				// Unlock: Defeat {$NPCName.TheDestroyer}
+				// Description: ""
+			}
+
+			/* TooltipFormat:
+				'''
+				{0}
+				{1}
+				{2}
+				{3}
+				''' */
+		}
+
+		DroneData: {
+			BasicLaserDrone: {
+				// DisplayName: Basic Laser {^0:Drone;Drones}
+				// ComponentName: "{$Items.DroneUnlockableBasicLaserDrone.DisplayName}"
+				// Firerate: High
+				// Description: Rapidly fires lasers
+				// Misc: ""
+			}
+
+			HeavyLaserDrone: {
+				// DisplayName: Heavy Laser {^0:Drone;Drones}
+				// ComponentName: "{$Items.DroneUnlockableHeavyLaserDrone.DisplayName}"
+				// Firerate: Extremely slow
+				// Description: Fires a penetrating laser after a long delay
+				// Misc: ""
+			}
+
+			MissileDrone: {
+				// DisplayName: Missile {^0:Drone;Drones}
+				// ComponentName: "{$Items.DroneUnlockableMissileDrone.DisplayName}"
+				// Firerate: Very slow
+				// Description: Fires a salvo of missiles after a long delay
+				// Misc: ""
+			}
+
+			HealingDrone: {
+				// DisplayName: Healing {^0:Drone;Drones}
+				// ComponentName: "{$Items.DroneUnlockableHealingDrone.DisplayName}"
+				// Firerate: ""
+				// Description: Heals you when hurt
+				// Misc: Only one can be summoned
+			}
+
+			ShieldDrone: {
+				// DisplayName: Shield {^0:Drone;Drones}
+				// ComponentName: "{$Items.DroneUnlockableShieldDrone.DisplayName}"
+				// Firerate: ""
+				// Description: Creates a damage reducing shield over time
+				/* Misc:
+					'''
+					Only one can be summoned
+					Shield resets if drone despawns
+					''' */
+			}
+
+			/* TooltipFormat:
+				'''
+				{0}
+				{1}
+				{2}
+				{3}
+				{4}
+				''' */
+			/* TooltipFormatNoCombat:
+				'''
+				{0}
+				{1}
+				{2}
+				''' */
+		}
+
+		Configs: {
+			ClientConfig: {
+				// DisplayName: Client Config
+
+				Headers: {
+					/* GoblinUnderling:
+						'''
+						Goblin Underlings - Minion Options
+
+						These apply to the following items:
+						{$Items.EagerUnderlingItem.DisplayName}
+						{$Items.SeriousUnderlingItem.DisplayName}
+						{$Items.ShyUnderlingItem.DisplayName}
+						''' */
+					// HintServerConfig: Hint: To go to the server config containing feature toggles, press the '>' arrow in the bottom right
+				}
+
+				GoblinUnderlingAutosummon: {
+					// Label: Auto-summon
+					// Tooltip: Enable to auto-summon this minion upon spawning if the item is in your inventory
+				}
+
+				GoblinUnderlingVisibleArmor: {
+					// Label: Armor progression
+					// Tooltip: Enable to show armor progression
+				}
+
+				GoblinUnderlingChatterFreq: {
+					// Label: Dialogue frequency
+					// Tooltip: Control how often this minion will display dialogue (in percent). 0 for off
+				}
+
+				Hint: {
+					// Label: Hint
+					// Tooltip: ""
+				}
+			}
+
+			ContentConfig: {
+				// DisplayName: Content Config (Server)
+
+				Headers: {
+					/* TogglesSpecial:
+						'''
+						The following toggles let you control content added by this mod
+
+						Special - Toggles which take priority over other relevant config options
+						''' */
+					// NPCs: NPCs
+					// Items: Items
+					// Other: Other
+					// HintClientConfig: Hint: To go to the client config containing individual adjustments, press the '<' arrow in the bottom left
+				}
+
+				Bosses: {
+					// Label: Bosses
+					// Tooltip: Boss content
+				}
+
+				CuteSlimes: {
+					Label: Geleia Fofas
+					Tooltip: Conteúdo das geleias fofas
+				}
+
+				HostileNPCs: {
+					// Label: Hostile
+					// Tooltip: Harmful entities - This includes pets obtained by catching
+				}
+
+				FriendlyNPCs: {
+					// Label: Friendly
+					// Tooltip: Harmless entities - This includes pets obtained by catching
+				}
+
+				DroppedPets: {
+					// Label: Dropped Pets
+					// Tooltip: Pets that drop from hostile entities
+				}
+
+				OtherPets: {
+					// Label: Other Pets
+					// Tooltip: Pets that are crafted, sold, or otherwise obtained - This does not include NPCs caught as pets!
+				}
+
+				Weapons: {
+					// Label: Weapons
+					// Tooltip: Items that deal damage - Includes ammunition
+				}
+
+				Tools: {
+					// Label: Tools
+					// Tooltip: Tools and useful items
+				}
+
+				PlaceablesFunctional: {
+					// Label: Placeables (functional)
+					// Tooltip: Placeable functional tiles and objects
+				}
+
+				PlaceablesDecorative: {
+					// Label: Placeables (decorative)
+					// Tooltip: Placeable decorative tiles and objects
+				}
+
+				Armor: {
+					// Label: Armor
+					// Tooltip: Armor with stats
+				}
+
+				VanityArmor: {
+					// Label: Vanity
+					// Tooltip: Vanity armor
+				}
+
+				Accessories: {
+					// Label: Accessories
+					// Tooltip: Accesssories with effects
+				}
+
+				VanityAccessories: {
+					// Label: Vanity Accessories
+					// Tooltip: Accessories without effects
+				}
+
+				BossConsolation: {
+					// Label: Boss Consolation
+					// Tooltip: Accessories that drop for failing to defeat a vanilla boss within 5 attempts
+				}
+
+				AommSupport: {
+					// Label: "'The Amulet Of Many Minions' cross-Mod content"
+					// Tooltip: Content that is available when the 'The Amulet Of Many Minions' mod is enabled, such as combat pets
+				}
+
+				CuteSlimesPotionOnly: {
+					// Label: Cute Slimes Potion Only
+					// Tooltip: Affects the way Cute Slimes spawn and how the Cerveja Gelatinosa works
+				}
+
+				Hint: {
+					// Label: Hint
+					// Tooltip: ""
+				}
+			}
+		}
+
+		Chatter: {
+			GoblinUnderling: {
+				Eager: {
+					Idle: {
+						// Bored: I'm bored, boss!
+						// WhenFighting: When's da fighting, boss?
+						// HangingOut: I like hangin' out, boss!
+						// GoodBoss: You's a good boss, boss!
+						// BossSilent: Boss is always silent. So cool!
+						// HateSlimes: I hate slimes, dey're sticky!
+						// WhenMeal: When's meal time?
+						// DoYouLikeMe: Do ya like me, boss?
+						// GettingSleepy: I'm gettin' sleepy, boss...
+						// SeeBase: I can see our base from up here!
+						// SandInArmor: I got sand in my armor!
+						// GroundLooking: The ground's lookin' at me!
+						// BeatTheCold: I'll beat da cold by workin up a sweat!
+						// FaceLooksLikeRock: Dat rock looks like your face, boss!
+						// RockLooksLikeBones: Dose rocks look like bones
+						// FindShinyMetals: I hope we find shiny metals!
+						// NothingScares: Nothin' scares me when I'm wit you, boss!
+						// HeardRat: I think I heard a rat. A big rat!
+						// CavesSpooky: Caves are spooky!
+					}
+
+					// FirstSummon.YouTheBoss: You da boss now, boss!
+
+					Attacking: {
+						// Gotcha: Gotcha!
+						// IGotThis: I got dis one!
+						// ExpGold: I'm a goblin! If you beat me, you get 1 exp and 2 gold!
+						// NoOneTouches: No one touches boss!
+						// BadGuys: Bad guys get black eyes!
+						// ComeHere: C'mere, you!
+						// LevelOne: I'm level one! I'm da strongest gob!
+						// StabStab: Stab stab stab!
+						// Boom: Boom! Haha!
+						// Skewer: Gonna skewer ya!
+					}
+
+					PlayerHurt: {
+						// DontHurt: Don't hurt da boss!
+						// YouWillPay: You'll pay for dat!
+						// YouGood: You good, boss?!
+						// ThatHurt: Dat looked like it hurt, boss!
+						// IsntWeak: Da boss ain't weak, chump!
+					}
+
+					PlayerHurtByTrap: {
+						// WallsAttack: Da walls attack too?!
+						// WatchWalls: Watch da walls, boss!
+						// BadWall: Bad wall! Don't hurt boss!
+						// GroundEnemy: Da ground is an enemy?!
+						// HotHot: Hot! Hot!
+						// MissThat: How'd ya miss dat, boss?
+						// Dangerous: Dat's dangerous!
+						// NoFair: No fair! I can't hit dose!
+						// BadPeople: Bad people made bad traps!
+						// BigBadBalls: Big bad balls!
+						// DontFlattened: Don't get flattened, boss!
+						// HadToHurt: Dat had ta hurt!
+					}
+
+					BossSpawn: {
+						// UhOh: Uh oh!
+						// BigOne: Dat's a biggun!
+						// ThatOnesBig: Boss, dat one's big!
+						// NotAfraid: I ain't afraid of nothin!
+						// WeGotTrouble: Boss, we got trouble!
+						// HateBees: I hate bees!
+						// WontReadBook: I won't read da big book!
+						// OneEyedDummy: Big one-eyed dummy!
+						// BigGuts: Dat one's big! Dat means it has big guts!
+						// WeGotThis: We got dis, boss!
+						// JigglyJellyfish: Haha, jiggly jellyfish!
+						// FatBat: Dat's a fat bat!
+					}
+
+					BossDefeat: {
+						// WeDidIt: We did it, boss!
+						// KnewYouCould: I knew you could do it!
+						// EasyNext: Easy. Next!
+						// WontBeInSequel: You won't be in da sequel!
+						// NastyBees: Nasty bees! Only good for da honey!
+						// StupidBook: Stupid book man!
+						// DumbWeakling: Big dumb weakling!
+						// DumbDragon: Dumb dragon, boss is da strongest!
+						// YouTheBest: Boss, you da best!
+						// ToughTougher: Dat one was tough, but we're tougher!
+						// NoMoreSquid: I don't wanna see no more squid after dis...
+						// JellyTastesBad: Blech! Dat jelly tastes bad!
+						// SuckOnThat: Suck on dat, fat bat!
+					}
+
+					// OOAStarts.WhatDidYouDo: Boss, what didja do?!
+
+					OOANewWave: {
+						// HolesStillOpen: Boss, dem holes are still open!
+						// MoreBaddies: More baddies? More baddies!
+						// ProtectGem: Protect da shiny gem!
+						// WontLetPass: I won't let em pass, boss!
+					}
+
+					ArmorEquipped: {
+						// LookingSpiffy: Lookin' spiffy, boss!
+						// LookingFluffy: Lookin' fluffy, boss!
+					}
+
+					// ItemSelected.IsAToy: Is dat a toy?
+					// InvasionChanged.OldGangBack: Old gang is back!
+					// BloodMoonChanged.SkyIsRed: Boss, da sky is red! It's scary!
+				}
+
+				Serious: {
+					Idle: {
+						// Peaceful: It's peaceful.
+						// YouSeemCalm: You seem calm, boss.
+						// ShallWeRest: Boss, shall we rest here?
+						// PaceEasy: Your pace is easy to follow.
+						// ShouldSleep: We should sleep soon.
+						// WindNice: The wind feels nice.
+						// WarmWithFire: I can warm you with fire if you'd like.
+						// SandsClaimWeak: The sands claim the weak.
+						// UnnaturalPlace: This place is unnatural.
+						// NotDawdle: We should not dawdle here.
+						// SpiritsHide: Spirits hide in the darkness.
+						// StonesHistory: These stones have untold history.
+						// HiddenTreasure: There may be hidden treasure here.
+						// BeCareful: Be careful in the dark, boss.
+						// TooFarAhead: Boss... please don't go too far ahead.
+					}
+
+					// FirstSummon.Greetings: Greetings, boss.
+
+					Attacking: {
+						// IGotThis: I've got this.
+						// NotDefy: Do not defy the boss.
+						// NotSurvive: You will not survive.
+						// CutDown: I will cut you down.
+						// Burn: Burn.
+						// StruckDown: Be struck down by my spells.
+						// InSights: You are in my sights.
+					}
+
+					PlayerHurt: {
+						// Alright: Are you alright?
+						// Unpleasant: That looks unpleasant.
+						// Tough: You're tough, boss.
+						// Healing: Do you need healing?
+					}
+
+					PlayerHurtByTrap: {
+						// WatchStep: Watch where you step, boss.
+						// PressurePlates: Be mindful of pressure plates.
+						// CowardlyTrap: A cowardly trap...
+						// BossNotSee: Boss, did you not see that?
+						// NaturalTrap: A natural trap.
+						// MinorBurn: Lucky that it was only a minor burn.
+						// TrapCruel: That trap is too cruel.
+						// TakeTime: Take your time, boss.
+						// CruelPeople: What cruel people made these traps...
+						// Weighed: That must have weighed quite a bit.
+						// INotSee: I did not see that coming.
+						// FromDistance: Try to trigger those from a distance.
+					}
+
+					BossSpawn: {
+						// LargeEnemy: A large enemy approaches.
+						// Formidable: A formidable foe.
+						// Prepared: We should be prepared for this.
+						// Trust: I trust you, boss.
+						// TerribleNight: What a terrible night for a curse.
+						// MagicSuperior: Whose magic is superior, I wonder.
+						// SenseIntelligence: I can't sense any intelligence from that one.
+						// HidingDragon: They were hiding a dragon?
+						// CantLose: Boss, you can't lose here.
+						// WastedFirstLife: You wasted your first life.
+						// ForceOvercome: There is no force we cannot overcome.
+					}
+
+					BossDefeat: {
+						// MakeDoll: I will make a doll in your memory.
+						// TooEasy: That was too easy for you, boss.
+						// Overcame: We overcame that challenge.
+						// WellDone: Well done, boss.
+						// CurseLifted: The curse is lifted.
+						// BetterMage: I am the better mage.
+						// Joke: What a joke.
+						// ExpectedMore: I expected more. Shame.
+						// Incredible: Boss... you're incredible!
+						// WastedSecondLife: You also wasted your second life.
+						// Greatest: Boss, you really are the greatest.
+					}
+
+					// OOAStarts.WhatMagic: What sort of magic is this?
+
+					OOANewWave: {
+						// NotOverYet: This isn't over yet.
+						// MoreFoes: More foes approach, boss.
+						// ProtectGem: I will protect the gem.
+						// ArmyEndless: This army is endless...
+					}
+
+					// ArmorEquipped.OddThings: Boss... You do odd things at times.
+					// ItemSelected.ThatDoll: That doll... be careful, boss.
+					// InvasionChanged.FoolsReturned: Those fools have returned.
+					// BloodMoonChanged.HeadUnbearable: My head... it's unbearable...
+				}
+
+				Shy: {
+					Idle: {
+						// LikeNoFight: I like when we don't have to fight.
+						// FeelSafe: You make me feel safe, boss.
+						// RunIntoBad: I hope we don't run into bad guys.
+						// WatchStep: Please watch your step, boss.
+						// Nevermind: Boss, I... ah... nevermind.
+						// ShouldRest: You should rest, boss.
+						// GoHome: W-we should probably go home, boss...
+						// PleasantWind: Such pleasant wind...
+						// SnowCold: So this is snow... so cold!
+						// PlaceScary: B-boss... this place is s-scary!
+						// EveryoneNice: Everyone here is nice.
+						// SeeStars: Boss, look! We can see the stars!
+						// WatchFooting: Watch your footing, boss!
+						// SawMouse: Eep!...Sorry boss, I saw a mouse...
+						// DontLeave: B-boss... Please don't leave me...
+						// Scared: I-I'm scared...
+					}
+
+					// FirstSummon.NiceToMeet: N-nice to meet you, boss.
+
+					Attacking: {
+						// NotEscape: You will not escape...
+						// SeeDead: I will see you dead...
+						// TargetSighted: Target sighted...
+						// Eliminated: You will be eliminated...
+						// BossesBlade: I am the boss's blade...
+						// Burn: Burn...
+						// WontMiss: I won't miss twice...
+						// PleaseLeave: Please... leave... before I...
+					}
+
+					PlayerHurt: {
+						// YouAlright: Boss, are you alright?
+						// OhNo: Oh no, boss!
+						// DontDie: Please don't die, boss!
+						// Boss: Boss!
+					}
+
+					PlayerHurtByTrap: {
+						// HopeOkay: I hope you're okay, boss...
+						// TreatingWound: Be careful when treating that wound...
+						// CoolDown: We should cool that down...
+						// SeeSooner: I'm sorry I didn't see that sooner...
+						// NatureCruel: Nature can be so cruel...
+						// AwfulTraps: Who would make such awful traps...
+						// TreatWound: We need to treat that wound!
+						// Barbaric: How barbaric...
+						// BadlyHurt: You're badly hurt, boss!
+						// MoreCautious: Please be more cautious, boss!
+						// DontLetHit: Please don't let those hit you anymore!
+					}
+
+					BossSpawn: {
+						// WhatIsThat: Boss... Boss! What is that?!
+						// LargeEnemy: Such a large enemy... can we win?
+						// DoMyBest: I-I'll do my best, boss!
+						// LooksDangerous: T-that one looks dangerous...
+						// HesHuge: H-he's huge...
+						// Dragon: Ah! Dragon!
+						// Pretty: What a pretty... Boss! Look out!
+						// NotAgain: No... not again...!
+						// WontBeAfraid: I won't be afraid. I'll do my best!
+						// RocksMoving: T-the rocks are moving, boss!
+						// TheyAreBack: A-ah... t-they're back...
+					}
+
+					BossDefeat: {
+						// WasScary: T-That was scary, but we won!
+						// WasntUseful: I'm sorry that I wasn't useful, boss...
+						// YouWereGreat: You were great, boss!
+						// CouldDoIt: I-I knew you could do it!
+						// GladItsOver: I'm glad that's over...
+						// TheBiggerTheyAre: The bigger they are, the harder they fall.
+						// DontFight: I hope we don't fight another one of those...
+						// Distracted: I'm sorry that I was distracted...
+						// WontBeTaken: I... I won't be taken again!
+						// YouDidIt: You did it... you really did it, boss!
+						// WeirdFight: That was a weird fight...
+						// ThankYou: Thank you, boss. For being here.
+					}
+
+					// OOAStarts.WhatHoles: Boss... w-what are those holes?
+
+					OOANewWave: {
+						// MoreOfThem: T-there's more of them?
+						// MoreFoes: More foes approach, boss.
+						// WhenEnd: When will it end?
+						// GemSafe: The gem is safe... for now...
+					}
+
+					ArmorEquipped: {
+						// ItsYou: Ah!... Oh, it's you, boss...
+						// SeeingFace: I like seeing your face, boss.
+					}
+
+					// InvasionChanged.MustFight: No... why must we fight?
+					// BloodMoonChanged.BodyHurts: Boss... my body hurts...
+				}
+
+				Eager_Serious: {
+					Dialogue: {
+						// 0Eager: Can I have anotha doll?
+						// 1Serious: You tore or lost the last few.
+						// 2Eager: I won't dis time!
+						// 3Serious: ...Fine. I'll make one later, alright?
+						// 4Eager: Yay!
+					}
+				}
+
+				Eager_Shy: {
+					Dialogue: {
+						// 0Eager: Hey!
+						// 1Shy: Ah... yes?
+						// 2Eager: Dere's a rat behind ya!
+						// 3Shy: Eep!
+						// 4Eager: Tricked ya! Haha, dat was loud!
+					}
+				}
+
+				Serious_Eager: {
+					Dialogue: {
+						// 0Serious: You tore your doll again...
+						// 1Eager: It was an accident!
+						// 2Serious: Like the other times?
+						// 3Eager: Yeah!
+						// 4Serious: ...I'll mend it later.
+						// 5Eager: Thanks!
+					}
+				}
+
+				Serious_Shy: {
+					Dialogue: {
+						// 0Serious: Hey.
+						// 1Shy: ...yes?
+						// 2Serious: Would you like a doll?
+						// 3Shy: A doll?
+						// 4Serious: Yes. To calm your nerves.
+						// 5Shy: ...yes, please.
+						// 6Serious: I'll prepare it later then.
+					}
+				}
+
+				Shy_Eager: {
+					Dialogue: {
+						// 0Shy: Um...
+						// 1Eager: Yeah?
+						// 2Shy: H-how are you always so cheerful?
+						// 3Eager: Cause the boss is here!
+						// 4Shy: You really l-like the boss, huh?
+						// 5Eager: Yeah! Da boss is da strongest!
+					}
+				}
+
+				Shy_Serious: {
+					Dialogue: {
+						// 0Shy: Um... excuse me...
+						// 1Serious: Yes?
+						// 2Shy: Y-your dolls...
+						// 3Serious: ?
+						// 4Shy: They're cute...
+						// 5Serious: Thank you.
+					}
+				}
+
+				Eager_Serious_Shy: {
+					Dialogue: {
+						// 0Eager: You good?
+						// "1Serious, Shy": Yes.
+						// 2Eager: Den all togetha;
+						// 3All: We like you, boss!
+					}
+				}
+			}
+		}
+
+		GoblinUnderlingClass: {
+			// Melee: Melee
+			// Magic: Magic
+			// Ranged: Ranged
+		}
+
+		UI: {
+			// CircleUIToUnlock: To unlock: {0}
+			// HoverNPCUICatchWithNet: Catch it with a net
+		}
+	}
+}
