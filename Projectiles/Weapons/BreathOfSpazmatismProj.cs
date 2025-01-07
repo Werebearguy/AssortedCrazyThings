@@ -119,10 +119,11 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
 		public override void PostAI()
 		{
-			if (Projectile.wet && !Projectile.lavaWet)
-			{
-				Projectile.Kill();
-			}
+			//Not needed, cursed inferno type weapons work in water
+			//if (Projectile.wet && !Projectile.lavaWet)
+			//{
+			//	Projectile.Kill();
+			//}
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity)
