@@ -3,199 +3,199 @@ Mods: {
 		Buffs: {
 			# Cute Slimes
 			CuteSlimeBlackBuff: {
-				 DisplayName: Lindo Slime Negro
-				 Description: Un lindo slime negro te esta siguiendo 
+				DisplayName: Lindo Slime Negro
+				Description: Un lindo slime negro te esta siguiendo
 			}
 
 			CuteSlimeBlueBuff: {
-				 DisplayName: Lindo Slime Azul
-				 Description: Un lindo slime azul te esta siguiendo
+				DisplayName: Lindo Slime Azul
+				Description: Un lindo slime azul te esta siguiendo
 			}
 
 			CuteSlimeCorruptBuff: {
-				 DisplayName: Lindo Slime Corrupto
-				 Description: Un lindo slime corrupto te esta siguiendo
+				DisplayName: Lindo Slime Corrupto
+				Description: Un lindo slime corrupto te esta siguiendo
 			}
 
 			CuteSlimeCorruptJungleBuff: {
-				 DisplayName: Lindo Slime Corrupto de la Jungla
-				 Description: Un lindo slime corrupto de la jungla te esta siguiendo
+				DisplayName: Lindo Slime Corrupto de la Jungla
+				Description: Un lindo slime corrupto de la jungla te esta siguiendo
 			}
 
 			CuteSlimeCrimsonBuff: {
-				 DisplayName: Lindo Slime Escarlata 
-				 Description: Un lindo slime escarlata te esta siguiendo 
+				DisplayName: Lindo Slime Escarlata
+				Description: Un lindo slime escarlata te esta siguiendo
 			}
 
 			CuteSlimeCrimsonJungleBuff: {
-				 DisplayName: Lindo Slime de la Jungla Escarlata
-				 Description: Un lindo slime de la jungla escarlata te esta siguiendo
+				DisplayName: Lindo Slime de la Jungla Escarlata
+				Description: Un lindo slime de la jungla escarlata te esta siguiendo
 			}
 
 			CuteSlimeDungeonBuff: {
-				 DisplayName: Lindo Slime de la Mazmorra
-				 Description: Un lindo slime de la mazmorra te esta siguiendo 
+				DisplayName: Lindo Slime de la Mazmorra
+				Description: Un lindo slime de la mazmorra te esta siguiendo
 			}
 
 			CuteSlimeGoldenBuff: {
-				 DisplayName: Lindo Slime Dorado
-				 Description: Un lindo slime dorado te esta siguiendo
+				DisplayName: Lindo Slime Dorado
+				Description: Un lindo slime dorado te esta siguiendo
 			}
 
 			CuteSlimeGreenBuff: {
-				 DisplayName: Lindo Slime Verde
-				 Description: Un lindo slime verde te esta siguiendo
+				DisplayName: Lindo Slime Verde
+				Description: Un lindo slime verde te esta siguiendo
 			}
 
 			CuteSlimeHoneyBuff: {
-				 DisplayName: Lindo Slime de Miel
-				 Description: Un lindo slime de miel te esta siguiendo
+				DisplayName: Lindo Slime de Miel
+				Description: Un lindo slime de miel te esta siguiendo
 			}
 
 			CuteSlimeIceBuff: {
-				 DisplayName: Lindo Slime de Hielo
-				 Description: Un lindo slime de hielo te esta siguiendo
+				DisplayName: Lindo Slime de Hielo
+				Description: Un lindo slime de hielo te esta siguiendo
 			}
 
 			CuteSlimeIlluminantBuff: {
-				 DisplayName: Lindo Slime Brillante
-				 Description: Un lindo slime brillante te esta siguiendo
+				DisplayName: Lindo Slime Brillante
+				Description: Un lindo slime brillante te esta siguiendo
 			}
 
 			CuteSlimeJungleBuff: {
-				 DisplayName: Lindo Slime de la Jungla
-				 Description: Un lindo slime de la jungla te esta siguiendo
+				DisplayName: Lindo Slime de la Jungla
+				Description: Un lindo slime de la jungla te esta siguiendo
 			}
 
 			CuteSlimeLavaBuff: {
-				 DisplayName: Lindo Slime de Lava
-				 Description: Un lindo slime de lava te esta siguiendo
+				DisplayName: Lindo Slime de Lava
+				Description: Un lindo slime de lava te esta siguiendo
 			}
 
 			CuteSlimePinkBuff: {
-				 DisplayName: Lindo Slime Rosado
-				 Description: Un lindo slime rosado te esta siguiendo
+				DisplayName: Lindo Slime Rosado
+				Description: Un lindo slime rosado te esta siguiendo
 			}
 
 			CuteSlimePinkIceBuff: {
-				 DisplayName: Lindo slime de hielo rosado
-				 Description: Un lindo slime de hielo rosado te esta siguiendo
+				DisplayName: Lindo slime de hielo rosado
+				Description: Un lindo slime de hielo rosado te esta siguiendo
 			}
 
 			CuteSlimePrincessBuff: {
-				 DisplayName: Linda Princesa Slime
-				 Description: Una linda princesa slime te esta siguiendo
+				DisplayName: Linda Princesa Slime
+				Description: Una linda princesa slime te esta siguiendo
 			}
 
 			CuteSlimePurpleBuff: {
-				 DisplayName: Lindo Slime Violeta
-				 Description: Un lindo slime violeta te esta siguiendo
+				DisplayName: Lindo Slime Violeta
+				Description: Un lindo slime violeta te esta siguiendo
 			}
 
 			CuteSlimePurpleIceBuff: {
-				 DisplayName: Lindo Slime de Hielo Violeta
-				 Description: Un lindo slime e hielo violeta te esta siguiendo
+				DisplayName: Lindo Slime de Hielo Violeta
+				Description: Un lindo slime e hielo violeta te esta siguiendo
 			}
 
 			CuteSlimeQueenBuff: {
-				 DisplayName: Linda Reina Slime
-				 Description: Una linda  reina slime te esta siguiendo
+				DisplayName: Linda Reina Slime
+				Description: Una linda  reina slime te esta siguiendo
 			}
 
 			CuteSlimeRainbowBuff: {
-				 DisplayName: Lindo Slime Arcoiris
-				 Description: Un lindo slime arcoiris te esta siguiendo
+				DisplayName: Lindo Slime Arcoiris
+				Description: Un lindo slime arcoiris te esta siguiendo
 			}
 
 			CuteSlimeRedBuff: {
-				 DisplayName: Lindo Slime Rojo
-				 Description: Un lindo slime rojo te esta siguiendo
+				DisplayName: Lindo Slime Rojo
+				Description: Un lindo slime rojo te esta siguiendo
 			}
 
 			CuteSlimeRedIceBuff: {
-				 DisplayName: Lindo Slime de Hielo Rojo
-				 Description: Un lindo slime de hielo rojo te esta siguiendo
+				DisplayName: Lindo Slime de Hielo Rojo
+				Description: Un lindo slime de hielo rojo te esta siguiendo
 			}
 
 			CuteSlimeSandBuff: {
-				 DisplayName: Lindo Slime de Arena
-				 Description: Un lindo slime de Arena te estas siguiendo
+				DisplayName: Lindo Slime de Arena
+				Description: Un lindo slime de Arena te estas siguiendo
 			}
 
 			CuteSlimeShimmerBuff: {
-				 DisplayName: Lindo Slime del Fulgor
-				 Description: Un lindo slime del fulgor te esta siguiendo
+				DisplayName: Lindo Slime del Fulgor
+				Description: Un lindo slime del fulgor te esta siguiendo
 			}
 
 			CuteSlimeToxicBuff: {
-				 DisplayName: Lindo Slime Toxico
-				 Description: Un lindo slime toxico te esta siguiendo
+				DisplayName: Lindo Slime Toxico
+				Description: Un lindo slime toxico te esta siguiendo
 			}
 
 			CuteSlimeXmasBuff: {
-				 DisplayName: Lindo Slime Navideño
-				 Description: Un lindo slime navideño te esta siguiendo
+				DisplayName: Lindo Slime Navideño
+				Description: Un lindo slime navideño te esta siguiendo
 			}
 
 			CuteSlimeYellowBuff: {
-				 DisplayName: Lindo Slime Amarillo
-				 Description: Un lindo slime amarillo te esta siguiendo
+				DisplayName: Lindo Slime Amarillo
+				Description: Un lindo slime amarillo te esta siguiendo
 			}
 
 			# Pets. AoMM versions are auto-generated
 			AbeeminationBuff: {
-				// DisplayName: Abejaminación
-				// Description: Un Abejaminación te esta siguiendo
+				DisplayName: Abejaminación
+				Description: Un Abejaminación te esta siguiendo
 			}
 
 			AlienHornetBuff: {
-				// DisplayName: Avispa Alienigena
-				// Description: Una avispa alienigena te esta siguiendo
+				DisplayName: Avispa Alienigena
+				Description: Una avispa alienigena te esta siguiendo
 			}
 
 			AnimatedTomeBuff: {
-				// DisplayName: Tomo Animado
-				// Description: Un tomo animado te esta siguiendo
+				DisplayName: Tomo Animado
+				Description: Un tomo animado te esta siguiendo
 			}
 
 			AnomalocarisBuff: {
-				// DisplayName: Anomalocaris
-				// Description: Un prehistorico camarón pequeño te esta siguendo
+				DisplayName: Anomalocaris
+				Description: Un prehistorico camarón pequeño te esta siguendo
 			}
 
 			BabyCrimeraBuff: {
-				// DisplayName: Carmebicho Bebe
-				// Description: Un pequeño carmebicho bebe te esta siguiendo
+				DisplayName: Carmebicho Bebe
+				Description: Un pequeño carmebicho bebe te esta siguiendo
 			}
 
 			BabyIchorStickerBuff: {
-				// DisplayName: Lil' Ichy
-				// Description: Una pegatina bebe hecha de ambar te esta siguiendo
+				DisplayName: Lil' Ichy
+				Description: Una pegatina bebe hecha de ambar te esta siguiendo
 			}
 
 			BabyOcramBuff: {
-				// DisplayName: Ocram Bebe
-				// Description: Lo que podría haber sido, te esta siguendo
+				DisplayName: Ocram Bebe
+				Description: Lo que podría haber sido, te esta siguendo
 			}
 
 			BrainofConfusionBuff: {
-				// DisplayName: Cerebro de la Confusión
-				// Description: Un confusión te esta siguiendo
+				DisplayName: Cerebro de la Confusión
+				Description: Un confusión te esta siguiendo
 			}
 
 			ChunkyandMeatballBuff: {
-				// DisplayName: Chunky*********** y Albondiga
-				// Description: Dos hermanos reunidos te estan siguiendo
+				DisplayName: Chunky y Albondiga
+				Description: Dos hermanos reunidos te estan siguiendo
 			}
 
 			ChunkySlimeBuff: {
-				// DisplayName: Chunky***********
-				// Description: Chunky*********** te esta siguiendo
+				DisplayName: Chunky
+				Description: Chunky te esta siguiendo
 			}
 
 			CompanionDungeonSoulPetBuff: {
-				// DisplayName: Alma Acompañante
-				// CommonDescription: Una amigable alma de la mazmorra te esta siguiendo
+				DisplayName: Alma Acompañante
+				CommonDescription: Una amigable alma de la mazmorra te esta siguiendo
 				/* Description:
 					'''
 					{$Buffs.CompanionDungeonSoulPetBuff.CommonDescription}
@@ -204,7 +204,7 @@ Mods: {
 			}
 
 			CompanionDungeonSoulPetBuff2: {
-				// DisplayName: "{$Buffs.CompanionDungeonSoulPetBuff.DisplayName}"
+				DisplayName: "{$Buffs.CompanionDungeonSoulPetBuff.DisplayName}"
 				/* Description:
 					'''
 					{$Buffs.CompanionDungeonSoulPetBuff.CommonDescription}
@@ -213,402 +213,402 @@ Mods: {
 			}
 
 			CursedSkullBuff: {
-				// DisplayName: Calavera Maldita
-				// Description: No te va a maldecir, lo prometo
+				DisplayName: Calavera Maldita
+				Description: No te va a maldecir, lo prometo
 			}
 
 			CuteGastropodBuff: {
-				// DisplayName: Gastropodo Lindo
-				// Description: Un lindo gastropodo te esta siguiendo
+				DisplayName: Gastropodo Lindo
+				Description: Un lindo gastropodo te esta siguiendo
 			}
 
 			CuteLamiaPetBuff: {
-				// DisplayName: Serpiente Pequeña
-				// Description: Una pequeña serpiente te esta siguiendo
+				DisplayName: Serpiente Pequeña
+				Description: Una pequeña serpiente te esta siguiendo
 			}
 
 			DemonHeartBuff: {
-				// DisplayName: Corazón de demonio
-				// Description: El corazón de un demonio te esta siguiendo
+				DisplayName: Corazón de demonio
+				Description: El corazón de un demonio te esta siguiendo
 			}
 
 			DetachedHungryBuff: {
-				// DisplayName: Hambre Desatada
-				// Description: Puede que seas su siguiente comida...
+				DisplayName: Hambre Desatada
+				Description: Puede que seas su siguiente comida...
 			}
 
 			DocileDemonEyeBuff: {
-				// DisplayName: Ojo Docil de Demonio
-				// Description: El ojo de un demonio te esta siguiendo
+				DisplayName: Ojo Docil de Demonio
+				Description: El ojo de un demonio te esta siguiendo
 			}
 
 			DrumstickElementalBuff: {
-				// DisplayName: Muslo Elemental
-				// Description: La cena te esta siguiendo
+				DisplayName: Muslo Elemental
+				Description: La cena te esta siguiendo
 			}
 
 			DynamiteBunnyBuff: {
-				// DisplayName: Conejo dinamita
-				// Description: Un pequeño conejo dinamita te esta siguiendo
+				DisplayName: Conejo dinamita
+				Description: Un pequeño conejo dinamita te esta siguiendo
 			}
 
 			EnchantedSwordBuff: {
-				// DisplayName: Espada Encantada
-				// Description: La Espada Encantada te resguarda
+				DisplayName: Espada Encantada
+				Description: La Espada Encantada te resguarda
 			}
 
 			FailureSlimeBuff: {
-				// DisplayName: Slime Fallido
-				// Description: Una criatura extraña te esta siguiendo
+				DisplayName: Slime Fallido
+				Description: Una criatura extraña te esta siguiendo
 			}
 
 			FairySlimeBuff: {
-				// DisplayName: Hada Slime
-				// Description: Un hada slime te esta siguiendo
+				DisplayName: Hada Slime
+				Description: Un hada slime te esta siguiendo
 			}
 
 			FairySwarmBuff: {
-				// DisplayName: Enjambre de Hadas
-				// Description: Un enjambre de hadas te esta siguiendo
+				DisplayName: Enjambre de Hadas
+				Description: Un enjambre de hadas te esta siguiendo
 			}
 
 			GhostMartianBuff: {
-				// DisplayName: Fantasma Marciano
-				// Description: El fantasma de un invasor vengativo te esta siguiendo
+				DisplayName: Fantasma Marciano
+				Description: El fantasma de un invasor vengativo te esta siguiendo
 			}
 
 			GobletBuff: {
-				// DisplayName: Goblet
-				// Description: Un goblin pequeñito te esta siguiendo
+				DisplayName: Goblet
+				Description: Un goblin pequeñito te esta siguiendo
 			}
 
 			HornedSlimeBuff: {
-				// DisplayName: Slime Cornudo*******
-				// Description: Un slime cornudo te esta siguiendo
+				DisplayName: Slime Cornudo
+				Description: Un slime cornudo te esta siguiendo
 			}
 
 			IlluminantSlimeBuff: {
-				// DisplayName: Slime Iluminador
-				// Description: Un slime iluminador te esta siguiendo
+				DisplayName: Slime Iluminador
+				Description: Un slime iluminador te esta siguiendo
 			}
 
 			JoyousSlimeBuff: {
-				// DisplayName: Slime Alegre
-				// Description: Un alegre slime te esta siguiendo
+				DisplayName: Slime Alegre
+				Description: Un alegre slime te esta siguiendo
 			}
 
 			LifelikeMechanicalFrogBuff: {
-				// DisplayName: Rana Mecanica Irrealmente Real*****
-				// Description: Lo que le haya pasado a esta Rana en el Yunque, permanece un misterio.
+				DisplayName: Rana Mecanica Irrealmente Real
+				Description: Lo que le haya pasado a esta Rana en el Yunque, permanece un misterio.
 			}
 
 			LilWrapsBuff: {
-				// DisplayName: Pequeñas Vendas
-				// Description: Una momia te estas siguiendo
+				DisplayName: Pequeñas Vendas
+				Description: Una momia te estas siguiendo
 			}
 
 			MeatballSlimeBuff: {
-				// DisplayName: Albondiga
-				// Description: Albondiga te esta siguiendo
+				DisplayName: Albondiga
+				Description: Albondiga te esta siguiendo
 			}
 
 			MetroidPetBuff: {
-				// DisplayName: Metroid
-				// Description: Un parasito espacial te esta siguiendo
+				DisplayName: Metroid
+				Description: Un parasito espacial te esta siguiendo
 			}
 
 			MiniAntlionBuff: {
-				// DisplayName: Hormiga Léon Bebe
-				// Description: Una hormiga léon bebe te esta siguiendo
+				DisplayName: Hormiga Léon Bebe
+				Description: Una hormiga léon bebe te esta siguiendo
 			}
 
 			MiniMegalodonBuff: {
-				// DisplayName: Mini Megalodon
-				// Description: Es más debil que ti****...por ahora
+				DisplayName: Mini Megalodon
+				Description: Es más debil que ti... por ahora
 			}
 
 			NumberMuncherBuff: {
-				// DisplayName: Masticador de Números
-				// Description: Un educado anfibio te esta siguiendo
+				DisplayName: Masticador de Números
+				Description: Un educado anfibio te esta siguiendo
 			}
 
 			OceanSlimeBuff: {
-				// DisplayName: Slime del Oceano
-				// Description: Un slime del oceano te esta siguiendo
+				DisplayName: Slime del Oceano
+				Description: Un slime del oceano te esta siguiendo
 			}
 
 			PetCultistBuff: {
-				// DisplayName: Cultista Enano
-				// Description: Un cultista pequeñito te esta siguiendo
+				DisplayName: Cultista Enano
+				Description: Un cultista pequeñito te esta siguiendo
 			}
 
 			PetDestroyerBuff: {
-				// DisplayName: Pequeño Destructor
-				// Description: Un Destructor Pequeñito y dos Sondas pequeñas te estan siguiendo
+				DisplayName: Pequeño Destructor
+				Description: Un Destructor Pequeñito y dos Sondas pequeñas te estan siguiendo
 			}
 
 			PetEaterofWorldsBuff: {
-				// DisplayName: Destructor de Mundos Pequeño
-				// Description: Un pequeño destructor de mundos te esta siguiendo
+				DisplayName: Destructor de Mundos Pequeño
+				Description: Un pequeño destructor de mundos te esta siguiendo
 			}
 
 			PetFishronBuff: {
-				// DisplayName: Fishron
-				// Description: Fishron te esta siguiendo
+				DisplayName: Fishron
+				Description: Fishron te esta siguiendo
 			}
 
 			PetGoldfishBuff: {
-				// DisplayName: Carpín Dorado Poseído
-				// Description: Un carpín dorado poseído te esta siguiendo
+				DisplayName: Carpín Dorado Poseído
+				Description: Un carpín dorado poseído te esta siguiendo
 			}
 
 			PetGolemHeadBuff: {
-				// DisplayName: Replica de una Cabeza de Golem
-				// Description: La Replica de una Cabeza de Golem te resguarda
+				DisplayName: Replica de una Cabeza de Golem
+				Description: La Replica de una Cabeza de Golem te resguarda
 			}
 
 			PetHarvesterBuff: {
-				// DisplayName: Ave Obstinada
-				// Description: Una obstinada ave te esta siguiendo
+				DisplayName: Ave Obstinada
+				Description: Una obstinada ave te esta siguiendo
 			}
 
 			PetMoonBuff: {
-				// DisplayName: Luna Personal
-				// Description: Una pequeña luna te provee su brillo constantemente
+				DisplayName: Luna Personal
+				Description: Una pequeña luna te provee su brillo constantemente
 			}
 
 			PetPlanteraBuff: {
-				// DisplayName: Retoño de Plantera
-				// Description: Un retoño de Plantera te esta siguiendo
+				DisplayName: Retoño de Plantera
+				Description: Un retoño de Plantera te esta siguiendo
 			}
 
 			PetQueenSlimeBuff: {
-				// DisplayName: Hermanitos Slime Juguetones
-				// Description: Un trio de hermanitos slime te estan siguiendo
+				DisplayName: Hermanitos Slime Juguetones
+				Description: Un trio de hermanitos slime te estan siguiendo
 			}
 
 			PetSunBuff: {
-				// DisplayName: Sol Personal
-				// Description: Un pequeño te provee su luz constantemente
+				DisplayName: Sol Personal
+				Description: Un pequeño te provee su luz constantemente
 			}
 
 			PetSunMoonBuff: {
-				// DisplayName: Sol y Luna personales
-				/* Description:
+				DisplayName: Sol y Luna personales
+				Description:
 					'''
 					Un pequeño sol y una pequeña luna te proveen su luz constantemente
 					'No ocurrirán efectos gravitacionales adversos'
-					''' */
+					'''
 			}
 
 			PigronataBuff: {
-				// DisplayName: Cerdoñata
-				// Description: Un cerdoñata esta agradecido de que no lo hayas echo estallar 
+				DisplayName: Cerdoñata
+				Description: Un cerdoñata esta agradecido de que no lo hayas echo estallar
 			}
 
 			PrinceSlimeBuff: {
-				// DisplayName: Principe Slime
-				// Description: Un principe slime te esta siguiendo
+				DisplayName: Principe Slime
+				Description: Un principe slime te esta siguiendo
 			}
 
 			QueenLarvaBuff: {
-				// DisplayName: Larva Reina
-				// Description: A Una Larva de la Reina Abeja te esta siguiendo
+				DisplayName: Larva Reina
+				Description: A Una Larva de la Reina Abeja te esta siguiendo
 			}
 
 			RainbowSlimeBuff: {
-				// DisplayName: Slime Arcoirís
-				// Description: Un slime arcoirís te esta siguiendo
+				DisplayName: Slime Arcoirís
+				Description: Un slime arcoirís te esta siguiendo
 			}
 
 			SkeletronHandBuff: {
-				// DisplayName: Mano de Repuesto de Skeletron
-				// Description: La mano de Skeletron esta adherída a ti
+				DisplayName: Mano de Repuesto de Skeletron
+				Description: La mano de Skeletron esta adherída a ti
 			}
 
 			SkeletronPrimeHandBuff: {
-				// DisplayName: Mano de Repuesto de Skeletron Mayor
-				// Description: La mano de Skeletron Mayor esta adherída a ti
+				DisplayName: Mano de Repuesto de Skeletron Mayor
+				Description: La mano de Skeletron Mayor esta adherída a ti
 			}
 
 			StingSlimeBuff: {
-				// DisplayName: Slime Aguijon
-				// Description: Un slime aguijon te esta siguiendo
+				DisplayName: Slime Aguijon
+				Description: Un slime aguijon te esta siguiendo
 			}
 
 			StrangeRobotBuff: {
-				// DisplayName: Robot Extraño
-				// Description: Un robot extaño te esta siguiendo
+				DisplayName: Robot Extraño
+				Description: Un robot extaño te esta siguiendo
 			}
 
 			SuspiciousNuggetBuff: {
-				// DisplayName: Pepita Sospechosa
-				// Description: Una pepita sospechosa te esta siguiendo
+				DisplayName: Pepita Sospechosa
+				Description: Una pepita sospechosa te esta siguiendo
 			}
 
 			SwarmofCthulhuBuff: {
-				// DisplayName: Enjambre de Cthulhu
-				// Description: El Enjambre de Cthulhu te esta siguiendo
+				DisplayName: Enjambre de Cthulhu
+				Description: El Enjambre de Cthulhu te esta siguiendo
 			}
 
 			TinyTwinsBuff: {
-				// DisplayName: Gemelos Pequeños
-				// Description: Los Gemelos te estan observando 
+				DisplayName: Gemelos Pequeños
+				Description: Los Gemelos te estan observando
 			}
 
 			TorchGodLightPetBuff: {
-				// DisplayName: Antorcha Endiosada
-				// Description: "'Tu forma de colocar las antorchas fue considerada como innecesaria. Yo lo haré correctamente.'"
-				// EnableSmartCursor: Activa 'Cursor Inteligente' para colocar antorchas automaticamente
-				// NoTorches: No se encontraron antorchas normales que colocar
+				DisplayName: Antorcha Endiosada
+				Description: "'Tu forma de colocar las antorchas fue considerada como innecesaria. Yo lo haré correctamente.'"
+				EnableSmartCursor: Activa 'Cursor Inteligente' para colocar antorchas automaticamente
+				NoTorches: No se encontraron antorchas normales que colocar
 			}
 
 			TorturedSoulBuff: {
-				// DisplayName:Alma Torutrada
-				// Description: No debería haber sido tan codioso ¿no?
+				DisplayName: Alma Torutrada
+				Description: No debería haber sido tan codioso ¿no?
 			}
 
 			TrueObservingEyeBuff: {
-				// DisplayName: El Verdadero Ojo Observador
-				// Description: Uno de los verdaderos ojos de Ctuhlu te esta siguiendo
+				DisplayName: El Verdadero Ojo Observador
+				Description: Uno de los verdaderos ojos de Ctuhlu te esta siguiendo
 			}
 
 			TurtleSlimeBuff: {
-				// DisplayName: Slime Tortuga
-				// Description: Un slime tortuga te esta siguiendo
+				DisplayName: Slime Tortuga
+				Description: Un slime tortuga te esta siguiendo
 			}
 
 			VampireBatBuff: {
-				// DisplayName: Murcielago Vampiro
-				// Description: Un murcielago particularmente apuesto te esta siguiendo
+				DisplayName: Murcielago Vampiro
+				Description: Un murcielago particularmente apuesto te esta siguiendo
 			}
 
 			WallFragmentBuff: {
-				// DisplayName: Fragmento de Pared
-				// Description: Incontables fragmentos de pared te estan siguiendo
+				DisplayName: Fragmento de Pared
+				Description: Incontables fragmentos de pared te estan siguiendo
 			}
 
 			YoungHarpyBuff: {
-				// DisplayName: Harpía Joven
-				// Description: Una joven harpia te esta siguiendo
+				DisplayName: Harpía Joven
+				Description: Una joven harpia te esta siguiendo
 			}
 
 			YoungWyvernBuff: {
-				// DisplayName: Wyvern Joven
-				// Description: Un joven Wyver te esta siguiendo
+				DisplayName: Wyvern Joven
+				Description: Un joven Wyver te esta siguiendo
 			}
 
 			WobyBuff: {
-				// DisplayName: Woby, 'Un perro amoroso...'
-				// Description: Un canino leal te esta siguiendo
+				DisplayName: Woby, 'Un perro amoroso...'
+				Description: Un canino leal te esta siguiendo
 			}
 
 			CompanionDungeonSoulMinionBuff: {
-				// DisplayName: Alma de Subdito Acompañante
-				// Description: Un alma amistosa esta peleando por ti
-				// TinyDungeonSouls: Pequeñas Almas de la Mazmorra
+				DisplayName: Alma de Subdito Acompañante
+				Description: Un alma amistosa esta peleando por ti
+				TinyDungeonSouls: Pequeñas Almas de la Mazmorra
 			}
 
 			CuteSlimeSpawnEnableBuff: {
-				// DisplayName: Ale Gelitinado
-				// Description: Tu percepción de los slimes esta un poco rara...
-				// CuteSlimesCanSpawn: Slimes Lindos que pueden aparecer
-				// None: Ninguno
+				DisplayName: Ale Gelitinado
+				Description: Tu percepción de los slimes esta un poco rara...
+				CuteSlimesCanSpawn: Slimes Lindos que pueden aparecer
+				None: Ninguno
 			}
 
 			DroneControllerBuff: {
-				// DisplayName: Controlador del Drone
-				// Description: Controla un enjambre de drones
+				DisplayName: Controlador del Drone
+				Description: Controla un enjambre de drones
 			}
 
 			EmpoweringBuff: {
-				// DisplayName: Empoderando
-				// Description: Te vuelves más fuerte cuanto más tiempo pase sin que recibas daño
-				// IncreasedDamage: Daño Aumentado: {0}%
+				DisplayName: Empoderando
+				Description: Te vuelves más fuerte cuanto más tiempo pase sin que recibas daño
+				IncreasedDamage: Daño Aumentado: {0}%
 			}
 
 			EnhancedHunterBuff: {
-				// DisplayName: Cazador Mejorado
-				// Description: Muestra a ubicación de los enemigos fuera de tu rango de visión
+				DisplayName: Cazador Mejorado
+				Description: Muestra a ubicación de los enemigos fuera de tu rango de visión
 			}
 
-			// EagerUnderlingBuff.DisplayName: Subordinado Ansioso
-			// ShyUnderlingBuff.DisplayName: Subordinado Timido
-			// SeriousUnderlingBuff.DisplayName: Subordinado Serio
+			EagerUnderlingBuff.DisplayName: Subordinado Ansioso
+			ShyUnderlingBuff.DisplayName: Subordinado Timido
+			SeriousUnderlingBuff.DisplayName: Subordinado Serio
 
 			SigilOfTheWingBuff: {
-				// DisplayName: Bendición del Ala
-				// Description: Tu espiritu pende de un hilo
+				DisplayName: Bendición del Ala
+				Description: Tu espiritu pende de un hilo
 			}
 
 			BabyHarvesterBuff: {
-				// DisplayName: Ave Abominable
+				DisplayName: Ave Abominable
 				# Do not translate Description
-				// Description: REPLACEME
-				// Absorbed: El ave absorbio {0} almas
-				// Tier1: Qué esta haciendo este ave?
-				// Tier2: Me pregunto si seguirá creciendo
-				// Tier3: No estoy seguro de si debe seguir comiendo...
+				Description: REPLACEME
+				Absorbed: El ave absorbio {0} almas
+				Tier1: Qué esta haciendo este ave?
+				Tier2: Me pregunto si seguirá creciendo
+				Tier3: No estoy seguro de si debe seguir comiendo...
 			}
 
 			SoulBurnBuff: {
-				// DisplayName: Quemadura del Alma
-				// Description: Perdiendo vida rapidamente
+				DisplayName: Quemadura del Alma
+				Description: Perdiendo vida rapidamente
 			}
 
 			SlimePackMinionBuff: {
-				// DisplayName: Slime
-				// Description: Un amistoso slime de tu MochiKnap esta peleando por tí
+				DisplayName: Slime
+				Description: Un amistoso slime de tu MochiKnap esta peleando por tí
 			}
 
 			SoulBuff: {
-				// DisplayName: Alma
-				// Description: Libera un alma
+				DisplayName: Alma
+				Description: Libera un alma
 			}
 
 			StarRodBuff: {
-				// DisplayName:  Vara Estrella
-				// Description: Las estrellas fugazes aterrizaran más cerca tuya
+				DisplayName: Vara Estrella
+				Description: Las estrellas fugazes aterrizaran más cerca tuya
 			}
 
 			NeurotoxinBuff: {
-				// CommonName: Neurotoxina
-				// CommonDescription: Perdiendo vida rapidamente
+				CommonName: Neurotoxina
+				CommonDescription: Perdiendo vida rapidamente
 			}
 
-			/* Campfire.WyvernCampfireNearby:
+			Campfire.WyvernCampfireNearby:
 				'''
 				{$Items.WyvernCampfireItem.DisplayName} cercano:
 				Protegido contra Wyverns
 				Las plumas de las Harpías no te tirarán para atras
-				''' */
+				'''
 		}
 
 		Common: {
-			// ConcatenateTwo: "{0} {1}"
-			// AoMMVersion: (AoMM version)
-			// Selected: Seleccionado: {0}
-			// BaseDamage: Daño Base : {0}
-			// BaseKnockback: Retroceso Base : {0}
+			ConcatenateTwo: "{0} {1}"
+			AoMMVersion: (AoMM version)
+			Selected: Seleccionado: {0}
+			BaseDamage: Daño Base : {0}
+			BaseKnockback: Retroceso Base : {0}
 
 			Tooltips: {
-				// PetHasAltSkins: La apariencia puede ser cambiada con un {$Items.VanitySelector.DisplayName}
-				// GoblinUnderlingBuff.CommonDescription: Un subordinado leal pelea por ti
+				PetHasAltSkins: La apariencia puede ser cambiada con un {$Items.VanitySelector.DisplayName}
+				GoblinUnderlingBuff.CommonDescription: Un subordinado leal pelea por ti
 
 				GoblinUnderlingItem: {
-					/* CommonTooltip:
+					CommonTooltip:
 						'''
 						La Clase puede ser cambiada con un [c/{0}:<right>]
 						Se vuelve más fuerte con la progresión
 						Solo uno puede ser invocado
-						''' */
-					/* CommonTooltipFormat:
+						'''
+					CommonTooltipFormat:
 						'''
 						{0}
 						{1}
 						{2}
-						''' */
-					// CantSwitchClassDuringCombat: No se puede cambiar de Clase durante el combate
+						'''
+					CantSwitchClassDuringCombat: No se puede cambiar de Clase durante el combate
 				}
 			}
 		}
@@ -616,190 +616,190 @@ Mods: {
 		Items: {
 			# Cute Slimes
 			CuteSlime: {
-				// AccessoryBlacklisted: Ignorado
-				// AccessoryNone: Ninguno
-				// HatSlot: Espacio de la Cabeza: {0}
-				// BodySlot: Espacio del Cuerpo: {0}
-				// CarriedSlot: Espacio del Equipable: {0}
-				// AccessorySlot: Espacio del Accesorio: {0}
+				AccessoryBlacklisted: Ignorado
+				AccessoryNone: Ninguno
+				HatSlot: Espacio de la Cabeza: {0}
+				BodySlot: Espacio del Cuerpo: {0}
+				CarriedSlot: Espacio del Equipable: {0}
+				AccessorySlot: Espacio del Accesorio: {0}
 			}
 
 			CuteSlimeBlackItem: {
-				// DisplayName: Lindo Slime Negro Embotellado
-				// Tooltip: Invoca un lindo slime negro que te sigue
+				DisplayName: Lindo Slime Negro Embotellado
+				Tooltip: Invoca un lindo slime negro que te sigue
 			}
 
 			CuteSlimeBlueItem: {
-				// DisplayName: Lindo Slime Azul Embotellado
-				// Tooltip: Invoca un lindo slime azul que te sigue
+				DisplayName: Lindo Slime Azul Embotellado
+				Tooltip: Invoca un lindo slime azul que te sigue
 			}
 
 			CuteSlimeCorruptItem: {
-				// DisplayName: Lindo Slime Corrupto Embotellado
-				// Tooltip: Invoca un lindo slime corrupto que te sigue
+				DisplayName: Lindo Slime Corrupto Embotellado
+				Tooltip: Invoca un lindo slime corrupto que te sigue
 			}
 
 			CuteSlimeCorruptJungleItem: {
-				// DisplayName: Lindo Slime Corrupto de la Jungla Embotellado
-				// Tooltip: Invoca un lindo slime corrupto de la jungla que te sigue
+				DisplayName: Lindo Slime Corrupto de la Jungla Embotellado
+				Tooltip: Invoca un lindo slime corrupto de la jungla que te sigue
 			}
 
 			CuteSlimeCrimsonItem: {
-				// DisplayName: Lindo Slime Escarlata Embotellado
-				// Tooltip: Invoca un lindo slime escarlata que te sigue
+				DisplayName: Lindo Slime Escarlata Embotellado
+				Tooltip: Invoca un lindo slime escarlata que te sigue
 			}
 
 			CuteSlimeCrimsonJungleItem: {
-				// DisplayName: Lindo Slime escarlata de la jungla Embotellado
-				// Tooltip: Invoca un lindo slime escarlata de la jungla que te sigue
+				DisplayName: Lindo Slime escarlata de la jungla Embotellado
+				Tooltip: Invoca un lindo slime escarlata de la jungla que te sigue
 			}
 
 			CuteSlimeDungeonItem: {
-				// DisplayName: Lindo Slime de la Mazmorra Embotellado
-				// Tooltip: Invoca un lindo slime de la Mazmorra que te sigue
+				DisplayName: Lindo Slime de la Mazmorra Embotellado
+				Tooltip: Invoca un lindo slime de la Mazmorra que te sigue
 			}
 
 			CuteSlimeGoldenItem: {
-				// DisplayName: Lindo Slime Dorado Embotellado
-				// Tooltip: Invoca un lindo slime dorado que te sigue
+				DisplayName: Lindo Slime Dorado Embotellado
+				Tooltip: Invoca un lindo slime dorado que te sigue
 			}
 
 			CuteSlimeGreenItem: {
-				// DisplayName: Lindo Slime verde Embotellado
-				// Tooltip: Invoca un lindo slime negro que te sigue
+				DisplayName: Lindo Slime Verde Embotellado
+				Tooltip: Invoca un lindo slime verde que te sigue
 			}
 
 			CuteSlimeHoneyItem: {
-				// DisplayName: Lindo Slime de Miel Embotellado
-				// Tooltip: Invoca un lindo slime de miel que te sigue
+				DisplayName: Lindo Slime de Miel Embotellado
+				Tooltip: Invoca un lindo slime de miel que te sigue
 			}
 
 			CuteSlimeIceItem: {
-				// DisplayName: Lindo Slime de Hielo Embotellado
-				// Tooltip: Invoca un lindo slime de hielo que te sigue
+				DisplayName: Lindo Slime de Hielo Embotellado
+				Tooltip: Invoca un lindo slime de hielo que te sigue
 			}
 
 			CuteSlimeIlluminantItem: {
-				// DisplayName: Lindo Slime Iluminante Embotellado
-				// Tooltip: Invoca un lindo slime iluminante que te sigue
+				DisplayName: Lindo Slime Iluminante Embotellado
+				Tooltip: Invoca un lindo slime iluminante que te sigue
 			}
 
 			CuteSlimeJungleItem: {
-				// DisplayName: Lindo Slime de la Jungla Embotellado
-				// Tooltip: Invoca un lindo slime de la jungla que te sigue
+				DisplayName: Lindo Slime de la Jungla Embotellado
+				Tooltip: Invoca un lindo slime de la jungla que te sigue
 			}
 
 			CuteSlimeLavaItem: {
-				// DisplayName: Lindo Slime de Lava Embotellado
-				// Tooltip: Invoca un lindo slime de lava que te sigue
+				DisplayName: Lindo Slime de Lava Embotellado
+				Tooltip: Invoca un lindo slime de lava que te sigue
 			}
 
 			CuteSlimePinkItem: {
-				// DisplayName: Lindo Slime Rosa Embotellado
-				// Tooltip: Invoca un lindo slime rosa que te sigue
+				DisplayName: Lindo Slime Rosa Embotellado
+				Tooltip: Invoca un lindo slime rosa que te sigue
 			}
 
 			CuteSlimePinkIceItem: {
-				// DisplayName: Lindo Slime de Hielo Rosa Embotellado
-				// Tooltip: Invoca un lindo slime de hielo rosa que te sigue
+				DisplayName: Lindo Slime de Hielo Rosa Embotellado
+				Tooltip: Invoca un lindo slime de hielo rosa que te sigue
 			}
 
 			CuteSlimePrincessItem: {
-				// DisplayName: Linda Princesa Slime Embotellado
-				// Tooltip: Invoca una linda princesa slime que te sigue
+				DisplayName: Linda Princesa Slime Embotellado
+				Tooltip: Invoca una linda princesa slime que te sigue
 			}
 
 			CuteSlimePurpleItem: {
-				// DisplayName: Lindo Slime Purpura Embotellado
-				// Tooltip: Invoca un lindo slime purpura que te sigue
+				DisplayName: Lindo Slime Purpura Embotellado
+				Tooltip: Invoca un lindo slime purpura que te sigue
 			}
 
 			CuteSlimePurpleIceItem: {
-				// DisplayName: Lindo Slime Purpura de Hielo Embotellado
-				// Tooltip: Invoca un lindo slime purpura de hielo que te sigue
+				DisplayName: Lindo Slime Purpura de Hielo Embotellado
+				Tooltip: Invoca un lindo slime purpura de hielo que te sigue
 			}
 
 			CuteSlimeQueenItem: {
-				// DisplayName: Linda Reina Slime Embotellado
-				// Tooltip: Invoca una linda reina slime que te sigue
+				DisplayName: Linda Reina Slime Embotellado
+				Tooltip: Invoca una linda reina slime que te sigue
 			}
 
 			CuteSlimeRainbowItem: {
-				// DisplayName: Lindo Slime Arcoirís Embotellado
-				// Tooltip: Invoca un lindo slime arcoirís que te sigue
+				DisplayName: Lindo Slime Arcoirís Embotellado
+				Tooltip: Invoca un lindo slime arcoirís que te sigue
 			}
 
 			CuteSlimeRedItem: {
-				// DisplayName: Lindo Slime Rojo Embotellado
-				// Tooltip: Invoca un lindo slime rojo que te sigue
+				DisplayName: Lindo Slime Rojo Embotellado
+				Tooltip: Invoca un lindo slime rojo que te sigue
 			}
 
 			CuteSlimeRedIceItem: {
-				// DisplayName: Lindo Slime Rojo de Hielo Embotellado
-				// Tooltip: Invoca un lindo slime rojo de hielp que te sigue
+				DisplayName: Lindo Slime Rojo de Hielo Embotellado
+				Tooltip: Invoca un lindo slime rojo de hielp que te sigue
 			}
 
 			CuteSlimeSandItem: {
-				// DisplayName: Lindo Slime de Arena Embotellado
-				// Tooltip: Invoca un lindo slime de arena que te sigue
+				DisplayName: Lindo Slime de Arena Embotellado
+				Tooltip: Invoca un lindo slime de arena que te sigue
 			}
 
 			CuteSlimeShimmerItem: {
-				// DisplayName: Lindo Slime de Brillo Embotellado
-				// Tooltip: Invoca un lindo slime de brillo que te sigue
+				DisplayName: Lindo Slime de Brillo Embotellado
+				Tooltip: Invoca un lindo slime de brillo que te sigue
 			}
 
 			CuteSlimeToxicItem: {
-				// DisplayName: Lindo Slime Toxíco Embotellado
-				// Tooltip: Invoca un lindo slime negro que te sigue
+				DisplayName: Lindo Slime Toxíco Embotellado
+				Tooltip: Invoca un lindo slime toxico que te sigue
 			}
 
 			CuteSlimeXmasItem: {
-				// DisplayName: Lindo Slime Navideño Embotellado
-				// Tooltip: Invoca un lindo slime navideño que te sigue
+				DisplayName: Lindo Slime Navideño Embotellado
+				Tooltip: Invoca un lindo slime navideño que te sigue
 			}
 
 			CuteSlimeYellowItem: {
-				// DisplayName: Lindo Slime Amarillo Embotellado
-				// Tooltip: Invoca un lindo slime amarillo que te sigue
+				DisplayName: Lindo Slime Amarillo Embotellado
+				Tooltip: Invoca un lindo slime amarillo que te sigue
 			}
 
 			# Pets. AoMM versions are auto-generated
 			AbeeminationItem: {
-				// DisplayName: Abejaminación
-				/* Tooltip:
+				DisplayName: Abejaminación
+				Tooltip:
 					'''
 					Invoca una amigable Abejaminación que te sigue
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			AlienHornetItem: {
-				// DisplayName: Vortex Nectar
-				// Tooltip: Invoca una amigable avispa alienigena que te sigue
+				DisplayName: Vortex Nectar
+				Tooltip: Invoca una amigable avispa alienigena que te sigue
 			}
 
 			AnimatedTomeItem: {
-				// DisplayName: Tomo Animado
-				/* Tooltip:
+				DisplayName: Tomo Animado
+				Tooltip:
 					'''
 					Invoca un amigable tomo animado que te sigue
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			AnomalocarisItem: {
-				// DisplayName: Camarón Gruñon
-				/* Tooltip:
+				DisplayName: Camarón Gruñon
+				Tooltip:
 					'''
 					Invoca un camarón prehistorico que te sigue
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			BabyCrimeraItem: {
-				// DisplayName: Vertebra Jugosa 
-				// Tooltip: Invoca una crimera bebe que te sigue
+				DisplayName: Vertebra Jugosa
+				Tooltip: Invoca una crimera bebe que te sigue
 			}
 
 			BabyIchorStickerItem: {
@@ -3399,91 +3399,91 @@ Mods: {
 					// BloodMoonChanged.BodyHurts: Boss... my body hurts...
 				}
 
-				Eager_Serious: {qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+				Eager_Serious: {
 					Dialogue: {
-						// 0Eager: Me das otra muñeca?
-						// 1Serious: Destruiste o perdiste las anteriores.
-						// 2Eager: Esta vez no sucedera, lo prometo!
-						// 3Serious: ...Esta bien. Mas tarde te hare una, de acuerdo?
-						// 4Eager: Siiiiii!
+						0Eager: Me das otra muñeca?
+						1Serious: Destruiste o perdiste las anteriores.
+						2Eager: Esta vez no sucedera, lo prometo!
+						3Serious: ...Esta bien. Mas tarde te hare una, de acuerdo?
+						4Eager: Siiiiii!
 					}
 				}
 
 				Eager_Shy: {
 					Dialogue: {
-						// 0Eager: Hey!
-						// 1Shy: Ah... si?
-						// 2Eager: Hay una rata detras tuya!
-						// 3Shy: Eep!
-						// 4Eager: Te engañe! jaja, que ruidosa!
+						0Eager: Hey!
+						1Shy: Ah... si?
+						2Eager: Hay una rata detras tuya!
+						3Shy: Eep!
+						4Eager: Te engañe! jaja, que ruidosa!
 					}
 				}
 
 				Serious_Eager: {
 					Dialogue: {
-						// 0Serious: Descociste tu muñeca de nuevo...
-						// 1Eager: Fue un accidente!
-						// 2Serious: Como las otras veces?
-						// 3Eager: Seh!
-						// 4Serious: ...La arreglare luego.
-						// 5Eager: Gracias!
+						0Serious: Descociste tu muñeca de nuevo...
+						1Eager: Fue un accidente!
+						2Serious: Como las otras veces?
+						3Eager: Seh!
+						4Serious: ...La arreglare luego.
+						5Eager: Gracias!
 					}
 				}
 
 				Serious_Shy: {
 					Dialogue: {
-						// 0Serious: Hey.
-						// 1Shy: ...si?
-						// 2Serious: Quíeres una muñeca?
-						// 3Shy: Una muñeca?
-						// 4Serious: Si. Para calmar tus nervios.
-						// 5Shy: ...si, por favor.
-						// 6Serious: Entonces la preparare luego.
+						0Serious: Hey.
+						1Shy: ...si?
+						2Serious: Quíeres una muñeca?
+						3Shy: Una muñeca?
+						4Serious: Si. Para calmar tus nervios.
+						5Shy: ...si, por favor.
+						6Serious: Entonces la preparare luego.
 					}
 				}
 
 				Shy_Eager: {
 					Dialogue: {
-						// 0Shy: Um...
-						// 1Eager: So?
-						// 2Shy: C-como estas siempre tan jovial?
-						// 3Eager: Porque el el jefe esta aquí!
-						// 4Shy: A ti re-realmente te a-agrada el jefe, huh?
-						// 5Eager: Seh! El jefe es el más fiero!
+						0Shy: Um...
+						1Eager: So?
+						2Shy: C-como estas siempre tan jovial?
+						3Eager: Porque el el jefe esta aquí!
+						4Shy: A ti re-realmente te a-agrada el jefe, huh?
+						5Eager: Seh! El jefe es el más fiero!
 					}
 				}
 
 				Shy_Serious: {
 					Dialogue: {
-						// 0Shy: Um... disculpe...
-						// 1Serious: Si?
-						// 2Shy: T-Tus muñecas...
-						// 3Serious: ?
-						// 4Shy: Son lindas...
-						// 5Serious: Gracias.
+						0Shy: Um... disculpe...
+						1Serious: Si?
+						2Shy: T-Tus muñecas...
+						3Serious: ?
+						4Shy: Son lindas...
+						5Serious: Gracias.
 					}
 				}
 
 				Eager_Serious_Shy: {
 					Dialogue: {
-						// 0Eager: Te encuentras bien?
-						// "1Serious, Shy": Si.
-						// 2Eager: Entonces demosle todos juntos;
-						// 3All: Nos agrada, jefe!
+						0Eager: Te encuentras bien?
+						"1Serious, Shy": Si.
+						2Eager: Entonces demosle todos juntos;
+						3All: Nos agrada, jefe!
 					}
 				}
 			}
 		}
 
 		GoblinUnderlingClass: {
-			// Melee: Cuerpo a cuerpo
-			// Magic: Magico
-			// Ranged: A distancia
+			Melee: Cuerpo a cuerpo
+			Magic: Magico
+			Ranged: A distancia
 		}
 
 		UI: {
-			// CircleUIToUnlock: Para desbloquear : {0}
-			// HoverNPCUICatchWithNet: Atrapalo ulitzando una red
+			CircleUIToUnlock: Para desbloquear : {0}
+			HoverNPCUICatchWithNet: Atrapalo ulitzando una red
 		}
 	}
 }

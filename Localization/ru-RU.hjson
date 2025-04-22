@@ -2079,7 +2079,7 @@ Mods: {
 				ReducedDamageTakenBoss: "{1} наносит вам на {0}% меньше урона"
 				BuffImmunity: Иммунитет к '{0}', пока {1} {^2:жив;живы}
 				TimesDied: Смертей: {0}/{1}
-				// DeleteFromInventory: You won't be needing the {0} anymore...
+				DeleteFromInventory: "{0} тебе больше не понадобится..."
 			}
 
 			SillyBalloonKit: {
@@ -2610,11 +2610,11 @@ Mods: {
 				StupidHat.Tooltip: Дурацкая шляпа
 				GnarlyGrin.Tooltip: Хищная улыба
 				FlippedJelly.Tooltip: Желе наоборот
-				// AxolotlLucy.Tooltip: Axolotl (Lucy)
-				// AxolotlBlue.Tooltip: Axolotl (Blue)
-				// AxolotlCyan.Tooltip: Axolotl (Cyan)
-				// AxolotlYellow.Tooltip: Axolotl (Yellow)
-				// AxolotlBrown.Tooltip: Axolotl (Brown)
+				AxolotlLucy.Tooltip: Аксолотль (Розовый)
+				AxolotlBlue.Tooltip: Аксолотль (Синий)
+				AxolotlCyan.Tooltip: Аксолотль (Голубой)
+				AxolotlYellow.Tooltip: Аксолотль (Жёлтый)
+				AxolotlBrown.Tooltip: Аксолотль (Коричневый)
 			}
 
 			PetCultistProj: {
@@ -2737,7 +2737,7 @@ Mods: {
 			}
 
 			WobyProj.DisplayName: Воби
-			// WobyProj_AoMM.DisplayName: Big Woby
+			WobyProj_AoMM.DisplayName: Большой Воби
 
 			YoungHarpyProj: {
 				DisplayName: Молодая гарпия
