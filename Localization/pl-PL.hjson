@@ -3,612 +3,612 @@ Mods: {
 		Buffs: {
 			# Cute Slimes
 			CuteSlimeBlackBuff: {
-				// DisplayName: Cute Black Slime
-				// Description: A cute black slime is following you
+				DisplayName: Uroczy czarny szlam
+				Description: Podąża za tobą uroczy czarny szlam
 			}
 
 			CuteSlimeBlueBuff: {
-				// DisplayName: Cute Blue Slime
-				// Description: A cute blue slime is following you
+				DisplayName: Uroczy niebieski szlam
+				Description: Podąża za tobą uroczy niebieski szlam
 			}
 
 			CuteSlimeCorruptBuff: {
-				// DisplayName: Cute Corrupt Slime
-				// Description: A cute corrupt slime is following you
+				DisplayName: Uroczy szlam zepsucia
+				Description: Podąża za tobą uroczy szlam zepsucia
 			}
 
 			CuteSlimeCorruptJungleBuff: {
-				// DisplayName: Cute Corrupt Jungle Slime
-				// Description: A cute corrupt jungle slime is following you
+				DisplayName: Uroczy szlam zepsucia z dżungli
+				Description: Podąża za tobą uroczy szlam zepsucia z dżungli
 			}
 
 			CuteSlimeCrimsonBuff: {
-				// DisplayName: Cute Crimson Slime
-				// Description: A cute crimson slime is following you
+				DisplayName: Uroczy szkarlam
+				Description: Podąża za tobą uroczy szkarlam
 			}
 
 			CuteSlimeCrimsonJungleBuff: {
-				// DisplayName: Cute Crimson Jungle Slime
-				// Description: A cute crimson jungle slime is following you
+				DisplayName: Uroczy szkarlam z dżungli
+				Description: Podąża za tobą uroczy szkarlam z dżungli
 			}
 
 			CuteSlimeDungeonBuff: {
-				// DisplayName: Cute Dungeon Slime
-				// Description: A cute dungeon slime is following you
+				DisplayName: Uroczy szlam z lochu
+				Description: Podąża za tobą uroczy szlam z lochu
 			}
 
 			CuteSlimeGoldenBuff: {
-				// DisplayName: Cute Golden Slime
-				// Description: A cute golden slime is following you
+				DisplayName: Uroczy złoty szlam
+				Description: Podąża za tobą uroczy złoty szlam
 			}
 
 			CuteSlimeGreenBuff: {
-				// DisplayName: Cute Green Slime
-				// Description: A cute green slime is following you
+				DisplayName: Uroczy zielony szlam
+				Description: Podąża za tobą uroczy zielony szlam
 			}
 
 			CuteSlimeHoneyBuff: {
-				// DisplayName: Cute Honey Slime
-				// Description: A cute honey slime is following you
+				DisplayName: Uroczy miodowy szlam
+				Description: Podąża za tobą uroczy miodowy szlam
 			}
 
 			CuteSlimeIceBuff: {
-				// DisplayName: Cute Ice Slime
-				// Description: A cute ice slime is following you
+				DisplayName: Uroczy lodowy szlam
+				Description: Podąża za tobą uroczy lodowy szlam
 			}
 
 			CuteSlimeIlluminantBuff: {
-				// DisplayName: Cute Illuminant Slime
-				// Description: A cute illuminant slime is following you
+				DisplayName: Uroczy świecący szlam
+				Description: Podąża za tobą uroczy świecący szlam
 			}
 
 			CuteSlimeJungleBuff: {
-				// DisplayName: Cute Jungle Slime
-				// Description: A cute jungle slime is following you
+				DisplayName: Uroczy szlam z dżungli
+				Description: Podąża za tobą uroczy szlam z dżungli
 			}
 
 			CuteSlimeLavaBuff: {
-				// DisplayName: Cute Lava Slime
-				// Description: A cute lava slime is following you
+				DisplayName: Uroczy szlam lawy
+				Description: Podąża za tobą uroczy szlam lawy
 			}
 
 			CuteSlimePinkBuff: {
-				// DisplayName: Cute Pink Slime
-				// Description: A cute pink slime is following you
+				DisplayName: Uroczy różowy szlam
+				Description: Podążą za tobą uroczy różowy szlam
 			}
 
 			CuteSlimePinkIceBuff: {
-				// DisplayName: Cute Pink Ice Slime
-				// Description: A cute pink ice slime is following you
+				DisplayName: Uroczy różowy lodowy szlam
+				Description: Podążą za tobą uroczy różowy lodowy szlam
 			}
 
 			CuteSlimePrincessBuff: {
-				// DisplayName: Cute Princess Slime
-				// Description: A cute princess slime is following you
+				DisplayName: Urocza księżniczka szlamów
+				Description: Podąża za tobą urocza księżniczka szlamów
 			}
 
 			CuteSlimePurpleBuff: {
-				// DisplayName: Cute Purple Slime
-				// Description: A cute purple slime is following you
+				DisplayName: Uroczy fioletowy szlam
+				Description: Podąża za tobą uroczy fioletowy szlam
 			}
 
 			CuteSlimePurpleIceBuff: {
-				// DisplayName: Cute Purple Ice Slime
-				// Description: A cute purple ice slime is following you
+				DisplayName: Uroczy fioletowy lodowy szlam
+				Description: Podąża za tobą uroczy fioletowy lodowy szlam
 			}
 
 			CuteSlimeQueenBuff: {
-				// DisplayName: Cute Queen Slime
-				// Description: A cute queen slime is following you
+				DisplayName: Urocza królowa szlamów
+				Description: Podąża za tobą urocza królowa szlamów
 			}
 
 			CuteSlimeRainbowBuff: {
-				// DisplayName: Cute Rainbow Slime
-				// Description: A cute rainbow slime is following you
+				DisplayName: Uroczy tęczowy szlam
+				Description: Podąża za tobą uroczy tęczowy szlam
 			}
 
 			CuteSlimeRedBuff: {
-				// DisplayName: Cute Red Slime
-				// Description: A cute red slime is following you
+				DisplayName: Uroczy czerwony szlam
+				Description: Podąża za tobą uroczy czerwony szlam
 			}
 
 			CuteSlimeRedIceBuff: {
-				// DisplayName: Cute Red Ice Slime
-				// Description: A cute red ice slime is following you
+				DisplayName: Uroczy czerwony lodowy szlam
+				Description: Podąża za tobą uroczy czerwony lodowy szlam
 			}
 
 			CuteSlimeSandBuff: {
-				// DisplayName: Cute Sand Slime
-				// Description: A cute sand slime is following you
+				DisplayName: Uroczy piaskowy szlam
+				Description: Podąża za tobą uroczy piaskowy szlam
 			}
 
 			CuteSlimeShimmerBuff: {
-				// DisplayName: Cute Shimmer Slime
-				// Description: A cute shimmer slime is following you
+				DisplayName: Uroczy szlam blasku
+				Description: Podąża za tobą uroczy szlam blasku
 			}
 
 			CuteSlimeToxicBuff: {
-				// DisplayName: Cute Toxic Slime
-				// Description: A cute toxic slime is following you
+				DisplayName: Uroczy toksyczny muł
+				Description: Podąża za tobą uroczy toksyczny muł
 			}
 
 			CuteSlimeXmasBuff: {
-				// DisplayName: Cute Christmas Slime
-				// Description: A cute Christmas slime is following you
+				DisplayName: Uroczy świąteczny szlam
+				Description: Podąża za tobą uroczy świąteczny szlam
 			}
 
 			CuteSlimeYellowBuff: {
-				// DisplayName: Cute Yellow Slime
-				// Description: A cute yellow slime is following you
+				DisplayName: Uroczy żółty szlam
+				Description: Podąża za tobą uroczy żółty szlam
 			}
 
 			# Pets. AoMM versions are auto-generated
 			AbeeminationBuff: {
-				// DisplayName: Abeemination
-				// Description: An abeemination is following you
+				DisplayName: Pszczybywajątko
+				Description: Podąża za tobą małe pszczybywajątko
 			}
 
 			AlienHornetBuff: {
-				// DisplayName: Alien Hornet
-				// Description: An alien hornet is following you
+				DisplayName: Kosmiczny szerszeń
+				Description: Podąża za tobą kosmiczny szerszeń
 			}
 
 			AnimatedTomeBuff: {
-				// DisplayName: Animated Tome
-				// Description: An animated tome is following you
+				DisplayName: Animowany tom
+				Description: Podąża za tobą animowany tom
 			}
 
 			AnomalocarisBuff: {
-				// DisplayName: Anomalocaris
-				// Description: A little prehistoric shrimp is following you
+				DisplayName: Anomalocaris
+				Description: Podąża za tobą mała prehistoryczna krewetka
 			}
 
 			BabyCrimeraBuff: {
-				// DisplayName: Baby Crimera
-				// Description: A little crimera is following you
+				DisplayName: Mała szkarłatnica
+				Description: Podąża za tobą mała szkarłatnica
 			}
 
 			BabyIchorStickerBuff: {
-				// DisplayName: Lil' Ichy
-				// Description: A baby ichor sticker is following you
+				DisplayName: Mały Ichy
+				Description: Podąża za tobą mały ichorowy strzelec
 			}
 
 			BabyOcramBuff: {
-				// DisplayName: Baby Ocram
-				// Description: What could have been now follows you
+				DisplayName: Mały Ocram
+				Description: To co mogło być, podąża za tobą
 			}
 
 			BrainofConfusionBuff: {
-				// DisplayName: Brain of Confusion
-				// Description: A brain of confusion is following you
+				DisplayName: Mózg chaosu
+				Description: Podąża za tobą mózg chaosu
 			}
 
 			ChunkyandMeatballBuff: {
-				// DisplayName: Chunky and Meatball
-				// Description: Two reunited brothers are following you
+				DisplayName: Pulchny i klopsik
+				Description: Dwóch zjednoczonych braci podąża za tobą
 			}
 
 			ChunkySlimeBuff: {
-				// DisplayName: Chunky
-				// Description: Chunky is following you
+				DisplayName: Pulchny
+				Description: Pulchny podąża za tobą
 			}
 
 			CompanionDungeonSoulPetBuff: {
-				// DisplayName: Companion Soul
-				// CommonDescription: A friendly dungeon soul is following you
-				/* Description:
+				DisplayName: Towarzyska dusza
+				CommonDescription: Podążą za tobą przyjazna dusza z lochu
+				Description:
 					'''
 					{$Buffs.CompanionDungeonSoulPetBuff.CommonDescription}
-					Light pet slot
-					''' */
+					Slot chowańca światła
+					'''
 			}
 
 			CompanionDungeonSoulPetBuff2: {
-				// DisplayName: "{$Buffs.CompanionDungeonSoulPetBuff.DisplayName}"
-				/* Description:
+				DisplayName: "{$Buffs.CompanionDungeonSoulPetBuff.DisplayName}"
+				Description:
 					'''
 					{$Buffs.CompanionDungeonSoulPetBuff.CommonDescription}
-					Pet slot
-					''' */
+					Slot chowańca
+					'''
 			}
 
 			CursedSkullBuff: {
-				// DisplayName: Cursed Skull
-				// Description: It won't curse you, I promise
+				DisplayName: Przeklęta czaszka
+				Description: Nie rzuci na ciebie żadnej klątwy, obiecuję
 			}
 
 			CuteGastropodBuff: {
-				// DisplayName: Cute Gastropod
-				// Description: A cute gastropod is following you
+				DisplayName: Uroczy brzuchonóg
+				Description: Podąża za tobą uroczy brzuchonóg
 			}
 
 			CuteLamiaPetBuff: {
-				// DisplayName: Small Snake
-				// Description: A small snake is following you
+				DisplayName: Mały wąż
+				Description: Podąża za tobą mały wąż
 			}
 
 			DemonHeartBuff: {
-				// DisplayName: Demon Heart
-				// Description: A demon heart is following you
+				DisplayName: Demoniczne serce
+				Description: Podąża za tobą demoniczne serce
 			}
 
 			DetachedHungryBuff: {
-				// DisplayName: Detached Hungry
-				// Description: You might be the next meal...
+				DisplayName: Odłączony nienażarty
+				Description: Możesz być jego następnym posiłkiem...
 			}
 
 			DocileDemonEyeBuff: {
-				// DisplayName: Docile Demon Eye
-				// Description: A demon eye is following you
+				DisplayName: Przyjazne demoniczne oko
+				Description: Podąża za tobą demoniczne oko
 			}
 
 			DrumstickElementalBuff: {
-				// DisplayName: Drumstick Elemental
-				// Description: Dinner is following you
+				DisplayName: Żywiołak udek z kurczaka
+				Description: Podąża za tobą obiad
 			}
 
 			DynamiteBunnyBuff: {
-				// DisplayName: Dynamite Bunny
-				// Description: A little dynamite bunny is following you
+				DisplayName: Dynamitowy króliczek
+				Description: Podąża za tobą mały dynamitowy króliczek
 			}
 
 			EnchantedSwordBuff: {
-				// DisplayName: Enchanted Sword
-				// Description: The enchanted sword watches over you
+				DisplayName: Zaklęty miecz
+				Description: Zaklęty miecz czuwa nad tobą
 			}
 
 			FailureSlimeBuff: {
-				// DisplayName: Failure Slime
-				// Description: A strange creature is following you
+				DisplayName: Nieudany szlam
+				Description: Podąża za tobą dziwne stworzenie
 			}
 
 			FairySlimeBuff: {
-				// DisplayName: Fairy Slime
-				// Description: A fairy slime is following you
+				DisplayName: Szlam wróżka
+				Description: Podąża za tobą szlam wróżka
 			}
 
 			FairySwarmBuff: {
-				// DisplayName: Fairy Swarm
-				// Description: A fairy swarm is following you
+				DisplayName: Rój wróżek
+				Description: Podąża za tobą rój wróżek
 			}
 
 			GhostMartianBuff: {
-				// DisplayName: Ghost Martian
-				// Description: A vengeful invader's ghost is following you
+				DisplayName: Duch marsjanina
+				Description: Duch mściwego najeźdzcy podąża za tobą
 			}
 
 			GobletBuff: {
-				// DisplayName: Goblet
-				// Description: A tiny goblin is following you
+				DisplayName: Kielich
+				Description: Mały kielich podąża za tobą
 			}
 
 			HornedSlimeBuff: {
-				// DisplayName: Horned Slime
-				// Description: A horned slime is following you
+				DisplayName: Rogaty szlam
+				Description: Podąża za tobą rogaty szlam
 			}
 
 			IlluminantSlimeBuff: {
-				// DisplayName: Illuminant Slime
-				// Description: An illuminant slime is following you
+				DisplayName: Świecący szlam
+				Description: Podąża za tobą świecący szlam
 			}
 
 			JoyousSlimeBuff: {
-				// DisplayName: Joyous Slime
-				// Description: A joyous slime is following you
+				DisplayName: Radosny szlam
+				Description: Podąża za tobą radosny szlam
 			}
 
 			LifelikeMechanicalFrogBuff: {
-				// DisplayName: Lifelike Mechanical Frog
-				// Description: Whatever happened to this frog at the anvil is a mystery
+				DisplayName: Mechaniczna jak-żywa żaba
+				Description: Cokolwiek stało się tej żabie na kowadle zostaje tajemnicą
 			}
 
 			LilWrapsBuff: {
-				// DisplayName: Lil' Wraps
-				// Description: A mummy is following you
+				DisplayName: Mały zawijas
+				Description: Mumia podąża za tobą
 			}
 
 			MeatballSlimeBuff: {
-				// DisplayName: Meatball
-				// Description: Meatball is following you
+				DisplayName: Klopsik
+				Description: Klopsik podąża za tobą
 			}
 
 			MetroidPetBuff: {
-				// DisplayName: Metroid
-				// Description: A space parasite is following you
+				DisplayName: Metroid
+				Description: Kosmiczny pasożyt podąża za tobą
 			}
 
 			MiniAntlionBuff: {
-				// DisplayName: Baby Antlion
-				// Description: A baby antlion is following you
+				DisplayName: Mały mrówkolew
+				Description: Mały mrówkolew podąża za tobą
 			}
 
 			MiniMegalodonBuff: {
-				// DisplayName: Mini Megalodon
-				// Description: It recognizes your strength...for now
+				DisplayName: Mini Megalodon
+				Description: Widzi twoją siłę... na razie
 			}
 
 			NumberMuncherBuff: {
-				// DisplayName: Number Muncher
-				// Description: An educated amphibian is following you
+				DisplayName: Chrupacz liczb
+				Description: Wyedukowany płaz podąża za tobą
 			}
 
 			OceanSlimeBuff: {
-				// DisplayName: Ocean Slime
-				// Description: An ocean slime is following you
+				DisplayName: Oceaniczny szlam
+				Description: Oceaniczny szlam podąża za tobą
 			}
 
 			PetCultistBuff: {
-				// DisplayName: Dwarf Cultist
-				// Description: A tiny cultist is following you
+				DisplayName: Karłowaty kultysta
+				Description: Malutki kultysta podąża za tobą
 			}
 
 			PetDestroyerBuff: {
-				// DisplayName: Tiny Destroyer
-				// Description: A tiny Destroyer and two tiny Probes are following you
+				DisplayName: Mały niszczyciel
+				Description: Malutki niszczyciel i jego dwie sondy podążają za tobą
 			}
 
 			PetEaterofWorldsBuff: {
-				// DisplayName: Tiny Eater of Worlds
-				// Description: A tiny Eater of Worlds is following you
+				DisplayName: Mały pożeracz światów
+				Description: Malutki pożeracz światów podąża za tobą
 			}
 
 			PetFishronBuff: {
-				// DisplayName: Fishron
-				// Description: A fishron is following you
+				DisplayName: Rybok
+				Description: Rybok podąża za tobą
 			}
 
 			PetGoldfishBuff: {
-				// DisplayName: Possessed Goldfish
-				// Description: A possessed goldfish is following you
+				DisplayName: Opętana złota rybka
+				Description: Opętana złota rybka podąża za tobą
 			}
 
 			PetGolemHeadBuff: {
-				// DisplayName: Replica Golem Head
-				// Description: A replica Golem head watches over you
+				DisplayName: Replika głowy golema
+				Description: Replika głowy golema czuwa nad tobą
 			}
 
 			PetHarvesterBuff: {
-				// DisplayName: Stubborn Bird
-				// Description: A stubborn bird is following you
+				DisplayName: Uparty ptak
+				Description: Uparty ptak podąża za tobą
 			}
 
 			PetMoonBuff: {
-				// DisplayName: Personal Moon
-				// Description: A small moon is providing you with constant moonlight
+				DisplayName: Osobisty księżyc
+				Description: Mały księżyc zapewnia ci ciągły blask
 			}
 
 			PetPlanteraBuff: {
-				// DisplayName: Plantera Sprout
-				// Description: A Plantera sprout is following you
+				DisplayName: Kiełek plantery
+				Description: Kiełek plantery podąża za tobą
 			}
 
 			PetQueenSlimeBuff: {
-				// DisplayName: Playful Slimelings
-				// Description: A trio of slimelings is following you
+				DisplayName: Wesołe szlamki
+				Description: Trójka szlamków podąża za tobą
 			}
 
 			PetSunBuff: {
-				// DisplayName: Personal Sun
-				// Description: A small sun is providing you with constant sunlight
+				DisplayName: Osobiste słońce
+				Description: Małe słońce zapewnia ci ciągłe światło
 			}
 
 			PetSunMoonBuff: {
-				// DisplayName: Personal Sun and Moon
-				/* Description:
+				DisplayName: Osobiste słońce i księżyc
+				Description:
 					'''
-					A small sun and moon are providing you with constant light
-					'No adverse gravitational effects will happen'
-					''' */
+					Małe słońce i księżyc zapewniają ci ciągłe światło
+					'Nie wystąpią żadne niechciane efekty grawitacyjne'
+					'''
 			}
 
 			PigronataBuff: {
-				// DisplayName: Pigronata
-				// Description: A pigronata is thankful that you did not bust it
+				DisplayName: Smosiakonata
+				Description: Smosiakonata jest wdzięczna, że jej nie rozbiłeś
 			}
 
 			PrinceSlimeBuff: {
-				// DisplayName: Prince Slime
-				// Description: A prince slime is following you
+				DisplayName: Książę szlam
+				Description: Książę szlam podąża za tobą
 			}
 
 			QueenLarvaBuff: {
-				// DisplayName: Queen Larva
-				// Description: A Queen Bee larva is following you
+				DisplayName: Larwa królowej
+				Description: Larwa królowej pszczół podąża za tobą
 			}
 
 			RainbowSlimeBuff: {
-				// DisplayName: Rainbow Slime
-				// Description: A rainbow slime is following you
+				DisplayName: Tęczowy szlam
+				Description: Tęczowy szlam podąża za tobą
 			}
 
 			SkeletronHandBuff: {
-				// DisplayName: Skeletron's Spare Hand
-				// Description: Skeletron's hand is attached to you
+				DisplayName: Zapasowa ręka Szkieletrona
+				Description: Ręka szkieletrona jest do ciebie przyczepiona
 			}
 
 			SkeletronPrimeHandBuff: {
-				// DisplayName: Skeletron Prime's Spare Hand
-				// Description: Skeletron Prime's hand is attached to you
+				DisplayName: Zapasowa ręka Szkieletrona Prime
+				Description: Ręka szkieletrona prime jest do ciebie przyczepiona
 			}
 
 			StingSlimeBuff: {
-				// DisplayName: Sting Slime
-				// Description: A sting slime is following you
+				DisplayName: Żądlący szlam
+				Description: Żądlący szlam podąża za tobą
 			}
 
 			StrangeRobotBuff: {
-				// DisplayName: Strange Robot
-				// Description: A strange robot is following you
+				DisplayName: Dziwny robot
+				Description: Dziwny robot podąża za tobą
 			}
 
 			SuspiciousNuggetBuff: {
-				// DisplayName: Suspicious Nugget
-				// Description: A suspicious nugget is following you
+				DisplayName: Podejrzany kawałek kurczaka
+				Description: Podejrzany kawałek kurczaka podąża za tobą
 			}
 
 			SwarmofCthulhuBuff: {
-				// DisplayName: Swarm of Cthulhu
-				// Description: A swarm of Cthulhu is following you
+				DisplayName: Rój Cthulhu
+				Description: Rój Cthulhu podąża za tobą
 			}
 
 			TinyTwinsBuff: {
-				// DisplayName: Tiny Twins
-				// Description: The Twins are watching you
+				DisplayName: Małe bliźnięta
+				Description: Bliźnięta cię obserwują
 			}
 
 			TorchGodLightPetBuff: {
-				// DisplayName: Godly Torch
-				// Description: "'Your torch placement has been deemed unnecessary. I will do it correctly.'"
-				// EnableSmartCursor: Enable 'Smart Cursor' to automatically place torches
-				// NoTorches: No normal torches found to place
+				DisplayName: Boska pochodnia
+				Description: "'Twoje rozstawienie pochodni zostało uznane za niepotrzebne. Zrobię to prawidłowo.'"
+				EnableSmartCursor: Włącz 'Inteligenty Kursor' aby automatycznie stawiać pochodnie
+				NoTorches: Nie znaleziono żadnych normalnych pochodni do postawienia
 			}
 
 			TorturedSoulBuff: {
-				// DisplayName: Tortured Soul
-				// Description: Shouldn't have been so greedy, eh?
+				DisplayName: Umęczona dusza
+				Description: Po co ci była ta chciwośc?
 			}
 
 			TrueObservingEyeBuff: {
-				// DisplayName: True Observing Eye
-				// Description: A tiny True Eye of Cthulhu is following you
+				DisplayName: Prawdziwe obserwujące oko
+				Description: Małe prawdziwe oko Cthulhu podąża za tobą
 			}
 
 			TurtleSlimeBuff: {
-				// DisplayName: Turtle Slime
-				// Description: A turtle slime is following you
+				DisplayName: Szlam żółwiowy
+				Description: Szlam żółwiowy podąża za tobą
 			}
 
 			VampireBatBuff: {
-				// DisplayName: Vampire Bat
-				// Description: A particularly dashing vampire is following you
+				DisplayName: Nietoperz wampir
+				Description: Niezwykle dashing vampire is following you
 			}
 
 			WallFragmentBuff: {
-				// DisplayName: Wall Fragment
-				// Description: Several fragments of the Wall are following you
+				DisplayName: Fragment ściany
+				Description: Kilka fragmentów Ściany podąża za tobą
 			}
 
 			YoungHarpyBuff: {
-				// DisplayName: Young Harpy
-				// Description: A young harpy is following you
+				DisplayName: Młoda harpia
+				Description: Młoda harpia podąża za tobą
 			}
 
 			YoungWyvernBuff: {
-				// DisplayName: Young Wyvern
-				// Description: A young wyvern is following you
+				DisplayName: Młoda wywerna
+				Description: Młoda wywerna podąża za tobą
 			}
 
 			WobyBuff: {
-				// DisplayName: Woby, 'A lovable dog...'
-				// Description: A loyal canine is following you
+				DisplayName: Woby, 'Ukochany pies...'
+				Description: Lojalny pies podąża za tobą
 			}
 
 			CompanionDungeonSoulMinionBuff: {
-				// DisplayName: Companion Soul Minion
-				// Description: A friendly Soul is fighting for you
-				// TinyDungeonSouls: Tiny Dungeon Souls
+				DisplayName: Przyjazna dusza sługa
+				Description: Przyjazna dusza będzie cię bronić
+				TinyDungeonSouls: Małe dusze z lochu
 			}
 
 			CuteSlimeSpawnEnableBuff: {
-				// DisplayName: Jellied Ale
-				// Description: Your perception of slimes is a bit off...
-				// CuteSlimesCanSpawn: Cute Slimes that can spawn
-				// None: None
+				DisplayName: Żelowate piwo
+				Description: Twój ogląd na szlamy jest lekko skrzywiony...
+				CuteSlimesCanSpawn: Urocze szlamy które mogą się pojawić
+				None: Żadne
 			}
 
 			DroneControllerBuff: {
-				// DisplayName: Drone Controller
-				// Description: Command a swarm of drones
+				DisplayName: Kontroler drona
+				Description: Dowódź chmarą dronów
 			}
 
 			EmpoweringBuff: {
-				// DisplayName: Empowering
-				// Description: You get stronger the longer you don't receive damage
-				// IncreasedDamage: Increased Damage: {0}%
+				DisplayName: Wzmacnianie
+				Description: Twoja siła rośnie im dłużej nie dostajesz obrażeń
+				IncreasedDamage: Zwiększone obrażenia: {0}%
 			}
 
 			EnhancedHunterBuff: {
-				// DisplayName: Enhanced Hunter
-				// Description: Shows the location of enemies outside your vision range
+				DisplayName: Czujniejszy łowca
+				Description: Pokazuje położenie wrogów poza twoim polem widzenia
 			}
 
-			// EagerUnderlingBuff.DisplayName: Eager Underling
-			// ShyUnderlingBuff.DisplayName: Shy Underling
-			// SeriousUnderlingBuff.DisplayName: Serious Underling
+			EagerUnderlingBuff.DisplayName: Waleczna podwładna
+			ShyUnderlingBuff.DisplayName: Wstydliwa podwładna
+			SeriousUnderlingBuff.DisplayName: Poważna podwładna
 
 			SigilOfTheWingBuff: {
-				// DisplayName: Blessing of the Wing
-				// Description: Your spirit hangs on by a thread
+				DisplayName: Błogosławienie skrzydła
+				Description: Twój duch trzyma się na włosku
 			}
 
 			BabyHarvesterBuff: {
-				// DisplayName: Ominous Bird
+				DisplayName: Złowieszczy ptak
 				# Do not translate Description
-				// Description: REPLACEME
-				// Absorbed: The bird has absorbed {0} souls
-				// Tier1: What's this bird doing?
-				// Tier2: I wonder if it will keep growing
-				// Tier3: I'm not sure it should keep eating...
+				Description: REPLACEME
+				Absorbed: Ptak pochłonął {0} dusz
+				Tier1: Co ten ptak robi?
+				Tier2: Ciekawe czy dalej będzie rósł
+				Tier3: Chyba nie powinien więcej jeść...
 			}
 
 			SoulBurnBuff: {
-				// DisplayName: Soul Burn
-				// Description: Rapidly losing life
+				DisplayName: Zgaga duszy
+				Description: Szybka utrata życia
 			}
 
 			SlimePackMinionBuff: {
-				// DisplayName: Slime
-				// Description: A friendly Slime from your Knapsack is fighting for you
+				DisplayName: Szlam
+				Description: Przyjazny szlam z twojego plecaka będzie cię bronił
 			}
 
 			SoulBuff: {
-				// DisplayName: Soul
-				// Description: Releases a soul
+				DisplayName: Dusza
+				Description: Uwalnia duszę
 			}
 
 			StarRodBuff: {
-				// DisplayName: Star Rod
-				// Description: Falling Stars will land closer to you
+				DisplayName: Kostur gwiazd
+				Description: Spadające gwiazdy będą lądować bliżej ciebie
 			}
 
 			NeurotoxinBuff: {
-				// CommonName: Neurotoxin
-				// CommonDescription: Rapidly losing life
+				CommonName: Neurotoksyna
+				CommonDescription: Utrata życia
 			}
 
-			/* Campfire.WyvernCampfireNearby:
+			Campfire.WyvernCampfireNearby:
 				'''
-				{$Items.WyvernCampfireItem.DisplayName} nearby:
-				You are protected from Wyverns
-				Harpy feathers don't knock you away
-				''' */
+				{$Items.WyvernCampfireItem.DisplayName} w pobliżu:
+				Bezpieczny od wywern
+				Pióra harpii nie będą cię odrzucać
+				'''
 		}
 
 		Common: {
-			// ConcatenateTwo: "{0} {1}"
-			// AoMMVersion: (AoMM version)
-			// Selected: Selected: {0}
-			// BaseDamage: Base Damage: {0}
-			// BaseKnockback: Base Knockback: {0}
+			ConcatenateTwo: "{0} {1}"
+			AoMMVersion: (AoMM version)
+			Selected: Wybrane: {0}
+			BaseDamage: Bazowe obrażenia: {0}
+			BaseKnockback: Bazowy odrzut: {0}
 
 			Tooltips: {
-				// PetHasAltSkins: Appearance can be changed with {$Items.VanitySelector.DisplayName}
-				// GoblinUnderlingBuff.CommonDescription: A loyal underling is fighting for you
+				PetHasAltSkins: Wygląd może być zmieniony za pomocą {$Items.VanitySelector.DisplayName}
+				GoblinUnderlingBuff.CommonDescription: Lojalna podwładna będzie cię bronić
 
 				GoblinUnderlingItem: {
-					/* CommonTooltip:
+					CommonTooltip:
 						'''
-						Class can be changed with [c/{0}:<right>]
-						Gets stronger throughout progression
-						Only one can be summoned
-						''' */
-					/* CommonTooltipFormat:
+						Typ obrażeń może być zmieniony za pomocą [c/{0}:<right>]
+						Rośnie w siłę razem z postępem świata
+						Tylko jedna może być przywołana
+						'''
+					CommonTooltipFormat:
 						'''
 						{0}
 						{1}
 						{2}
-						''' */
-					// CantSwitchClassDuringCombat: Cannot switch classes during combat
+						'''
+					CantSwitchClassDuringCombat: Nie można zmienić typu obrażeń podczas walki!
 				}
 			}
 		}
@@ -616,2475 +616,2475 @@ Mods: {
 		Items: {
 			# Cute Slimes
 			CuteSlime: {
-				// AccessoryBlacklisted: Blacklisted
-				// AccessoryNone: None
-				// HatSlot: Hat Slot: {0}
-				// BodySlot: Body Slot: {0}
-				// CarriedSlot: Carry Slot: {0}
-				// AccessorySlot: Accessory Slot: {0}
+				AccessoryBlacklisted: Na czarnej liście
+				AccessoryNone: Żadne
+				HatSlot: Czapka: {0}
+				BodySlot: Koszula: {0}
+				CarriedSlot: Trzymane: {0}
+				AccessorySlot: Akcesorium: {0}
 			}
 
 			CuteSlimeBlackItem: {
-				// DisplayName: Bottled Cute Black Slime
-				// Tooltip: Summons a cute black slime to follow you
+				DisplayName: Uroczy czarny szlam w butelce
+				Tooltip: Przywołuje uroczy czarny szlam
 			}
 
 			CuteSlimeBlueItem: {
-				// DisplayName: Bottled Cute Blue Slime
-				// Tooltip: Summons a cute blue slime to follow you
+				DisplayName: Uroczy niebieski szlam w butelce
+				Tooltip: Przywołuje uroczy niebieski szlam
 			}
 
 			CuteSlimeCorruptItem: {
-				// DisplayName: Bottled Cute Corrupt Slime
-				// Tooltip: Summons a cute corrupt slime to follow you
+				DisplayName: Uroczy szlam zepsucia w butelce
+				Tooltip: Przywołuje uroczy szlam zepsucia
 			}
 
 			CuteSlimeCorruptJungleItem: {
-				// DisplayName: Bottled Cute Corrupt Jungle Slime
-				// Tooltip: Summons a cute corrupt jungle slime to follow you
+				DisplayName: Uroczy szlam zepsucia z dżungli w butelce
+				Tooltip: Przywołuje uroczy szlam zepsucia z dżungli
 			}
 
 			CuteSlimeCrimsonItem: {
-				// DisplayName: Bottled Cute Crimson Slime
-				// Tooltip: Summons a cute crimson slime to follow you
+				DisplayName: Uroczy szkarlam w butelce
+				Tooltip: Przywołuje uroczy szkarlam
 			}
 
 			CuteSlimeCrimsonJungleItem: {
-				// DisplayName: Bottled Cute Crimson Jungle Slime
-				// Tooltip: Summons a cute crimson jungle slime to follow you
+				DisplayName: Uroczy szkarlam z dżungli w butelce
+				Tooltip: Przywołuje uroczy szkarlam z dżungli
 			}
 
 			CuteSlimeDungeonItem: {
-				// DisplayName: Bottled Cute Dungeon Slime
-				// Tooltip: Summons a cute dungeon slime to follow you
+				DisplayName: Uroczy szlam z lochu w butelce
+				Tooltip: Przywołuje uroczy szlam z lochu
 			}
 
 			CuteSlimeGoldenItem: {
-				// DisplayName: Bottled Cute Golden Slime
-				// Tooltip: Summons a cute golden slime to follow you
+				DisplayName: Uroczy złoty szlam w butelce
+				Tooltip: Przywołuje uroczy złoty szlam
 			}
 
 			CuteSlimeGreenItem: {
-				// DisplayName: Bottled Cute Green Slime
-				// Tooltip: Summons a cute green slime to follow you
+				DisplayName: Uroczy zielony szlam w butelce
+				Tooltip: Przywołuje uroczy zielony szlam
 			}
 
 			CuteSlimeHoneyItem: {
-				// DisplayName: Bottled Cute Honey Slime
-				// Tooltip: Summons a cute honey slime to follow you
+				DisplayName: Uroczy miodowy szlam w butelce
+				Tooltip: Przywołuje uroczy miodowy szlam
 			}
 
 			CuteSlimeIceItem: {
-				// DisplayName: Bottled Cute Ice Slime
-				// Tooltip: Summons a cute ice slime to follow you
+				DisplayName: Uroczy lodowy szlam w butelce
+				Tooltip: Przywołuje uroczy lodowy szlam
 			}
 
 			CuteSlimeIlluminantItem: {
-				// DisplayName: Bottled Cute Illuminant Slime
-				// Tooltip: Summons a cute illuminant slime to follow you
+				DisplayName: Uroczy świecący szlam w butelce
+				Tooltip: Przywołuje uroczy świecący szlam
 			}
 
 			CuteSlimeJungleItem: {
-				// DisplayName: Bottled Cute Jungle Slime
-				// Tooltip: Summons a cute jungle slime to follow you
+				DisplayName: Uroczy szlam z dżungli w butelce
+				Tooltip: Przywołuje uroczy szlam z dżungli
 			}
 
 			CuteSlimeLavaItem: {
-				// DisplayName: Bottled Cute Lava Slime
-				// Tooltip: Summons a cute lava slime to follow you
+				DisplayName: Uroczy szlam lawy w butelce
+				Tooltip: Przywołuje uroczy szlam lawy
 			}
 
 			CuteSlimePinkItem: {
-				// DisplayName: Bottled Cute Pink Slime
-				// Tooltip: Summons a cute pink slime to follow you
+				DisplayName: Uroczy różowy szlam w butelce
+				Tooltip: Przywołuje uroczy różowy szlam
 			}
 
 			CuteSlimePinkIceItem: {
-				// DisplayName: Bottled Cute Pink Ice Slime
-				// Tooltip: Summons a cute pink ice slime to follow you
+				DisplayName: Uroczy różowy lodowy szlam w butelce
+				Tooltip: Przywołuje uroczy różowy lodowy szlam
 			}
 
 			CuteSlimePrincessItem: {
-				// DisplayName: Bottled Cute Princess Slime
-				// Tooltip: Summons a cute princess slime to follow you
+				DisplayName: Urocza księżniczka szlamów w butelce
+				Tooltip: Przywołuje uroczą księżniczkę szlamów
 			}
 
 			CuteSlimePurpleItem: {
-				// DisplayName: Bottled Cute Purple Slime
-				// Tooltip: Summons a cute purple slime to follow you
+				DisplayName: Uroczy fioletowy szlam w butelce
+				Tooltip: Przywołuje uroczy fioletowy szlam
 			}
 
 			CuteSlimePurpleIceItem: {
-				// DisplayName: Bottled Cute Purple Ice Slime
-				// Tooltip: Summons a cute purple ice slime to follow you
+				DisplayName: Uroczy fioletowy lodowy szlam w butelce
+				Tooltip: Przywołuje uroczy fioletowy lodowy szlam
 			}
 
 			CuteSlimeQueenItem: {
-				// DisplayName: Bottled Cute Queen Slime
-				// Tooltip: Summons a cute queen slime to follow you
+				DisplayName: Urocza królowa szlamów w butelce
+				Tooltip: Przywołuje uroczą królową szlamów
 			}
 
 			CuteSlimeRainbowItem: {
-				// DisplayName: Bottled Cute Rainbow Slime
-				// Tooltip: Summons a cute rainbow slime to follow you
+				DisplayName: Uroczy tęczowy szlam w butelce
+				Tooltip: Przywołuje uroczy tęczowy szlam
 			}
 
 			CuteSlimeRedItem: {
-				// DisplayName: Bottled Cute Red Slime
-				// Tooltip: Summons a cute red slime to follow you
+				DisplayName: Uroczy czerwony szlam w butelce
+				Tooltip: Przywołuje uroczy czerwony szlam
 			}
 
 			CuteSlimeRedIceItem: {
-				// DisplayName: Bottled Cute Red Ice Slime
-				// Tooltip: Summons a cute red ice slime to follow you
+				DisplayName: Uroczy czerwony lodowy szlam w butelce
+				Tooltip: Przywołuje uroczy czerwony lodowy szlam
 			}
 
 			CuteSlimeSandItem: {
-				// DisplayName: Bottled Cute Sand Slime
-				// Tooltip: Summons a cute sand slime to follow you
+				DisplayName: Uroczy piaskowy szlam w butelce
+				Tooltip: Przywołuje uroczy piaskowy szlam
 			}
 
 			CuteSlimeShimmerItem: {
-				// DisplayName: Bottled Cute Shimmer Slime
-				// Tooltip: Summons a cute shimmer slime to follow you
+				DisplayName: Uroczy szlam blasku w butelce
+				Tooltip: Przywołuje uroczy szlam blasku
 			}
 
 			CuteSlimeToxicItem: {
-				// DisplayName: Bottled Cute Toxic Slime
-				// Tooltip: Summons a cute toxic slime to follow you
+				DisplayName: Uroczy toksyczny muł w butelce
+				Tooltip: Przywołuje uroczy toksyczny muł
 			}
 
 			CuteSlimeXmasItem: {
-				// DisplayName: Bottled Cute Christmas Slime
-				// Tooltip: Summons a cute christmas slime to follow you
+				DisplayName: Uroczy świąteczy szlam w butelce
+				Tooltip: Przywołuje uroczy świąteczny szlam
 			}
 
 			CuteSlimeYellowItem: {
-				// DisplayName: Bottled Cute Yellow Slime
-				// Tooltip: Summons a cute yellow slime to follow you
+				DisplayName: Uroczy żółty szlam w butelce
+				Tooltip: Przywołuje uroczy żółty szlam
 			}
 
 			# Pets. AoMM versions are auto-generated
 			AbeeminationItem: {
-				// DisplayName: Abeemination
-				/* Tooltip:
+				DisplayName: Pszczybywajątko
+				Tooltip:
 					'''
-					Summons a friendly abeemination to follow you
+					Przywołuje pszczybywajątko
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			AlienHornetItem: {
-				// DisplayName: Vortex Nectar
-				// Tooltip: Summons a friendly alien hornet to follow you
+				DisplayName: Nektar wiru
+				Tooltip: Przywołuje kosmicznego szerszenia chowańca
 			}
 
 			AnimatedTomeItem: {
-				// DisplayName: Animated Tome
-				/* Tooltip:
+				DisplayName: Animowany tom
+				Tooltip:
 					'''
-					Summons a friendly animated tome to follow you
+					Przywołuje animowany tom
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			AnomalocarisItem: {
-				// DisplayName: Ornery Shrimp
-				/* Tooltip:
+				DisplayName: Primitywna krewetka
+				Tooltip:
 					'''
-					Summons a prehistoric shrimp to follow you
+					Przywołuje prehistoryczną krewetkę chowańca
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			BabyCrimeraItem: {
-				// DisplayName: Juicy Vertebrae
-				// Tooltip: Summons a baby crimera to follow you
+				DisplayName: Soczysty krąg
+				Tooltip: Przywołuje szkarłatnicę chowańca
 			}
 
 			BabyIchorStickerItem: {
-				// DisplayName: Sleeping Ichor Sticker
-				// Tooltip: Summons a baby ichor sticker to follow you
+				DisplayName: Śpiący ichorowy strzelec
+				Tooltip: Przywołuje małego ichorowego strzelcę
 			}
 
 			BabyOcramItem: {
-				// DisplayName: Baby Ocram
-				// Tooltip: Summons a miniature Ocram that follows you
+				DisplayName: Mały Ocram
+				Tooltip: Przywołuje miniaturowego Ocrama
 			}
 
 			BrainofConfusionItem: {
-				// DisplayName: Brain of Confusion
-				// Tooltip: Summons a brain of confusion to follow aimlessly behind you
+				DisplayName: Mózg chaosu
+				Tooltip: Przywołuje mały mózg chaosu
 			}
 
 			ChunkyandMeatballItem: {
-				// DisplayName: Chunky and Meatball
-				// Tooltip: Summons a pair of inseperable brothers to follow you
+				DisplayName: Pulchny i klopsik
+				Tooltip: Przywołuje parę nierozłącznych braci
 			}
 
 			ChunkySlimeItem: {
-				// DisplayName: Bottled Chunky
-				// Tooltip: Summons Chunky to follow you
+				DisplayName: Pulchny w butelce
+				Tooltip: Przywołuje grubego
 			}
 
 			CompanionDungeonSoulPetItem: {
-				// DisplayName: Companion Soul
-				// CommonTooltip: Summons a friendly Soul to light your way
-				/* Tooltip:
+				DisplayName: Dusza sługa
+				CommonTooltip: Przywołuje przyjazną duszę która oświetli ci drogę
+				Tooltip:
 					'''
 					{$Items.CompanionDungeonSoulPetItem.CommonTooltip}
-					Light pet slot
-					''' */
+					Slot chowańca światła
+					'''
 			}
 
 			CompanionDungeonSoulPetItem2: {
-				// DisplayName: "{$Items.CompanionDungeonSoulPetItem.DisplayName}"
-				/* Tooltip:
+				DisplayName: "{$Items.CompanionDungeonSoulPetItem.DisplayName}"
+				Tooltip:
 					'''
 					{$Items.CompanionDungeonSoulPetItem.CommonTooltip}
-					Pet slot
-					''' */
+					Slot chowańca
+					'''
 			}
 
 			CursedSkullItem: {
-				// DisplayName: Inert Skull
-				/* Tooltip:
+				DisplayName: Obojętna czaszka
+				Tooltip:
 					'''
-					Summons a friendly cursed skull that follows you
+					Przywołuje przyjazną przeklętą czaszkę
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			CuteGastropodItem: {
-				// DisplayName: Mysterious Pod
-				// Tooltip: Summons a cute gastropod to follow you
+				DisplayName: Tajemnicza skorupa
+				Tooltip: Przywołuje uroczego brzuchonoga
 			}
 
 			CuteLamiaPetItem: {
-				// DisplayName: Shaking Snake Pot
-				/* Tooltip:
+				DisplayName: Dzban z wężem
+				Tooltip:
 					'''
-					Summons a small, friendly snake to follow you
+					Przywołuje małego przyjaznego węża
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			DemonHeartItem: {
-				// DisplayName: Demon Heart
-				// Tooltip: Summons a friendly demon heart to follow you
+				DisplayName: Demoniczne Serce
+				Tooltip: Przywołuje przyjazne demoniczne serce
 			}
 
 			DetachedHungryItem: {
-				// DisplayName: Unconscious Hungry
-				// Tooltip: Summons a detached hungry to follow you
+				DisplayName: Nieprzytomny nienażarty
+				Tooltip: Przywołuje odczepionego nienażartego
 			}
 
 			DocileDemonEyeItem: {
-				// DisplayName: Docile Demon Eye
-				/* Tooltip:
+				DisplayName: Przyjazne demoniczne oko
+				Tooltip:
 					'''
-					Summons a docile demon eye to follow you
+					Przywołuje przyjazne demoniczne oko
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			DrumstickElementalItem: {
-				// DisplayName: Magical Drumstick
-				// Tooltip: Summons a delicious drumstick elemental to follow you
+				DisplayName: Magiczne udko
+				Tooltip: Przywołuje pyszne udko
 			}
 
 			DynamiteBunnyItem: {
-				// DisplayName: Dynamite Carrot
-				/* Tooltip:
+				DisplayName: Dynamitowa marchewka
+				Tooltip:
 					'''
-					Summons a dynamite bunny to follow you
+					Przywołuje wybuchowego królika
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			EnchantedSwordItem: {
-				// DisplayName: Enchanted Sword
-				// Tooltip: Summons an enchanted sword to watch over you
+				DisplayName: Zaklęty miecz
+				Tooltip: Przywołuje czuwający nad tobą zaklęty miecz
 			}
 
 			FailureSlimeItem: {
-				// DisplayName: Slimy Skull
-				// Tooltip: Summons a strange creature to follow you
+				DisplayName: Obślizgła czaszka
+				Tooltip: Przywołuje dziwne stworzenie
 			}
 
 			FairySlimeItem: {
-				// DisplayName: Bottled Fairy Slime
-				// Tooltip: Summons a friendly fairy slime to follow you
+				DisplayName: Szlam wróżka w butelce
+				Tooltip: Przywołuje przyjazny szlam wróżkę
 			}
 
 			FairySwarmItem: {
-				// DisplayName: Bottle of Assorted Fairies
-				// Tooltip: Summons several fairies to swarm around you
+				DisplayName: Mieszanka wróżek w butelce
+				Tooltip: Przywołuje chmarę wróżek
 			}
 
 			GhostMartianItem: {
-				// DisplayName: K-II Meter
-				// Tooltip: Summons a vengeful invader's ghost to follow you
+				DisplayName: Miernik K-II
+				Tooltip: Przywołuje ducha mściwego najeźdzcy
 			}
 
 			GobletItem: {
-				// DisplayName: Goblet Battle Standard
-				// Tooltip: Summons a tiny goblin to follow you
+				DisplayName: Goblińska chorągiewka bitewna
+				Tooltip: Przywołuje małego goblina
 			}
 
 			HornedSlimeItem: {
-				// DisplayName: Bottled Horned Slime
-				// Tooltip: Summons a friendly horned slime to follow you
+				DisplayName: Rogaty szlam w butelce
+				Tooltip: Przywołuje przyjazny rogaty szlam
 			}
 
 			IlluminantSlimeItem: {
-				// DisplayName: Bottled Illuminant Slime
-				// Tooltip: Summons a friendly illuminant slime to follow you
+				DisplayName: Świecący szlam w butelce
+				Tooltip: Przywołuje przyjazny świecący szlam
 			}
 
 			JoyousSlimeItem: {
-				// DisplayName: Bottled Joyous Slime
-				/* Tooltip:
+				DisplayName: Radosny szlam w butelce
+				Tooltip:
 					'''
-					Summons a friendly joyous slime to follow you
+					Przywołuje przyjazny radosny szlam
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			LifelikeMechanicalFrogItem: {
-				// DisplayName: Lifelike Mechanical Frog
-				/* Tooltip:
+				DisplayName: Mechaniczna jak-żywa żaba
+				Tooltip:
 					'''
-					Summons a friendly frog to follow you
+					Przywołuje przyjazną żabę
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			LilWrapsItem: {
-				// DisplayName: Gilded Coffin
-				/* Tooltip:
+				DisplayName: Pozłacana trumna
+				Tooltip:
 					'''
-					Summons a mummy to follow you
+					Przywołuje mumię
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			MeatballSlimeItem: {
-				// DisplayName: Bottled Meatball
-				// Tooltip: Summons Meatball to follow you
+				DisplayName: Klopsik w butelce
+				Tooltip: Przywołuje Klopsika
 			}
 
 			MetroidPetItem: {
-				// DisplayName: Parasite Container
-				/* Tooltip:
+				DisplayName: Kapsuła z pasożytem
+				Tooltip:
 					'''
-					Summons a space parasite to follow you
+					Przywołuje kosmicznego pasożyta
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			MiniAntlionItem: {
-				// DisplayName: Antlion Egg
-				/* Tooltip:
+				DisplayName: Jajo mrówkolwa
+				Tooltip:
 					'''
-					Summons a friendly baby antlion to follow you
+					Przywołuje małego przyjaznego mrówkolwa
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			MiniMegalodonItem: {
-				// DisplayName: Small Megalodon Tooth
-				// Tooltip: Summons a friendly mini megalodon that follows you
+				DisplayName: Mały ząb megalodona
+				Tooltip: Przywołuje przyjaznego mini-megalodona
 			}
 
 			NumberMuncherItem: {
-				// DisplayName: Archaic Storage Device
-				// Tooltip: Summons an educated amphibian that follows you
+				DisplayName: Starożytny przechowywacz danych
+				Tooltip: Przywołuje doedukowanego płaza
 			}
 
 			OceanSlimeItem: {
-				// DisplayName: Bottled Ocean Slime
-				/* Tooltip:
+				DisplayName: Oceaniczny szlam w butelce
+				Tooltip:
 					'''
-					Summons a friendly ocean slime to follow you
+					Przywołuje przyjazny oceaniczny szlam
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PetCultistItem: {
-				// DisplayName: Tiny Ominous Coin
-				// Tooltip: Summons a tiny cultist to follow you and heal when injured
+				DisplayName: Drobna tajemnicza moneta
+				Tooltip: Przywołuje małego kultystę, który leczy twoje rany
 			}
 
 			PetDestroyerItem: {
-				// DisplayName: Destroyer's Core
-				// Tooltip: Summons a tiny Destroyer and two tiny probes to follow you
+				DisplayName: Jądro Niszczyciela
+				Tooltip: Przywołuje małego Niszczyciela i jego dwie sondy
 			}
 
 			PetEaterofWorldsItem: {
-				// DisplayName: Cracked Worm Egg
-				// Tooltip: Summons a tiny Eater of Worlds to follow you
+				DisplayName: Pęknięte robacze jajo
+				Tooltip: Przywołuje małego Pożeracza Światów
 			}
 
 			PetFishronItem: {
-				// DisplayName: Soggy Fish Cake
-				/* Tooltip:
+				DisplayName: Rozmoczony kotlet rybny
+				Tooltip:
 					'''
-					Summons a friendly fishron that flies with you
+					Przywołuje przyjaznego ryboka
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PetGoldfishItem: {
-				// DisplayName: Possessed Fish Idol
-				/* Tooltip:
+				DisplayName: Opętany rybi posąg
+				Tooltip:
 					'''
-					Summons a goldfish that follows you
-					'You feel like you lost something important in obtaining this idol...'
+					Przywołuje złotą rybkę
+					'Czujesz utratę czegoś ważnego...'
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PetGolemHeadItem: {
-				// DisplayName: Replica Golem Head
-				/* Tooltip:
+				DisplayName: Replika głowy Golema
+				Tooltip:
 					'''
-					Summons a replica Golem head to watch over you
-					Shoots bouncing fireballs at nearby enemies
-					''' */
+					Przywołuje czuwającą replikę głowy Golema
+					Strzela odbijającymi się kulami ognia
+					'''
 			}
 
 			PetHarvesterItem: {
-				// DisplayName: Stubborn Bird Soul
-				// Tooltip: Summons a stubborn bird to follow you
+				DisplayName: Uparta ptasia dusza
+				Tooltip: Przywołuje upartego ptaka
 			}
 
 			PetMoonItem: {
-				// DisplayName: Bottled Moon
-				/* Tooltip:
+				DisplayName: Księżyc w butelce
+				Tooltip:
 					'''
-					Summons a small moon that provides you with constant moonlight
-					Shows the current moon cycle in the buff tip
+					Przywołuje mały księżyc zapewniający ciągły blask
+					Opis efektu pokazuje obecną fazę księżyca
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PetPlanteraItem: {
-				// DisplayName: Potted Plantera Seed
-				/* Tooltip:
+				DisplayName: Nasiono Plantery w doniczce
+				Tooltip:
 					'''
-					Summons a Plantera sprout to watch over you
-					'It's a mean and green'
-					''' */
+					Przywołuje czuwający kiełek Plantery
+					'Jest zielona i wredna'
+					'''
 			}
 
 			PetQueenSlimeItem: {
-				// DisplayName: Playful Slimelings
-				// Tooltip: Summons a trio of slimelings to follow you
+				DisplayName: Wesołe szlamki
+				Tooltip: Przywołuje trójkę szlamków
 			}
 
 			PetSunItem: {
-				// DisplayName: Bottled Sun
-				/* Tooltip:
+				DisplayName: Słońce w butelce
+				Tooltip:
 					'''
-					Summons a small sun that provides you with constant sunlight
-					Shows the current time in the buff tip
-					''' */
+					Przywołuje małe słońce zapewniające stałe światło
+					Opis efektu pokazuje obecny czas
+					'''
 			}
 
 			PetSunMoonItem: {
-				// DisplayName: Bottled Sun and Moon
-				/* Tooltip:
+				DisplayName: Słońce i księżyc w butelkach
+				Tooltip:
 					'''
-					Summons a small sun and moon that provide you with constant light
-					Shows the current time in the buff tip
-					Shows the current moon cycle in the buff tip
+					Przywołuje małe słońce i księżyc które stale oświetlają ci drogę
+					Opis efektu pokazuje obecny czas
+					Opis efektu pokazuje obecną fazę księżyca
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PigronataItem: {
-				// DisplayName: Pigronata
-				/* Tooltip:
+				DisplayName: Smosiakonata
+				Tooltip:
 					'''
-					Summons a friendly pigronata to follow you
+					Przywołuje przyjazną smosiakonatę
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PrinceSlimeItem: {
-				// DisplayName: Bottled Prince Slime
-				// Tooltip: Summons a prince slime to follow you
+				DisplayName: Książę szlam w butelce
+				Tooltip: Przywołuje księcia szlamów
 			}
 
 			QueenLarvaItem: {
-				// DisplayName: Queen Larva
-				/* Tooltip:
+				DisplayName: Larwa królowej
+				Tooltip:
 					'''
-					Summons a Queen Bee larva to follow you
+					Przywołuje larwę królowej pszczół
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			RainbowSlimeItem: {
-				// DisplayName: Bottled Rainbow Slime
-				// Tooltip: Summons a friendly rainbow slime to follow you
+				DisplayName: Tęczowy szlam w butelce
+				Tooltip: Przywołuje przyjazny tęczowy szlam
 			}
 
 			SkeletronHandItem: {
-				// DisplayName: Skeletron's Spare Hand
-				/* Tooltip:
+				DisplayName: Zapasowa ręka Szkieletrona
+				Tooltip:
 					'''
-					Summons Skeletron's hand attached to you
+					Przywołuje doczepioną rękę Szkieletrona
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			SkeletronPrimeHandItem: {
-				// DisplayName: Skeletron Prime's Spare Hand
-				/* Tooltip:
+				DisplayName: Zapasowa ręka Szkieletrona Prime
+				Tooltip:
 					'''
-					Summons Skeletron Prime's hand attached to you
+					Przywołuje doczepioną rękę Szkieletrona Prime
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			StingSlimeItem: {
-				// DisplayName: Bottled Sting Slime
-				/* Tooltip:
+				DisplayName: Żądlący szlam w butelce
+				Tooltip:
 					'''
-					Summons a friendly sting slime to follow you
+					Przywołuje przyjazny żądlący szlam
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			StrangeRobotItem: {
-				// DisplayName: Odd Mechanical Device
-				// Tooltip: Summons a strange robot to follow you
+				DisplayName: Dziwny mechanizm
+				Tooltip: Przywołuje dziwnego robota
 			}
 
 			SuspiciousNuggetItem: {
-				// DisplayName: Suspicious Nugget
-				// Tooltip: Summons a suspicious nugget to follow you
+				DisplayName: Podejrzany kawałek kurczaka
+				Tooltip: Przywołuje podejrzany kawałek kurczaka
 			}
 
 			SwarmofCthulhuItem: {
-				// DisplayName: Bottle of Restless Eyes
-				// Tooltip: Summons several eyes to swarm around you
+				DisplayName: Niespokojne oczy w butelce
+				Tooltip: Przywołuje rój przyjaznych oczu
 			}
 
 			TinyTwinsItem: {
-				// DisplayName: Tiny Twins
-				// Tooltip: Summons a tiny pair of The Twins to follow you
+				DisplayName: Małe Bliźnięta
+				Tooltip: Przywołuje małą parę Bliźniąt
 			}
 
 			TorchGodLightPetItem: {
-				// DisplayName: Godly Torch
-				/* Tooltip:
+				DisplayName: Boska pochodnia
+				Tooltip:
 					'''
-					Summons a godly torch to follow you
-					Automatically places your normal torches with 'Smart Cursor' active
-					''' */
+					Przywoluje boską pochodnię
+					Automatycznie stawia pochodnie gdy 'Inteligentny Kursor' jest włączony 
+					'''
 			}
 
 			TorturedSoulItem: {
-				// DisplayName: Tortured Soul
-				// Tooltip: Summons an unfriendly tortured soul to follow you
+				DisplayName: Torturowana dusza
+				Tooltip: Przywołuje niezbyt przyjazną torturowaną duszę
 			}
 
 			TrueObservingEyeItem: {
-				// DisplayName: True Observing Eye
-				// Tooltip: Summons a True Eye of Cthulhu to watch after you
+				DisplayName: Prawdziwe obserwujące oko
+				Tooltip: Przywołuje Prawdziwe Oko Cthulhu do czuwania nad tobą
 			}
 
 			TurtleSlimeItem: {
-				// DisplayName: Bottled Turtle Slime
-				// Tooltip: Summons a friendly turtle slime to follow you
+				DisplayName: Szlam żółwiowy w butelce
+				Tooltip: Przywołuje przyjazny szlam żółwiowy
 			}
 
 			VampireBatItem: {
-				// DisplayName: Fixed Bat Wing
-				/* Tooltip:
+				DisplayName: Naprawione skrzydło nietoperza
+				Tooltip:
 					'''
-					Summons a friendly vampire that flies with you
+					Przywołuje przyjaznego wampira
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			WallFragmentItem: {
-				// DisplayName: Wall Fragment
-				// Tooltip: Summons several fragments of the Wall to follow you
+				DisplayName: Fragment ściany
+				Tooltip: Przywołuje kilka fragmentów Ściany Mięcha
 			}
 
 			YoungHarpyItem: {
-				// DisplayName: Clump of Down Feathers
-				/* Tooltip:
+				DisplayName: Kępa piór puchowych
+				Tooltip:
 					'''
-					Summons a friendly harpy to follow you
+					Przywołuje przyjazną harpię
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			YoungWyvernItem: {
-				// DisplayName: Wyverntail
-				/* Tooltip:
+				DisplayName: Ogon wywerny
+				Tooltip:
 					'''
-					Summons a friendly young wyvern that flies with you
+					Przywołuje małą przyjazną wywernę
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			WobyItem: {
-				// DisplayName: Dog Lover's Badge
-				// Tooltip: Summons a loyal canine to follow you
+				DisplayName: Odznaka miłośnika psów
+				Tooltip: Przywołuje lojalnego psa
 			}
 
 			BottledDreams: {
-				// DisplayName: Bottled Dreams
-				// Tooltip: Allows the holder to double jump
+				DisplayName: Sny w butelce
+				Tooltip: Daje posiadaczowi umiejętność podwójnego skoku
 			}
 
 			CrazyBundleOfAssortedBalloons: {
-				// DisplayName: Crazy Bundle of Assorted Balloons
-				// Tooltip: It's got all kinds of effects
+				DisplayName: Szalony zestaw balonów
+				Tooltip: Posiada wszelkiego rodzaju efekty
 			}
 
 			EverburningCandelabra: {
-				// DisplayName: Everburning Candelabra
-				// Tooltip: Applies various forms of fire damage to all attacks
+				DisplayName: Wszechpłonący świecznik
+				Tooltip: Nakłada różne efekty obrażeń ognistych
 			}
 
 			EverburningCandle: {
-				// DisplayName: Everburning Candle
-				// Tooltip: Applies fire damage to all attacks
+				DisplayName: Wszechpłonąca świeczka
+				Tooltip: Nakłada obrażenia od ognia na każdy atak
 			}
 
 			EverburningCursedCandle: {
-				// DisplayName: Everburning Cursed Candle
-				// Tooltip: Applies cursed fire damage to all attacks
+				DisplayName: Wszechpłonąca przeklęta świeczka
+				Tooltip: Nakłada obrażenia od przeklętego ognia na każdy atak
 			}
 
 			EverburningShadowflameCandle: {
-				// DisplayName: Everburning Shadowflame Candle
-				// Tooltip: Applies shadowflame damage to all attacks
+				DisplayName: Wszechpłonąca świeczka cienistego płomienia
+				Tooltip: Applies shadowflame damage to all attacks
 			}
 
 			EverfrozenCandle: {
-				// DisplayName: Everfrozen Candle
-				// Tooltip: Applies frostbite damage to all attacks
+				DisplayName: Wszechmrożąca świeczka
+				Tooltip: Nakłada obrażenia od mrozognia na każdy atak
 			}
 
 			FestiveMirror: {
-				// DisplayName: Festive Mirror
-				// Tooltip: Provides immunity to {$BuffName.Chilled}, {$BuffName.Frozen}, and {$BuffName.Stoned}
+				DisplayName: Świąteczne lustro
+				Tooltip: Odporność na {$BuffName.Chilled}, {$BuffName.Frozen}, i {$BuffName.Stoned}
 			}
 
 			HarvesterWings: {
-				// DisplayName: Harvester Wings
-				/* Tooltip:
+				DisplayName: Skrzydła żniwiarza
+				Tooltip:
 					'''
 					{$CommonItemTooltip.FlightAndSlowfall}
 					{$CommonItemTooltip.IncreasesMaxMinionsBy}
 					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
-					''' */
+					'''
 			}
 
 			MassiveBundleOfBalloons: {
-				// DisplayName: Massive Bundle of Balloons
-				/* Tooltip:
+				DisplayName: Masywny zestaw balonów
+				Tooltip:
 					'''
-					Allows you to jump six more times
-					Negates fall damage and increases jump height
+					Pozwala ci skoczyć 6 dodatkowych razy
+					Anuluje obrażenia spowodowane upadkiem i zwiększa wysokość skoku
 					{$ItemTooltip.HoneyComb}
-					''' */
+					'''
 			}
 
 			SigilOfTheBeak: {
-				// DisplayName: Sigil of the Beak
-				/* Tooltip:
+				DisplayName: Pieczęć dzioba
+				Tooltip:
 					'''
-					Summons fractured souls to seek out enemies in combat
-					Frequency and damage increases the lower your health gets
-					''' */
+					Przywołuje załamane dusze które tropią wrogów
+					Częstotliwość i ich obrażenia zwiększają się z utratą punktów życia
+					'''
 			}
 
 			SigilOfTheHarvester: {
-				// DisplayName: Sigil of the Harvester
-				/* Tooltip:
+				DisplayName: Pieczęć żniwiarza
+				Tooltip:
 					'''
-					'The aspects of the Harvester reside within you'
+					'Aspekty Żniwiarza mieszkają w tobie'
 					{$Items.SigilOfTheBeak.Tooltip}
 					{$Items.SigilOfTheWing.Tooltip}
 					{$Items.SigilOfTheTalon.Tooltip@3}
-					''' */
+					'''
 			}
 
 			SigilOfTheTalon: {
-				// DisplayName: Sigil of the Talon
-				/* Tooltip:
+				DisplayName: Pieczęć szponu
+				Tooltip:
 					'''
-					Allows your grappling hooks to deal damage when extending
-					Can hit up to {0} enemies
-					''' */
-				// HookDamage: Deals {0}% of your last held weapon's damage (currently {1})
+					Pozwala hakom wspinaczkowym zadawać obrażenia podczas lotu
+					Może uderzyć {0} wrogów
+					'''
+				HookDamage: Zadaje {0}% obrażeń twojej ostatniej trzymanej broni (aktualnie {1})
 			}
 
 			SigilOfTheWing: {
-				// DisplayName: Sigil of the Wing
-				/* Tooltip:
+				DisplayName: Pieczęć skrzydła
+				Tooltip:
 					'''
-					On death, transform into a soul for {0} seconds, regenerating {1}% max health
-					While transformed, you cannot use items
-					Has a cooldown of {2} minutes
-					''' */
-				// SocialDesc: Cooldown will go down while in social slot
-				// EffectReady: Effect ready
-				// ReadyAgainInMinutes: Ready again in {0} {^0:minute;minutes}
-				// ReadyAgainInSeconds: Ready again in {0} {^0:second;seconds}
+					Przy śmierci, transformujesz się w duszę na {0} sekund, regenerując {1}% maksymalnego życia
+					W trakcie transformacji, nie możesz używać przedmiotów
+					Ma czas odnowienia {2} minut
+					'''
+				SocialDesc: Czas odnowienia skraca się gdy w okienku wyglądu
+				EffectReady: Efekt gotowy
+				ReadyAgainInMinutes: Gotowy w {0} {^0:minutę;minut}
+				ReadyAgainInSeconds: Gotowy w {0} {^0:sekundę;sekund}
 			}
 
 			SlipperySoles: {
-				// DisplayName: Slippery Soles
-				// Tooltip: You slip and slide on all blocks
+				DisplayName: Śliskie podeszwy
+				Tooltip: Ślizgasz się na wszystkich blokach
 			}
 
 			SolesOfFireAndIce: {
-				// DisplayName: Soles of Fire and Ice
-				// Tooltip: Allows you to walk on water, lava, and thin ice
+				DisplayName: Podeszwy ognia i lodu
+				Tooltip: Pozwala chodzić po wodzie, lawie, i kruchym lodzie
 			}
 
 			StarInABalloon: {
-				// DisplayName: Star in a Balloon
-				// Tooltip: "{$BuffDescription.StarInBottle} and jump height"
+				DisplayName: Gwiazda w balonie
+				Tooltip: "{$BuffDescription.StarInBottle} i wysokość skoku"
 			}
 
 			StarWispBalloon: {
-				// DisplayName: Star Wisp Balloon
-				/* Tooltip:
+				DisplayName: Ognik gwiazda w balonie
+				Tooltip:
 					'''
 					{$Items.StarInABalloon.Tooltip}
-					Glows in the dark
-					''' */
+					Świeci w ciemności
+					'''
 			}
 
 			WispInABalloon: {
-				// DisplayName: Wisp in a Balloon
-				// Tooltip: Glows in the dark and increases jump height
+				DisplayName: Ognik w balonie
+				Tooltip: Świeci w ciemności i zwiększa wysokość skoku
 			}
 
 			AntiqueKey: {
-				// DisplayName: Antique Key
-				// Tooltip: "'An old key that looks to fit the lock on the nearby cage...'"
+				DisplayName: Antyczny klucz
+				Tooltip: "'Stary klucz który wygląda jakby pasował do pobliskiej klatki...'"
 			}
 
 			SoulSaviorHeaddress: {
-				// DisplayName: Soul Savior Headdress
-				/* Tooltip:
+				DisplayName: Nakrycie głowy zbawiciela dusz
+				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedSummonDamage}
 					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
-					''' */
-				/* SetBonus:
 					'''
-					Reflects {0}% contact damage per available minion slot
-					Reflected damage further increased by effects that increase summon damage
-					Current reflected damage: {1}%
-					Minions summoned by the {$Items.EverhallowedLantern.DisplayName} become 'empowered' and gain {2}% more damage
-					''' */
+				SetBonus:
+					'''
+					Odbija {0}% obrażeń kontaktowych na wolne miejsce sługów
+					Odbite obrażenia zwiększają się też od efektów zwiększających obrażenia sługów
+					Bieżące odbite obrażenia: {1}%
+					Słudzy przywołani przez {$Items.EverhallowedLantern.DisplayName} zostają 'wzmocnieni' i zadają {2}% więcej obrażeń
+					'''
 			}
 
 			SoulSaviorPlate: {
-				// DisplayName: Soul Savior Breastplate
-				/* Tooltip:
+				DisplayName: Napierśnik zbawiciela dusz
+				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedSummonDamage}
 					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
-					''' */
+					'''
 			}
 
 			SoulSaviorRobe: {
-				// DisplayName: Soul Savior Robe
-				/* Tooltip:
+				DisplayName: Szata zbawiciela dusz
+				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedSummonDamage}
 					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
-					''' */
+					'''
 			}
 
 			CaughtDungeonSoul: {
-				// DisplayName: Loose Dungeon Soul
-				/* Tooltip:
+				DisplayName: Zbiegła dusza
+				Tooltip:
 					'''
-					'An inert soul caught by a net'
-					Awakened in your inventory when {$NPCs.HarvesterBoss.DisplayName} is defeated
-					''' */
-				// SpawnSoul: Use it to spawn a soul for the {$NPCs.HarvesterBoss.DisplayName} to eat
+					'Nieaktywna dusza złapana przez sieć'
+					Budzi się przy pokonaniu {$NPCs.HarvesterBoss.DisplayName}
+					'''
+				SpawnSoul: Użyj aby przywołać duszę dla {$NPCs.HarvesterBoss.DisplayName} do zjedzenia
 			}
 
 			CaughtDungeonSoulFreed: {
-				// DisplayName: Freed Dungeon Soul
-				// Tooltip: Awakened by defeating the {$NPCs.HarvesterBoss.DisplayName}
+				DisplayName: Uwolniona dusza
+				Tooltip: Obudzona przy pokonaniu {$NPCs.HarvesterBoss.DisplayName}
 			}
 
 			ChunkysEyeItem: {
-				// DisplayName: Chunky's Eye
-				// Tooltip: "'Find {$Items.MeatballsEyeItem.DisplayName} and combine the two at a Demon Altar'"
+				DisplayName: Oko pulchnego
+				Tooltip: "'Znajdź {$Items.MeatballsEyeItem.DisplayName} i połącz je przy demonicznym ołtarzu'"
 			}
 
 			CuteSlimeSpawnEnableFlask: {
-				// DisplayName: Jellied Ale
-				// SeeMoreOften: You will see Cute Slimes more often for a short time
-				// See: Allows you to see Cute Slimes for a short time
+				DisplayName: Żelowate piwo
+				SeeMoreOften: Tymczasowo widzisz więcej uroczych szlamów
+				See: Pozwala ci widzieć urocze szlamy na krótki czas
 			}
 
 			EmpowermentFlask: {
-				// DisplayName: Empowerment Flask
-				/* Tooltip:
+				DisplayName: Butelka wzmacniająca
+				Tooltip:
 					'''
-					Incrementally increases damage dealt over time
-					Bonus resets upon taking damage
-					(Summon damage only increases marginally)
-					''' */
+					Stopniowo zwiększa zadawane obrażenia z biegiem czasu
+					Bonus resetuje się brzy dostaniu obrażeń
+					(Obrażenia sługów zwiększają się słabiej)
+					'''
 			}
 
 			EnhancedHunterPotion: {
-				// DisplayName: Enhanced Hunter Potion
-				/* Tooltip:
+				DisplayName: Mikstura czujniejszego łowcy
+				Tooltip:
 					'''
 					{$ItemTooltip.HunterPotion}
-					Additionally, shows the location of enemies outside your vision range
-					Range is roughly one screen in each direction
-					''' */
+					Dodatkowo, pokazuje położenie wrogów poza polem widzenia
+					Zasięg wynosi około jeden ekran w każdym kierunku
+					'''
 			}
 
 			HarvesterTreasureBag: {
-				// DisplayName: Treasure Bag ({$NPCs.HarvesterBoss.DisplayName})
-				// Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+				DisplayName: Torba skarbów ({$NPCs.HarvesterBoss.DisplayName})
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			DesiccatedLeather: {
-				// DisplayName: Desiccated Leather
-				// Tooltip: "'It's dry, sticky, and smells horrible'"
+				DisplayName: Wyschnięta skóra
+				Tooltip: "'Jest sucha, lepka, i pachnie okropnie'"
 			}
 
 			DroneParts: {
-				// DisplayName: Drone Parts
-				// Tooltip: "'These parts could be repurposed...'"
+				DisplayName: Części drona
+				Tooltip: "'Można je wykorzystać w innym celu...'"
 			}
 
-			// DroneUnlockableBasicLaserDrone.DisplayName: Basic Laser Drone Components
-			// DroneUnlockableHealingDrone.DisplayName: Healing Drone Components
-			// DroneUnlockableHeavyLaserDrone.DisplayName: Heavy Laser Drone Components
-			// DroneUnlockableMissileDrone.DisplayName: Missile Drone Components
-			// DroneUnlockableShieldDrone.DisplayName: Shield Drone Components
+			DroneUnlockableBasicLaserDrone.DisplayName: Części podstawowego lasera drona
+			DroneUnlockableHealingDrone.DisplayName: Części leczące drona
+			DroneUnlockableHeavyLaserDrone.DisplayName: Części ciężkiego lasera drona
+			DroneUnlockableMissileDrone.DisplayName: Części rakiet drona
+			DroneUnlockableShieldDrone.DisplayName: Części osłony drona
 
 			DroneUnlockable: {
-				// UnlockedText: Unlocked: {0}
-				// Unlocks: Unlocks the {0} for the {$Items.DroneController.DisplayName}
-				// AlreadyUnlocked: Already unlocked {0} for the {$Items.DroneController.DisplayName}
+				UnlockedText: Odblokowano: {0}
+				Unlocks: Odblokowuje {0} dla {$Items.DroneController.DisplayName}
+				AlreadyUnlocked: Już odblokowano {0} dla {$Items.DroneController.DisplayName}
 			}
 
 			CraftOfMiners: {
-				// DisplayName: Craft of Miners
-				/* Tooltip:
+				DisplayName: Sztuka górników
+				Tooltip:
 					'''
-					'Use those fists of yours to tear through any blocks in your way'
-					[c/44942e:'Dedicated to Anonymous']
-					''' */
+					'Użyj swoich pięści aby przebić się przez wszystkie bloki na swojej drodze'
+					[c/44942e:'Dedykowany do Anonima']
+					'''
 			}
 
 			GuideVoodoorang: {
-				// DisplayName: Guide Voodoorang
-				// Tooltip: "'Why are you like this?'"
+				DisplayName: Voodoorang przewodnika
+				Tooltip: "'Dlaczego taki jesteś?'"
 			}
 
 			InfinityRocket: {
-				// DisplayName: Infinity Rocket
-				// Tooltip: "'It seriously never ends!'"
+				DisplayName: Nieskończona rakieta
+				Tooltip: "'Na prawdę, nigdy się nie kończy!'"
 			}
 
 			StarForge: {
-				// DisplayName: Star Forge
-				// Tooltip: "'An endless supply of the cosmos'"
+				DisplayName: Kuźnia gwiazd
+				Tooltip: "'Nieskończony zapas kosmosu'"
 			}
 
-			// BrainOfCthulhuGitgud.DisplayName: Insanity-B-Gone
-			// DeerclopsGitgud.DisplayName: Deerclops Effigy
-			// DestroyerGitgud.DisplayName: Metal Dreamcatcher
-			// DukeFishronGitgud.DisplayName: White Hook
-			// EaterOfWorldsGitgud.DisplayName: Toy Seagull
-			// EmpressOfLightGitgud.DisplayName: Well-Worn Boots of Stomping
-			// EyeOfCthulhuGitgud.DisplayName: Broken Lens
-			// GolemGitgud.DisplayName: Rechargeable Solar Battery
-			// KingSlimeGitgud.DisplayName: Slime Inquisition Notice
-			// LunaticCultistGitgud.DisplayName: Notice of Occupational Termination
-			// MoonLordGitgud.DisplayName: Bright Side of the Moon
-			// PlanteraGitgud.DisplayName: Green Thumb
-			// QueenBeeGitgud.DisplayName: Honey Thimble
-			// QueenSlimeGitgud.DisplayName: Sparkling Cupcake
-			// SkeletronGitgud.DisplayName: Carton of Soy Milk
-			// SkeletronPrimeGitgud.DisplayName: Clock Set Ten Years Ahead
-			// TwinsGitgud.DisplayName: Metal Contact Lens
-			// WallOfFleshGitgud.DisplayName: Wall of Flesh Voodoo Doll
+			BrainOfCthulhuGitgud.DisplayName: Odpędzacze szaleństwa
+			DeerclopsGitgud.DisplayName: Kukła Jelenioka
+			DestroyerGitgud.DisplayName: Metalowy łapacz snów
+			DukeFishronGitgud.DisplayName: Biały hak
+			EaterOfWorldsGitgud.DisplayName: Zabawkowa Mewa
+			EmpressOfLightGitgud.DisplayName: Mocno zużyte buty do deptania
+			EyeOfCthulhuGitgud.DisplayName: Zniszczona soczewka
+			GolemGitgud.DisplayName: Ładowana słonecznie bateria
+			KingSlimeGitgud.DisplayName: Zawiadomienie szlamowej inkwizycji
+			LunaticCultistGitgud.DisplayName: Zawiadomienie o zakończeniu pracy
+			MoonLordGitgud.DisplayName: Jasna strona księżyca
+			PlanteraGitgud.DisplayName: Zielony kciuk
+			QueenBeeGitgud.DisplayName: Miodowy naparstek
+			QueenSlimeGitgud.DisplayName: Błyszcząca babeczka
+			SkeletronGitgud.DisplayName: Karton mleka sojowego
+			SkeletronPrimeGitgud.DisplayName: Zegar nastawiony dziesięć lat do przodu
+			TwinsGitgud.DisplayName: Metalowa soczewka kontaktowa
+			WallOfFleshGitgud.DisplayName: Lalka voodoo Ściany Mięcha
 
 			IdolOfDecay: {
-				// DisplayName: Idol Of Decay
-				/* Tooltip:
+				DisplayName: Obumarły relikt
+				Tooltip:
 					'''
-					Summons {$NPCs.HarvesterBoss.DisplayName}'s final form in the dungeon
-					Unlimited uses!
-					''' */
+					Przywołuje ostateczną formę {$NPCs.HarvesterBoss.DisplayName}
+					Nieskończona ilość użyć!
+					'''
 			}
 
 			KnittingSet: {
-				// DisplayName: Knitting Set
-				// Tooltip: "'A set of tools used in crafting cute clothing and accessories'"
+				DisplayName: Zestaw do szydełkowania
+				Tooltip: "'Zestaw narzędzi używanych w tworzeniu uroczych ubrań i akcesoriów'"
 			}
 
 			MeatballsEyeItem: {
-				// DisplayName: Meatball's Eye
-				// Tooltip: "'Find {$Items.ChunkysEyeItem.DisplayName} and combine the two at a Demon Altar'"
+				DisplayName: Oko Klopsika
+				Tooltip: "'Znajdź {$Items.ChunkysEyeItem.DisplayName} i połącz je przy demonicznym ołtarzu'"
 			}
 
 			PetAccessory: {
-				// Hat: Worn on the head
-				// Body: Worn on the body
-				// Carried: Carried
-				// Accessory: Worn as an accessory
-				// None: None
-				// Blacklisted: This accessory type is disabled for your particular slime
-				// NoUse: You have no summoned slime to equip this on
-				// Disabled: This accessory type is not registered for use by the devs
+				Hat: Noszone na głowie
+				Body: Noszone na torsie
+				Carried: Trzymane
+				Accessory: Noszone jako akcesorium
+				None: Brak
+				Blacklisted: Ten typ akcesorium jest wyłączony dla twojego szlama
+				NoUse: Nie masz żadnych przywołanych szlamów na które możesz to założyć
+				Disabled: Ten typ akcesorium nie jest zarejestrowany do użytku przez twórców
 
 				Colors: {
-					// Red: Red
-					// Orange: Orange
-					// Gold: Gold
-					// Yellow: Yellow
-					// Green: Green
-					// Blue: Blue
-					// Purple: Purple
-					// Pink: Pink
-					// White: White
-					// Gray: Gray
-					// Black: Black
-					// Platinum: Platinum
-					// Iron: Iron
+					Red: Czerwony
+					Orange: Pomarańczowy
+					Gold: Złoty
+					Yellow: Żółty
+					Green: Zielony
+					Blue: Niebieski
+					Purple: Fioletowy
+					Pink: Różowy
+					White: Biały
+					Gray: Szary
+					Black: Czarny
+					Platinum: Platynowy
+					Iron: Żelazny
 				}
 			}
 
 			PetAccessoryBowtie: {
-				// DisplayName: Cute {$Items.PetAccessoryBowtie.ShortName}
-				// Tooltip: "'A soft bowtie for your cute slime to wear on her chest'"
-				// ShortName: Bowtie
+				DisplayName: Urocza {$Items.PetAccessoryBowtie.ShortName}
+				Tooltip: "'Miękka muszka na pierś twojego uroczego szlamu'"
+				ShortName: Muszka
 
 				AccessoryNames: {
-					// Red: "{$Items.PetAccessory.Colors.Red}"
-					// Orange: "{$Items.PetAccessory.Colors.Orange}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
-					// Yellow: "{$Items.PetAccessory.Colors.Yellow}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
-					// Blue: "{$Items.PetAccessory.Colors.Blue}"
-					// Purple: "{$Items.PetAccessory.Colors.Purple}"
-					// Pink: "{$Items.PetAccessory.Colors.Pink}"
-					// White: "{$Items.PetAccessory.Colors.White}"
-					// Gray: "{$Items.PetAccessory.Colors.Gray}"
-					// Black: "{$Items.PetAccessory.Colors.Black}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
 				}
 			}
 
 			PetAccessoryBunnyEars: {
-				// DisplayName: Cute {$Items.PetAccessoryBunnyEars.ShortName}
-				// Tooltip: "'A pair of Easter bunny ears for your cute slime to wear on her head'"
-				// ShortName: Bunny Ears
+				DisplayName: Urocze {$Items.PetAccessoryBunnyEars.ShortName}
+				Tooltip: "'Para uroczych uszu zajączka Wielkanocnego na głowę twojego uroczego szlamu'"
+				ShortName: Królicze uszy
 			}
 
 			PetAccessoryBunnySuit: {
-				// DisplayName: Cute {$Items.PetAccessoryBunnySuit.ShortName}
-				// Tooltip: "'A bunny(?) costume for your cute slime to wear on her chest'"
-				// ShortName: Bunny Suit
+				DisplayName: Urocze {$Items.PetAccessoryBunnySuit.ShortName}
+				Tooltip: "'Króliczy(?) kostium dla twojego uroczego szlamu'"
+				ShortName: Króliczy kostium
 
 				AccessoryNames: {
-					// Black: "{$Items.PetAccessory.Colors.Black}"
-					// Orange: "{$Items.PetAccessory.Colors.Orange}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
-					// Yellow: "{$Items.PetAccessory.Colors.Yellow}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
-					// Blue: "{$Items.PetAccessory.Colors.Blue}"
-					// Purple: "{$Items.PetAccessory.Colors.Purple}"
-					// Pink: "{$Items.PetAccessory.Colors.Pink}"
-					// White: "{$Items.PetAccessory.Colors.White}"
-					// Gray: "{$Items.PetAccessory.Colors.Gray}"
-					// Red: "{$Items.PetAccessory.Colors.Red}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
 				}
 			}
 
 			PetAccessoryCrown: {
-				// DisplayName: Cute {$Items.PetAccessoryCrown.ShortName}
-				// Tooltip: "'A regal crown for your cute slime to wear on her head'"
-				// ShortName: Crown
+				DisplayName: Urocza {$Items.PetAccessoryCrown.ShortName}
+				Tooltip: "'Królewska korona na głowę twojego uroczego szlamu'"
+				ShortName: Korona
 
 				AccessoryNames: {
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
-					// Platinum: "{$Items.PetAccessory.Colors.Platinum}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Platinum: "{$Items.PetAccessory.Colors.Platinum}"
 				}
 			}
 
 			PetAccessoryHairBow: {
-				// DisplayName: Cute {$Items.PetAccessoryHairBow.ShortName}
-				// Tooltip: "'A large bow for your cute slime to wear on her head'"
-				// ShortName: Hair Bow
+				DisplayName: Urocza {$Items.PetAccessoryHairBow.ShortName}
+				Tooltip: "'Duża kokardka do włosów na głowę twojego uroczego szlamu'"
+				ShortName: Kokardka do włosów
 
 				AccessoryNames: {
-					// Red: "{$Items.PetAccessory.Colors.Red}"
-					// Orange: "{$Items.PetAccessory.Colors.Orange}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
-					// Yellow: "{$Items.PetAccessory.Colors.Yellow}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
-					// Blue: "{$Items.PetAccessory.Colors.Blue}"
-					// Purple: "{$Items.PetAccessory.Colors.Purple}"
-					// Pink: "{$Items.PetAccessory.Colors.Pink}"
-					// White: "{$Items.PetAccessory.Colors.White}"
-					// Gray: "{$Items.PetAccessory.Colors.Gray}"
-					// Black: "{$Items.PetAccessory.Colors.Black}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
 				}
 			}
 
 			PetAccessoryKitchenKnife: {
-				// DisplayName: Cute {$Items.PetAccessoryKitchenKnife.ShortName}
-				// Tooltip: "'A plush kitchen knife for your cute slime to carry'"
-				// ShortName: Kitchen Knife
+				DisplayName: Uroczy {$Items.PetAccessoryKitchenKnife.ShortName}
+				Tooltip: "'Pluszowy nóż kuchenny dla twojego uroczego szlamu'"
+				ShortName: Nóż kuchenny
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryMetalHelmet: {
-				// DisplayName: Cute {$Items.PetAccessoryMetalHelmet.ShortName}
-				// Tooltip: "'A plush knight's helmet for your cute slime to wear on her head'"
-				// ShortName: Knight's Helmet
+				DisplayName: Uroczy {$Items.PetAccessoryMetalHelmet.ShortName}
+				Tooltip: "'Pluszowy rycerski hełm na głowę twojego uroczego szlamu'"
+				ShortName: Rycerski hełm
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryMittens: {
-				// DisplayName: Cute {$Items.PetAccessoryMittens.ShortName}
-				// Tooltip: "'Warm mittens for your cute slime's hands'"
-				// ShortName: Mittens
+				DisplayName: Urocze {$Items.PetAccessoryMittens.ShortName}
+				Tooltip: "'Ciepłe rękawiczki dla twojego uroczego szlamu'"
+				ShortName: Rękawiczki
 
 				AccessoryNames: {
-					// Red: "{$Items.PetAccessory.Colors.Red}"
-					// Orange: "{$Items.PetAccessory.Colors.Orange}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
-					// Yellow: "{$Items.PetAccessory.Colors.Yellow}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
-					// Blue: "{$Items.PetAccessory.Colors.Blue}"
-					// Purple: "{$Items.PetAccessory.Colors.Purple}"
-					// Pink: "{$Items.PetAccessory.Colors.Pink}"
-					// White: "{$Items.PetAccessory.Colors.White}"
-					// Gray: "{$Items.PetAccessory.Colors.Gray}"
-					// Black: "{$Items.PetAccessory.Colors.Black}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
 				}
 			}
 
 			PetAccessoryPartyHat: {
-				// DisplayName: Cute {$Items.PetAccessoryPartyHat.ShortName}
-				// Tooltip: "'A party hat for your cute slime to wear on her head'"
-				// ShortName: Party Hat
+				DisplayName: Urocza {$Items.PetAccessoryPartyHat.ShortName}
+				Tooltip: "'Czapka imprezowa na głowę twojego uroczego szlamu'"
+				ShortName: Czapka imprezowa
 			}
 
 			PetAccessoryPumpkinMask: {
-				// DisplayName: Cute {$Items.PetAccessoryPumpkinMask.ShortName}
-				// Tooltip: "'A perfectly-sized pumpkin for your cute slime to wear on her head'"
-				// ShortName: Pumpkin Mask
+				DisplayName: Urocza {$Items.PetAccessoryPumpkinMask.ShortName}
+				Tooltip: "'Idealnie dopasowana dynia na głowę twojego uroczego szlamu'"
+				ShortName: Maska-dynia
 
 				AccessoryNames: {
-					// SOrange: Sinister Orange
-					// IOrange: Innocent Orange
-					// SGreen: Sinister Green
-					// IGreen: Innocent Green
-					// SWhite: Sinister White
-					// IWhite: Innocent White
-					// SPurple: Sinister Purple
-					// IPurple: Innocent Purple
-					// SMelon: Sinister Melon
-					// IMelon: Innocent Melon
+					SOrange: Sinister Orange
+					IOrange: Innocent Orange
+					SGreen: Sinister Green
+					IGreen: Innocent Green
+					SWhite: Sinister White
+					IWhite: Innocent White
+					SPurple: Sinister Purple
+					IPurple: Innocent Purple
+					SMelon: Sinister Melon
+					IMelon: Innocent Melon
 				}
 			}
 
 			PetAccessorySlimeHead: {
-				// DisplayName: Cute {$Items.PetAccessorySlimeHead.ShortName}
-				// Tooltip: "'A slime plush that sits on your cute slime's head'"
-				// ShortName: Head Slime
+				DisplayName: Uroczy {$Items.PetAccessorySlimeHead.ShortName}
+				Tooltip: "'Pluszowy szlam siedzący na głowie twojego uroczego szlamu'"
+				ShortName: Szlam na głowę
 
 				AccessoryNames: {
-					// Blue: "{$Items.PetAccessory.Colors.Blue}"
-					// Purple: "{$Items.PetAccessory.Colors.Purple}"
-					// Pink: "{$Items.PetAccessory.Colors.Pink}"
-					// Pinky: Pinky
-					// Red: "{$Items.PetAccessory.Colors.Red}"
-					// Yellow: "{$Items.PetAccessory.Colors.Yellow}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
-					// Black: "{$Items.PetAccessory.Colors.Black}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					Pinky: Pinky
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
 				}
 			}
 
 			PetAccessoryStaff: {
-				// DisplayName: Cute {$Items.PetAccessoryStaff.ShortName}
-				// Tooltip: "'A plush staff for your cute slime to carry'"
-				// ShortName: Staff
+				DisplayName: Urocza {$Items.PetAccessoryStaff.ShortName}
+				Tooltip: "'Pluszowa różdżka dla twojego uroczego szlamu'"
+				ShortName: Różdżka
 
 				AccessoryNames: {
-					// Amethyst: Amethyst
-					// Sapphire: Sapphire
-					// Emerald: Emerald
-					// Ruby: Ruby
-					// Amber: Amber
-					// Topaz: Topaz
-					// Diamond: Diamond
-					// Magic: Magic
+					Amethyst: Ametystowa
+					Sapphire: Szafirowa
+					Emerald: Szmaragdowa
+					Ruby: Rubinowa
+					Amber: Bursztynowa
+					Topaz: Topazowa
+					Diamond: Diamentowa
+					Magic: Magiczna
 				}
 			}
 
 			PetAccessorySwallowedKey: {
-				// DisplayName: Cute {$Items.PetAccessorySwallowedKey.ShortName}
-				// Tooltip: "'A plush key for your cute slime to...carry?'"
-				// ShortName: Swallowed Key
+				DisplayName: Uroczy {$Items.PetAccessorySwallowedKey.ShortName}
+				Tooltip: "'Pluszowy klucz dla twojego uroczego szlamu'"
+				ShortName: Połknięty klucz
 			}
 
 			PetAccessoryTophat: {
-				// DisplayName: Cute {$Items.PetAccessoryTophat.ShortName}
-				// Tooltip: "'A classy top hat for your cute slime to wear on her head'"
-				// ShortName: Top Hat
+				DisplayName: Cute {$Items.PetAccessoryTophat.ShortName}
+				Tooltip: "'A classy top hat for your cute slime to wear on her head'"
+				ShortName: Top Hat
 			}
 
 			PetAccessoryToyBreastplate: {
-				// DisplayName: Cute {$Items.PetAccessoryToyBreastplate.ShortName}
-				// Tooltip: "'A plush knight's breastplate for your cute slime to wear on her body'"
-				// ShortName: Knight's Breastplate
+				DisplayName: Uroczy {$Items.PetAccessoryToyBreastplate.ShortName}
+				Tooltip: "'Pluszowy rycerski napierśnik na tors twojego uroczego szlamu'"
+				ShortName: Rycerski napierśnik
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryToyMace: {
-				// DisplayName: Cute {$Items.PetAccessoryToyMace.ShortName}
-				// Tooltip: "'A plush paladin's mace for your cute slime to carry'"
-				// ShortName: Paladin's Mace
+				DisplayName: Urocza {$Items.PetAccessoryToyMace.ShortName}
+				Tooltip: "'Pluszowa paladyńska buława dla twojego uroczego szlamu'"
+				ShortName: Paladyńska buława
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryToyShield: {
-				// DisplayName: Cute {$Items.PetAccessoryToyShield.ShortName}
-				// Tooltip: "'A plush knight's shield for your cute slime to carry'"
-				// ShortName: Knight's Shield
+				DisplayName: Urocza {$Items.PetAccessoryToyShield.ShortName}
+				Tooltip: "'Pluszowa rycerska tarcza dla twojego uroczego szlamu'"
+				ShortName: Rycerska tarcza
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryToySpear: {
-				// DisplayName: Cute {$Items.PetAccessoryToySpear.ShortName}
-				// Tooltip: "'A plush warrior's spear for your cute slime to carry'"
-				// ShortName: Spartan's Spear
+				DisplayName: Uroczy {$Items.PetAccessoryToySpear.ShortName}
+				Tooltip: "'Pluszowy oszczep dla twojego uroczego szlamu'"
+				ShortName: Spartański oszczep
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryToySword: {
-				// DisplayName: Cute {$Items.PetAccessoryToySword.ShortName}
-				// Tooltip: "'A plush knight's sword for your cute slime to carry'"
-				// ShortName: Knight's Sword
+				DisplayName: Uroczy {$Items.PetAccessoryToySword.ShortName}
+				Tooltip: "'Pluszowy rycerski miecz dla twojego uroczego szlamu'"
+				ShortName: Rycerski miecz
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryWizardHat: {
-				// DisplayName: Cute {$Items.PetAccessoryWizardHat.ShortName}
-				// Tooltip: "'A brown wizard's hat for your cute slime to wear on her head'"
-				// ShortName: Wizard Hat
+				DisplayName: Urocza {$Items.PetAccessoryWizardHat.ShortName}
+				Tooltip: "'Brązowa czapka czarodzieja na głowę twojego uroczego szlamu'"
+				ShortName: Czapka czarodzieja
 			}
 
 			PetAccessoryXmasHat: {
-				// DisplayName: Cute {$Items.PetAccessoryXmasHat.ShortName}
-				// Tooltip: "'A festive hat for your cute slime to wear on her head'"
-				// ShortName: Santa Hat
+				DisplayName: Urocza {$Items.PetAccessoryXmasHat.ShortName}
+				Tooltip: "'Świąteczna czapka na głowę twojego uroczego szlamu'"
+				ShortName: Czapka mikołaja
 
 				AccessoryNames: {
-					// Red: "{$Items.PetAccessory.Colors.Red}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
 				}
 			}
 
 			AntiqueCageItem: {
-				// DisplayName: Antique Cage
-				// Tooltip: ""
+				DisplayName: Antyczna klatka
+				Tooltip: ""
 			}
 
 			AntiqueChestItem: {
-				// DisplayName: Antique Chest
-				// Tooltip: ""
+				DisplayName: Antyczna skrzynia
+				Tooltip: ""
 			}
 
 			CuteSlimeStatueItem: {
-				// DisplayName: Cute Slime Statue
-				// Tooltip: You can't catch statue spawned creatures
+				DisplayName: Posąg uroczego szlamu
+				Tooltip: Nie można schwytać istot stworzonych przez posąg
 			}
 
 			HarvesterRelicItem: {
-				// DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Relic"
-				// Tooltip: ""
+				DisplayName: Relikt {$NPCs.HarvesterBoss.DisplayName}
+				Tooltip: ""
 			}
 
 			HarvesterRelicColoredItem: {
-				// DisplayName: "{$Items.HarvesterRelicItem.DisplayName} (Colored)"
-				// Tooltip: ""
+				DisplayName: "{$Items.HarvesterRelicItem.DisplayName} (Pokolorowany)"
+				Tooltip: ""
 			}
 
 			HarvesterTrophyItem: {
-				// DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Trophy"
-				// Tooltip: ""
+				DisplayName: Trofeum - {$NPCs.HarvesterBoss.DisplayName}
+				Tooltip: ""
 			}
 
 			FieldsOfJoyItem: {
-				// DisplayName: Fields of Joy
-				// Tooltip: "'C. Paigner'"
+				DisplayName: Pola szczęścia
+				Tooltip: "'C. Paigner'"
 			}
 
 			PretentiousRockItem: {
-				// DisplayName: A Study of Slate
-				// Tooltip: "'C. Paigner'"
+				DisplayName: Badania łupku
+				Tooltip: "'C. Paigner'"
 			}
 
 			SCP099Item: {
-				// DisplayName: The Portrait
-				// Tooltip: "'R. Magritte'"
+				DisplayName: Portret
+				Tooltip: "'R. Magritte'"
 			}
 
 			SCP3515Item: {
-				// DisplayName: SCP-3515
-				// Tooltip: "'Unknown'"
+				DisplayName: SCP-3515
+				Tooltip: "'Nieznane'"
 			}
 
 			SlimeBeaconItem: {
-				// DisplayName: Slime Beacon
-				// Tooltip: "'Do The Slime With Me!'"
-				// NoMultiplayer: "[c/FFA01D:DOES NOT WORK IN MULTIPLAYER]"
+				DisplayName: Szlamowy monolit
+				Tooltip: "'Szlamuj ze mną!'"
+				NoMultiplayer: "[c/FFA01D:NIE DZIAŁA NA SERWERACH MULTIPLAYER]"
 			}
 
 			StarRodItem: {
-				// DisplayName: Star Rod
-				// Tooltip: Attracts Falling Stars at night if you are nearby
+				DisplayName: Gwiazdochron
+				Tooltip: Gdy jesteś w pobliżu, przyciąga spadające gwiazdy
 			}
 
-			// VanityDresserItem.DisplayName: Costume Dresser
+			VanityDresserItem.DisplayName: Komoda kostiumów
 
 			WyvernCampfireItem: {
-				// DisplayName: Wyvern Campfire
-				// Tooltip: "'Makes Wyverns go poof!'"
+				DisplayName: Wywernowe ognisko
+				Tooltip: "'Wszystkie wywerny znikają!'"
 			}
 
 			ExtendoNetGolden: {
-				// DisplayName: Golden Extendo-Net
-				/* Tooltip:
+				DisplayName: Złota wydłużona siatka
+				Tooltip:
 					'''
-					'Catches those REALLY hard to reach critters'
-					Can catch lava critters too!
-					''' */
+					'Łapie te TRUDNE do schwytania stworzenia'
+					Działa w lawie!
+					'''
 			}
 
 			ExtendoNetRegular: {
-				// DisplayName: Extendo-Net
-				// Tooltip: "'Catches those hard to reach critters'"
+				DisplayName: Wydłużona siatka
+				Tooltip: "'Łapie te trudne do schwytania stworzenia'"
 			}
 
 			PrettyMask: {
-				// DisplayName: Pretty Mask
-				// Tooltip: "'Goes well with a red scarf, red gloves, red boots, and your birthday suit'"
+				DisplayName: Śliczna maska
+				Tooltip: "'Pasuje do czerwonego szalika, rękawiczek, butów, i twojego kostiumu urodzinowego'"
 			}
 
 			SoulHarvesterMask: {
-				// DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Mask"
-				// Tooltip: ""
+				DisplayName: Maska - {$NPCs.HarvesterBoss.DisplayName}
+				Tooltip: ""
 			}
 
 			VanitySelector: {
-				// DisplayName: Costume Suitcase
-				/* Tooltip:
+				DisplayName: Walizka kostiumów
+				Tooltip:
 					'''
-					Left Click to change your Pet's appearance
-					Right Click to change your Light Pet's appearance
-					''' */
+					Kliknij lewy przycisk myszy aby zmienić wygląd twojego chowańca
+					Kliknij prawy przycisk myszy aby zmienić wygląd twojego chowańca światła
+					'''
 			}
 
 			BoneCleavingFang: {
-				// DisplayName: Bone-Cleaving Fang
-				/* Tooltip:
+				DisplayName: Rozszczepiający kości kieł
+				Tooltip:
 					'''
-					Striking enemies will charge the sword, causing it to glow with power
-					Release the built up power by right-clicking. The brighter the sword, the greater the power
-					The sword's power fades when not used
-					''' */
+					Uderzanie wrogów ładuje miecz, rozświetlając go swoją mocą
+					Uwolnij zebraną moc prawym przyciskiem myszy. Im jaśniejszy miecz, tym większa moc
+					Moc miecza ulatnia się, gdy nie jest używany
+					'''
 			}
 
 			BoneShatterLongbow: {
-				// DisplayName: Bone-Shatter Longbow
-				// Tooltip: Wooden arrows ignite into burning souls
+				DisplayName: Trzaskający kości łuk
+				Tooltip: Drewniane strzały zapalają się w płonącymi duszami
 			}
 
 			BreathOfSpazmatism: {
-				// DisplayName: Breath of Spazmatism
-				/* Tooltip:
+				DisplayName: Wydech Spazmaka
+				Tooltip:
 					'''
-					Uses gel to fire a stream of cursed flames
-					Ignores 15 points of enemy Defense
-					''' */
+					Używa żelu, aby wystrzelić strumień przeklętego płomienia
+					Ignoruje 15 punktów obrony wroga
+					'''
 			}
 
 			DroneController: {
-				// DisplayName: Drone Controller
-				/* Tooltip:
+				DisplayName: Kontroler drona
+				Tooltip:
 					'''
-					Summons a friendly Drone to support or fight for you
-					Right click to pick from available drones
-					Holding the item improves the Drones' supportive and offensive abilities
-					''' */
-				// Firerate: "{0} firerate"
-				// UnlockMore: Defeat {$NPCName.TheDestroyer} to unlock more drones
-				// CanSpawn: Only one {0} can be out at once
-				// ToUnlock: Craft and use a '{0}' Item
+					Przywołuje przyjaznego drona który będzie Cię bronił lub wspomagał Cię
+					Kliknij prawym przyciskiem myszy aby wybrać drona
+					Trzymanie przedmiotu zwiększa zdolności wspierające i ofensyne drona
+					'''
+				Firerate: "{0} prędkość strzelania"
+				UnlockMore: Pokonaj {$NPCName.TheDestroyer} aby odblokować więcej dronów
+				CanSpawn: Tylko jeden {0} może być aktywny
+				ToUnlock: Stwórz i użyj '{0}'
 			}
 
 			EverglowLantern: {
-				// DisplayName: Everglow Lantern
-				/* Tooltip:
+				DisplayName: Wszechpłonąca latarnia
+				Tooltip:
 					'''
-					Summons two freed Dungeon Souls at a time to fight for you
-					Each Dungeon Soul occupies only half a minion slot
-					''' */
+					Przywołuje dwie uwolnione dusze z lochu walczące po twojej stronie
+					Każda dusza zajmuje połowę slota na przywołane istoty
+					'''
 			}
 
 			EverhallowedLantern: {
-				// DisplayName: Everhallowed Lantern
-				/* Tooltip:
+				DisplayName: Wszechbajeczna latarnia
+				Tooltip:
 					'''
-					Summons a Soul to fight for you
-					Right click to pick from available forms
-					''' */
-				// MechCondition: Defeat mechanical bosses to unlock new minions
-				// SetBonusBoost: "{0}% damage increase from wearing the 'Soul Savior' Set"
+					Przywołuje duszę walczącą po twojej stronie
+					Kliknij prawym przyciskiem myszy aby wybrać formę
+					'''
+				MechCondition: Pokonaj mechanicznych bossów aby odblokować nowe formy
+				SetBonusBoost: "{0}% zwiększone obrażenia gdy nosisz zestaw 'Pasterza dusz'"
 			}
 
 			EagerUnderlingItem: {
-				// DisplayName: Satchel of Goodies
-				// Tooltip: Summons an eager underling to fight for you
-				// Flavor: "'Inside, there's a spiky ball, a coin, and a... moon?'"
+				DisplayName: Sakiewka dóbr
+				Tooltip: Przywołuje chętnego sługę do walki po twojej stronie
+				Flavor: "'Wewnątrz, jest kolczasta kulka, moneta, i... księżyc?'"
 			}
 
 			ShyUnderlingItem: {
-				// DisplayName: Dented Coin
-				// Tooltip: Summons a shy underling to fight for you
-				// Flavor: "'This coin has been used as target practice for a long time'"
+				DisplayName: Wygięta moneta
+				Tooltip: Przywołuje wstydliwego sługę do walki po twojej stronie
+				Flavor: "'Ta moneta była od dawna używana do trenowania celowania'"
 			}
 
 			SeriousUnderlingItem: {
-				// DisplayName: Well-Loved Doll
-				// Tooltip: Summons a serious underling to fight for you
-				// Flavor: "'A simple voodoo doll made of loose straw and hay.'"
+				DisplayName: Ukochana lalka
+				Tooltip: Przywołuje poważnego sługę do walki po twojej stronie
+				Flavor: "'Prosta lalka voodoo stworzona ze słomy i siana.'"
 			}
 
 			LegendaryWoodenSword: {
-				// DisplayName: Legendary Wooden Sword
-				// Tooltip: ""
+				DisplayName: Legendarny drewniany miecz
+				Tooltip: ""
 			}
 
 			MagicSlimeSling: {
-				// DisplayName: Magic Slime Sling
-				// Tooltip: Shoots magic gel that turns into slime minions on hit
+				DisplayName: Magiczna szlamowa proca
+				Tooltip: Strzela magicznym żelem, który zmienia się w sługów przy uderzeniu
 			}
 
 			PlagueOfToads: {
-				// DisplayName: Plague of Toads
-				// Tooltip: Summons a cloud to rain toads on your foes
+				DisplayName: Plaga ropuch
+				Tooltip: Przywołuje chmurę, z której padają ropuchy prosto na twoich wrogów
 			}
 
 			PocketSand: {
-				// DisplayName: Pocket Sand
-				// Tooltip: "'Throw a clump of sand at an enemy to confuse it'"
+				DisplayName: Kieszonkowy piasek
+				Tooltip: "'Rzuć piachem w twarz wroga aby go zmylić'"
 			}
 
 			SightofRetinazer: {
-				// DisplayName: Sight of Retinazer
-				// Tooltip: ""
+				DisplayName: Wzrok Siatkówczaka
+				Tooltip: ""
 			}
 
 			SlimeHandlerKnapsack: {
-				// DisplayName: Slime Handler Knapsack
-				/* Tooltip:
+				DisplayName: Plecak tresera szlamów
+				Tooltip:
 					'''
-					Summons a friendly Slime of a random color from your Knapsack to fight for you
-					Right click to pick from available forms
-					''' */
-				// Default: Default
-				// Assorted: Assorted
-				// Spiked: Spiked
-				// SpikedBonus: Shoots spikes while fighting
-				// SpikedUnlock: Defeat Plantera
-				/* TooltipFormat:
+					Przywołuje przyjazny szlam o losowym kolorze z twojego plecaka do walki po twojej stronie
+					Kliknij prawym przyciskiem myszy aby wybrać formę
+					'''
+				Default: Podstawowy
+				Assorted: Wymieszany
+				Spiked: Kolczasty
+				SpikedBonus: Strzela kolcami podczas walki
+				SpikedUnlock: Pokonaj Planterę
+				TooltipFormat:
 					'''
 					{0}
 					{1}
 					{2}
 					{3}
-					''' */
+					'''
 			}
 
 			Talonstorm: {
-				// DisplayName: Talonstorm
-				// Tooltip: Summons a bone storm that attacks enemies with extending talons
+				DisplayName: Burza pazurów
+				Tooltip: Przywołuje burzę kości, która atakuje wrogów wydłużającymi się pazurami
 			}
 
 			TomeOfShadowflameSkulls: {
-				// DisplayName: Tome of Shadowflame Skulls
-				// Tooltip: Inflicts Shadowflame on enemies
+				DisplayName: Księga czaszek cienistego płomienia
+				Tooltip: Podpala wrogów cienistym płomieniem
 			}
 
 			TrueLegendaryWoodenSword: {
-				// DisplayName: True Legendary Wooden Sword
-				// Tooltip: "'Truly Legendary'"
+				DisplayName: Prawdziwy legendarny drewniany miecz
+				Tooltip: "'Prawdziwie legendarny'"
 			}
 
 			Gitgud: {
-				// Or: or
-				// ConsolationPrize: Consolation Prize
-				// ReducedDamageTakenBoss: "{0}% reduced damage taken from {1}"
-				// BuffImmunity: Immunity to '{0}' while {1} {^2:is;are} alive
-				// TimesDied: Times died: {0}/{1}
-				// DeleteFromInventory: You won't be needing the {0} anymore...
+				Or: or
+				ConsolationPrize: Nagroda pocieszenia
+				ReducedDamageTakenBoss: Obrażenia otrzymane od {1} zmniejszone o {0}%
+				BuffImmunity: Odporność od krwawienia gdy '{0}' jest żywy
+				TimesDied: Śmierci: {0}/{1}
+				DeleteFromInventory: Nie będziesz już potrzebować {0}...
 			}
 
 			SillyBalloonKit: {
-				// DisplayName: Silly Balloon Kit
-				/* Tooltip:
+				DisplayName: Głupawy zestaw balonów
+				Tooltip:
 					'''
-					'A great gift for parties, birthdays, and saving the world!'
-					Inflate a fun party balloon to carry around
-					Left click to pick a different balloon
-					''' */
-				// DemonEyeGreen: Demon Eye (Green)
-				// DemonEyePurple: Demon Eye (Purple)
-				// DemonEyeRed: Demon Eye (Red)
-				// FracturedEyeGreen: Fractured Eye (Green)
-				// FracturedEyePurple: Fractured Eye (Purple)
-				// FracturedEyeRed: Fractured Eye (Red)
-				// MetalEyeGreen: Metal Eye (Green)
-				// MetalEyePurple: Metal Eye (Purple)
-				// MetalEyeRed: Metal Eye (Red)
-				// FracturedMetalEyeGreen: Fractured Metal Eye (Green)
-				// FracturedMetalEyePurple: Fractured Metal Eye (Purple)
-				// FracturedMetalEyeRed: Fractured Metal Eye (Red)
-				// Spazmatism: Spazmatism
-				// Retinazer: Retinazer
-				// Cobballoon: Cobballoon
+					'Idealny prezent na imprezy, urodziny, i ocalanie świata!'
+					Nadmuchaj balon imprezowy
+					Kliknij lewym przyciskiem myszy aby wybrać inny balon
+					'''
+				DemonEyeGreen: Demoniczne oko (Zielone)
+				DemonEyePurple: Demoniczne oko (Fioletowe)
+				DemonEyeRed: Demoniczne oko (Czerwone)
+				FracturedEyeGreen: Otwarte oko (Zielone)
+				FracturedEyePurple: Otwarte oko (Fioletowe)
+				FracturedEyeRed: Otwarte oko (Czerwone)
+				MetalEyeGreen: Metalowe oko (Zielone)
+				MetalEyePurple: Metalowe oko (Fioletowe)
+				MetalEyeRed: Metalowe oko (Czerwone)
+				FracturedMetalEyeGreen: Otwarte metalowe oko (Zielone)
+				FracturedMetalEyePurple: Otwarte metalowe oko (Fioletowe)
+				FracturedMetalEyeRed: Otwarte metalowe oko (Czerwone)
+				Spazmatism: Spazmak
+				Retinazer: Śiatkówczak
+				Cobballoon: Kamienialon
 			}
 		}
 
 		NPCs: {
 			AnimatedSpellTome: {
-				// DisplayName: Animated Spell Tome
-				// BestiaryFlavorText: Master wizards need not look for a specific tome; it will find them when needed.
+				DisplayName: Animowany magiczny tom
+				BestiaryFlavorText: Mistrzowcy czarodzieje nie szukają specyficzych ksiąg; same ich znajdą.
 			}
 
 			AnimatedTome: {
-				// DisplayName: Animated Tome
-				// BestiaryFlavorText: In the past, this book was a best seller; it practically flew from the shelves!
+				DisplayName: Animowany tom
+				BestiaryFlavorText: Kiedyś ta książka była bestsellerem; zlatywała z półek!
 			}
 
 			Bass: {
-				// DisplayName: Bass
-				// BestiaryFlavorText: A simple fish commonly found in calm freshwater rivers and lakes.
+				DisplayName: Okoń
+				BestiaryFlavorText: Zwyczajna ryba często widywana w słodkowodnych rzekach i jeziorach.
 			}
 
 			BloatedBaitThief: {
-				// DisplayName: Bloated Bait Thief
-				// BestiaryFlavorText: An engorged bass with a bloated belly. Something is wriggling inside...
+				DisplayName: Spuchnięty złodziej przynęty
+				BestiaryFlavorText: Obżarty okoń ze spuchniętym brzuchem. W środku coś się rusza...
 			}
 
 			Chunky: {
-				// DisplayName: Chunky
-				// BestiaryFlavorText: A mass of rotten flesh with a single eye. It seems as though the eye and the mass do not get along.
+				DisplayName: Pulchny
+				BestiaryFlavorText: Masa zgniłego mięsa z jednym okiem. Wygląda na to, że oko i masa sie nie dogadują.
 			}
 
 			ChunkysEye: {
-				// DisplayName: Chunky's Eye
-				// BestiaryFlavorText: A minion of Cthulhu that was trapped in the Corruption. It now seeks its lost little brother.
+				DisplayName: Oko pulchnego
+				BestiaryFlavorText: Sługa Cthulhu, który utknął w Zepsuciu. Teraz poszukuje swojego zagubionego młodszego brata.
 			}
 
 			Cloudfish: {
-				// DisplayName: Cloudfish
-				// BestiaryFlavorText: Is it a cloud? Is it a fish? It's both!
+				DisplayName: Ryba-chmura
+				BestiaryFlavorText: Czy to chmura? Czy to ryba? To jedno i drugie!
 			}
 
 			CuteGastropod: {
-				// DisplayName: Cute Gastropod
-				// BestiaryFlavorText: This hallowed variant of slime has taken on a more friendly appearance after meeting a special person.
+				DisplayName: Uroczy brzuchonóg
+				BestiaryFlavorText: Ten bajkowy wariant szlamu zyskał przyjaźniejszy wygląd po spotkaniu wyjątkowej osoby.
 			}
 
 			CuteSlimeBlack: {
-				// DisplayName: Cute Black Slime
-				// BestiaryFlavorText: Harboring great vanity for its ponytail, the easiest way to befriend it is to compliment the hair.
+				DisplayName: Uroczy czarny szlam
+				BestiaryFlavorText: Kucyk przynosi temu szlamowi wielką dumę, najłatwiej zaprzyjaźnić się z nim komplementując włosy.
 			}
 
 			CuteSlimeBlue: {
-				// DisplayName: Cute Blue Slime
-				// BestiaryFlavorText: Though its expression is dull, this slime is very affectionate and loves to hug anyone that it gets close to.
+				DisplayName: Uroczy niebieski szlam
+				BestiaryFlavorText: Pomimo znudzonego wyrazu twarzy, ten szlam jest bardzo czuły i uwielbia przytulać każdego w pobliżu.
 			}
 
 			CuteSlimeCorrupt: {
-				// DisplayName: Cute Corrupt Slime
-				// BestiaryFlavorText: Hollow eyes and a dark color makes you think this slime is dangerous, but it's just not very social.
+				DisplayName: Uroczy szlam zepsucia
+				BestiaryFlavorText: Puste oczy i ciemny kolor sugerują że ten szlam jest niebezpieczny, ale po prostu nie jest zbyt kontaktowy.
 			}
 
 			CuteSlimeCorruptJungle: {
-				// DisplayName: Cute Corrupt Jungle Slime
-				// BestiaryFlavorText: Slimes are incredibly adaptable, being able to survive even the harshest conditions.
+				DisplayName: Uroczy szlam zepsucia z dżungli
+				BestiaryFlavorText: Szlamy niesamowicie się adaptują, potrafią przetrwać nawet w najtrudniejszych warunkach.
 			}
 
 			CuteSlimeCrimson: {
-				// DisplayName: Cute Crimson Slime
-				// BestiaryFlavorText: Though it looks like it has an unstable mind, this slime is incredibly calm and collected.
+				DisplayName: Uroczy szkarlam
+				BestiaryFlavorText: Może i wygląda jakby miał niestabilny umysł, ale ten szlam jest niesamowicie spokojny.
 			}
 
 			CuteSlimeCrimsonJungle: {
-				// DisplayName: Cute Crimson Jungle Slime
-				// BestiaryFlavorText: When the jungle turned red, this slime adapted quickly by mimicking the crimson grass.
+				DisplayName: Uroczy szkarlam z dżungli
+				BestiaryFlavorText: Gdy dżungla stała się czerwona, ten szlam szybko się zaadaptował imitując kolor trawy.
 			}
 
 			CuteSlimeDungeon: {
-				// DisplayName: Cute Dungeon Slime
-				// BestiaryFlavorText: This slime was created in the image of an ancient sorceress. Other than the lack of legs, it's almost perfect.
+				DisplayName: Uroczy szlam z lochu
+				BestiaryFlavorText: Ten szlam był stworzony na obraz starożytnej czarodziejki. Poza brakiem nóg, jest prawie idealny.
 			}
 
-			// CuteSlimeGolden.DisplayName: Cute Golden Slime
+			CuteSlimeGolden.DisplayName: Uroczy złoty szlam
 
 			CuteSlimeGreen: {
-				// DisplayName: Cute Green Slime
-				// BestiaryFlavorText: Don't let the closed eyes fool you; this slime is attentive and ready to act at a moment's notice.
+				DisplayName: Uroczy zielony szlam
+				BestiaryFlavorText: Nie daj się oszukać jego zamkniętym oczom; ten szlam jest uważny i gotów do akcji w mgnieniu oka.
 			}
 
 			CuteSlimeHoney: {
-				// DisplayName: Cute Honey Slime
-				// BestiaryFlavorText: To hide from the hornets, this slime coated itself in honey. It only made the hornets more aware.
+				DisplayName: Uroczy miodowy szlam
+				BestiaryFlavorText: By ukryć się od szerszeni, ten szlam pokrył się miodem. Co tylko zwiększyło ich czujność.
 			}
 
 			CuteSlimeIce: {
-				// DisplayName: Cute Ice Slime
-				// BestiaryFlavorText: Its body may be cold to the touch, but its expression and mannerisms will warm your heart.
+				DisplayName: Uroczy lodowy szlam
+				BestiaryFlavorText: Jego ciało może i jest zimne w dotyku, ale jego maniery ogrzeją twoje serce.
 			}
 
 			CuteSlimeIlluminant: {
-				// DisplayName: Cute Illuminant Slime
-				// BestiaryFlavorText: The erratic nature of the Hallow has made this slime quite playful.
+				DisplayName: Uroczy świecący szlam
+				BestiaryFlavorText: Zwariowana natura Bajkowa uczyniła ten szlam całkiem skłonnym do zabaw.
 			}
 
 			CuteSlimeJungle: {
-				// DisplayName: Cute Jungle Slime
-				// BestiaryFlavorText: Life in the jungle is hard for soft-bodied visitors, but this slime proves it's not impossible.
+				DisplayName: Uroczy szlam z dżungli
+				BestiaryFlavorText: Życie w dżungli nie jest łatwe dla gości o miękkim ciele, ale ten szlam udowadnia że jest możliwe.
 			}
 
 			CuteSlimeLava: {
-				// DisplayName: Cute Lava Slime
-				// BestiaryFlavorText: Having accidentally gotten impaled by a chunk of obsidian, this slime laments being unable to remove it.
+				DisplayName: Uroczy szlam lawy
+				BestiaryFlavorText: Ten szlam przypadkowo nadział się na kawałek obsydianu, brak możliwości usunięcia go sprawia mu wielką przykrość.
 			}
 
 			CuteSlimePink: {
-				// DisplayName: Cute Pink Slime
-				// BestiaryFlavorText: Dimminutive does not mean lacking. Despite its size, this slime has more spunk than an entire party.
+				DisplayName: Uroczy różowy szlam
+				BestiaryFlavorText: Mały, ale wariat! Pomimo swojego rozmiaru, ten szlam ma więcej odwagi niż pełna impreza.
 			}
 
 			CuteSlimePinkIce: {
-				// DisplayName: Cute Pink Ice Slime
-				// BestiaryFlavorText: The hallow may have chaotic effects on the wildlife, but this slime remains calm and polite.
+				DisplayName: Uroczy różowy lodowy szlam
+				BestiaryFlavorText: Pomimo chaotycznych wpływów Bajkowa na dzikie zwierzęta, ten szlam jest spokojny i kulturalny.
 			}
 
 			CuteSlimePurple: {
-				// DisplayName: Cute Purple Slime
-				// BestiaryFlavorText: Don't let the smile fool you; it's actually much happier than it looks.
+				DisplayName: Uroczy fioletowy szlam
+				BestiaryFlavorText: Nie daj się oszukać jego uśmiechowi; tak na prawdę jest o wiele szczęśliwszy.
 			}
 
 			CuteSlimePurpleIce: {
-				// DisplayName: Cute Purple Ice Slime
-				// BestiaryFlavorText: Frightened by the corruption, this slime is perpetually nervous.
+				DisplayName: Uroczy fioletowy lodowy szlam
+				BestiaryFlavorText: Ztraumatyzowany Zepsuciem, ten szlam jest wiecznie nerwowy.
 			}
 
 			CuteSlimeRainbow: {
-				// DisplayName: Cute Rainbow Slime
-				// BestiaryFlavorText: The caring and motherly nature that this slime exhibits shows that it understands compassion.
+				DisplayName: Uroczy tęczowy szlam
+				BestiaryFlavorText: Opiekuńcza i matyczna natura tego szlamu pokazuje, że rozumie on uczucia.
 			}
 
 			CuteSlimeRed: {
-				// DisplayName: Cute Red Slime
-				// BestiaryFlavorText: A playful slime that is quite active. It sometimes goes overboard when having fun.
+				DisplayName: Uroczy czerwony szlam
+				BestiaryFlavorText: Chętny do zabawy i aktywny szlam, zdarza mu się przesadzić gdy dobrze się bawi.
 			}
 
 			CuteSlimeRedIce: {
-				// DisplayName: Cute Red Ice Slime
-				// BestiaryFlavorText: It is best to avoid standing out when in the Crimson, and this slime knows that all too well.
+				DisplayName: Uroczy czerwony lodowy szlam
+				BestiaryFlavorText: Lepiej nie odróżniać się w Szkarłacie, ten szlam wie o tym bardzo dobrze.
 			}
 
 			CuteSlimeSand: {
-				// DisplayName: Cute Sand Slime
-				// BestiaryFlavorText: The coarse sand that coats its body leads it to keep its distance, but it won't turn down a friend.
+				DisplayName: Uroczy piaskowy szlam
+				BestiaryFlavorText: Szorstki piasek, który pokrywa jego ciało sprawia że woli trzymać się z daleka, ale nie odrzuci przyjaciela.
 			}
 
 			CuteSlimeShimmer: {
-				// DisplayName: Cute Shimmer Slime
-				// BestiaryFlavorText: When exposed to the mysterious shimmer, this slime took on an aetherial appearance.
+				DisplayName: Uroczy szlam blasku
+				BestiaryFlavorText: Po kontakcie z tajemniczym blaskiem, ten szlam nabrał eterycznego wyglądu.
 			}
 
 			CuteSlimeToxic: {
-				// DisplayName: Cute Toxic Slime
-				// BestiaryFlavorText: Appearances are deceiving; it's only half as monstrous as it looks!
+				DisplayName: Uroczy toksyczny muł
+				BestiaryFlavorText: Wygląd jest mylący; jest tylko w połowie tak potworny, na jakiego wygląda!
 			}
 
 			CuteSlimeXmas: {
-				// DisplayName: Cute Christmas Slime
-				// BestiaryFlavorText: The greatest gift is a friend. This slime wants to bring that gift to everyone.
+				DisplayName: Uroczy świąteczny szlam
+				BestiaryFlavorText: Najlepszym prezentem jest przyjaciel. Ten szlam chce obdarować nim każdego.
 			}
 
 			CuteSlimeYellow: {
-				// DisplayName: Cute Yellow Slime
-				// BestiaryFlavorText: Moving with delicate grace, this slime dances about without missing a step.
+				DisplayName: Uroczy żółty szlam
+				BestiaryFlavorText: Ten szlam porusza się z delikatnym wdziękiem, tańcząc bez pominięcia kroku.
 			}
 
-			// DemonEyeRecolor.DisplayName: Demon Eye
-			// DemonEyeWandering.DisplayName: Wandering Eye
+			DemonEyeRecolor.DisplayName: Demoniczne oko
+			DemonEyeWandering.DisplayName: Błędne oko
 
 			FairySlime: {
-				// DisplayName: Fairy Slime
-				// BestiaryFlavorText: Not wanting to lose to its flying neighbors, it has grown wing-like extentions. It can't fly, but it's happy regardless of this fact.
+				DisplayName: Szlam wróżka
+				BestiaryFlavorText: Aby nie stracić swoich skrzydlatych przyjaciół, ten szlam wyhodował skrzydłopodobne kończyny. Nie może latać, ale i tak się cieszy.
 			}
 
 			GiantGrasshopper: {
-				// DisplayName: Giant Grasshopper
-				// BestiaryFlavorText: It can leap over entire bushes in a single bound.
+				DisplayName: Wielki konik polny
+				BestiaryFlavorText: Przeskakuje całe krzaki jednym skokiem.
 			}
 
 			GiantGrasshopperGold: {
-				// DisplayName: Gold Giant Grasshopper
-				// BestiaryFlavorText: "{$CommonBestiaryFlavor.GoldCritter}"
+				DisplayName: Złoty wielki konik polny
+				BestiaryFlavorText: "{$CommonBestiaryFlavor.GoldCritter}"
 			}
 
-			// DungeonSoul.DisplayName: Dungeon Soul
-			// DungeonSoulFreed.DisplayName: "{$NPCs.DungeonSoul.DisplayName}"
+			DungeonSoul.DisplayName: Dusza z lochu
+			DungeonSoulFreed.DisplayName: "{$NPCs.DungeonSoul.DisplayName}"
 
 			HarvesterBoss: {
-				// DisplayName: Soul Harvester
-				// BestiaryFlavorText: After having absorbed the essence of fallen dungeon denizens, this skeletal bird rapidly grew into a ferocious hunter that sought to eat the hand that once fed it.
-				// BossChecklistIntegration.SpawnInfo: Find and open an {$Items.AntiqueCageItem.DisplayName} in the dungeon, or use [i:AssortedCrazyThings/IdolOfDecay]
+				DisplayName: Żniwiarz dusz
+				BestiaryFlavorText: Po pochłonięciu mocy dusz upadłych mieszkańców lochu, ten szkieletowy ptak szybko stał się zdziczałym łowcą, gotowym zjeść karmiącą go rękę.
+				BossChecklistIntegration.SpawnInfo: Znajdz i otwórz {$Items.AntiqueCageItem.DisplayName} w lochu, lub użyj [i:AssortedCrazyThings/IdolOfDecay]
 			}
 
-			// HarvesterTalonLeft.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
-			// HarvesterTalonRight.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
+			HarvesterTalonLeft.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
+			HarvesterTalonRight.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
 
 			HornedSlime: {
-				// DisplayName: Horned Slime
-				// BestiaryFlavorText: The horns aren't just for decoration; they are capable of dispersing heat, allowing the slime to remain gelatinous.
+				DisplayName: Rogaty szlam
+				BestiaryFlavorText: Jego rogi nie są tylko dekoracją; rozpraszają ciepło, pozwalając szlamowi utrzymać żelowaty stan skupienia.
 			}
 
 			JoyousSlime: {
-				// DisplayName: Joyous Slime
-				// BestiaryFlavorText: A passive variant of slime with a friendly face. At night, it tries to be close to an equally friendly face.
+				DisplayName: Wesoły szlam
+				BestiaryFlavorText: Pasywny wariant szlamu z przyjacielską miną. W nocy, stara się utrzymać prawie tak samo przyjacielską minę.
 			}
 
 			Meatball: {
-				// DisplayName: Meatball
-				// BestiaryFlavorText: A mass of bloody flesh with a single eye. The eye appears to be struggling in an attempt to escape.
+				DisplayName: Klopsik
+				BestiaryFlavorText: Masa krwistego mięsa z jednym okiem. Oko wygląda, jakby starało się uciec.
 			}
 
 			MeatballsEye: {
-				// DisplayName: Meatball's Eye
-				// BestiaryFlavorText: A minion of Cthulhu that was trapped in the Crimson. It hastily seeks out its older brother.
+				DisplayName: Oko klopsika
+				BestiaryFlavorText: Sługa Cthulhu, który utknął w Szkarłacie. Pochopnie poszukuje swojego starszego brata.
 			}
 
 			Megalodon: {
-				// DisplayName: Megalodon
-				// BestiaryFlavorText: Thought to be extinct, this ancient predator is as long-lived as its endless hunger.
+				DisplayName: Megalodon
+				BestiaryFlavorText: Uważany za wymarłego, ten starożytny drapieżnik jest długowieczny jak jego nieskończony głód.
 			}
 
 			OceanSlime: {
-				// DisplayName: Ocean Slime
-				// BestiaryFlavorText: Slimes that are lost to the sea are faced with two options; adapt, or be eaten. Luckily, these slimes taste bad.
+				DisplayName: Oceaniczny szlam
+				BestiaryFlavorText: Szlamy, które gubią się w morzu mają dwie opcje; zaadaptowanie się do otoczenia, lub zostanie pożartym. Na szczęście, te szlamy źle smakują.
 			}
 
 			SpawnOfOcram: {
-				// DisplayName: Spawn of Ocram
-				// BestiaryFlavorText: An ancient being's offspring, once thought to have been lost to time.
+				DisplayName: Potomek Ocrama
+				BestiaryFlavorText: Pochodzi od starożytnego stworzenia, uważanego za wymarłe.
 			}
 
 			StingSlime: {
-				// DisplayName: Sting Slime
-				// BestiaryFlavorText: Bounce like a slime, sting like a scorpion.
+				DisplayName: Żądlący szlam
+				BestiaryFlavorText: Skacz jak szlam, żądl jak skorpion.
 			}
 
 			StoneSoldier: {
-				// DisplayName: Stone Soldier
-				// BestiaryFlavorText: Animate stone statues that have wandered from an ancient tomb. Their eyes are valuable.
+				DisplayName: Kamienny żołnierz
+				BestiaryFlavorText: Żywe kamienne posągi, które wywędrowały ze starożytnego grobowca. Ich oczy mają wysoką wartość.
 			}
 
 			StrangeSlime: {
-				// DisplayName: Strange Slime
-				// BestiaryFlavorText: These peculiar slimes are host to strange plants, which grow for life. The slime always makes sure to keep it upright.
+				DisplayName: Dziwny szlam
+				BestiaryFlavorText: Te wyjątkowe szlamy są żywicielami dziwnych roślin, które rosną całe życie. Ten szlam zawsze upewnia się że roślina jest w pionie.
 			}
 
 			TurtleSlime: {
-				// DisplayName: Turtle Slime
-				// BestiaryFlavorText: Giant tortoises are known to shed part of their shell as they grow. These slimes collect those old fragments for protection.
+				DisplayName: Szlam żółw
+				BestiaryFlavorText: Wielkie żółwie są znane ze zrzucania części swojej skorupy w trakcie gdy rosną. Te szlamy korzystają z odrzuconych skorup dla ochrony.
 			}
 
 			WalkingTombstoneGolden: {
-				// DisplayName: Walking Tombstone
-				// BestiaryFlavorText: Terrestrial crabs that have taken up a morbid and expensive form of camouflage.
+				DisplayName: Chodzący nagrobek
+				BestiaryFlavorText: Lądowe kraby, które wybrały sobie makabryczną i drogą formę kamuflażu.
 			}
 
 			YoungHarpy: {
-				// DisplayName: Young Harpy
-				// BestiaryFlavorText: Harpies are not inherently hostile. If they make a childhood friend, they'll always be friends.
+				DisplayName: Młoda harpia
+				BestiaryFlavorText: Harpie nie są z natury złe. Jeżeli zaprzyjaźnią się z kimś w dzieciństwie, ta przyjaźń zostanie na zawsze.
 			}
 
 			CuteSlimes: {
 				SpawnConditionType: {
 					Forest: {
-						// Black: Black
-						// Blue: Blue
-						// Green: Green
-						// Purple: Purple
-						// Rainbow: Rainbow
-						// Red: Red
-						// Yellow: Yellow
+						Black: Czarny
+						Blue: Niebieski
+						Green: Zielony
+						Purple: Fioletowy
+						Rainbow: Tęczowy
+						Red: Czerwony
+						Yellow: Żółty
 					}
 
-					// Desert.Sand: Sand
-					// Tundra.Ice: Ice
-					// Jungle.Jungle: Jungle
-					// Underground.Toxic: Toxic
-					// Hell.Lava: Lava
-					// Corruption.Corrupt: Corrupt
-					// CorruptionIce.PurpleIce: Purple Ice
-					// CorruptionJungle.CorruptJungle: Corrupt Jungle
-					// Crimson.Crimson: Crimson
-					// CrimsonIce.RedIce: Red Ice
-					// CrimsonJungle.CrimsonJungle: Crimson Jungle
-					// Hallow.Illuminant: Illuminant
-					// HallowIce.PinkIce: Pink Ice
-					// Dungeon.Dungeon: Dungeon
-					// Xmas.Xmas: Xmas
-					// Honey.Honey: Honey
+					Desert.Sand: Piaskowy
+					Tundra.Ice: Lodowy
+					Jungle.Jungle: Z dżungli
+					Underground.Toxic: Toksyczny muł
+					Hell.Lava: Lawowy
+					Corruption.Corrupt: Zepsucia
+					CorruptionIce.PurpleIce: Fioletowy lodowy
+					CorruptionJungle.CorruptJungle: Zepsuta dżungla
+					Crimson.Crimson: Szkarłatowy
+					CrimsonIce.RedIce: Czerwony lodowy
+					CrimsonJungle.CrimsonJungle: Szkarłatowa dżungla
+					Hallow.Illuminant: Świecący
+					HallowIce.PinkIce: Różowy lodowy
+					Dungeon.Dungeon: Lochowy
+					Xmas.Xmas: Świąteczny
+					Honey.Honey: Miodowy
 				}
 			}
 		}
 
 		Projectiles: {
-			// SigilOfTheBeakProj.DisplayName: Fractured Soul
-			// CompanionDungeonSoulMinion.DisplayName: Companion Soul
-			// BasicLaserDrone.DisplayName: Basic Laser Drone
-			// HealingDrone.DisplayName: Healing Drone
-			// HeavyLaserDrone.DisplayName: Heavy Laser Drone
-			// HeavyLaserDroneLaser.DisplayName: Laser Drone Laser
-			// MissileDrone.DisplayName: Missile Drone
-			// MissileDroneRocket.DisplayName: Missile Drone Rocket
-			// ShieldDrone.DisplayName: Shield Drone
-			// GoblinUnderlingWeaponDart.DisplayName: Goblin Underling Dart
-			// EagerUnderlingProj.DisplayName: "{$Buffs.EagerUnderlingBuff.DisplayName}"
-			// ShyUnderlingProj.DisplayName: "{$Buffs.ShyUnderlingBuff.DisplayName}"
-			// SeriousUnderlingProj.DisplayName: "{$Buffs.SeriousUnderlingBuff.DisplayName}"
-			// GoblinUnderlingWeaponTerraBeam.DisplayName: Goblin Underling Terra Beam
-			// GoblinUnderlingWeaponArrow.DisplayName: Goblin Underling Arrow
-			// GoblinUnderlingWeaponBlaster.DisplayName: Goblin Underling Blaster
-			// GoblinUnderlingWeaponOrb.DisplayName: Goblin Underling Orb
-			// GoblinUnderlingWeaponDaybreak.DisplayName: Goblin Underling Daybreak
-			// GoblinUnderlingWeaponDaybreakExplosion.DisplayName: "{$Projectiles.GoblinUnderlingWeaponDaybreak.DisplayName}"
-			// MagicSlimeSlingFired.DisplayName: Magic Slime Sling
-			// MagicSlimeSlingMinion.DisplayName: Magic Slime Sling Minion
-			// PetDestroyerDroneLaser.DisplayName: Pet Destroyer Laser
-			// PetGolemHeadFireball.DisplayName: Pet Golem Head Fireball
-			// SlimePackAssortedMinion.DisplayName: Slime Knapsack Minion
-			// SlimePackMinion.DisplayName: Slime Knapsack Minion
-			// SlimePackMinionSpike.DisplayName: Slime Knapsack Minion Spike
-			// SlimePackSpikedMinion.DisplayName: Slime Knapsack Minion
-			// BabyHarvesterProj.DisplayName: Baby Bird
-			// HarvesterAbsorbedSoul.DisplayName: Absorbed Soul
-			// HarvesterBone.DisplayName: Harvester Bone
-			// HarvesterFracturedSoul.DisplayName: Fractured Soul
+			SigilOfTheBeakProj.DisplayName: Strzaskana dusza
+			CompanionDungeonSoulMinion.DisplayName: Dusza sługa
+			BasicLaserDrone.DisplayName: Prosty laserowy dron
+			HealingDrone.DisplayName: Dron leczący
+			HeavyLaserDrone.DisplayName: Ciężki laserowy dron
+			HeavyLaserDroneLaser.DisplayName: Laser drona
+			MissileDrone.DisplayName: Dron rakietowy
+			MissileDroneRocket.DisplayName: Rakieta drona
+			ShieldDrone.DisplayName: Dron osłaniający
+			GoblinUnderlingWeaponDart.DisplayName: Rzutka sługi goblina
+			EagerUnderlingProj.DisplayName: "{$Buffs.EagerUnderlingBuff.DisplayName}"
+			ShyUnderlingProj.DisplayName: "{$Buffs.ShyUnderlingBuff.DisplayName}"
+			SeriousUnderlingProj.DisplayName: "{$Buffs.SeriousUnderlingBuff.DisplayName}"
+			GoblinUnderlingWeaponTerraBeam.DisplayName: Terrapromień sługi goblina
+			GoblinUnderlingWeaponArrow.DisplayName: Strzała sługi goblina
+			GoblinUnderlingWeaponBlaster.DisplayName: Blaster sługi goblina
+			GoblinUnderlingWeaponOrb.DisplayName: Kula sługi goblina
+			GoblinUnderlingWeaponDaybreak.DisplayName: Świt sługi goblina
+			GoblinUnderlingWeaponDaybreakExplosion.DisplayName: "{$Projectiles.GoblinUnderlingWeaponDaybreak.DisplayName}"
+			MagicSlimeSlingFired.DisplayName: Magiczna kula szlamu
+			MagicSlimeSlingMinion.DisplayName: Magiczny szlam sługa
+			PetDestroyerDroneLaser.DisplayName: Laser małego Niszczyciela
+			PetGolemHeadFireball.DisplayName: Kula ognia małego Golema
+			SlimePackAssortedMinion.DisplayName: Szlam z plecaka
+			SlimePackMinion.DisplayName: Szlam z plecaka
+			SlimePackMinionSpike.DisplayName: Kolec szlamu z plecaka
+			SlimePackSpikedMinion.DisplayName: Szlam z plecaka
+			BabyHarvesterProj.DisplayName: Pisklę
+			HarvesterAbsorbedSoul.DisplayName: Pochłonięta dusza
+			HarvesterBone.DisplayName: Kość Żniwiarza
+			HarvesterFracturedSoul.DisplayName: Strzaskana dusza
 
 			AbeeminationProj: {
-				// DisplayName: Abeemination
-				// Default.Tooltip: Default
-				// SnowBee.Tooltip: Snow Bee
-				// OilSpill.Tooltip: Oil Spill
-				// MissingIngredients.Tooltip: Missing Ingredients
+				DisplayName: Pszczybywajątko
+				Default.Tooltip: Zwyczajny
+				SnowBee.Tooltip: Śnieżna pszczoła
+				OilSpill.Tooltip: Wyciek ropy
+				MissingIngredients.Tooltip: Brakujące przedmioty
 			}
 
-			// AlienHornetProj.DisplayName: Alien Hornet
+			AlienHornetProj.DisplayName: Kosmiczny szerszeń
 
 			AnimatedTomeProj: {
-				// DisplayName: Animated Tome
-				// Green.Tooltip: Green
-				// Blue.Tooltip: Blue
-				// Purple.Tooltip: Purple
-				// Pink.Tooltip: Pink
-				// Yellow.Tooltip: Yellow
-				// Spell.Tooltip: Spell
+				DisplayName: Animowany tom
+				Green.Tooltip: Zielony
+				Blue.Tooltip: Niebieski
+				Purple.Tooltip: Fioletowy
+				Pink.Tooltip: Różowy
+				Yellow.Tooltip: Żółty
+				Spell.Tooltip: Zaklęcie
 			}
 
 			AnomalocarisProj: {
-				// DisplayName: Anomalocaris
-				// Wild.Tooltip: Wild
-				// Shrimpy.Tooltip: Shrimpy
-				// Snippy.Tooltip: Snippy
+				DisplayName: Anomalocaris
+				Wild.Tooltip: Dziki
+				Shrimpy.Tooltip: Krewetka
+				Snippy.Tooltip: Snippy
 			}
 
-			// BabyCrimeraProj.DisplayName: Baby Crimera
-			// BabyIchorStickerProj.DisplayName: Baby Ichor Sticker
-			// BabyOcramProj.DisplayName: Baby Ocram
-			// BrainofConfusionProj.DisplayName: Brain of Confusion
-			// ChunkyProj.DisplayName: Chunky
-			// ChunkySlimeProj.DisplayName: Chunky Slime
-			// CompanionDungeonSoulPetProj.DisplayName: Companion Soul
-			// CompanionDungeonSoulPetProj2.DisplayName: Companion Soul
+			BabyCrimeraProj.DisplayName: Mała szkarłatnica
+			BabyIchorStickerProj.DisplayName: Mały Ichy
+			BabyOcramProj.DisplayName: Mały Ocram
+			BrainofConfusionProj.DisplayName: Mózg chaosu
+			ChunkyProj.DisplayName: Pulchny
+			ChunkySlimeProj.DisplayName: Pulchny szlam
+			CompanionDungeonSoulPetProj.DisplayName: Dusza sługa
+			CompanionDungeonSoulPetProj2.DisplayName: Dusza sługa
 
 			CursedSkullProj: {
-				// DisplayName: Cursed Skull
-				// Default.Tooltip: Default
-				// Dragon.Tooltip: Dragon
+				DisplayName: Przeklęta czaszka
+				Default.Tooltip: Zwykła
+				Dragon.Tooltip: Smocza
 			}
 
-			// CuteGastropodProj.DisplayName: Cute Gastropod
+			CuteGastropodProj.DisplayName: Uroczy brzuchonóg
 
 			CuteLamiaPetProj: {
-				// DisplayName: Small Snake
-				// Dark.Tooltip: Dark
-				// Light.Tooltip: Light
-				// Dropkick.Tooltip: Dropkick
+				DisplayName: Mały wąż
+				Dark.Tooltip: Ciemna
+				Light.Tooltip: Jasna
+				Dropkick.Tooltip: Dropkick
 			}
 
-			// CuteSlimeBlackProj.DisplayName: Cute Black Slime
-			// CuteSlimeBlueProj.DisplayName: Cute Blue Slime
-			// CuteSlimeCorruptProj.DisplayName: Cute Corrupt Slime
-			// CuteSlimeCorruptJungleProj.DisplayName: Cute Corrupt Jungle Slime
-			// CuteSlimeCrimsonProj.DisplayName: Cute Crimson Slime
-			// CuteSlimeCrimsonJungleProj.DisplayName: Cute Crimson Jungle Slime
-			// CuteSlimeDungeonProj.DisplayName: Cute Dungeon Slime
-			// CuteSlimeGoldenProj.DisplayName: Cute Golden Slime
-			// CuteSlimeGreenProj.DisplayName: Cute Green Slime
-			// CuteSlimeHoneyProj.DisplayName: Cute Honey Slime
-			// CuteSlimeIceProj.DisplayName: Cute Ice Slime
-			// CuteSlimeIlluminantProj.DisplayName: Cute Illuminant Slime
-			// CuteSlimeJungleProj.DisplayName: Cute Jungle Slime
-			// CuteSlimeLavaProj.DisplayName: Cute Lava Slime
-			// CuteSlimePinkProj.DisplayName: Cute Pink Slime
-			// CuteSlimePinkIceProj.DisplayName: Cute Pink Ice Slime
-			// CuteSlimePrincessProj.DisplayName: Cute Princess Slime
-			// CuteSlimePurpleProj.DisplayName: Cute Purple Slime
-			// CuteSlimePurpleIceProj.DisplayName: Cute Purple Ice Slime
-			// CuteSlimeQueenProj.DisplayName: Cute Queen Slime
-			// CuteSlimeRainbowProj.DisplayName: Cute Rainbow Slime
-			// CuteSlimeRedProj.DisplayName: Cute Red Slime
-			// CuteSlimeRedIceProj.DisplayName: Cute Red Ice Slime
-			// CuteSlimeSandProj.DisplayName: Cute Sand Slime
-			// CuteSlimeShimmerProj.DisplayName: Cute Shimmer Slime
-			// CuteSlimeToxicProj.DisplayName: Cute Toxic Slime
-			// CuteSlimeXmasProj.DisplayName: Cute Christmas Slime
-			// CuteSlimeYellowProj.DisplayName: Cute Yellow Slime
-			// DemonHeartProj.DisplayName: Demon Heart
-			// DetachedHungryProj.DisplayName: Detached Hungry
+			CuteSlimeBlackProj.DisplayName: Uroczy czarny szlam
+			CuteSlimeBlueProj.DisplayName: Uroczy niebieski szlam
+			CuteSlimeCorruptProj.DisplayName: Uroczy szlam zepsucia
+			CuteSlimeCorruptJungleProj.DisplayName: Uroczy szlam zepsucia z dżungli
+			CuteSlimeCrimsonProj.DisplayName: Uroczy szkarlam
+			CuteSlimeCrimsonJungleProj.DisplayName: Uroczy szkarlam z dżungli
+			CuteSlimeDungeonProj.DisplayName: Uroczy szlam z lochu
+			CuteSlimeGoldenProj.DisplayName: Uroczy złoty szlam
+			CuteSlimeGreenProj.DisplayName: Uroczy zielony szlam
+			CuteSlimeHoneyProj.DisplayName: Uroczy miodowy szlam
+			CuteSlimeIceProj.DisplayName: Uroczy lodowy szlam
+			CuteSlimeIlluminantProj.DisplayName: Uroczy świecący szlam
+			CuteSlimeJungleProj.DisplayName: Uroczy szlam z dżungli
+			CuteSlimeLavaProj.DisplayName: Uroczy szlam lawy
+			CuteSlimePinkProj.DisplayName: Uroczy różowy szlam
+			CuteSlimePinkIceProj.DisplayName: Uroczy różowy lodowy szlam
+			CuteSlimePrincessProj.DisplayName: Urocza księżniczka szlamów
+			CuteSlimePurpleProj.DisplayName: Uroczy fioletowy szlam
+			CuteSlimePurpleIceProj.DisplayName: Uroczy fioletowy lodowy szlam
+			CuteSlimeQueenProj.DisplayName: Urocza królowa szlamów
+			CuteSlimeRainbowProj.DisplayName: Uroczy tęczowy szlam
+			CuteSlimeRedProj.DisplayName: Uroczy czerwony szlam
+			CuteSlimeRedIceProj.DisplayName: Uroczy czerwony lodowy szlam
+			CuteSlimeSandProj.DisplayName: Uroczy piaskowy szlam
+			CuteSlimeShimmerProj.DisplayName: Uroczy szlam blasku
+			CuteSlimeToxicProj.DisplayName: Uroczy toksyczny muł
+			CuteSlimeXmasProj.DisplayName: Uroczy świąteczny szlam
+			CuteSlimeYellowProj.DisplayName: Uroczy żółty szlam
+			DemonHeartProj.DisplayName: Demoniczne serce
+			DetachedHungryProj.DisplayName: Odczepiony nienażarty
 
 			DocileDemonEyeProj: {
-				// DisplayName: Docile Demon Eye
-				// Red.Tooltip: Red
-				// Green.Tooltip: Green
-				// Purple.Tooltip: Purple
-				// RedFractured.Tooltip: Red Fractured
-				// GreenFractured.Tooltip: Green Fractured
-				// PurpleFractured.Tooltip: Purple Fractured
-				// RedMechanical.Tooltip: Red Mechanical
-				// GreenMechanical.Tooltip: Green Mechanical
-				// PurpleMechanical.Tooltip: Purple Mechanical
-				// RedLaser.Tooltip: Red Laser
-				// GreenLaser.Tooltip: Green Laser
-				// PurpleLaser.Tooltip: Purple Laser
-				// FlyingPumpkin.Tooltip: Flying Pumpkin
-				// FlyingJack.Tooltip: Flying Jack
+				DisplayName: Przyjazne demoniczne oko
+				Red.Tooltip: Czerwone
+				Green.Tooltip: Zielone
+				Purple.Tooltip: Fioletowe
+				RedFractured.Tooltip: Czerwone otwarte
+				GreenFractured.Tooltip: Zielone otwarte
+				PurpleFractured.Tooltip: Fioletowe otwarte
+				RedMechanical.Tooltip: Czerwone mechaniczne
+				GreenMechanical.Tooltip: Zielone mechaniczne
+				PurpleMechanical.Tooltip: Fioletowe mechaniczne
+				RedLaser.Tooltip: Czerwony laser
+				GreenLaser.Tooltip: Zielony laser
+				PurpleLaser.Tooltip: Fioletowy laser
+				FlyingPumpkin.Tooltip: Latająca dynia
+				FlyingJack.Tooltip: Latający Jack
 			}
 
-			// DrumstickElementalProj.DisplayName: Drumstick Elemental
+			DrumstickElementalProj.DisplayName: Żywiołak kurczaka
 
 			DynamiteBunnyProj: {
-				// DisplayName: Dynamite Bunny
-				// White.Tooltip: White
-				// Corrupt.Tooltip: Corrupt
-				// Crimtane.Tooltip: Crimtane
-				// Angora.Tooltip: Angora
-				// Dutch.Tooltip: Dutch
-				// Flemish.Tooltip: Flemish
-				// Lop.Tooltip: Lop
-				// Silver.Tooltip: Silver
-				// Caerbannog.Tooltip: Caerbannog
+				DisplayName: Wybuchowy królik
+				White.Tooltip: Biały
+				Corrupt.Tooltip: Zepsucie
+				Crimtane.Tooltip: Szkarłatowy
+				Angora.Tooltip: Angora
+				Dutch.Tooltip: Holenderski
+				Flemish.Tooltip: Belgijski
+				Lop.Tooltip: Lop
+				Silver.Tooltip: Srebrny
+				Caerbannog.Tooltip: Caerbannog
 			}
 
-			// EnchantedSwordProj.DisplayName: Enchanted Sword
-			// FailureSlimeProj.DisplayName: Failure Slime
-			// FairySlimeProj.DisplayName: Fairy Slime
-			// FairySwarmProj.DisplayName: Fairy Swarm
-			// GhostMartianProj.DisplayName: Ghost Martian
-			// GobletProj.DisplayName: Goblet
-			// HornedSlimeProj.DisplayName: Horned Slime
-			// IlluminantSlimeProj.DisplayName: Illuminant Slime
+			EnchantedSwordProj.DisplayName: Zaklęty miecz
+			FailureSlimeProj.DisplayName: Nieudany szlam
+			FairySlimeProj.DisplayName: Szlam wróżka
+			FairySwarmProj.DisplayName: Rój wróżek
+			GhostMartianProj.DisplayName: Duch marsjanina
+			GobletProj.DisplayName: Kielich
+			HornedSlimeProj.DisplayName: Rogaty szlam
+			IlluminantSlimeProj.DisplayName: Świecący szlam
 
 			JoyousSlimeProj: {
-				// DisplayName: Joyous Slime
-				// Default.Tooltip: Default
-				// JoyousPumpkin.Tooltip: Joyous Pumpkin
+				DisplayName: Radosny szlam
+				Default.Tooltip: Zwykły
+				JoyousPumpkin.Tooltip: Radosna dynia
 			}
 
 			LifelikeMechanicalFrogProj: {
-				// DisplayName: Lifelike Mechanical Frog
-				// Default.Tooltip: Default
-				// Crowned.Tooltip: Crowned
+				DisplayName: Mechaniczna jak-żywa żaba
+				Default.Tooltip: Zwykła
+				Crowned.Tooltip: Korona
 			}
 
 			LilWrapsProj: {
-				// DisplayName: Lil' Wraps
-				// Default.Tooltip: Default
-				// Dark.Tooltip: Dark
-				// Light.Tooltip: Light
-				// Shadow.Tooltip: Shadow
-				// Spectral.Tooltip: Spectral
+				DisplayName: Mały zawijas
+				Default.Tooltip: Zwykły
+				Dark.Tooltip: Mroczny
+				Light.Tooltip: Jasny
+				Shadow.Tooltip: Cienisty
+				Spectral.Tooltip: Spektralny
 			}
 
-			// MeatballProj.DisplayName: Meatball
-			// MeatballSlimeProj.DisplayName: Meatball Slime
+			MeatballProj.DisplayName: Klopsik
+			MeatballSlimeProj.DisplayName: Szlam klopsika
 
 			MetroidPetProj: {
-				// DisplayName: Metroid
-				// Metroid.Tooltip: Metroid
-				// FailedClone.Tooltip: Failed Clone
-				// Convergent.Tooltip: Convergent
-				// Irradiated.Tooltip: Irradiated
-				// Corrupted.Tooltip: Corrupted
-				// TheBaby.Tooltip: The Baby
+				DisplayName: Metroid
+				Metroid.Tooltip: Metroid
+				FailedClone.Tooltip: Nieudany klon
+				Convergent.Tooltip: Podobieństwo
+				Irradiated.Tooltip: Napromieniowany
+				Corrupted.Tooltip: Zepsuty
+				TheBaby.Tooltip: Dziecko
 			}
 
 			MiniAntlionProj: {
-				// DisplayName: Baby Antlion
-				// Default.Tooltip: Default
-				// Albino.Tooltip: Albino
-				// Larval.Tooltip: Larval
+				DisplayName: Mały mrówkolew
+				Default.Tooltip: Zwykły
+				Albino.Tooltip: Albinos
+				Larval.Tooltip: Larwa
 			}
 
-			// MiniMegalodonProj.DisplayName: Mini Megalodon
-			// NumberMuncherProj.DisplayName: Number Muncher
+			MiniMegalodonProj.DisplayName: Mini Megalodon
+			NumberMuncherProj.DisplayName: Chrupacz liczb
 
 			OceanSlimeProj: {
-				// DisplayName: Ocean Slime
-				// Default.Tooltip: Default
-				// StupidHat.Tooltip: Stupid Hat
-				// GnarlyGrin.Tooltip: Gnarly Grin
-				// FlippedJelly.Tooltip: Flipped Jelly
-				// AxolotlLucy.Tooltip: Axolotl (Lucy)
-				// AxolotlBlue.Tooltip: Axolotl (Blue)
-				// AxolotlCyan.Tooltip: Axolotl (Cyan)
-				// AxolotlYellow.Tooltip: Axolotl (Yellow)
-				// AxolotlBrown.Tooltip: Axolotl (Brown)
+				DisplayName: Oceaniczny szlam
+				Default.Tooltip: Zwykły
+				StupidHat.Tooltip: Głupia czapka
+				GnarlyGrin.Tooltip: Dziki uśmiech
+				FlippedJelly.Tooltip: Przewrócona meduza
+				AxolotlLucy.Tooltip: Aksolotl (Lucy)
+				AxolotlBlue.Tooltip: Aksolotl (Niebieski)
+				AxolotlCyan.Tooltip: Aksolotl (Błękitny)
+				AxolotlYellow.Tooltip: Aksolotl (Żółty)
+				AxolotlBrown.Tooltip: Aksolotl (Brązowy)
 			}
 
 			PetCultistProj: {
-				// DisplayName: Dwarf Cultist
-				// Lunar.Tooltip: Lunar
-				// Solar.Tooltip: Solar
+				DisplayName: Karłowaty kultysta
+				Lunar.Tooltip: Księżycowy
+				Solar.Tooltip: Słoneczny
 			}
 
-			// PetDestroyer.DisplayName: Tiny Destroyer
-			// PetDestroyerProbe.DisplayName: Tiny Destroyer Probe
-			// PetEaterofWorlds.DisplayName: Tiny Eater of Worlds
+			PetDestroyer.DisplayName: Mały Niszczyciel
+			PetDestroyerProbe.DisplayName: Sonda małego Niszczyciela
+			PetEaterofWorlds.DisplayName: Mały pożeracz światów
 
 			PetFishronProj: {
-				// DisplayName: Mini Fishron
-				// Default.Tooltip: Default
-				// Sharkron.Tooltip: Sharkron
-				// Sharknado.Tooltip: Sharknado
+				DisplayName: Mini Rybok
+				Default.Tooltip: Zwykły
+				Sharkron.Tooltip: Smokin
+				Sharknado.Tooltip: Rekinado
 			}
 
 			PetGoldfishProj: {
-				// DisplayName: Pet Goldfish
-				// Default.Tooltip: Default
-				// Crimson.Tooltip: Crimson
-				// Corruption.Tooltip: Corruption
-				// Bunny.Tooltip: Bunny
-				// Ghostfish.Tooltip: Ghostfish
+				DisplayName: Złota rybka
+				Default.Tooltip: Zwykła
+				Crimson.Tooltip: Niecna
+				Corruption.Tooltip: Zepsucia
+				Bunny.Tooltip: Królicza
+				Ghostfish.Tooltip: Rybka-widmo
 			}
 
-			// PetGolemHeadProj.DisplayName: Replica Golem Head
-			// PetHarvesterProj.DisplayName: Stubborn Bird
+			PetGolemHeadProj.DisplayName: Replika głowy golema
+			PetHarvesterProj.DisplayName: Uparty ptak
 
 			PetMoonProj: {
-				// DisplayName: Personal Moon
-				// Default.Tooltip: Default
-				// Yellow.Tooltip: Yellow
-				// Ringed.Tooltip: Ringed
-				// Mythril.Tooltip: Mythril
-				// BrightBlue.Tooltip: Bright Blue
-				// Green.Tooltip: Green
-				// Pink.Tooltip: Pink
-				// Orange.Tooltip: Orange
-				// Purple.Tooltip: Purple
+				DisplayName: Osobisty księżyc
+				Default.Tooltip: Zwykły
+				Yellow.Tooltip: Żółty
+				Ringed.Tooltip: Pierścienie
+				Mythril.Tooltip: Mithrilowy
+				BrightBlue.Tooltip: Jasnoniebieski
+				Green.Tooltip: Zielony
+				Pink.Tooltip: Różowy
+				Orange.Tooltip: Pomarańczowy
+				Purple.Tooltip: Fioletowy
 			}
 
-			// PetPlanteraProj.DisplayName: Plantera Sprout
-			// PetPlanteraProjTentacle.DisplayName: Mean Seed Tentacle
-			// PetQueenSlimeProj.DisplayName: Slime Sibling
-			// PetSunProj.DisplayName: Personal Sun
+			PetPlanteraProj.DisplayName: Kiełek Plantery
+			PetPlanteraProjTentacle.DisplayName: Macka Plantery
+			PetQueenSlimeProj.DisplayName: Szlam bliźniak
+			PetSunProj.DisplayName: Osobiste słońce
 
 			PigronataProj: {
-				// DisplayName: Pigronata
-				// Default.Tooltip: Default
-				// Winter.Tooltip: Winter
-				// Autumn.Tooltip: Autumn
-				// Spring.Tooltip: Spring
-				// Summer.Tooltip: Summer
-				// Halloween.Tooltip: Halloween
-				// Christmas.Tooltip: Christmas
+				DisplayName: Pigronata
+				Default.Tooltip: Zwykła
+				Winter.Tooltip: Zimowa
+				Autumn.Tooltip: Jesienna
+				Spring.Tooltip: Wiosenna
+				Summer.Tooltip: Letnia
+				Halloween.Tooltip: Halloween
+				Christmas.Tooltip: Świąteczna
 			}
 
-			// PrinceSlimeProj.DisplayName: Prince Slime
+			PrinceSlimeProj.DisplayName: Książę szlam
 
 			QueenLarvaProj: {
-				// DisplayName: Queen Bee Larva
-				// Default.Tooltip: Default
-				// PrawnLarva.Tooltip: PrawnLarva
-				// UnexpectedSeed.Tooltip: Unexpected Seed
-				// BigKidLarva.Tooltip: Big Kid Larva
-				// WheresTheBaby.Tooltip: Where's The Baby?
+				DisplayName: Larwa Królowej Pszczół
+				Default.Tooltip: Zwykła
+				PrawnLarva.Tooltip: Larwa krewetka
+				UnexpectedSeed.Tooltip: Niespodziewane ziarno
+				BigKidLarva.Tooltip: Duża larwa
+				WheresTheBaby.Tooltip: Gdzie jest larwa?
 			}
 
-			// RainbowSlimeProj.DisplayName: Rainbow Slime
+			RainbowSlimeProj.DisplayName: Tęczowy szlam
 
 			SkeletronHandProj: {
-				// DisplayName: Skeletron Pet Hand
-				// Default.Tooltip: Default
-				// OKHand.Tooltip: OK-Hand
-				// Peace.Tooltip: Peace
-				// RockIt.Tooltip: Rock It
-				// Fist.Tooltip: Fist
+				DisplayName: Ręka Szkieletrona
+				Default.Tooltip: Zwykła
+				OKHand.Tooltip: OK
+				Peace.Tooltip: Znak pokoju
+				RockIt.Tooltip: Gwiazda rocka
+				Fist.Tooltip: Pięść
 			}
 
 			SkeletronPrimeHandProj: {
-				// DisplayName: Skeletron Prime Pet Hand
-				// Cannon.Tooltip: Cannon
-				// Saw.Tooltip: Saw
-				// Vice.Tooltip: Vice
-				// Laser.Tooltip: Laser
+				DisplayName: Ręka Szkieletrona Prime
+				Cannon.Tooltip: Armata
+				Saw.Tooltip: Piła
+				Vice.Tooltip: Zacisk
+				Laser.Tooltip: Laser
 			}
 
 			StingSlimeProj: {
-				// DisplayName: Sting Slime
-				// Black.Tooltip: Black
-				// Orange.Tooltip: Orange
+				DisplayName: Żądlący szlam
+				Black.Tooltip: Czarny
+				Orange.Tooltip: Pomarańczowy
 			}
 
-			// StrangeRobotProj.DisplayName: Strange Robot
-			// SuspiciousNuggetProj.DisplayName: Suspicious Nugget
-			// SwarmofCthulhuProj.DisplayName: Swarm of Cthulhu
-			// TinyRetinazerProj.DisplayName: Tiny Retinazer
-			// TinySpazmatismProj.DisplayName: Tiny Spazmatism
-			// TorchGodLightPetProj.DisplayName: Godly Torch
-			// TorturedSoulProj.DisplayName: Tortured Soul
-			// TrueObservingEyeProj.DisplayName: True Observing Eye
-			// TurtleSlimeProj.DisplayName: Turtle Slime
+			StrangeRobotProj.DisplayName: Dziwny robot
+			SuspiciousNuggetProj.DisplayName: Podejrzany kawałek kurczaka
+			SwarmofCthulhuProj.DisplayName: Rój Cthulhu
+			TinyRetinazerProj.DisplayName: Mały Siatkówczak
+			TinySpazmatismProj.DisplayName: Mały Spazmak
+			TorchGodLightPetProj.DisplayName: Boska pochodnia
+			TorturedSoulProj.DisplayName: Umęczona dusza
+			TrueObservingEyeProj.DisplayName: Prawdziwe obserwujące oko
+			TurtleSlimeProj.DisplayName: Szlam zółw
 
 			VampireBatProj: {
-				// DisplayName: Vampire Bat
-				// Default.Tooltip: Default
-				// Werebat.Tooltip: Werebat
+				DisplayName: Nietoperz wampir
+				Default.Tooltip: Zwykły
+				Werebat.Tooltip: Wilkoperz
 			}
 
-			// WallFragmentEye1.DisplayName: Wall Eye
-			// WallFragmentEye2.DisplayName: Wall Eye
+			WallFragmentEye1.DisplayName: Oko ściany
+			WallFragmentEye2.DisplayName: Oko ściany
 
 			WallFragmentMouth: {
-				// DisplayName: Wall Mouth
-				// Default.Tooltip: Default
-				// Chinese.Tooltip: Chinese
+				DisplayName: Paszcza ściany
+				Default.Tooltip: Zwykła
+				Chinese.Tooltip: Chińska
 			}
 
-			// WobyProj.DisplayName: Woby
-			// WobyProj_AoMM.DisplayName: Big Woby
+			WobyProj.DisplayName: Woby
+			WobyProj_AoMM.DisplayName: Duży Woby
 
 			YoungHarpyProj: {
-				// DisplayName: Young Harpy
-				// Default.Tooltip: Default
-				// Eagle.Tooltip: Eagle
-				// Raven.Tooltip: Raven
-				// Dove.Tooltip: Dove
-				// DefaultLegacy.Tooltip: Default (Legacy)
-				// EagleLegacy.Tooltip: Eagle (Legacy)
-				// RavenLegacy.Tooltip: Raven (Legacy)
-				// DoveLegacy.Tooltip: Dove (Legacy)
+				DisplayName: Młoda harpia
+				Default.Tooltip: Zwykła
+				Eagle.Tooltip: Orzeł
+				Raven.Tooltip: Kruk
+				Dove.Tooltip: Gołębica
+				DefaultLegacy.Tooltip: Zwykła (Stare)
+				EagleLegacy.Tooltip: Orzeł (Stare)
+				RavenLegacy.Tooltip: Kruk (Stare)
+				DoveLegacy.Tooltip: Gołębica (Stare)
 			}
 
 			YoungWyvernProj: {
-				// DisplayName: Young Wyvern
-				// Default.Tooltip: Default
-				// Mythical.Tooltip: Mythical
-				// Arch.Tooltip: Arch
-				// ArchLegacy.Tooltip: Arch (Legacy)
+				DisplayName: Młoda wywerna
+				Default.Tooltip: Zwykła
+				Mythical.Tooltip: Mityczna
+				Arch.Tooltip: Arcy wywerna
+				ArchLegacy.Tooltip: Arcy wywerna (Stare)
 			}
 
-			// ExtendoNetGoldenProj.DisplayName: EXTENDO!
-			// ExtendoNetRegularProj.DisplayName: EXTENDO!
-			// BoneCleavingFangProj.DisplayName: "{$Items.BoneCleavingFang.DisplayName}"
-			// BoneShatterLongbowProj.DisplayName: "{$Items.BoneShatterLongbow.DisplayName} Arrow"
-			// CandleDustDummy.DisplayName: Candle Dust Dummy
-			// GuideVoodoorangProj.DisplayName: "{$Items.GuideVoodoorang.DisplayName}"
-			// LegendaryWoodenSwordProj.DisplayName: "{$Items.LegendaryWoodenSword.DisplayName}"
-			// PlagueOfToadsCloud.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
-			// PlagueOfToadsFired.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
-			// PlagueOfToadsProj.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
-			// PocketSandProj.DisplayName: "{$Items.PocketSand.DisplayName}"
-			// SightofRetinazerLaser.DisplayName: "{$Items.SightofRetinazer.DisplayName} Laser"
-			// BreathOfSpazmatismProj.DisplayName: "{$Items.BreathOfSpazmatism.DisplayName} Breath"
-			// TalonstormClawProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
-			// TalonstormFiredProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
-			// TalonstormProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
-			// TrueLegendaryWoodenSwordProj.DisplayName: "{$Items.TrueLegendaryWoodenSword.DisplayName}"
-			// AlienHornetShotProj.DisplayName: "{$Projectiles.AlienHornetProj.DisplayName} Shot"
-			// AnimatedTomeShotProj.DisplayName: "{$Projectiles.AnimatedTomeProj.DisplayName} Shot"
-			// BabyIchorStickerShotProj.DisplayName: "{$Projectiles.BabyIchorStickerProj.DisplayName} Shot"
-			// BabyOcramShotProj.DisplayName: "{$Projectiles.BabyOcramProj.DisplayName} Shot"
-			// CuteGastropodShotProj.DisplayName: "{$Projectiles.CuteGastropodProj.DisplayName} Shot"
-			// CuteLamiaPetShotProj.DisplayName: "{$Projectiles.CuteLamiaPetProj.DisplayName} Shot"
-			// DemonHeartShotProj.DisplayName: "{$Projectiles.DemonHeartProj.DisplayName} Shot"
-			// DocileDemonEyeShotProj.DisplayName: "{$Projectiles.DocileDemonEyeProj.DisplayName} Shot"
-			// DrumstickElementalShotProj.DisplayName: "{$Projectiles.DrumstickElementalProj.DisplayName} Shot"
-			// FairySwarmShotProj.DisplayName: "{$Projectiles.FairySwarmSProj.DisplayName} Shot"
-			// GhostMartianShotProj.DisplayName: "{$Projectiles.GhostMartianProj.DisplayName} Shot"
-			// NumberMuncherShotProj.DisplayName: "{$Projectiles.NumberMuncherProj.DisplayName} Shot"
-			// SkeletronPrimeHandBombShotProj.DisplayName: "{$Projectiles.SkeletronPrimeHandProj.DisplayName} Bomb Shot"
-			// SkeletronPrimeHandLaserShotProj.DisplayName: "{$Projectiles.SkeletronPrimeHandProj.DisplayName} Laser Shot"
-			// StrangeRobotShotProj.DisplayName: "{$Projectiles.StrangeRobotProj.DisplayName} Shot"
-			// SwarmofCthulhuShotProj.DisplayName: "{$Projectiles.SwarmofCthulhuProj.DisplayName} Shot"
-			// TinyRetinazerShotProj.DisplayName: "{$Projectiles.TinyRetinazerProj.DisplayName} Shot"
-			// TinySpazmatismShotProj.DisplayName: "{$Projectiles.TinySpazmatismProj.DisplayName} Shot"
-			// TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName} Shot"
-			// WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName} Shot"
+			ExtendoNetGoldenProj.DisplayName: Wydłużona złota siatka!
+			ExtendoNetRegularProj.DisplayName: Wydłużona siatka!
+			BoneCleavingFangProj.DisplayName: "{$Items.BoneCleavingFang.DisplayName}"
+			BoneShatterLongbowProj.DisplayName: Strzała z trzaskającego kości łuku
+			CandleDustDummy.DisplayName: Candle Dust Dummy
+			GuideVoodoorangProj.DisplayName: "{$Items.GuideVoodoorang.DisplayName}"
+			LegendaryWoodenSwordProj.DisplayName: "{$Items.LegendaryWoodenSword.DisplayName}"
+			PlagueOfToadsCloud.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			PlagueOfToadsFired.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			PlagueOfToadsProj.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			PocketSandProj.DisplayName: "{$Items.PocketSand.DisplayName}"
+			SightofRetinazerLaser.DisplayName: Laser z wzroku siatkówczaka
+			BreathOfSpazmatismProj.DisplayName: "{$Items.BreathOfSpazmatism.DisplayName}"
+			TalonstormClawProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			TalonstormFiredProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			TalonstormProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			TrueLegendaryWoodenSwordProj.DisplayName: "{$Items.TrueLegendaryWoodenSword.DisplayName}"
+			AlienHornetShotProj.DisplayName: Strzał kosmicznego szerzenia
+			AnimatedTomeShotProj.DisplayName: Strzał animowanego tomu
+			BabyIchorStickerShotProj.DisplayName: Strzał małego Ichiego
+			BabyOcramShotProj.DisplayName: Strzał małego Ocrama
+			CuteGastropodShotProj.DisplayName: Strzał uroczego brzuchonoga
+			CuteLamiaPetShotProj.DisplayName: Strzał małego węża
+			DemonHeartShotProj.DisplayName: Strzał demonicznego serca
+			DocileDemonEyeShotProj.DisplayName: Strzał demonicznego oka
+			DrumstickElementalShotProj.DisplayName: Strzał żywiołaka kurczaka
+			FairySwarmShotProj.DisplayName: Strzał roju wróżek
+			GhostMartianShotProj.DisplayName: Strzał ducha marsjanina
+			NumberMuncherShotProj.DisplayName: Strzał chrupacza liczb
+			SkeletronPrimeHandBombShotProj.DisplayName: Bomba ręki Szkieletrona Prime
+			SkeletronPrimeHandLaserShotProj.DisplayName: Laser ręki Szkieletrona Prime
+			StrangeRobotShotProj.DisplayName: Strzał dziwnego robota
+			SwarmofCthulhuShotProj.DisplayName: Strzał roju Cthulhu
+			TinyRetinazerShotProj.DisplayName: Strzał małego Siatkówczaka
+			TinySpazmatismShotProj.DisplayName: Strzał małego Spazmaka
+			TorturedSoulShotProj.DisplayName: Strzał umęczonej duszy
+			WallFragmentEyeShotProj.DisplayName: Strzał oka ściany
 		}
 
 		Tiles: {
-			// MapEntry_Locked: Locked
-			// AntiqueChestTile.MapEntry_Locked: "{$Tiles.MapEntry_Locked} {$Items.AntiqueChestItem.DisplayName}"
+			MapEntry_Locked: Zamknięta
+			AntiqueChestTile.MapEntry_Locked: "{$Tiles.MapEntry_Locked} {$Items.AntiqueChestItem.DisplayName}"
 
 			SlimeBeaconTile: {
-				// NotInMultiplayer: NOT IN MULTIPLAYER
-				// Activated: Background Activated
-				// Deactivated: Background Deactivated
+				NotInMultiplayer: NIE W TRYBIE MULTIPLAYER
+				Activated: Tło włączone
+				Deactivated: Tło wyłączone
 			}
 
 			VanityDresserTile: {
-				/* Mouseover:
+				Mouseover:
 					'''
-					Costume Dresser
-					Left Click to change your Pet's appearance
-					Right Click to change your Light Pet's appearance
-					''' */
-				// WorkProperly: For this to work properly, don't have any item selected
-				// NoCostumesFoundPet: No alt costumes found for pet
-				// NoCostumesFoundLightPet: No alt costumes found for light pet
+					Komoda z kostiumami
+					Kliknij lewym przyciskiem myszy aby zmienić wygląd chowańca
+					Kliknij prawym przyciskiem myszy aby zmienić wygląd chowańca światła
+					'''
+				WorkProperly: Aby działało poprawnie, wybierz pusty slot w ekwipunku
+				NoCostumesFoundPet: Nie znaleziono alternatywnych kostiumów dla chowańca!
+				NoCostumesFoundLightPet: Nie znaleziono alternatywnych kostiumów dla chowańca światła!
 			}
 		}
 
 		Conditions: {
-			// UnlockedBiomeTorches: If {$ItemName.TorchGodsFavor} was already used
-			// DroneTypeNotUnlocked: If it isn't unlocked yet
+			UnlockedBiomeTorches: Jeżeli {$ItemName.TorchGodsFavor} została już użyta
+			DroneTypeNotUnlocked: Jeżeli nie jest jeszcze odblokowany
 		}
 
 		DropConditions: {
-			// MatchAppearanceCondition.Description: Drops based on appearance
-			// NotAllDronePartsUnlockedCondition.Description: Drops if not all {$Items.DroneParts.DisplayName} are unlocked yet
-			// NoHasItemWithBankCondition.Description: Only if {0} is not in the closest players inventory or banks
+			MatchAppearanceCondition.Description: Bazowane na wyglądzie
+			NotAllDronePartsUnlockedCondition.Description: Jeżeli nie wszystkie {$Items.DroneParts.DisplayName} zostały odblokowane
+			NoHasItemWithBankCondition.Description: Tylko jeśli {0} nie jest w ekwipunku lub skrytkach najbliższego gracza
 		}
 
 		Announcements: {
-			// SigilOfTheWingDeath: "{0} has died, but their soul has not given up..."
-			// SoulHarvesterDeath: The Dungeon Souls have been freed!
-			// SoulHarvesterBossAppear: "{$NPCs.HarvesterBoss.DisplayName} has been awakened!"
-			// SpawnOfOcramAppear: "{$NPCs.SpawnOfOcram.DisplayName} has appeared!"
-			// MegalodonAppear: A {$NPCs.Megalodon.DisplayName} is approaching! Get out of the ocean!
-			// BigEnemyDisappear: The {0} disappeared... for now
-			// SoulHarvesterBabyAppear: You hear a faint cawing from the dungeon.
-			// SoulHarvesterBabyCageAppear: A hungry bird has been released!
+			SigilOfTheWingDeath: "{0} umiera, ale dusza jeszcze się nie poddała..."
+			SoulHarvesterDeath: Dusze lochu zostały uwolnione!
+			SoulHarvesterBossAppear: "{$NPCs.HarvesterBoss.DisplayName} budzi się ze snu!"
+			SpawnOfOcramAppear: Pojawia się {$NPCs.SpawnOfOcram.DisplayName}!
+			MegalodonAppear: Nadchodzi {$NPCs.Megalodon.DisplayName}! Wychodź z oceanu!
+			BigEnemyDisappear: "{0} znika... na razie"
+			SoulHarvesterBabyAppear: Z lochu dobiega krakanie.
+			SoulHarvesterBabyCageAppear: Głodny ptak został uwolniony!
 		}
 
 		SoulData: {
 			DungeonSoul: {
-				// DisplayName: Dungeon {^0:Soul;Souls}
-				// Unlock: ""
-				// Description: ""
+				DisplayName: "{^0:Dusza;Dusze} Lochu"
+				Unlock: ""
+				Description: ""
 			}
 
 			SoulofFright: {
-				// DisplayName: "{^0:Soul;Souls} of Fright"
-				// Unlock: Defeat {$NPCName.SkeletronPrime}
-				// Description: Inflicts {$BuffName.Ichor} and {$BuffName.Venom}
+				DisplayName: "{^0:Dusza;Dusze} przerażenia"
+				Unlock: Pokonaj {$NPCName.SkeletronPrime}
+				Description: Nakłada {$BuffName.Ichor} oraz {$BuffName.Venom}
 			}
 
 			SoulofSight: {
-				// DisplayName: "{^0:Soul;Souls} of Sight"
-				// Unlock: Defeat {$Enemies.TheTwins}
-				// Description: Inflicts {$BuffName.CursedInferno}
+				DisplayName: "{^0:Dusza;Dusze} wzroku"
+				Unlock: Pokonaj {$Enemies.TheTwins}
+				Description: Nakłada {$BuffName.CursedInferno}
 			}
 
 			SoulofMight: {
-				// DisplayName: "{^0:Soul;Souls} of Might"
-				// Unlock: Defeat {$NPCName.TheDestroyer}
-				// Description: ""
+				DisplayName: "{^0:Dusza;Dusze} mocy"
+				Unlock: Pokonaj {$NPCName.TheDestroyer}
+				Description: ""
 			}
 
-			/* TooltipFormat:
+			TooltipFormat:
 				'''
 				{0}
 				{1}
 				{2}
 				{3}
-				''' */
+				'''
 		}
 
 		DroneData: {
 			BasicLaserDrone: {
-				// DisplayName: Basic Laser {^0:Drone;Drones}
-				// ComponentName: "{$Items.DroneUnlockableBasicLaserDrone.DisplayName}"
-				// Firerate: High
-				// Description: Rapidly fires lasers
-				// Misc: ""
+				DisplayName: "{^0:Prosty laserowy dron; Proste laserowe drony}"
+				ComponentName: "{$Items.DroneUnlockableBasicLaserDrone.DisplayName}"
+				Firerate: Wysoka
+				Description: Szybko strzela laserami
+				Misc: ""
 			}
 
 			HeavyLaserDrone: {
-				// DisplayName: Heavy Laser {^0:Drone;Drones}
-				// ComponentName: "{$Items.DroneUnlockableHeavyLaserDrone.DisplayName}"
-				// Firerate: Extremely slow
-				// Description: Fires a penetrating laser after a long delay
-				// Misc: ""
+				DisplayName: "{^0:Ciężki laserowy dron; Ciężkie laserowe drony}"
+				ComponentName: "{$Items.DroneUnlockableHeavyLaserDrone.DisplayName}"
+				Firerate: Ekstremalnie niska szybkość
+				Description: Strzela penetrującymi laserami z długimi przerwami
+				Misc: ""
 			}
 
 			MissileDrone: {
-				// DisplayName: Missile {^0:Drone;Drones}
-				// ComponentName: "{$Items.DroneUnlockableMissileDrone.DisplayName}"
-				// Firerate: Very slow
-				// Description: Fires a salvo of missiles after a long delay
-				// Misc: ""
+				DisplayName: "{^0:Rakietowy dron; Rakietowe drony}"
+				ComponentName: "{$Items.DroneUnlockableMissileDrone.DisplayName}"
+				Firerate: Bardzo powolna szybkość
+				Description: Strzela salwami rakiet z długimi przerwami
+				Misc: ""
 			}
 
 			HealingDrone: {
-				// DisplayName: Healing {^0:Drone;Drones}
-				// ComponentName: "{$Items.DroneUnlockableHealingDrone.DisplayName}"
-				// Firerate: ""
-				// Description: Heals you when hurt
-				// Misc: Only one can be summoned
+				DisplayName: "{^0:Leczący dron; Leczące drony}"
+				ComponentName: "{$Items.DroneUnlockableHealingDrone.DisplayName}"
+				Firerate: ""
+				Description: Leczy Cię po otrzymaniu obrażeń
+				Misc: Tylko jeden może być przywołany
 			}
 
 			ShieldDrone: {
-				// DisplayName: Shield {^0:Drone;Drones}
-				// ComponentName: "{$Items.DroneUnlockableShieldDrone.DisplayName}"
-				// Firerate: ""
-				// Description: Creates a damage reducing shield over time
-				/* Misc:
+				DisplayName: "{^0:Dron osłonny; Drony osłonne}"
+				ComponentName: "{$Items.DroneUnlockableShieldDrone.DisplayName}"
+				Firerate: ""
+				Description: Z biegiem czasu tworzy zmniejszającą obrażenia tarczę
+				Misc:
 					'''
-					Only one can be summoned
-					Shield resets if drone despawns
-					''' */
+					Tylko jeden może być przywołany
+					Tarcza resetuje się przy śmierci drona
+					'''
 			}
 
-			/* TooltipFormat:
+			TooltipFormat:
 				'''
 				{0}
 				{1}
 				{2}
 				{3}
 				{4}
-				''' */
-			/* TooltipFormatNoCombat:
+				'''
+			TooltipFormatNoCombat:
 				'''
 				{0}
 				{1}
 				{2}
-				''' */
+				'''
 		}
 
 		Configs: {
 			ClientConfig: {
-				// DisplayName: Client Config
+				DisplayName: Konfiguracja klienta
 
 				Headers: {
-					/* GoblinUnderling:
+					GoblinUnderling:
 						'''
-						Goblin Underlings - Minion Options
+						Goblini Słudzy - Opcje
 
-						These apply to the following items:
+						Działają dla przedmiotów:
 						{$Items.EagerUnderlingItem.DisplayName}
 						{$Items.SeriousUnderlingItem.DisplayName}
 						{$Items.ShyUnderlingItem.DisplayName}
-						''' */
-					// HintServerConfig: Hint: To go to the server config containing feature toggles, press the '>' arrow in the bottom right
+						'''
+					HintServerConfig: Podpowiedź: Aby przejść do konfiguracji serwera zawierającej ustawienia zawartości, naciśnij '>' strzałkę w prawym dolnym rogu
 				}
 
 				GoblinUnderlingAutosummon: {
-					// Label: Auto-summon
-					// Tooltip: Enable to auto-summon this minion upon spawning if the item is in your inventory or open Void Bag
+					Label: Automatyczne przywołanie
+					Tooltip: Włącz, aby ten sługa był automatycznie przywoływany przy odrodzeniu jeżeli ten przedmiot znajduje się w twoim ekwipunku lub torbie pustki
 				}
 
 				GoblinUnderlingVisibleArmor: {
-					// Label: Armor progression
-					// Tooltip: Enable to show armor progression
+					Label: Postęp zbroi
+					Tooltip: Włącz aby widoczny był postęp zbroi
 				}
 
 				GoblinUnderlingVisibleRocketBoots: {
-					// Label: Rocket Boots
-					// Tooltip: Enable to show rocket boots (with progression) while flying
+					Label: Rakietowe buty
+					Tooltip: Włącz aby widoczne były rakietowe buty (wraz z postępem) w trakcie lotu
 				}
 
 				GoblinUnderlingChatterFreq: {
-					// Label: Dialogue frequency
-					// Tooltip: Control how often this minion will display dialogue (in percent). 0 for off
+					Label: Częstość dialogów
+					Tooltip: Kontroluje jak często ten sługa będzie wyświetlać treści dialogowe (w procentach). 0 aby wyłączyć
 				}
 
 				Hint: {
-					// Label: Hint
-					// Tooltip: ""
+					Label: Powiadomienie
+					Tooltip: ""
 				}
 			}
 
 			ContentConfig: {
-				// DisplayName: Content Config (Server)
+				DisplayName: Konfiguracja zawartości (Serwer)
 
 				Headers: {
-					/* TogglesSpecial:
+					TogglesSpecial:
 						'''
-						The following toggles let you control content added by this mod
+						Następujące ustawienia pozwalają na kontrolę nad dodaną przez moda zawartością
 
-						Special - Toggles which take priority over other relevant config options
-						''' */
-					// NPCs: NPCs
-					// Items: Items
-					// Other: Other
-					// HintClientConfig: Hint: To go to the client config containing individual adjustments, press the '<' arrow in the bottom left
+						Specjalne - Ustawienia które mają priorytet nad innymi powiązanymi ustawieniami
+						'''
+					NPCs: NPC
+					Items: Przedmioty
+					Other: Inne
+					HintClientConfig: Podpowiedź: Aby przejść do konfiguracji klienta zawierającą indywidualne dla gracza ustawienia, naciśnij '<' strzałkę w lewym dolnym rogu
 				}
 
 				Bosses: {
-					// Label: Bosses
-					// Tooltip: Boss content
+					Label: Bossowie
+					Tooltip: Zawartość z bossami
 				}
 
 				CuteSlimes: {
-					// Label: Cute Slimes
-					// Tooltip: Cute slime content
+					Label: Urocze szlamy
+					Tooltip: Zawartość z uroczymi szlamami
 				}
 
 				HostileNPCs: {
-					// Label: Hostile
-					// Tooltip: Harmful entities - This includes pets obtained by catching
+					Label: Wrogie NPC
+					Tooltip: Szkodliwe istoty - do tego chowańce pozyskiwane w siatkę
 				}
 
 				FriendlyNPCs: {
-					// Label: Friendly
-					// Tooltip: Harmless entities - This includes pets obtained by catching
+					Label: Przyjazne NPC
+					Tooltip: Nieszkodliwe istoty - do tego chowańce pozyskiwane w siatkę
 				}
 
 				DroppedPets: {
-					// Label: Dropped Pets
-					// Tooltip: Pets that drop from hostile entities
+					Label: Chowańce z wrogów
+					Tooltip: Chowańce upuszczane przez wrogich NPC
 				}
 
 				OtherPets: {
-					// Label: Other Pets
-					// Tooltip: Pets that are crafted, sold, or otherwise obtained - This does not include NPCs caught as pets!
+					Label: Inne chowańce
+					Tooltip: Chowańce tworzone, sprzedawane, lub zdobywane w inne sposoby - nie wlicza chowańców łapanych w siatkę!
 				}
 
 				Weapons: {
-					// Label: Weapons
-					// Tooltip: Items that deal damage - Includes ammunition
+					Label: Bronie
+					Tooltip: Przedmioty zadające obrażenia - do tego amunicja
 				}
 
 				Tools: {
-					// Label: Tools
-					// Tooltip: Tools and useful items
+					Label: Narzędzia
+					Tooltip: Narzędzia i inne przydatne przedmioty
 				}
 
 				PlaceablesFunctional: {
-					// Label: Placeables (functional)
-					// Tooltip: Placeable functional tiles and objects
+					Label: Umieszczalne przedmioty (funkcjonalne)
+					Tooltip: Umieszczalne funkcjonalne bloki i inne obiekty
 				}
 
 				PlaceablesDecorative: {
-					// Label: Placeables (decorative)
-					// Tooltip: Placeable decorative tiles and objects
+					Label: Umieszczalne przedmioty (dekoracyjne)
+					Tooltip: Umieszczalne bloki dekoracyjne oraz inne obiekty
 				}
 
 				Armor: {
-					// Label: Armor
-					// Tooltip: Armor with stats
+					Label: Zbroje
+					Tooltip: Zbroje ze statystykami
 				}
 
 				VanityArmor: {
-					// Label: Vanity
-					// Tooltip: Vanity armor
+					Label: Przedmioty wyglądu
+					Tooltip: Zbroje w pełni kosmetyczne
 				}
 
 				Accessories: {
-					// Label: Accessories
-					// Tooltip: Accesssories with effects
+					Label: Akcesoria
+					Tooltip: Akcesoria z efektami
 				}
 
 				VanityAccessories: {
-					// Label: Vanity Accessories
-					// Tooltip: Accessories without effects
+					Label: Akcesoria wyglądu
+					Tooltip: Akcesoria bez efektów
 				}
 
 				BossConsolation: {
-					// Label: Boss Consolation
-					// Tooltip: Accessories that drop for failing to defeat a vanilla boss within 5 attempts
+					Label: Nagrody pocieszenia bossów
+					Tooltip: Akcesoria pozyskiwane po pięciu nieudanych próbach pokonania bossa z podstawowej gry
 				}
 
 				AommSupport: {
-					// Label: "'The Amulet Of Many Minions' cross-Mod content"
-					// Tooltip: Content that is available when the 'The Amulet Of Many Minions' mod is enabled, such as combat pets
+					Label: Zawartość kompatybilności z modem 'The Amulet Of Many Minions'
+					Tooltip: Zawartość dostępna gdy mod 'The Amulet Of Many Minions' jest włączony, taka jak walczące chowańce
 				}
 
 				CuteSlimesPotionOnly: {
-					// Label: Cute Slimes Potion Only
-					// Tooltip: Affects the way Cute Slimes spawn and how the Jellied Ale works
+					Label: Urocze szlamy tylko z miksturą
+					Tooltip: Wpływa na pojawianie się Uroczych Szlamów oraz działanie Żelowatego Piwa
 				}
 
 				Hint: {
-					// Label: Hint
-					// Tooltip: ""
+					Label: Podpowiedź
+					Tooltip: ""
 				}
 			}
 		}
@@ -3093,397 +3093,397 @@ Mods: {
 			GoblinUnderling: {
 				Eager: {
 					Idle: {
-						// Bored: I'm bored, boss!
-						// WhenFighting: When's da fighting, boss?
-						// HangingOut: I like hangin' out, boss!
-						// GoodBoss: You's a good boss, boss!
-						// BossSilent: Boss is always silent. So cool!
-						// HateSlimes: I hate slimes, dey're sticky!
-						// WhenMeal: When's meal time?
-						// DoYouLikeMe: Do ya like me, boss?
-						// GettingSleepy: I'm gettin' sleepy, boss...
-						// SeeBase: I can see our base from up here!
-						// SandInArmor: I got sand in my armor!
-						// GroundLooking: The ground's lookin' at me!
-						// BeatTheCold: I'll beat da cold by workin up a sweat!
-						// FaceLooksLikeRock: Dat rock looks like your face, boss!
-						// RockLooksLikeBones: Dose rocks look like bones
-						// FindShinyMetals: I hope we find shiny metals!
-						// NothingScares: Nothin' scares me when I'm wit you, boss!
-						// HeardRat: I think I heard a rat. A big rat!
-						// CavesSpooky: Caves are spooky!
+						Bored: Szefie! Nudzę się!
+						WhenFighting: Kiedy walczymy, szefie?
+						HangingOut: Lubię razem siedzieć, szefie!
+						GoodBoss: Dobry szef z Ciebie, szefie!
+						BossSilent: Szef zawsze siedzi cicho, czad!
+						HateSlimes: Nienawidzę szlamów, są takie lepkie!
+						WhenMeal: Kiedy coś zjemy?
+						DoYouLikeMe: Szefie, lubisz mnie?
+						GettingSleepy: Szefie, chce mi się spać...
+						SeeBase: Widać stąd nasz dom!
+						SandInArmor: Mam piach w zbroi!
+						GroundLooking: Ziemia się na mnie patrzy!
+						BeatTheCold: Radzę sobie z zimnem szybką rozgrzewką!
+						FaceLooksLikeRock: Ten głaz wygląda jak ty, szefie!
+						RockLooksLikeBones: Te skały przypominają kości.
+						FindShinyMetals: Mam nadzieję, że znajdziemy jakieś lśniące skały!
+						NothingScares: Nie boję się niczego gdy szef jest w pobliżu!
+						HeardRat: Chyba słyszę szczura. Dużego szczura!
+						CavesSpooky: Jaskinie są straszne!
 					}
 
-					// FirstSummon.YouTheBoss: You da boss now, boss!
+					FirstSummon.YouTheBoss: Teraz to Ty rządzisz, szefie!
 
 					Attacking: {
-						// Gotcha: Gotcha!
-						// IGotThis: I got dis one!
-						// ExpGold: I'm a goblin! If you beat me, you get 1 exp and 2 gold!
-						// NoOneTouches: No one touches boss!
-						// BadGuys: Bad guys get black eyes!
-						// ComeHere: C'mere, you!
-						// LevelOne: I'm level one! I'm da strongest gob!
-						// StabStab: Stab stab stab!
-						// Boom: Boom! Haha!
-						// Skewer: Gonna skewer ya!
+						Gotcha: Mam Cię!
+						IGotThis: Wezmę tego!
+						ExpGold: Jestem goblinem! Jeśli mnie pokonasz, dostaniesz 1 pd i 2 złota!
+						NoOneTouches: Nikt nie dotyka szefa!
+						BadGuys: Każdy zły gość dostanie w kość!
+						ComeHere: Wracaj tu!
+						LevelOne: Mam pierwszy poziom! Jestem najsilniejszym goblinem!
+						StabStab: Ciach ciach ciach!
+						Boom: Bum! Haha!
+						Skewer: Zrobię z Ciebie szaszłyk!
 					}
 
 					PlayerHurt: {
-						// DontHurt: Don't hurt da boss!
-						// YouWillPay: You'll pay for dat!
-						// YouGood: You good, boss?!
-						// ThatHurt: Dat looked like it hurt, boss!
-						// IsntWeak: Da boss ain't weak, chump!
+						DontHurt: Nie krzywdź szefa!
+						YouWillPay: Zapłacisz za to!
+						YouGood: Wszystko dobrze, szefie?!
+						ThatHurt: Wyglądało jakby bolało, szefie!
+						IsntWeak: Szef to nie mięczak!
 					}
 
 					PlayerHurtByTrap: {
-						// WallsAttack: Da walls attack too?!
-						// WatchWalls: Watch da walls, boss!
-						// BadWall: Bad wall! Don't hurt boss!
-						// GroundEnemy: Da ground is an enemy?!
-						// HotHot: Hot! Hot!
-						// MissThat: How'd ya miss dat, boss?
-						// Dangerous: Dat's dangerous!
-						// NoFair: No fair! I can't hit dose!
-						// BadPeople: Bad people made bad traps!
-						// BigBadBalls: Big bad balls!
-						// DontFlattened: Don't get flattened, boss!
-						// HadToHurt: Dat had ta hurt!
+						WallsAttack: Da walls attack too?!
+						WatchWalls: Uważaj na ściany, szefie!
+						BadWall: Zła ściana! Nie krzywdź szefa!
+						GroundEnemy: Ziemia jest wrogiem?
+						HotHot: Pali! Pali!
+						MissThat: Jak można to przegapić, szefie?
+						Dangerous: To groźne!
+						NoFair: Nie fair! Nie mogę temu oddać!
+						BadPeople: Żli ludzie robią złe pułapki!
+						BigBadBalls: Duże złe kule!
+						DontFlattened: Nie daj się spłaszczyć, szefie!
+						HadToHurt: To musiało boleć!
 					}
 
 					BossSpawn: {
-						// UhOh: Uh oh!
-						// BigOne: Dat's a biggun!
-						// ThatOnesBig: Boss, dat one's big!
-						// NotAfraid: I ain't afraid of nothin!
-						// WeGotTrouble: Boss, we got trouble!
-						// HateBees: I hate bees!
-						// WontReadBook: I won't read da big book!
-						// OneEyedDummy: Big one-eyed dummy!
-						// BigGuts: Dat one's big! Dat means it has big guts!
-						// WeGotThis: We got dis, boss!
-						// JigglyJellyfish: Haha, jiggly jellyfish!
-						// FatBat: Dat's a fat bat!
+						UhOh: Ups!
+						BigOne: Wielkie to!
+						ThatOnesBig: Szefie, ten jest duży!
+						NotAfraid: Niczego się nie boję!
+						WeGotTrouble: Szefie, mamy kłopoty!
+						HateBees: Nienawidzę pszczół!
+						WontReadBook: Nie czytam dużych książek!
+						OneEyedDummy: Wielki jednooki głupek!
+						BigGuts: Ten jest duży! Znaczy, że ma dużo siły!
+						WeGotThis: Damy radę, szefie!
+						JigglyJellyfish: Haha, galaretowata meduza!
+						FatBat: Ale gruby nietoperz!
 					}
 
 					BossDefeat: {
-						// WeDidIt: We did it, boss!
-						// KnewYouCould: I knew you could do it!
-						// EasyNext: Easy. Next!
-						// WontBeInSequel: You won't be in da sequel!
-						// NastyBees: Nasty bees! Only good for da honey!
-						// StupidBook: Stupid book man!
-						// DumbWeakling: Big dumb weakling!
-						// DumbDragon: Dumb dragon, boss is da strongest!
-						// YouTheBest: Boss, you da best!
-						// ToughTougher: Dat one was tough, but we're tougher!
-						// NoMoreSquid: I don't wanna see no more squid after dis...
-						// JellyTastesBad: Blech! Dat jelly tastes bad!
-						// SuckOnThat: Suck on dat, fat bat!
+						WeDidIt: Udało się, szefie!
+						KnewYouCould: I knew you could do it!
+						EasyNext: Łatwizna. Następny!
+						WontBeInSequel: Nie będzie Cię w drugiej części!
+						NastyBees: Paskudne pszczoły! Nadają się tylko na miód!
+						StupidBook: Głupi czarodziej!
+						DumbWeakling: Duży głupi mięczak!
+						DumbDragon: Głupi smok, szef jest najsilniejszy!
+						YouTheBest: Szef jest najlepszy!
+						ToughTougher: Ten był silny, ale my jesteśmy silniejsi!
+						NoMoreSquid: I don't wanna see no more squid after dis...
+						JellyTastesBad: Blech! Dat jelly tastes bad!
+						SuckOnThat: Suck on dat, fat bat!
 					}
 
-					// OOAStarts.WhatDidYouDo: Boss, what didja do?!
+					OOAStarts.WhatDidYouDo: Szefie! Co narobiłeś!
 
 					OOANewWave: {
-						// HolesStillOpen: Boss, dem holes are still open!
-						// MoreBaddies: More baddies? More baddies!
-						// ProtectGem: Protect da shiny gem!
-						// WontLetPass: I won't let em pass, boss!
+						HolesStillOpen: Szefie, te dziury są nadal otwarte!
+						MoreBaddies: Więcej wrogów? Więcej wrogów!
+						ProtectGem: Broń klejnotu!
+						WontLetPass: Nie dam im przejść, szefie!
 					}
 
 					ArmorEquipped: {
-						// LookingSpiffy: Lookin' spiffy, boss!
-						// LookingFluffy: Lookin' fluffy, boss!
+						LookingSpiffy: Czadowo wyglądasz, szefie!
+						LookingFluffy: Wyglądasz puszyście, szefie!
 					}
 
-					// ItemSelected.IsAToy: Is dat a toy?
-					// InvasionChanged.OldGangBack: Old gang is back!
-					// BloodMoonChanged.SkyIsRed: Boss, da sky is red! It's scary!
+					ItemSelected.IsAToy: To zabawka?
+					InvasionChanged.OldGangBack: Stary gang wraca!
+					BloodMoonChanged.SkyIsRed: Szefie, niebo jest czerwone, boję się!
 				}
 
 				Serious: {
 					Idle: {
-						// Peaceful: It's peaceful.
-						// YouSeemCalm: You seem calm, boss.
-						// ShallWeRest: Boss, shall we rest here?
-						// PaceEasy: Your pace is easy to follow.
-						// ShouldSleep: We should sleep soon.
-						// WindNice: The wind feels nice.
-						// WarmWithFire: I can warm you with fire if you'd like.
-						// SandsClaimWeak: The sands claim the weak.
-						// UnnaturalPlace: This place is unnatural.
-						// NotDawdle: We should not dawdle here.
-						// SpiritsHide: Spirits hide in the darkness.
-						// StonesHistory: These stones have untold history.
-						// HiddenTreasure: There may be hidden treasure here.
-						// BeCareful: Be careful in the dark, boss.
-						// TooFarAhead: Boss... please don't go too far ahead.
+						Peaceful: Tu jest bardzo spokojnie.
+						YouSeemCalm: Szef wygląda spokojnie.
+						ShallWeRest: Szefie, czy to miejsce na przerwę?
+						PaceEasy: Łatwo podąża się za twoim tempem.
+						ShouldSleep: Powinniśmy iść spać.
+						WindNice: Ten wiatr jest przyjemny w odczuciu.
+						WarmWithFire: Jeśli chcesz, ogrzeję Cię ogniem.
+						SandsClaimWeak: Słabi nie wracają z pustyni.
+						UnnaturalPlace: Dziwnie się tu czuję.
+						NotDawdle: Nie powinniśmy zostawać tu zbyt długo.
+						SpiritsHide: W ciemności chowają się duchy.
+						StonesHistory: Za tymi skałami stoi ukryta historia.
+						HiddenTreasure: W pobliżu mogą znajdować się skarby.
+						BeCareful: Uważaj na siebie w ciemności, szefie.
+						TooFarAhead: Szefie... nie oddalaj się za bardzo.
 					}
 
-					// FirstSummon.Greetings: Greetings, boss.
+					FirstSummon.Greetings: Witaj, szefie.
 
 					Attacking: {
-						// IGotThis: I've got this.
-						// NotDefy: Do not defy the boss.
-						// NotSurvive: You will not survive.
-						// CutDown: I will cut you down.
-						// Burn: Burn.
-						// StruckDown: Be struck down by my spells.
-						// InSights: You are in my sights.
+						IGotThis: Dam sobie radę.
+						NotDefy: Nie stawiaj się szefowi.
+						NotSurvive: Nie przeżyjesz.
+						CutDown: Zetnę Cię.
+						Burn: Spłoń.
+						StruckDown: Padnij przed moimi zaklęciami.
+						InSights: Mam Cię na celu.
 					}
 
 					PlayerHurt: {
-						// Alright: Are you alright?
-						// Unpleasant: That looks unpleasant.
-						// Tough: You're tough, boss.
-						// Healing: Do you need healing?
+						Alright: Wszystko dobrze?
+						Unpleasant: To nie wygląda przyjemnie.
+						Tough: Twardziel z Ciebie, szefie.
+						Healing: Potrzebujesz leczenia?
 					}
 
 					PlayerHurtByTrap: {
-						// WatchStep: Watch where you step, boss.
-						// PressurePlates: Be mindful of pressure plates.
-						// CowardlyTrap: A cowardly trap...
-						// BossNotSee: Boss, did you not see that?
-						// NaturalTrap: A natural trap.
-						// MinorBurn: Lucky that it was only a minor burn.
-						// TrapCruel: That trap is too cruel.
-						// TakeTime: Take your time, boss.
-						// CruelPeople: What cruel people made these traps...
-						// Weighed: That must have weighed quite a bit.
-						// INotSee: I did not see that coming.
-						// FromDistance: Try to trigger those from a distance.
+						WatchStep: Patrz pod nogi, szefie.
+						PressurePlates: Uważaj na płytki naciskowe.
+						CowardlyTrap: Tchórzowska pułapka...
+						BossNotSee: Czy szef tego nie widział?
+						NaturalTrap: Naturalna pułapka.
+						MinorBurn: Na szczęście to tylko małe poparzenie.
+						TrapCruel: Ta pułapka jest zbyt okrutna.
+						TakeTime: Odpocznij chwilę, szefie.
+						CruelPeople: Co za brutalne stworzyli te pułapki...
+						Weighed: To musiało swoje ważyć.
+						INotSee: Niespodziewana pułapka.
+						FromDistance: Spróbuj aktywować je z odległości.
 					}
 
 					BossSpawn: {
-						// LargeEnemy: A large enemy approaches.
-						// Formidable: A formidable foe.
-						// Prepared: We should be prepared for this.
-						// Trust: I trust you, boss.
-						// TerribleNight: What a terrible night for a curse.
-						// MagicSuperior: Whose magic is superior, I wonder.
-						// SenseIntelligence: I can't sense any intelligence from that one.
-						// HidingDragon: They were hiding a dragon?
-						// CantLose: Boss, you can't lose here.
-						// WastedFirstLife: You wasted your first life.
-						// ForceOvercome: There is no force we cannot overcome.
+						LargeEnemy: Duży wróg nadchodzi.
+						Formidable: Potężny przeciwnik.
+						Prepared: Powinniśmy się przygotować.
+						Trust: Ufam Ci, szefie.
+						TerribleNight: Co za straszna noc na klątwę.
+						MagicSuperior: Czyja magia okaże się silniejsza, ciekawe.
+						SenseIntelligence: Nie czuć od tego żadnej inteligencji.
+						HidingDragon: Chowali smoka?
+						CantLose: Szefie, nie możesz tutaj przegrać.
+						WastedFirstLife: Pierwsze życie zmarnowane.
+						ForceOvercome: Nie ma siły której nie pokonamy.
 					}
 
 					BossDefeat: {
-						// MakeDoll: I will make a doll in your memory.
-						// TooEasy: That was too easy for you, boss.
-						// Overcame: We overcame that challenge.
-						// WellDone: Well done, boss.
-						// CurseLifted: The curse is lifted.
-						// BetterMage: I am the better mage.
-						// Joke: What a joke.
-						// ExpectedMore: I expected more. Shame.
-						// Incredible: Boss... you're incredible!
-						// WastedSecondLife: You also wasted your second life.
-						// Greatest: Boss, you really are the greatest.
+						MakeDoll: Zrobię z Ciebie lalkę w ramach pamiątki.
+						TooEasy: To było zbyt łatwe dla Ciebie, szefie.
+						Overcame: Daliśmy radę.
+						WellDone: Dobra robota, szefie.
+						CurseLifted: Klątwa została zniesiona.
+						BetterMage: Jestem lepszym czarodziejem.
+						Joke: Co za żart.
+						ExpectedMore: Gorzej niż oczekiwane, jaka szkoda.
+						Incredible: Szef jest niesamowity!
+						WastedSecondLife: Nastepne życie zmarnowane.
+						Greatest: Szef na prawdę jest najlepszy.
 					}
 
-					// OOAStarts.WhatMagic: What sort of magic is this?
+					OOAStarts.WhatMagic: Co to za magia?
 
 					OOANewWave: {
-						// NotOverYet: This isn't over yet.
-						// MoreFoes: More foes approach, boss.
-						// ProtectGem: I will protect the gem.
-						// ArmyEndless: This army is endless...
+						NotOverYet: To jeszcze nie koniec.
+						MoreFoes: Szefie, nadchodzi więcej wrogów.
+						ProtectGem: Będę bronić klejnotu.
+						ArmyEndless: Ta armia jest nieskończona...
 					}
 
-					// ArmorEquipped.OddThings: Boss... You do odd things at times.
-					// ItemSelected.ThatDoll: That doll... be careful, boss.
-					// InvasionChanged.FoolsReturned: Those fools have returned.
-					// BloodMoonChanged.HeadUnbearable: My head... it's unbearable...
+					ArmorEquipped.OddThings: Szef... robi czasami dziwne rzeczy.
+					ItemSelected.ThatDoll: Ta lalka... ostrożnie, szefie.
+					InvasionChanged.FoolsReturned: Ci głupcy wrócili.
+					BloodMoonChanged.HeadUnbearable: Moja głowa... to nie do zniesienia...
 				}
 
 				Shy: {
 					Idle: {
-						// LikeNoFight: I like when we don't have to fight.
-						// FeelSafe: You make me feel safe, boss.
-						// RunIntoBad: I hope we don't run into bad guys.
-						// WatchStep: Please watch your step, boss.
-						// Nevermind: Boss, I... ah... nevermind.
-						// ShouldRest: You should rest, boss.
-						// GoHome: W-we should probably go home, boss...
-						// PleasantWind: Such pleasant wind...
-						// SnowCold: So this is snow... so cold!
-						// PlaceScary: B-boss... this place is s-scary!
-						// EveryoneNice: Everyone here is nice.
-						// SeeStars: Boss, look! We can see the stars!
-						// WatchFooting: Watch your footing, boss!
-						// SawMouse: Eep!...Sorry boss, I saw a mouse...
-						// DontLeave: B-boss... Please don't leave me...
-						// Scared: I-I'm scared...
+						LikeNoFight: Lubię, gdy nie musimy walczyć.
+						FeelSafe: Przy szefie czuję się bezpiecznie.
+						RunIntoBad: Obyśmy nie trafili na żadnych wrogów.
+						WatchStep: Patrz pod nogi, szefie.
+						Nevermind: Szefie, ja... nie ważne...
+						ShouldRest: Pora odpocząć, szefie.
+						GoHome: Ch-chyba pora wracać, szefie.
+						PleasantWind: Jaki przyjemny wiatr...
+						SnowCold: A więc to jest śnieg... ale zimny!
+						PlaceScary: Sz-szefie... t-to miejsce jest straszne!
+						EveryoneNice: Każdy tu jest miły.
+						SeeStars: Szefie, zobacz! Widać giwazdy!
+						WatchFooting: Patrz na czym stoisz, szefie.
+						SawMouse: Aa!...Przepraszam szefie, tam jest mysz...
+						DontLeave: Szefie... Nie chcę zostać samemu, proszę...
+						Scared: B-Boję się...
 					}
 
-					// FirstSummon.NiceToMeet: N-nice to meet you, boss.
+					FirstSummon.NiceToMeet: M-Miło Cię poznać, szefie.
 
 					Attacking: {
-						// NotEscape: You will not escape...
-						// SeeDead: I will see you dead...
-						// TargetSighted: Target sighted...
-						// Eliminated: You will be eliminated...
-						// BossesBlade: I am the boss's blade...
-						// Burn: Burn...
-						// WontMiss: I won't miss twice...
-						// PleaseLeave: Please... leave... before I...
+						NotEscape: Nie uciekniesz...
+						SeeDead: Będę widzieć Cię martwego...
+						TargetSighted: Cel upatrzony...
+						Eliminated: Zostaniesz usunięty...
+						BossesBlade: Jestem mieczem szefa...
+						Burn: Spłoń...
+						WontMiss: Nie spudłuję dwa razy...
+						PleaseLeave: Proszę... odejdź... zanim...
 					}
 
 					PlayerHurt: {
-						// YouAlright: Boss, are you alright?
-						// OhNo: Oh no, boss!
-						// DontDie: Please don't die, boss!
-						// Boss: Boss!
+						YouAlright: Szefie, wszystko dobrze?
+						OhNo: O nie, szefie!
+						DontDie: Proszę, szefie, nie giń!
+						Boss: Szefie!
 					}
 
 					PlayerHurtByTrap: {
-						// HopeOkay: I hope you're okay, boss...
-						// TreatingWound: Be careful when treating that wound...
-						// CoolDown: We should cool that down...
-						// SeeSooner: I'm sorry I didn't see that sooner...
-						// NatureCruel: Nature can be so cruel...
-						// AwfulTraps: Who would make such awful traps...
-						// TreatWound: We need to treat that wound!
-						// Barbaric: How barbaric...
-						// BadlyHurt: You're badly hurt, boss!
-						// MoreCautious: Please be more cautious, boss!
-						// DontLetHit: Please don't let those hit you anymore!
+						HopeOkay: Mam nadzieje, że wszystko z tobą dobrze, szefie...
+						TreatingWound: Uważaj przy zaopatrzaniu tej rany...
+						CoolDown: Powinniśmy to schłodzić...
+						SeeSooner: Przepraszam, nie było tego widać wcześniej...
+						NatureCruel: Natura potrafi być taka okropna...
+						AwfulTraps: Kto mógłby zrobić takie paskudne pułapki...
+						TreatWound: Trzeba to zaopatrzyć!
+						Barbaric: Co za barbarzyństwo...
+						BadlyHurt: Szef jest ciężko ranny!
+						MoreCautious: Proszę, uważaj bardziej, szefie!
+						DontLetHit: Proszę, nie daj się im znowu skrzywdzić!
 					}
 
 					BossSpawn: {
-						// WhatIsThat: Boss... Boss! What is that?!
-						// LargeEnemy: Such a large enemy... can we win?
-						// DoMyBest: I-I'll do my best, boss!
-						// LooksDangerous: T-that one looks dangerous...
-						// HesHuge: H-he's huge...
-						// Dragon: Ah! Dragon!
-						// Pretty: What a pretty... Boss! Look out!
-						// NotAgain: No... not again...!
-						// WontBeAfraid: I won't be afraid. I'll do my best!
-						// RocksMoving: T-the rocks are moving, boss!
-						// TheyAreBack: A-ah... t-they're back...
+						WhatIsThat: Szefie... Szefie! Co to jest?!
+						LargeEnemy: Ale wielki wróg... czy damy radę?
+						DoMyBest: Z-zrobię co mogę, szefie!
+						LooksDangerous: T-to wygląda groźnie...
+						HesHuge: J-jest ogromny...
+						Dragon: Aa! Smok!
+						Pretty: Ale piękne... Szefie! Uważaj!
+						NotAgain: Nie... nie znowu...!
+						WontBeAfraid: Nie boję się, zrobię co w mojej mocy!
+						RocksMoving: S-skały się ruszają, szefie!
+						TheyAreBack: Aa! Wróciły..
 					}
 
 					BossDefeat: {
-						// WasScary: T-That was scary, but we won!
-						// WasntUseful: I'm sorry that I wasn't useful, boss...
-						// YouWereGreat: You were great, boss!
-						// CouldDoIt: I-I knew you could do it!
-						// GladItsOver: I'm glad that's over...
-						// TheBiggerTheyAre: The bigger they are, the harder they fall.
-						// DontFight: I hope we don't fight another one of those...
-						// Distracted: I'm sorry that I was distracted...
-						// WontBeTaken: I... I won't be taken again!
-						// YouDidIt: You did it... you really did it, boss!
-						// WeirdFight: That was a weird fight...
-						// ThankYou: Thank you, boss. For being here.
+						WasScary: T-To było straszne, ale wygraliśmy!
+						WasntUseful: Przepraszam, że tak mało się przydaje.. szefie..
+						YouWereGreat: Świetna robota szefie!
+						CouldDoIt: Zawsze można na Ciebie liczyć, szefie!
+						GladItsOver: Na szczęście to już za nami...
+						TheBiggerTheyAre: Im większy wróg, tym mocniejszy jego upadek.
+						DontFight: Obyśmy nie musieli już z takimi walczyć...
+						Distracted: Przepraszam... Nie mogę się skupić.
+						WontBeTaken: N-Nie zabiorą mnie znowu!
+						YouDidIt: Udało się... Na prawdę się udało, szefie!
+						WeirdFight: To był dziwny pojedynek...
+						ThankYou: Dziękuję Ci, że tu jesteś, szefie.
 					}
 
-					// OOAStarts.WhatHoles: Boss... w-what are those holes?
+					OOAStarts.WhatHoles: Sz-szefie... co to za dziury?
 
 					OOANewWave: {
-						// MoreOfThem: T-there's more of them?
-						// MoreFoes: More foes approach, boss.
-						// WhenEnd: When will it end?
-						// GemSafe: The gem is safe... for now...
+						MoreOfThem: J-jest ich więcej?
+						MoreFoes: Nadchodzi więcej wrogów, szefie.
+						WhenEnd: Kiedy to się skończy?
+						GemSafe: Klejnot jest bezpieczny... na razie...
 					}
 
 					ArmorEquipped: {
-						// ItsYou: Ah!... Oh, it's you, boss...
-						// SeeingFace: I like seeing your face, boss.
+						ItsYou: Ah!... A... to Ty, szefie...
+						SeeingFace: Lubię widzieć Twoją twarz, szefie.
 					}
 
-					// InvasionChanged.MustFight: No... why must we fight?
-					// BloodMoonChanged.BodyHurts: Boss... my body hurts...
+					InvasionChanged.MustFight: Nie... dlaczego musimy walczyć?
+					BloodMoonChanged.BodyHurts: Szefie... wszystko mnie boli...
 				}
 
 				Eager_Serious: {
 					Dialogue: {
-						// 0Eager: Can I have anotha doll?
-						// 1Serious: You tore or lost the last few.
-						// 2Eager: I won't dis time!
-						// 3Serious: ...Fine. I'll make one later, alright?
-						// 4Eager: Yay!
+						0Eager: Mogę jeszcze jedną lalkę?
+						1Serious: Wszystkie ostatnie zostały rozerwane lub zgubione.
+						2Eager: Tym razem tak nie będzie!
+						3Serious: ...Dobrze. Zrobię Ci następną później, dobrze?
+						4Eager: Juhu!
 					}
 				}
 
 				Eager_Shy: {
 					Dialogue: {
-						// 0Eager: Hey!
-						// 1Shy: Ah... yes?
-						// 2Eager: Dere's a rat behind ya!
-						// 3Shy: Eep!
-						// 4Eager: Tricked ya! Haha, dat was loud!
+						0Eager: Ej!
+						1Shy: Ah... tak?
+						2Eager: Szczur za tobą!
+						3Shy: Aa!
+						4Eager: Psikus! Haha, to było głośne!
 					}
 				}
 
 				Serious_Eager: {
 					Dialogue: {
-						// 0Serious: You tore your doll again...
-						// 1Eager: It was an accident!
-						// 2Serious: Like the other times?
-						// 3Eager: Yeah!
-						// 4Serious: ...I'll mend it later.
-						// 5Eager: Thanks!
+						0Serious: Dlaczego twoja lalka znowu jest poszarpana...
+						1Eager: To był wypadek!
+						2Serious: Jak za każdym innym razem?
+						3Eager: Tak!
+						4Serious: ...Naprawię ją później.
+						5Eager: Dzięki!
 					}
 				}
 
 				Serious_Shy: {
 					Dialogue: {
-						// 0Serious: Hey.
-						// 1Shy: ...yes?
-						// 2Serious: Would you like a doll?
-						// 3Shy: A doll?
-						// 4Serious: Yes. To calm your nerves.
-						// 5Shy: ...yes, please.
-						// 6Serious: I'll prepare it later then.
+						0Serious: Hej.
+						1Shy: ...tak?
+						2Serious: Chcesz lalkę?
+						3Shy: Lalkę?
+						4Serious: Tak. Pomaga na uspokojenie.
+						5Shy: ...tak, proszę.
+						6Serious: W takim razie później ją przygotuję.
 					}
 				}
 
 				Shy_Eager: {
 					Dialogue: {
-						// 0Shy: Um...
-						// 1Eager: Yeah?
-						// 2Shy: H-how are you always so cheerful?
-						// 3Eager: Cause the boss is here!
-						// 4Shy: You really l-like the boss, huh?
-						// 5Eager: Yeah! Da boss is da strongest!
+						0Shy: Um...
+						1Eager: Tak?
+						2Shy: S-skąd u Ciebie taka radość?
+						3Eager: Bo szef jest z nami!
+						4Shy: N-na prawdę lubisz szefa..
+						5Eager: Tak! Szef jest najsilniejszy!
 					}
 				}
 
 				Shy_Serious: {
 					Dialogue: {
-						// 0Shy: Um... excuse me...
-						// 1Serious: Yes?
-						// 2Shy: Y-your dolls...
-						// 3Serious: ?
-						// 4Shy: They're cute...
-						// 5Serious: Thank you.
+						0Shy: Przepraszam..
+						1Serious: Tak?
+						2Shy: T-twoje lalki...
+						3Serious: ?
+						4Shy: Są śliczne...
+						5Serious: Dziękuję.
 					}
 				}
 
 				Eager_Serious_Shy: {
 					Dialogue: {
-						// 0Eager: You good?
-						// "1Serious, Shy": Yes.
-						// 2Eager: Den all togetha;
-						// 3All: We like you, boss!
+						0Eager: Wszystko dobrze?
+						"1Serious, Shy": Tak.
+						2Eager: A więc wszyscy razem;
+						3All: Lubimy Cię, szefie!
 					}
 				}
 			}
 		}
 
 		GoblinUnderlingClass: {
-			// Melee: Melee
-			// Magic: Magic
-			// Ranged: Ranged
+			Melee: Walka w zwarciu
+			Magic: Magiczne
+			Ranged: Ranged
 		}
 
 		UI: {
-			// CircleUIToUnlock: To unlock: {0}
-			// HoverNPCUICatchWithNet: Catch it with a net
+			CircleUIToUnlock: Do odblokowania: {0}
+			HoverNPCUICatchWithNet: Złap za pomocą siatki
 		}
 	}
 }

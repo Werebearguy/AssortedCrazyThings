@@ -28,5 +28,8 @@ List of localization contributors:
 * Simplified Chinese: **GamMa**
 * Russian: **GodHybrid**
 * Italian: **Sea Noodle**
+* Spanish: **CDT_Maggot**
+* Brazilian Portuguese: **GuiSaiUwU**
+* Polish: **Placuch, Roton**
 
-**Disclaimer: Italian localization is very incomplete. Currently looking for contributors to finish it**
+**Disclaimer: Italian, Spanish, and Brazilian Portuguese localization is very incomplete. Currently looking for contributors to finish it**

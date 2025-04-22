@@ -4,4 +4,4 @@ fr-FR, 0/1535, 0%, missing 1535
 es-ES, 356/1535, 23%, missing 1179
 ru-RU, 1535/1535, 100%, missing 0
 zh-Hans, 1533/1535, 100%, missing 2
-pl-PL, 0/1535, 100%, missing 1535
+pl-PL, 1533/1535, 100%, missing 2

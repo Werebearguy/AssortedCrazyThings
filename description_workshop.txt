@@ -59,5 +59,8 @@ List of localization contributors:
 * Simplified Chinese: [b]GamMa[/b]
 * Russian: [b]GodHybrid[/b]
 * Italian: [b]Sea Noodle[/b]
+* Spanish: [b]CDT_Maggot[/b]
+* Brazilian Portuguese: [b]GuiSaiUwU[/b]
+* Polish: [b]Placuch, Roton[/b]
 
-[b]Disclaimer: Italian localization is very incomplete. Currently looking for contributors to finish it[/b]
+[b]Disclaimer: Italian, Spanish, and Brazilian Portuguese localizaztion is very incomplete. Currently looking for contributors to finish it[/b]
