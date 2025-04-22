@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport;
 using AssortedCrazyThings.Base.Netcode;
 using AssortedCrazyThings.Effects;
 using AssortedCrazyThings.Items.Weapons;
@@ -210,6 +211,11 @@ namespace AssortedCrazyThings
 				ModContent.ProjectileType<PetDestroyerTail>()
 				};
 			}
+		}
+
+		public override object Call(params object[] args)
+		{
+			return ModCallHandler.Call(args);
 		}
 
 		public override void HandlePacket(BinaryReader reader, int whoAmI)
