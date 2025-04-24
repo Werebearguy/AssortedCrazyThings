@@ -1574,7 +1574,7 @@ Mods: {
 			}
 
 			PetAccessoryBowtie: {
-				// DisplayName: {$Items.PetAccessoryBowtie.ShortName} grazioso
+				// DisplayName: {$ShortName} grazioso
 				// Tooltip: "'Un morbido papillon da indossare sul petto per la tua slime graziosa'"
 				// ShortName: Papillon
 
@@ -1594,13 +1594,13 @@ Mods: {
 			}
 
 			PetAccessoryBunnyEars: {
-				// DisplayName: {$Items.PetAccessoryBunnyEars.ShortName} graziose
+				// DisplayName: {$ShortName} graziose
 				// Tooltip: "'Un paio di orecchie da coniglio di pasqua da indossare in testa per la tua slime graziosa'"
 				// ShortName: Orecchie da coniglio
 			}
 
 			PetAccessoryBunnySuit: {
-				// DisplayName: {$Items.PetAccessoryBunnySuit.ShortName} grazioso
+				// DisplayName: {$ShortName} grazioso
 				// Tooltip: "'Un costume da coniglio(?) da indossare sul petto per la tua slime graziosa'"
 				// ShortName: Costume da coniglio
 
@@ -1620,7 +1620,7 @@ Mods: {
 			}
 
 			PetAccessoryCrown: {
-				// DisplayName: {$Items.PetAccessoryCrown.ShortName} graziosa
+				// DisplayName: {$ShortName} graziosa
 				// Tooltip: "'Una corona regale da portare sulla testa per la tua slime graziosa'"
 				// ShortName: Corona
 
@@ -1631,7 +1631,7 @@ Mods: {
 			}
 
 			PetAccessoryHairBow: {
-				// DisplayName: {$Items.PetAccessoryHairBow.ShortName} grazioso
+				// DisplayName: {$ShortName} grazioso
 				// Tooltip: "'Un grande fiocco da portare sulla testa per la tua slime graziosa'"
 				// ShortName: Fiocco per capelli
 
@@ -1651,7 +1651,7 @@ Mods: {
 			}
 
 			PetAccessoryKitchenKnife: {
-				// DisplayName: {$Items.PetAccessoryKitchenKnife.ShortName} grazioso
+				// DisplayName: {$ShortName} grazioso
 				// Tooltip: "'Un coltello da cucina peluche da trasportare per la tua slime graziosa'"
 				// ShortName: Coltello da cucina
 
@@ -1662,7 +1662,7 @@ Mods: {
 			}
 
 			PetAccessoryMetalHelmet: {
-				// DisplayName: {$Items.PetAccessoryMetalHelmet.ShortName} grazioso
+				// DisplayName: {$ShortName} grazioso
 				// Tooltip: "'Un elmo da cavaliere peluche da portare in testa per la tua slime graziosa'"
 				// ShortName: Elmo da cavaliere
 
@@ -1673,7 +1673,7 @@ Mods: {
 			}
 
 			PetAccessoryMittens: {
-				// DisplayName: {$Items.PetAccessoryMittens.ShortName} graziosi
+				// DisplayName: {$ShortName} graziosi
 				// Tooltip: "'Guantoni caldi per le mani della tua slime graziosa'"
 				// ShortName: Guantoni
 
@@ -1693,13 +1693,13 @@ Mods: {
 			}
 
 			PetAccessoryPartyHat: {
-				// DisplayName: {$Items.PetAccessoryPartyHat.ShortName} grazioso
+				// DisplayName: {$ShortName} grazioso
 				// Tooltip: "'Un cappello da festa da indossare in testa per la tua slime graziosa'"
 				// ShortName: Cappello da festa
 			}
 
 			PetAccessoryPumpkinMask: {
-				// DisplayName: {$Items.PetAccessoryPumpkinMask.ShortName} graziosa
+				// DisplayName: {$ShortName} graziosa
 				// Tooltip: "'Una zucca di dimensioni perfette da mettere in testa alla tua slime graziosa'"
 				// ShortName: Maschera zucca
 
@@ -1718,7 +1718,7 @@ Mods: {
 			}
 
 			PetAccessorySlimeHead: {
-				// DisplayName: {$Items.PetAccessorySlimeHead.ShortName} grazioso
+				// DisplayName: {$ShortName} grazioso
 				// Tooltip: "'Un peluche di slime che si appoggia sulla testa della tua slime graziosa'"
 				// ShortName: Testa slime
 
@@ -1735,7 +1735,7 @@ Mods: {
 			}
 
 			PetAccessoryStaff: {
-				// DisplayName: {$Items.PetAccessoryStaff.ShortName} grazioso
+				// DisplayName: {$ShortName} grazioso
 				// Tooltip: "'Un bastone peluche da trasportare per la tua slime graziosa'"
 				// ShortName: Bastone
 
@@ -1752,19 +1752,19 @@ Mods: {
 			}
 
 			PetAccessorySwallowedKey: {
-				// DisplayName: {$Items.PetAccessorySwallowedKey.ShortName} graziosa
+				// DisplayName: {$ShortName} graziosa
 				// Tooltip: "'Una chiave peluche da... trasportare per la tua slime graziosa?'"
 				// ShortName: Chiave digerita
 			}
 
 			PetAccessoryTophat: {
-				// DisplayName: {$Items.PetAccessoryTophat.ShortName} grazioso
+				// DisplayName: {$ShortName} grazioso
 				// Tooltip: "'Un cappello a cilindro di classe da portare in testa per la tua slime graziosa'"
 				// ShortName: Cappello a cilindro
 			}
 
 			PetAccessoryToyBreastplate: {
-				// DisplayName: {$Items.PetAccessoryToyBreastplate.ShortName} graziosa
+				// DisplayName: {$ShortName} graziosa
 				// Tooltip: "'Una corazza da cavaliere peluche da indossare sul corpo per la tua slime graziosa'"
 				// ShortName: Corazza da cavaliere
 
@@ -1775,7 +1775,7 @@ Mods: {
 			}
 
 			PetAccessoryToyMace: {
-				// DisplayName: {$Items.PetAccessoryToyMace.ShortName} graziosa
+				// DisplayName: {$ShortName} graziosa
 				// Tooltip: "'Una mazza da paladino peluche da trasportare per la tua slime graziosa'"
 				// ShortName: Mazza da paladino
 
@@ -1786,7 +1786,7 @@ Mods: {
 			}
 
 			PetAccessoryToyShield: {
-				// DisplayName: {$Items.PetAccessoryToyShield.ShortName} grazioso
+				// DisplayName: {$ShortName} grazioso
 				// Tooltip: "'Uno scudo da cavaliere peluche da trasportare per la tua slime graziosa'"
 				// ShortName: Scudo da cavaliere
 
@@ -1797,7 +1797,7 @@ Mods: {
 			}
 
 			PetAccessoryToySpear: {
-				// DisplayName: {$Items.PetAccessoryToySpear.ShortName} graziosa
+				// DisplayName: {$ShortName} graziosa
 				// Tooltip: "'Una lancia da guerriero peluche da trasportare per la tua slime graziosa'"
 				// ShortName: Lancia da guerriero
 
@@ -1808,7 +1808,7 @@ Mods: {
 			}
 
 			PetAccessoryToySword: {
-				// DisplayName: {$Items.PetAccessoryToySword.ShortName} graziosa
+				// DisplayName: {$ShortName} graziosa
 				// Tooltip: "'Una spada da cavaliere peluche da trasportare per la tua slime graziosa'"
 				// ShortName: Spada da cavaliere
 
@@ -1819,13 +1819,13 @@ Mods: {
 			}
 
 			PetAccessoryWizardHat: {
-				// DisplayName: {$Items.PetAccessoryWizardHat.ShortName} grazioso
+				// DisplayName: {$ShortName} grazioso
 				// Tooltip: "'Un cappello da mago marrone da portare in testa per la tua slime graziosa'"
 				// ShortName: Cappello da mago
 			}
 
 			PetAccessoryXmasHat: {
-				// DisplayName: {$Items.PetAccessoryXmasHat.ShortName} grazioso
+				// DisplayName: {$ShortName} grazioso
 				// Tooltip: "'Un cappello festivo da portare in testa per la tua slime graziosa'"
 				// ShortName: Cappello da babbo natale
 

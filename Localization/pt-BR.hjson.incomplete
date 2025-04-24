@@ -1575,7 +1575,7 @@ Mods: {
 			}
 
 			PetAccessoryBowtie: {
-				DisplayName: {$Items.PetAccessoryBowtie.ShortName} Fofinha
+				DisplayName: {$ShortName} Fofinha
 				Tooltip: "'Uma gravata borboleta macia para a sua geleia fofa vestir em seu peitoral'"
 				ShortName: Gravata Borboleta
 
@@ -1595,13 +1595,13 @@ Mods: {
 			}
 
 			PetAccessoryBunnyEars: {
-				DisplayName: {$Items.PetAccessoryBunnyEars.ShortName} Fofinhas
+				DisplayName: {$ShortName} Fofinhas
 				Tooltip: "'Um par de orelhas do coelhinho da Páscoa para a sua geleia fofa usar em sua cabeça'"
 				ShortName: Orelhas de Coelho
 			}
 
 			PetAccessoryBunnySuit: {
-				DisplayName: {$Items.PetAccessoryBunnySuit.ShortName} Fofinha
+				DisplayName: {$ShortName} Fofinha
 				Tooltip: "'Uma roupa de coelho(?) para a sua geleia fofa vestir em seu peitoral'"
 				ShortName: Roupa de Coelhinha
 
@@ -1621,7 +1621,7 @@ Mods: {
 			}
 
 			PetAccessoryCrown: {
-				DisplayName: {$Items.PetAccessoryCrown.ShortName} Fofinha
+				DisplayName: {$ShortName} Fofinha
 				Tooltip: "'Uma coroa majestosa para sua geleia fofa usar em sua cabeça'"
 				ShortName: Coroa
 
@@ -1632,7 +1632,7 @@ Mods: {
 			}
 
 			PetAccessoryHairBow: {
-				DisplayName: {$Items.PetAccessoryHairBow.ShortName} Fofinho
+				DisplayName: {$ShortName} Fofinho
 				Tooltip: "'Um grande laço para a sua geleia fofa usar em sua cabeça'"
 				ShortName: Laço de Cabelo
 
@@ -1652,7 +1652,7 @@ Mods: {
 			}
 
 			PetAccessoryKitchenKnife: {
-				DisplayName: {$Items.PetAccessoryKitchenKnife.ShortName} Fofinha
+				DisplayName: {$ShortName} Fofinha
 				Tooltip: "'Uma faca de cozinha de pelúcia para a sua geleia fofa carregar'"
 				ShortName: Faca de Cozinha
 
@@ -1663,7 +1663,7 @@ Mods: {
 			}
 
 			PetAccessoryMetalHelmet: {
-				DisplayName: {$Items.PetAccessoryMetalHelmet.ShortName} Fofinho
+				DisplayName: {$ShortName} Fofinho
 				Tooltip: "'Um capacete de cavaleiro de pelúcia para a sua geleia fofa usar em sua cabeça'"
 				ShortName: Capacete de Cavaleiro
 
@@ -1674,7 +1674,7 @@ Mods: {
 			}
 
 			PetAccessoryMittens: {
-				DisplayName: {$Items.PetAccessoryMittens.ShortName} Fofinhas
+				DisplayName: {$ShortName} Fofinhas
 				Tooltip: "'Luvas quentes para as mãos da sua geleia fofa'"
 				ShortName: Luvas
 
@@ -1694,13 +1694,13 @@ Mods: {
 			}
 
 			PetAccessoryPartyHat: {
-				DisplayName: {$Items.PetAccessoryPartyHat.ShortName} Fofinho
+				DisplayName: {$ShortName} Fofinho
 				Tooltip: "'Um chapéu de festa para a sua geleia fofa usar em sua cabeça'"
 				ShortName: Chapéu de Festa
 			}
 
 			PetAccessoryPumpkinMask: {
-				DisplayName: {$Items.PetAccessoryPumpkinMask.ShortName} Fofinha
+				DisplayName: {$ShortName} Fofinha
 				Tooltip: "'Uma abóbora de tamanho perfeito para a sua geleia fofa usar em sua cabeça'"
 				ShortName: Máscara de Abóbora
 
@@ -1719,7 +1719,7 @@ Mods: {
 			}
 
 			PetAccessorySlimeHead: {
-				DisplayName: {$Items.PetAccessorySlimeHead.ShortName} Fofinha
+				DisplayName: {$ShortName} Fofinha
 				Tooltip: "'Uma pelúcia de geleia para a sua geleia fofa usar em sua cabeça'"
 				ShortName: Cabeça de Geleia
 
@@ -1736,7 +1736,7 @@ Mods: {
 			}
 
 			PetAccessoryStaff: {
-				DisplayName: {$Items.PetAccessoryStaff.ShortName} Fofinho
+				DisplayName: {$ShortName} Fofinho
 				Tooltip: "'Um cajado de pelúcia para a sua geleia fofa carregar'"
 				ShortName: Cajado
 
@@ -1753,19 +1753,19 @@ Mods: {
 			}
 
 			PetAccessorySwallowedKey: {
-				DisplayName: {$Items.PetAccessorySwallowedKey.ShortName} Fofinha
+				DisplayName: {$ShortName} Fofinha
 				Tooltip: "'Uma chave de pelúcia para a sua geleia fofa... carregar?'"
 				ShortName: Chave Engolida
 			}
 
 			PetAccessoryTophat: {
-				DisplayName: {$Items.PetAccessoryTophat.ShortName} Fofinha
+				DisplayName: {$ShortName} Fofinha
 				Tooltip: "'Uma cartola elegante para a sua geleia fofa usar em sua cabeça'"
 				ShortName: Cartola
 			}
 
 			PetAccessoryToyBreastplate: {
-				DisplayName: {$Items.PetAccessoryToyBreastplate.ShortName} Fofinho
+				DisplayName: {$ShortName} Fofinho
 				Tooltip: "'Um Peitoral de cavaleiro de pelúcia para a sua geleia fofa vestir em seu peitoral'"
 				ShortName: Peitoral de Cavaleiro
 
@@ -1776,7 +1776,7 @@ Mods: {
 			}
 
 			PetAccessoryToyMace: {
-				DisplayName: {$Items.PetAccessoryToyMace.ShortName} Fofinha
+				DisplayName: {$ShortName} Fofinha
 				Tooltip: "'Uma maça de pelúcia para a sua geleia fofa carregar'"
 				ShortName: Maça do Paladino
 
@@ -1787,7 +1787,7 @@ Mods: {
 			}
 
 			PetAccessoryToyShield: {
-				DisplayName: {$Items.PetAccessoryToyShield.ShortName} Fofinho
+				DisplayName: {$ShortName} Fofinho
 				Tooltip: "'Um escudo de pelúcia para sua geleia fofa carregar'"
 				ShortName: Escudo do Cavaleiro
 
@@ -1798,7 +1798,7 @@ Mods: {
 			}
 
 			PetAccessoryToySpear: {
-				DisplayName: {$Items.PetAccessoryToySpear.ShortName} Fofinha
+				DisplayName: {$ShortName} Fofinha
 				Tooltip: "'Uma lança de pelúcia para sua geleia fofa carregar'"
 				ShortName: Lança de Espartano
 
@@ -1809,7 +1809,7 @@ Mods: {
 			}
 
 			PetAccessoryToySword: {
-				DisplayName: {$Items.PetAccessoryToySword.ShortName} Fofinha
+				DisplayName: {$ShortName} Fofinha
 				Tooltip: "'Uma espada de pelúcia para sua geleia fofa carregar'"
 				ShortName: Espada do Cavaleiro
 
@@ -1820,13 +1820,13 @@ Mods: {
 			}
 
 			PetAccessoryWizardHat: {
-				DisplayName: {$Items.PetAccessoryWizardHat.ShortName} Fofinho
+				DisplayName: {$ShortName} Fofinho
 				Tooltip: "'Um chapéu marrom de mago para a sua geleia fofa usar em sua cabeça'"
 				ShortName: Chapéu de Mago
 			}
 
 			PetAccessoryXmasHat: {
-				DisplayName: {$Items.PetAccessoryXmasHat.ShortName} Fofinho
+				DisplayName: {$ShortName} Fofinho
 				Tooltip: "'Um chapéu festivo para a sua geleia fofa usar em sua cabeça'"
 				ShortName: Chapéu de Natal
 

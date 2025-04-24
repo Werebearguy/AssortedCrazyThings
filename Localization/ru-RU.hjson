@@ -1574,7 +1574,7 @@ Mods: {
 			}
 
 			PetAccessoryBowtie: {
-				DisplayName: Миленькая {$Items.PetAccessoryBowtie.ShortName}
+				DisplayName: Миленькая {$ShortName}
 				Tooltip: "'Лёгкая бабочка для твоего миленького слизня, которую можно нацепить на грудь'"
 				ShortName: Галстук-бабочка
 
@@ -1594,13 +1594,13 @@ Mods: {
 			}
 
 			PetAccessoryBunnyEars: {
-				DisplayName: Миленькие {$Items.PetAccessoryBunnyEars.ShortName}
+				DisplayName: Миленькие {$ShortName}
 				Tooltip: "'Кроличьи ушки для твоего миленького слизня, которые можно надеть на голову'"
 				ShortName: Кроличьи ушки
 			}
 
 			PetAccessoryBunnySuit: {
-				DisplayName: Миленький {$Items.PetAccessoryBunnySuit.ShortName}
+				DisplayName: Миленький {$ShortName}
 				Tooltip: "'Костюм кролика(?) для твоего миленького слизня, который можно надеть на грудь'"
 				ShortName: Костюм кролика
 
@@ -1620,7 +1620,7 @@ Mods: {
 			}
 
 			PetAccessoryCrown: {
-				DisplayName: Миленькая {$Items.PetAccessoryCrown.ShortName}
+				DisplayName: Миленькая {$ShortName}
 				Tooltip: "'Царственная корона для твоего миленького слизня, которую можно надеть на голову'"
 				ShortName: Корона
 
@@ -1631,7 +1631,7 @@ Mods: {
 			}
 
 			PetAccessoryHairBow: {
-				DisplayName: Миленькая {$Items.PetAccessoryHairBow.ShortName}
+				DisplayName: Миленькая {$ShortName}
 				Tooltip: "'Большая ленточка для твоего миленького слизня, которую можно нацепить на голову'"
 				ShortName: Ленточка для волос
 
@@ -1651,7 +1651,7 @@ Mods: {
 			}
 
 			PetAccessoryKitchenKnife: {
-				DisplayName: Миленький {$Items.PetAccessoryKitchenKnife.ShortName}
+				DisplayName: Миленький {$ShortName}
 				Tooltip: "'Плюшевый кухонный нож, который можно дать твоему миленькому слизню'"
 				ShortName: Кухонный нож
 
@@ -1662,7 +1662,7 @@ Mods: {
 			}
 
 			PetAccessoryMetalHelmet: {
-				DisplayName: Миленький {$Items.PetAccessoryMetalHelmet.ShortName}
+				DisplayName: Миленький {$ShortName}
 				Tooltip: "'Плюшевый шлем рыцаря для твоего миленького слизня, который можно надеть на голову'"
 				ShortName: Рыцарский шлем
 
@@ -1673,7 +1673,7 @@ Mods: {
 			}
 
 			PetAccessoryMittens: {
-				DisplayName: Миленькие {$Items.PetAccessoryMittens.ShortName}
+				DisplayName: Миленькие {$ShortName}
 				Tooltip: "'Тёплые варежки для твоего миленького слизня, которые можно носить на руках'"
 				ShortName: Варежки
 
@@ -1693,13 +1693,13 @@ Mods: {
 			}
 
 			PetAccessoryPartyHat: {
-				DisplayName: Миленький {$Items.PetAccessoryPartyHat.ShortName}
+				DisplayName: Миленький {$ShortName}
 				Tooltip: "'Праздничный колпак для твоего миленького слизня, который можно нацепить на голову'"
 				ShortName: Колпак для вечеринки
 			}
 
 			PetAccessoryPumpkinMask: {
-				DisplayName: Миленькая {$Items.PetAccessoryPumpkinMask.ShortName}
+				DisplayName: Миленькая {$ShortName}
 				Tooltip: "'Тыква для твоего миленького слизня, которая идеально подходит по размеру, чтобы надеть на голову'"
 				ShortName: Тыквенная маска
 
@@ -1718,7 +1718,7 @@ Mods: {
 			}
 
 			PetAccessorySlimeHead: {
-				DisplayName: Миленький {$Items.PetAccessorySlimeHead.ShortName}
+				DisplayName: Миленький {$ShortName}
 				Tooltip: "'Плюшевый слизень, которого можно посадить на голову твоего миленького слизня'"
 				ShortName: Головной слизень
 
@@ -1735,7 +1735,7 @@ Mods: {
 			}
 
 			PetAccessoryStaff: {
-				DisplayName: Миленький {$Items.PetAccessoryStaff.ShortName}
+				DisplayName: Миленький {$ShortName}
 				Tooltip: "'Плюшевый посох, который можно дать твоему миленькому слизню'"
 				ShortName: Посох
 
@@ -1752,19 +1752,19 @@ Mods: {
 			}
 
 			PetAccessorySwallowedKey: {
-				DisplayName: Миленький {$Items.PetAccessorySwallowedKey.ShortName}
+				DisplayName: Миленький {$ShortName}
 				Tooltip: "'Плюшевый ключ, который можно твоему миленькому слизню... дать?'"
 				ShortName: Проглоченный ключик
 			}
 
 			PetAccessoryTophat: {
-				DisplayName: Миленький {$Items.PetAccessoryTophat.ShortName}
+				DisplayName: Миленький {$ShortName}
 				Tooltip: "'Стильный котелок для твоего миленького слизня, который можно надеть на голову'"
 				ShortName: Котелок
 			}
 
 			PetAccessoryToyBreastplate: {
-				DisplayName: Миленький {$Items.PetAccessoryToyBreastplate.ShortName}
+				DisplayName: Миленький {$ShortName}
 				Tooltip: "'Плюшевый нагрудник рыцаря для твоего миленького слизня, который можно нацепить на грудь'"
 				ShortName: Рыцарский нагрудник
 
@@ -1775,7 +1775,7 @@ Mods: {
 			}
 
 			PetAccessoryToyMace: {
-				DisplayName: Миленькая {$Items.PetAccessoryToyMace.ShortName}
+				DisplayName: Миленькая {$ShortName}
 				Tooltip: "'Плюшевая булава паладина, которую можно дать твоему миленькому слизню'"
 				ShortName: Паладинская булава
 
@@ -1786,7 +1786,7 @@ Mods: {
 			}
 
 			PetAccessoryToyShield: {
-				DisplayName: Миленький {$Items.PetAccessoryToyShield.ShortName}
+				DisplayName: Миленький {$ShortName}
 				Tooltip: "'Плюшевый рыцарский щит, который можно дать твоему миленькому слизню'"
 				ShortName: Рыцарский щит
 
@@ -1797,7 +1797,7 @@ Mods: {
 			}
 
 			PetAccessoryToySpear: {
-				DisplayName: Миленькое {$Items.PetAccessoryToySpear.ShortName}
+				DisplayName: Миленькое {$ShortName}
 				Tooltip: "'Плюшевое копьё воина, которое можно дать твоему миленькому слизню'"
 				ShortName: Спартанское копьё
 
@@ -1808,7 +1808,7 @@ Mods: {
 			}
 
 			PetAccessoryToySword: {
-				DisplayName: Миленький {$Items.PetAccessoryToySword.ShortName}
+				DisplayName: Миленький {$ShortName}
 				Tooltip: "'Плюшевый меч рыцаря, который можно дать твоему миленькому слизню'"
 				ShortName: Рыцарский меч
 
@@ -1819,13 +1819,13 @@ Mods: {
 			}
 
 			PetAccessoryWizardHat: {
-				DisplayName: Миленькая {$Items.PetAccessoryWizardHat.ShortName}
+				DisplayName: Миленькая {$ShortName}
 				Tooltip: "'Коричневая шляпа волшебника для твоего миленького слизню, которую можно надеть на голову'"
 				ShortName: Шляпа волшебника
 			}
 
 			PetAccessoryXmasHat: {
-				DisplayName: Миленький {$Items.PetAccessoryXmasHat.ShortName}
+				DisplayName: Миленький {$ShortName}
 				Tooltip: "'Праздничный головной убор для твоего миленького слизня, который можно надеть на голову'"
 				ShortName: Колпак Деда Мороза
 

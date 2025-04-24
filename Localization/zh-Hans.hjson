@@ -1575,7 +1575,7 @@ Mods: {
 			}
 
 			PetAccessoryBowtie: {
-				DisplayName: 可爱{$Items.PetAccessoryBowtie.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一个柔软的领结，可爱的史莱姆会将它配戴在胸前”
 				ShortName: 领结
 
@@ -1595,13 +1595,13 @@ Mods: {
 			}
 
 			PetAccessoryBunnyEars: {
-				DisplayName: 可爱{$Items.PetAccessoryBunnyEars.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一对复活节兔子耳朵，可爱的史莱姆会将它配戴在头上”
 				ShortName: 兔耳
 			}
 
 			PetAccessoryBunnySuit: {
-				DisplayName: 可爱{$Items.PetAccessoryBunnySuit.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “兔子(?)服装，可爱的史莱姆会将它穿在身上”
 				ShortName: 兔女郎服
 
@@ -1621,7 +1621,7 @@ Mods: {
 			}
 
 			PetAccessoryCrown: {
-				DisplayName: 可爱{$Items.PetAccessoryCrown.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一顶华丽的皇冠，可爱的史莱姆会将它戴在头上”
 				ShortName: 皇冠
 
@@ -1632,7 +1632,7 @@ Mods: {
 			}
 
 			PetAccessoryHairBow: {
-				DisplayName: 可爱{$Items.PetAccessoryHairBow.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一个大蝴蝶结，可爱的史莱姆会将它配戴在头上”
 				ShortName: 发饰
 
@@ -1652,7 +1652,7 @@ Mods: {
 			}
 
 			PetAccessoryKitchenKnife: {
-				DisplayName: 可爱{$Items.PetAccessoryKitchenKnife.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一把玩具厨刀，可爱的史莱姆会随身携带它”
 				ShortName: 厨刀
 
@@ -1663,7 +1663,7 @@ Mods: {
 			}
 
 			PetAccessoryMetalHelmet: {
-				DisplayName: 可爱{$Items.PetAccessoryMetalHelmet.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一个玩具骑士头盔，可爱的史莱姆会将它戴在头上”
 				ShortName: 骑士盔
 
@@ -1674,7 +1674,7 @@ Mods: {
 			}
 
 			PetAccessoryMittens: {
-				DisplayName: 可爱{$Items.PetAccessoryMittens.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一双温暖的手套，可爱的史莱姆会将它们戴在手上”
 				ShortName: 手套
 
@@ -1694,13 +1694,13 @@ Mods: {
 			}
 
 			PetAccessoryPartyHat: {
-				DisplayName: 可爱{$Items.PetAccessoryPartyHat.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一顶派对帽，可爱的史莱姆会将它戴在头上”
 				ShortName: 派对帽
 			}
 
 			PetAccessoryPumpkinMask: {
-				DisplayName: 可爱{$Items.PetAccessoryPumpkinMask.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一颗尺寸完美的南瓜，可爱的史莱姆会将它戴在头上”
 				ShortName: 南瓜面具
 
@@ -1719,7 +1719,7 @@ Mods: {
 			}
 
 			PetAccessorySlimeHead: {
-				DisplayName: 可爱{$Items.PetAccessorySlimeHead.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一个绒毛史莱姆玩偶，可爱的史莱姆会将它叠在自己头上”
 				ShortName: 史莱姆玩具
 
@@ -1736,7 +1736,7 @@ Mods: {
 			}
 
 			PetAccessoryStaff: {
-				DisplayName: 可爱{$Items.PetAccessoryStaff.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一把玩具法杖，可爱的史莱姆会随身携带它”
 				ShortName: 手杖
 
@@ -1753,19 +1753,19 @@ Mods: {
 			}
 
 			PetAccessorySwallowedKey: {
-				DisplayName: 可爱{$Items.PetAccessorySwallowedKey.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一把突然出现的钥匙，可爱的史莱姆会把它……嗯……带着？”
 				ShortName: 钥匙
 			}
 
 			PetAccessoryTophat: {
-				DisplayName: 可爱{$Items.PetAccessoryTophat.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一顶优雅的大礼帽，可爱的史莱姆会将它戴在头上”
 				ShortName: 礼帽
 			}
 
 			PetAccessoryToyBreastplate: {
-				DisplayName: 可爱{$Items.PetAccessoryToyBreastplate.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一件玩具骑士胸甲，可爱的史莱姆会将它穿在身上”
 				ShortName: 骑士胸甲
 
@@ -1776,7 +1776,7 @@ Mods: {
 			}
 
 			PetAccessoryToyMace: {
-				DisplayName: 可爱{$Items.PetAccessoryToyMace.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一把类似圣骑士锤的玩具锤，可爱的史莱姆会随身携带它”
 				ShortName: 骑士锤
 
@@ -1787,7 +1787,7 @@ Mods: {
 			}
 
 			PetAccessoryToyShield: {
-				DisplayName: 可爱{$Items.PetAccessoryToyShield.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一个玩具骑士盾牌，可爱的史莱姆会随身携带它”
 				ShortName: 骑士盾
 
@@ -1798,7 +1798,7 @@ Mods: {
 			}
 
 			PetAccessoryToySpear: {
-				DisplayName: 可爱{$Items.PetAccessoryToySpear.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一把形似斯巴达长枪的玩具枪，可爱的史莱姆会随身携带它”
 				ShortName: 骑士枪
 
@@ -1809,7 +1809,7 @@ Mods: {
 			}
 
 			PetAccessoryToySword: {
-				DisplayName: 可爱{$Items.PetAccessoryToySword.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一把玩具剑，可爱的史莱姆会随身携带它”
 				ShortName: 骑士剑
 
@@ -1820,13 +1820,13 @@ Mods: {
 			}
 
 			PetAccessoryWizardHat: {
-				DisplayName: 可爱{$Items.PetAccessoryWizardHat.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一顶棕色巫师帽，可爱的史莱姆会将它戴在头上”
 				ShortName: 巫师帽
 			}
 
 			PetAccessoryXmasHat: {
-				DisplayName: 可爱{$Items.PetAccessoryXmasHat.ShortName}
+				DisplayName: 可爱{$ShortName}
 				Tooltip: “一顶圣诞帽，可爱的史莱姆会将它戴在头上”
 				ShortName: 圣诞帽
 

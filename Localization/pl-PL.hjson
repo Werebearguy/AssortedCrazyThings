@@ -1574,7 +1574,7 @@ Mods: {
 			}
 
 			PetAccessoryBowtie: {
-				DisplayName: Urocza {$Items.PetAccessoryBowtie.ShortName}
+				DisplayName: Urocza {$ShortName}
 				Tooltip: "'Miękka muszka na pierś twojego uroczego szlamu'"
 				ShortName: Muszka
 
@@ -1594,13 +1594,13 @@ Mods: {
 			}
 
 			PetAccessoryBunnyEars: {
-				DisplayName: Urocze {$Items.PetAccessoryBunnyEars.ShortName}
+				DisplayName: Urocze {$ShortName}
 				Tooltip: "'Para uroczych uszu zajączka Wielkanocnego na głowę twojego uroczego szlamu'"
 				ShortName: Królicze uszy
 			}
 
 			PetAccessoryBunnySuit: {
-				DisplayName: Urocze {$Items.PetAccessoryBunnySuit.ShortName}
+				DisplayName: Urocze {$ShortName}
 				Tooltip: "'Króliczy(?) kostium dla twojego uroczego szlamu'"
 				ShortName: Króliczy kostium
 
@@ -1620,7 +1620,7 @@ Mods: {
 			}
 
 			PetAccessoryCrown: {
-				DisplayName: Urocza {$Items.PetAccessoryCrown.ShortName}
+				DisplayName: Urocza {$ShortName}
 				Tooltip: "'Królewska korona na głowę twojego uroczego szlamu'"
 				ShortName: Korona
 
@@ -1631,7 +1631,7 @@ Mods: {
 			}
 
 			PetAccessoryHairBow: {
-				DisplayName: Urocza {$Items.PetAccessoryHairBow.ShortName}
+				DisplayName: Urocza {$ShortName}
 				Tooltip: "'Duża kokardka do włosów na głowę twojego uroczego szlamu'"
 				ShortName: Kokardka do włosów
 
@@ -1651,7 +1651,7 @@ Mods: {
 			}
 
 			PetAccessoryKitchenKnife: {
-				DisplayName: Uroczy {$Items.PetAccessoryKitchenKnife.ShortName}
+				DisplayName: Uroczy {$ShortName}
 				Tooltip: "'Pluszowy nóż kuchenny dla twojego uroczego szlamu'"
 				ShortName: Nóż kuchenny
 
@@ -1662,7 +1662,7 @@ Mods: {
 			}
 
 			PetAccessoryMetalHelmet: {
-				DisplayName: Uroczy {$Items.PetAccessoryMetalHelmet.ShortName}
+				DisplayName: Uroczy {$ShortName}
 				Tooltip: "'Pluszowy rycerski hełm na głowę twojego uroczego szlamu'"
 				ShortName: Rycerski hełm
 
@@ -1673,7 +1673,7 @@ Mods: {
 			}
 
 			PetAccessoryMittens: {
-				DisplayName: Urocze {$Items.PetAccessoryMittens.ShortName}
+				DisplayName: Urocze {$ShortName}
 				Tooltip: "'Ciepłe rękawiczki dla twojego uroczego szlamu'"
 				ShortName: Rękawiczki
 
@@ -1693,13 +1693,13 @@ Mods: {
 			}
 
 			PetAccessoryPartyHat: {
-				DisplayName: Urocza {$Items.PetAccessoryPartyHat.ShortName}
+				DisplayName: Urocza {$ShortName}
 				Tooltip: "'Czapka imprezowa na głowę twojego uroczego szlamu'"
 				ShortName: Czapka imprezowa
 			}
 
 			PetAccessoryPumpkinMask: {
-				DisplayName: Urocza {$Items.PetAccessoryPumpkinMask.ShortName}
+				DisplayName: Urocza {$ShortName}
 				Tooltip: "'Idealnie dopasowana dynia na głowę twojego uroczego szlamu'"
 				ShortName: Maska-dynia
 
@@ -1718,7 +1718,7 @@ Mods: {
 			}
 
 			PetAccessorySlimeHead: {
-				DisplayName: Uroczy {$Items.PetAccessorySlimeHead.ShortName}
+				DisplayName: Uroczy {$ShortName}
 				Tooltip: "'Pluszowy szlam siedzący na głowie twojego uroczego szlamu'"
 				ShortName: Szlam na głowę
 
@@ -1735,7 +1735,7 @@ Mods: {
 			}
 
 			PetAccessoryStaff: {
-				DisplayName: Urocza {$Items.PetAccessoryStaff.ShortName}
+				DisplayName: Urocza {$ShortName}
 				Tooltip: "'Pluszowa różdżka dla twojego uroczego szlamu'"
 				ShortName: Różdżka
 
@@ -1752,19 +1752,19 @@ Mods: {
 			}
 
 			PetAccessorySwallowedKey: {
-				DisplayName: Uroczy {$Items.PetAccessorySwallowedKey.ShortName}
+				DisplayName: Uroczy {$ShortName}
 				Tooltip: "'Pluszowy klucz dla twojego uroczego szlamu'"
 				ShortName: Połknięty klucz
 			}
 
 			PetAccessoryTophat: {
-				DisplayName: Cute {$Items.PetAccessoryTophat.ShortName}
-				Tooltip: "'A classy top hat for your cute slime to wear on her head'"
-				ShortName: Top Hat
+				DisplayName: Uroczy {$ShortName}
+				Tooltip: "'Klasyczny cylinder na głowę twojego uroczego szlamu'"
+				ShortName: Cylinder
 			}
 
 			PetAccessoryToyBreastplate: {
-				DisplayName: Uroczy {$Items.PetAccessoryToyBreastplate.ShortName}
+				DisplayName: Uroczy {$ShortName}
 				Tooltip: "'Pluszowy rycerski napierśnik na tors twojego uroczego szlamu'"
 				ShortName: Rycerski napierśnik
 
@@ -1775,7 +1775,7 @@ Mods: {
 			}
 
 			PetAccessoryToyMace: {
-				DisplayName: Urocza {$Items.PetAccessoryToyMace.ShortName}
+				DisplayName: Urocza {$ShortName}
 				Tooltip: "'Pluszowa paladyńska buława dla twojego uroczego szlamu'"
 				ShortName: Paladyńska buława
 
@@ -1786,7 +1786,7 @@ Mods: {
 			}
 
 			PetAccessoryToyShield: {
-				DisplayName: Urocza {$Items.PetAccessoryToyShield.ShortName}
+				DisplayName: Urocza {$ShortName}
 				Tooltip: "'Pluszowa rycerska tarcza dla twojego uroczego szlamu'"
 				ShortName: Rycerska tarcza
 
@@ -1797,7 +1797,7 @@ Mods: {
 			}
 
 			PetAccessoryToySpear: {
-				DisplayName: Uroczy {$Items.PetAccessoryToySpear.ShortName}
+				DisplayName: Uroczy {$ShortName}
 				Tooltip: "'Pluszowy oszczep dla twojego uroczego szlamu'"
 				ShortName: Spartański oszczep
 
@@ -1808,7 +1808,7 @@ Mods: {
 			}
 
 			PetAccessoryToySword: {
-				DisplayName: Uroczy {$Items.PetAccessoryToySword.ShortName}
+				DisplayName: Uroczy {$ShortName}
 				Tooltip: "'Pluszowy rycerski miecz dla twojego uroczego szlamu'"
 				ShortName: Rycerski miecz
 
@@ -1819,13 +1819,13 @@ Mods: {
 			}
 
 			PetAccessoryWizardHat: {
-				DisplayName: Urocza {$Items.PetAccessoryWizardHat.ShortName}
+				DisplayName: Urocza {$ShortName}
 				Tooltip: "'Brązowa czapka czarodzieja na głowę twojego uroczego szlamu'"
 				ShortName: Czapka czarodzieja
 			}
 
 			PetAccessoryXmasHat: {
-				DisplayName: Urocza {$Items.PetAccessoryXmasHat.ShortName}
+				DisplayName: Urocza {$ShortName}
 				Tooltip: "'Świąteczna czapka na głowę twojego uroczego szlamu'"
 				ShortName: Czapka mikołaja
 
