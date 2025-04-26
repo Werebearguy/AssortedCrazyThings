@@ -2772,7 +2772,7 @@ Mods: {
 			PlagueOfToadsProj.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
 			PocketSandProj.DisplayName: "{$Items.PocketSand.DisplayName}"
 			SightofRetinazerLaser.DisplayName: "{$Items.SightofRetinazer.DisplayName}激光"
-			BreathOfSpazmatismProj.DisplayName: "{$Items.BreathOfSpazmatism.DisplayName}息"
+			BreathOfSpazmatismProj.DisplayName: "{$Items.BreathOfSpazmatism.DisplayName}"
 			TalonstormClawProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
 			TalonstormFiredProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
 			TalonstormProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
@@ -2869,13 +2869,13 @@ Mods: {
 				Description: ""
 			}
 
-			/* TooltipFormat:
+			TooltipFormat:
 				'''
 				{0}
 				{1}
 				{2}
 				{3}
-				''' */
+				'''
 		}
 
 		DroneData: {

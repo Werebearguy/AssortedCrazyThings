@@ -2771,7 +2771,7 @@ Mods: {
 			PlagueOfToadsProj.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
 			PocketSandProj.DisplayName: "{$Items.PocketSand.DisplayName}"
 			SightofRetinazerLaser.DisplayName: "{$Items.SightofRetinazer.DisplayName} Laser"
-			BreathOfSpazmatismProj.DisplayName: "{$Items.BreathOfSpazmatism.DisplayName} Breath"
+			BreathOfSpazmatismProj.DisplayName: "{$Items.BreathOfSpazmatism.DisplayName}"
 			TalonstormClawProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
 			TalonstormFiredProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
 			TalonstormProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
