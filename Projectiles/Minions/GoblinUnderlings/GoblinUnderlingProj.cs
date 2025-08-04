@@ -494,7 +494,13 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 
 			StatModifier allDamage = player.GetDamage(DamageClass.Generic);
 
-			Projectile.damage = (int)allDamage.CombineWith(tieredSummoner).ApplyTo(originalDamage);
+			//Apply multiplier after all calculations, this is the most reliable, adding to additive or multiplicative does not work as intended
+			float postMLMult = 1f;
+			if (NPC.downedMoonlord)
+			{
+				postMLMult = ContentConfig.Instance.GoblinUnderlingPostMLDamageScaling;
+			}
+			Projectile.damage = (int)(allDamage.CombineWith(tieredSummoner).ApplyTo(originalDamage) * postMLMult);
 		}
 
 		private Vector2 GetIdleLocation(Player player)

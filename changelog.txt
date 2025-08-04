@@ -1,20 +1,7 @@
 v{ModVersion} has been published to {tMLBuildPurpose} tML v{tMLVersion}.
 Learn more at the [url={ModHomepage}]homepage[/url]
 
-Small maintenance update and polish localization
-
-* FIXES:
-    * Fixed Costume Dresser and the entities turned friendly from previous version not using the correct configuration toggle
-    * Fixed Soul Harvester Relic not dropping its item when placed while facing right
+Small maintenance update
 
 * ADDITIONS:
-    * Added polish localization by Placuch and Roton!
-    * Added "GetDownedBoss" Mod.Call for "SoulHarvester" (for other modders)
-
-* CHANGES:
-    * Updated simplified chinese localization
-    * Updated Goblin Underling idle dialogue with more conditions
-    * Changed Goblin Underling auto-summoning from the inventory to now also work from the open Void Bag
-    * Changed Goblin Underling auto-summoning to now adhere to inventory placement order when multiple are present
-    * Buffed Bone-Cleaving Fang right click shockwave damage floor by 60% (maximum damage not affected), and increased swinging and firing speeds
-    * Buffed Breath of Spazmatism to now work underwater
+    * Added "Goblin Underling Post-ML Damage Scaling" config slider

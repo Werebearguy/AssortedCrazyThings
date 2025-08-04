@@ -609,6 +609,7 @@ Mods: {
 						{2}
 						'''
 					CantSwitchClassDuringCombat: Nie można zmienić typu obrażeń podczas walki!
+					PostMLTooltip: Obrażenia mogą być powiększone w {$Configs.ContentConfig.DisplayName}
 				}
 			}
 		}
@@ -2952,7 +2953,7 @@ Mods: {
 						{$Items.SeriousUnderlingItem.DisplayName}
 						{$Items.ShyUnderlingItem.DisplayName}
 						'''
-					HintServerConfig: Podpowiedź: Aby przejść do konfiguracji serwera zawierającej ustawienia zawartości, naciśnij '>' strzałkę w prawym dolnym rogu
+					HintServerConfig: Podpowiedź: Aby przejść do konfiguracji serwera zawierającej ustawienia Goblinich Sługów, naciśnij '>' strzałkę w prawym dolnym rogu
 				}
 
 				GoblinUnderlingAutosummon: {
@@ -3080,6 +3081,15 @@ Mods: {
 				CuteSlimesPotionOnly: {
 					Label: Urocze szlamy tylko z miksturą
 					Tooltip: Wpływa na pojawianie się Uroczych Szlamów oraz działanie Żelowatego Piwa
+				}
+
+				GoblinUnderlingPostMLDamageScaling: {
+					Label: Skalowanie obrażeń Goblinich Sługów po Księżycowym Władcy
+					Tooltip:
+						'''
+						Aktywne po pokonaniu Księżycowego Władcy, konfiguruje mnożnik obrażeń Goblinich Sługów.
+						Maksymalna wartość mnożnika jest dostosowana do walki z ostatnimi bossami moda Calamity
+						'''
 				}
 
 				Hint: {

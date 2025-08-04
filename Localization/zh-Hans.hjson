@@ -609,6 +609,7 @@ Mods: {
 						{2}
 						'''
 					CantSwitchClassDuringCombat: 在战斗中无法变更职业
+					// PostMLTooltip: Damage can be increased in the {$Configs.ContentConfig.DisplayName}
 				}
 			}
 		}
@@ -3081,6 +3082,15 @@ Mods: {
 				CuteSlimesPotionOnly: {
 					Label: 可爱史莱姆仅限药水
 					Tooltip: 影响可爱史莱姆的生成方式和果冻啤酒的运作方式
+				}
+
+				GoblinUnderlingPostMLDamageScaling: {
+					// Label: Goblin Underling Post-ML Damage Scaling
+					/* Tooltip:
+						'''
+						Active after Moon Lord has been defeated, used to configure the damage multiplier of the Goblin Underling minions.
+						For reference, the maximum multiplier is suitable for the final bosses in Calamity Mod
+						''' */
 				}
 
 				Hint: {

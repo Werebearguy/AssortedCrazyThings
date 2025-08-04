@@ -609,6 +609,7 @@ Mods: {
 						{2}
 						'''
 					CantSwitchClassDuringCombat: Cannot switch classes during combat
+					PostMLTooltip: Damage can be increased in the {$Configs.ContentConfig.DisplayName}
 				}
 			}
 		}
@@ -2952,7 +2953,7 @@ Mods: {
 						{$Items.SeriousUnderlingItem.DisplayName}
 						{$Items.ShyUnderlingItem.DisplayName}
 						'''
-					HintServerConfig: Hint: To go to the server config containing feature toggles, press the '>' arrow in the bottom right
+					HintServerConfig: Hint: To go to the server config containing more Goblin Underling settings and other feature toggles, press the '>' arrow in the bottom right
 				}
 
 				GoblinUnderlingAutosummon: {
@@ -3080,6 +3081,15 @@ Mods: {
 				CuteSlimesPotionOnly: {
 					Label: Cute Slimes Potion Only
 					Tooltip: Affects the way Cute Slimes spawn and how the Jellied Ale works
+				}
+
+				GoblinUnderlingPostMLDamageScaling: {
+					Label: Goblin Underling Post-ML Damage Scaling
+					Tooltip:
+						'''
+						Active after Moon Lord has been defeated, used to configure the damage multiplier of the Goblin Underling minions.
+						For reference, the maximum multiplier is suitable for the final bosses in Calamity Mod
+						'''
 				}
 
 				Hint: {

@@ -111,6 +111,16 @@ namespace AssortedCrazyThings
 		[DefaultValue(true)]
 		public bool CuteSlimesPotionOnly { get; set; }
 
+		public const float GoblinUnderlingPostMLDamageScaling_Min = 1f;
+		public const float GoblinUnderlingPostMLDamageScaling_Max = 5f;
+		[BackgroundColor(125, 217, 124)]
+		[Slider]
+		[DrawTicks]
+		[Increment(0.25f)]
+		[DefaultValue(GoblinUnderlingPostMLDamageScaling_Min)]
+		[Range(GoblinUnderlingPostMLDamageScaling_Min, GoblinUnderlingPostMLDamageScaling_Max)]
+		public float GoblinUnderlingPostMLDamageScaling { get; set; }
+
 		[Header("HintClientConfig")]
 
 		[JsonIgnore]
@@ -192,6 +202,12 @@ namespace AssortedCrazyThings
 				//Automatically filter aomm content if the mod is disabled
 				FilterFlags |= ContentType.AommSupport;
 			}
+		}
+
+		[OnDeserialized]
+		internal void OnDeserializedMethod(StreamingContext context)
+		{
+			GoblinUnderlingPostMLDamageScaling = Utils.Clamp(GoblinUnderlingPostMLDamageScaling, GoblinUnderlingPostMLDamageScaling_Min, GoblinUnderlingPostMLDamageScaling_Max);
 		}
 	}
 

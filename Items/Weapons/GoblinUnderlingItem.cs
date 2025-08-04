@@ -35,6 +35,7 @@ namespace AssortedCrazyThings.Items.Weapons
 		public abstract int BuffType { get; }
 
 		public static LocalizedText CommonTooltipText { get; private set; }
+		public static LocalizedText PostMLTooltipText { get; private set; }
 		public static LocalizedText CommonTooltipFormatText { get; private set; }
 		public static LocalizedText CantSwitchClassDuringCombatText { get; private set; }
 
@@ -131,6 +132,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
 			string category = $"Common.Tooltips.";
 			CommonTooltipText ??= Mod.GetLocalization($"{category}{nameof(GoblinUnderlingItem)}.CommonTooltip");
+			PostMLTooltipText ??= Mod.GetLocalization($"{category}{nameof(GoblinUnderlingItem)}.PostMLTooltip");
 			CommonTooltipFormatText ??= Mod.GetLocalization($"{category}{nameof(GoblinUnderlingItem)}.CommonTooltipFormat");
 			CantSwitchClassDuringCombatText ??= Mod.GetLocalization($"{category}{nameof(GoblinUnderlingItem)}.CantSwitchClassDuringCombat");
 
@@ -311,15 +313,25 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
 		{
-			if (Main.LocalPlayer.TryGetModPlayer(out GoblinUnderlingPlayer modPlayer) && !modPlayer.firstSummon.Contains(Item.shoot))
+			if (Main.LocalPlayer.TryGetModPlayer(out GoblinUnderlingPlayer modPlayer) && modPlayer.firstSummon.Contains(Item.shoot))
 			{
-				return;
+				int nameIndex = tooltips.FindIndex(t => t.Mod == "Terraria" && t.Name == "ItemName");
+				if (nameIndex > -1)
+				{
+					tooltips[nameIndex].Text = AssLocalization.ConcatenateTwoText.Format(tooltips[nameIndex].Text, $"({AssLocalization.GetEnumText(currentClass)})");
+				}
 			}
 
-			int nameIndex = tooltips.FindIndex(t => t.Mod == "Terraria" && t.Name == "ItemName");
-			if (nameIndex > -1)
+			if (NPC.downedMoonlord)
 			{
-				tooltips[nameIndex].Text = AssLocalization.ConcatenateTwoText.Format(tooltips[nameIndex].Text, $"({AssLocalization.GetEnumText(currentClass)})");
+				int ttIndex = tooltips.FindLastIndex(t => t.Mod == "Terraria" && t.Name.StartsWith("Tooltip"));
+				if (ttIndex > -1)
+				{
+					tooltips.Insert(ttIndex, new TooltipLine(Mod, nameof(PostMLTooltipText), PostMLTooltipText.ToString())
+					{
+						OverrideColor = Color.Lerp(Color.White, Color.Aqua, 0.4f)
+					});
+				}
 			}
 		}
 	}
