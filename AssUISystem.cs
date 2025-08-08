@@ -254,10 +254,24 @@ namespace AssortedCrazyThings
 					),
 						new CircleUIHandler(
 						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().PetCloudfish,
+						uiConf: PetPlayer.GetPetCloudfishConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().petCloudfishType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().petCloudfishType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
 						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().DynamiteBunny,
 						uiConf: PetPlayer.GetDynamiteBunnyConf,
 						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().dynamiteBunnyType,
 						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().dynamiteBunnyType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().KingGuppy,
+						uiConf: PetPlayer.GetKingGuppyConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().kingGuppyType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().kingGuppyType = (byte)CircleUI.returned
 					),
 					//ALTERNATE
 					//    new CircleUIHandler(

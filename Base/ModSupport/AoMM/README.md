@@ -17,4 +17,17 @@ public override void Load()
 	versionString = apiVersion.ToString();
 	AoMMVersionText = Mod.GetLocalization($"Common.AoMMVersion");
 }
+
+public override void Unload()
+{
+	aommMod = null;
+	versionString = null;
+}
+
+public static void AoMMMovement(Projectile projectile, Vector2 vectorToTargetPosition, float maxSpeed, float inertia)
+{
+	vectorToTargetPosition.SafeNormalize(Vector2.Zero);
+	vectorToTargetPosition *= maxSpeed;
+	projectile.velocity = (projectile.velocity * (inertia - 1) + vectorToTargetPosition) / inertia;
+}
 ```

@@ -63,6 +63,13 @@ namespace AssortedCrazyThings.Base.ModSupport.AoMM
 			versionString = null;
 		}
 
+		public static void AoMMMovement(Projectile projectile, Vector2 vectorToTargetPosition, float maxSpeed, float inertia)
+		{
+			vectorToTargetPosition.SafeNormalize(Vector2.Zero);
+			vectorToTargetPosition *= maxSpeed;
+			projectile.velocity = (projectile.velocity * (inertia - 1) + vectorToTargetPosition) / inertia;
+		}
+
 		#region Calls
 		/// <summary>
 		/// Get the entire <key, object> mapping of the projectile's cross-mod exposed state, if it has one.

@@ -77,6 +77,10 @@ namespace AssortedCrazyThings.NPCs
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetQueenSlimeItem>(), chanceDenominator: 10));
 			}
+			else if (npc.type == NPCID.BloodNautilus)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetDreadnautilusItem>(), chanceDenominator: 4));
+			}
 			else if (npc.type == NPCID.TheDestroyer)
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetDestroyerItem>(), chanceDenominator: 10));

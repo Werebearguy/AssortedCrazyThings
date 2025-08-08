@@ -503,6 +503,21 @@ Mods: {
 				// Description: A loyal canine is following you
 			}
 
+			KingGuppyBuff: {
+				// DisplayName: King Guppy
+				// Description: The king of guppies is following you
+			}
+
+			PetCloudfishBuff: {
+				// DisplayName: Cloudfish
+				// Description: A majestic cloudfish is following you
+			}
+
+			PetDreadnautilusBuff: {
+				// DisplayName: Chambered Chum
+				// Description: A small nautilus...
+			}
+
 			CompanionDungeonSoulMinionBuff: {
 				// DisplayName: Companion Soul Minion
 				// Description: A friendly Soul is fighting for you
@@ -1238,6 +1253,23 @@ Mods: {
 			WobyItem: {
 				// DisplayName: Dog Lover's Badge
 				// Tooltip: Summons a loyal canine to follow you
+			}
+
+			KingGuppyItem: {
+				// DisplayName: High Quality Fish Feed
+				// Tooltip: Summons a King Guppy to swim with you
+			}
+
+			// KingGuppyItem_AoMM.AttackPattern: Click on falling diamonds to damage nearby enemies
+
+			PetCloudfishItem: {
+				// DisplayName: Cloud in a Bowl
+				// Tooltip: Summons a pet Cloudfish to follow you
+			}
+
+			PetDreadnautilusItem: {
+				// DisplayName: Sleeping Nautilus
+				// Tooltip: Summons a tiny nautilus to follow you
 			}
 
 			BottledDreams: {
@@ -2797,6 +2829,24 @@ Mods: {
 			// TinySpazmatismShotProj.DisplayName: "{$Projectiles.TinySpazmatismProj.DisplayName} Shot"
 			// TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName} Shot"
 			// WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName} Shot"
+
+			PetCloudfishProj: {
+				// Default.Tooltip: Default
+				// Rain.Tooltip: Rain
+				// Snow.Tooltip: Snow
+				// DisplayName: "{$Items.PetCloudfishItem.DisplayName}"
+			}
+
+			KingGuppyProj: {
+				// Default.Tooltip: Default
+				// Hungry.Tooltip: Hungry
+				// DisplayName: "{$Items.KingGuppyItem.DisplayName}"
+			}
+
+			// PetDreadnautilusProj.DisplayName: "{$Items.PetDreadnautilusItem.DisplayName}"
+			// PetDreadnautilusShotProj.DisplayName: "{$Projectiles.PetDreadnautilusProj.DisplayName} Shot"
+			// PetCloudfishShotProj.DisplayName: "{$Projectiles.PetCloudfishProj.DisplayName} Shot"
+			// KingGuppyShotProj.DisplayName: "{$Projectiles.KingGuppyProj.DisplayName} Shot"
 		}
 
 		Tiles: {

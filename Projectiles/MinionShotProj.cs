@@ -15,9 +15,11 @@ namespace AssortedCrazyThings.Projectiles
 
 		public virtual SoundStyle? SpawnSound => null;
 
+		public virtual bool UseCustomTexture => false;
+
 		private bool spawned = false;
 
-		public override string Texture => "Terraria/Images/Projectile_" + ClonedType;
+		public override string Texture => UseCustomTexture ? base.Texture : "Terraria/Images/Projectile_" + ClonedType;
 
 		public sealed override void SetStaticDefaults()
 		{

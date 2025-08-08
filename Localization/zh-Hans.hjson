@@ -503,6 +503,21 @@ Mods: {
 				Description: 一只忠诚的狗狗跟随着你
 			}
 
+			KingGuppyBuff: {
+				// DisplayName: King Guppy
+				// Description: The king of guppies is following you
+			}
+
+			PetCloudfishBuff: {
+				// DisplayName: Cloudfish
+				// Description: A majestic cloudfish is following you
+			}
+
+			PetDreadnautilusBuff: {
+				// DisplayName: Chambered Chum
+				// Description: A small nautilus...
+			}
+
 			CompanionDungeonSoulMinionBuff: {
 				DisplayName: 灵魂同伴仆从
 				Description: 一位友好的灵魂为你而战
@@ -1237,6 +1252,23 @@ Mods: {
 			WobyItem: {
 				DisplayName: 爱狗者徽章
 				Tooltip: 召唤一只忠诚的狗狗来跟随你
+			}
+
+			KingGuppyItem: {
+				// DisplayName: High Quality Fish Feed
+				// Tooltip: Summons a King Guppy to swim with you
+			}
+
+			// KingGuppyItem_AoMM.AttackPattern: Click on falling diamonds to damage nearby enemies
+
+			PetCloudfishItem: {
+				// DisplayName: Cloud in a Bowl
+				// Tooltip: Summons a pet Cloudfish to follow you
+			}
+
+			PetDreadnautilusItem: {
+				// DisplayName: Sleeping Nautilus
+				// Tooltip: Summons a tiny nautilus to follow you
 			}
 
 			BottledDreams: {
@@ -2798,6 +2830,24 @@ Mods: {
 			TinySpazmatismShotProj.DisplayName: "{$Projectiles.TinySpazmatismProj.DisplayName}射击"
 			TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName}射击"
 			WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName}射击"
+
+			PetCloudfishProj: {
+				// Default.Tooltip: Default
+				// Rain.Tooltip: Rain
+				// Snow.Tooltip: Snow
+				// DisplayName: "{$Items.PetCloudfishItem.DisplayName}"
+			}
+
+			KingGuppyProj: {
+				// Default.Tooltip: Default
+				// Hungry.Tooltip: Hungry
+				// DisplayName: "{$Items.KingGuppyItem.DisplayName}"
+			}
+
+			// PetDreadnautilusProj.DisplayName: "{$Items.PetDreadnautilusItem.DisplayName}"
+			// PetDreadnautilusShotProj.DisplayName: "{$Projectiles.PetDreadnautilusProj.DisplayName} Shot"
+			// PetCloudfishShotProj.DisplayName: "{$Projectiles.PetCloudfishProj.DisplayName} Shot"
+			// KingGuppyShotProj.DisplayName: "{$Projectiles.KingGuppyProj.DisplayName} Shot"
 		}
 
 		Tiles: {

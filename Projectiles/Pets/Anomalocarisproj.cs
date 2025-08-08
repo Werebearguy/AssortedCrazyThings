@@ -19,7 +19,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			}
 		}
 
-
 		public override void SetStaticDefaults()
 		{
 			Main.projFrames[Projectile.type] = 4;

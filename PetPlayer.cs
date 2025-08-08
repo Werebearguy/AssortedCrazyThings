@@ -28,7 +28,7 @@ namespace AssortedCrazyThings
 
 		public int numSlimePets = 0;
 
-		private const int altTextureCountLoaded = 26; //IMPORTANT TO INCREMENT THIS EACH TIME A NEW ALT TEXTURE IS ADDED 
+		private const int altTextureCountLoaded = 28; //IMPORTANT TO INCREMENT THIS EACH TIME A NEW ALT TEXTURE IS ADDED 
 
 		//Alt texture types
 		public byte mechFrogType = 0;
@@ -48,6 +48,7 @@ namespace AssortedCrazyThings
 		public byte skeletronPrimeHandType = 0;
 		public byte petCultistType = 0;
 		public byte petAnomalocarisType = 0;
+		public byte petCloudfishType = 0;
 		public byte dynamiteBunnyType = 0;
 		public byte wallFragmentType = 0;
 		public byte metroidPetType = 0;
@@ -59,6 +60,7 @@ namespace AssortedCrazyThings
 
 		public byte youngHarpyType = 0;
 		public byte joyousSlimeType = 0;
+		public byte kingGuppyType = 0;
 
 		//ALTERNATE
 		////name pet texture
@@ -149,6 +151,7 @@ namespace AssortedCrazyThings
 		public bool PetDestroyer = false;
 		public bool AnimatedTome = false;
 		public bool PetAnomalocaris = false;
+		public bool PetCloudfish = false;
 		public bool DynamiteBunny = false;
 		public bool FairySwarm = false;
 		public bool SwarmofCthulhu = false;
@@ -162,6 +165,8 @@ namespace AssortedCrazyThings
 		public bool TorchGodLightPet = false;
 		public bool Woby = false;
 		public bool Woby_AoMM = false;
+		public bool KingGuppy = false;
+		public bool PetDreadnautilus = false;
 		//ALTERNATE
 		//public bool ClassName = false;
 
@@ -252,6 +257,7 @@ namespace AssortedCrazyThings
 			PetDestroyer = false;
 			AnimatedTome = false;
 			PetAnomalocaris = false;
+			PetCloudfish = false;
 			DynamiteBunny = false;
 			FairySwarm = false;
 			SwarmofCthulhu = false;
@@ -265,6 +271,8 @@ namespace AssortedCrazyThings
 			TorchGodLightPet = false;
 			Woby = false;
 			Woby_AoMM = false;
+			KingGuppy = false;
+			PetDreadnautilus = false;
 			//ALTERNATE
 			//ClassName = false;
 		}
@@ -328,6 +336,7 @@ namespace AssortedCrazyThings
 				{ "skeletronPrimeHandType", skeletronPrimeHandType },
 				{ "petCultistType", petCultistType },
 				{ "petAnomalocarisType", petAnomalocarisType },
+				{ "petCloudfishType", petCloudfishType },
 				{ "dynamiteBunnyType", dynamiteBunnyType },
 				{ "wallFragmentType", wallFragmentType },
 				{ "metroidPetType", metroidPetType },
@@ -338,7 +347,8 @@ namespace AssortedCrazyThings
 				{ "animatedTomeType", animatedTomeType },
 
 				{ "youngHarpyType", youngHarpyType },
-				{ "joyousSlimeType", joyousSlimeType }
+				{ "joyousSlimeType", joyousSlimeType },
+				{ "kingGuppyType", kingGuppyType }
 			};
 
 			tag.Add("petTags", petTags);
@@ -408,6 +418,7 @@ namespace AssortedCrazyThings
 				skeletronPrimeHandType = petTags.GetByte("skeletronPrimeHandType");
 				petCultistType = petTags.GetByte("petCultistType");
 				petAnomalocarisType = petTags.GetByte("petAnomalocarisType");
+				petCloudfishType = petTags.GetByte("petCloudfishType");
 				dynamiteBunnyType = petTags.GetByte("dynamiteBunnyType");
 				wallFragmentType = petTags.GetByte("wallFragmentType");
 				metroidPetType = petTags.GetByte("metroidPetType");
@@ -419,6 +430,7 @@ namespace AssortedCrazyThings
 
 				youngHarpyType = petTags.GetByte("youngHarpyType");
 				joyousSlimeType = petTags.GetByte("joyousSlimeType");
+				kingGuppyType = petTags.GetByte("kingGuppyType");
 			}
 		}
 
@@ -1089,6 +1101,13 @@ namespace AssortedCrazyThings
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<AnomalocarisProj>(), tooltips);
 		}
 
+		public static CircleUIConf GetPetCloudfishConf(bool loading)
+		{
+			List<string> tooltips = new List<string>() { "Default", "Rain", "Snow" };
+
+			return CircleUIHandler.PetConf(ModContent.ProjectileType<PetCloudfishProj>(), tooltips);
+		}
+
 		public static CircleUIConf GetDynamiteBunnyConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "White", "Corrupt", "Crimtane", "Angora", "Dutch", "Flemish", "Lop", "Silver", "Caerbannog" };
@@ -1115,6 +1134,13 @@ namespace AssortedCrazyThings
 			List<string> tooltips = new List<string>() { "Dark", "Light", "Dropkick" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<CuteLamiaPetProj>(), tooltips, new Vector2(0f, 0f));
+		}
+
+		public static CircleUIConf GetKingGuppyConf(bool loading)
+		{
+			List<string> tooltips = new List<string>() { "Default", "Hungry" };
+
+			return CircleUIHandler.PetConf(ModContent.ProjectileType<KingGuppyProj>(), tooltips);
 		}
 
 		//ALTERNATE
@@ -1146,6 +1172,7 @@ namespace AssortedCrazyThings
 			skeletronPrimeHandType = 0;
 			petCultistType = 0;
 			petAnomalocarisType = 0;
+			petCloudfishType = 0;
 			dynamiteBunnyType = 0;
 			wallFragmentType = 0;
 			metroidPetType = 0;
@@ -1157,6 +1184,7 @@ namespace AssortedCrazyThings
 
 			youngHarpyType = 0;
 			joyousSlimeType = 0;
+			kingGuppyType = 0;
 
 			petAccessoriesBySlots = new (byte, byte)[4]; //C# initializes the array as (0,0)
 			lastPetAccessoriesBySlots = new (byte, byte)[4];
@@ -1192,6 +1220,7 @@ namespace AssortedCrazyThings
 			skeletronPrimeHandType = ClonedTypes[index++];
 			petCultistType = ClonedTypes[index++];
 			petAnomalocarisType = ClonedTypes[index++];
+			petCloudfishType = ClonedTypes[index++];
 			dynamiteBunnyType = ClonedTypes[index++];
 			wallFragmentType = ClonedTypes[index++];
 			metroidPetType = ClonedTypes[index++];
@@ -1205,6 +1234,7 @@ namespace AssortedCrazyThings
 
 			youngHarpyType = ClonedTypes[index++];
 			joyousSlimeType = ClonedTypes[index++];
+			kingGuppyType = ClonedTypes[index++];
 		}
 
 		/// <summary>
@@ -1233,6 +1263,7 @@ namespace AssortedCrazyThings
 				ClonedTypes[++index] = skeletronPrimeHandType;
 				ClonedTypes[++index] = petCultistType;
 				ClonedTypes[++index] = petAnomalocarisType;
+				ClonedTypes[++index] = petCloudfishType;
 				ClonedTypes[++index] = dynamiteBunnyType;
 				ClonedTypes[++index] = wallFragmentType;
 				ClonedTypes[++index] = metroidPetType;
@@ -1244,6 +1275,7 @@ namespace AssortedCrazyThings
 
 				ClonedTypes[++index] = youngHarpyType;
 				ClonedTypes[++index] = joyousSlimeType;
+				ClonedTypes[++index] = kingGuppyType;
 				//ALTERNATE
 				//ClonedTypes[++index] = classNameType;
 			}

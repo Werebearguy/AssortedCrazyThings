@@ -270,6 +270,20 @@ namespace AssortedCrazyThings.Base
 		}
 
 		/// <summary>
+		/// Useful when utilizing Projectile.scale
+		/// </summary>
+		/// <param name="projectile"></param>
+		/// <param name="lightColor"></param>
+		public static void DrawAroundOrigin(Projectile projectile, Color lightColor)
+		{
+			Texture2D texture = TextureAssets.Projectile[projectile.type].Value;
+			Rectangle bounds = Utils.Frame(texture, 1, Main.projFrames[projectile.type], 0, projectile.frame);
+			Vector2 origin = new Vector2(bounds.Width * 0.5f, bounds.Height * 0.5f);
+			SpriteEffects effect = projectile.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+			Main.EntitySpriteDraw(texture, projectile.Center - Main.screenPosition, bounds, projectile.GetAlpha(lightColor), projectile.rotation, origin, projectile.scale, effect, 0);
+		}
+
+		/// <summary>
 		/// Draws a projectile like god (red) intended. Mimics default drawing from the base game.
 		/// <br/>While this works for most projectiles, things using <see cref="ProjAIStyleID.Drill"/> or <see cref="ProjAIStyleID.Spear"/> draw differently.
 		/// </summary>
