@@ -166,7 +166,8 @@ namespace AssortedCrazyThings.Base.SwarmDraw
 
 			if (AutoLayerX)
 			{
-				if (Math.Sign(oldVel.X) != Math.Sign(vel.X))
+				//boundary check around center to avoid "clipping"
+				if (Math.Sign(oldVel.X) != Math.Sign(vel.X) && !Utils.CenteredRectangle(center - new Vector2(0, 6), new Vector2(24, 30)).Contains(pos.ToPoint()))
 				{
 					Front = !Front;
 				}
