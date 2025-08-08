@@ -518,6 +518,11 @@ Mods: {
 				// Description: A small nautilus...
 			}
 
+			ShortfuseCrabBuff: {
+				// DisplayName: Shortfuse Crab
+				// Description: A shortfuse crab is following you
+			}
+
 			CompanionDungeonSoulMinionBuff: {
 				DisplayName: 灵魂同伴仆从
 				Description: 一位友好的灵魂为你而战
@@ -1269,6 +1274,11 @@ Mods: {
 			PetDreadnautilusItem: {
 				// DisplayName: Sleeping Nautilus
 				// Tooltip: Summons a tiny nautilus to follow you
+			}
+
+			ShortfuseCrabItem: {
+				// DisplayName: Hollow Bomb
+				// Tooltip: Summons a Shortfuse Crab to follow you
 			}
 
 			BottledDreams: {
@@ -2405,6 +2415,11 @@ Mods: {
 				BestiaryFlavorText: 鸟妖并不是天生就充满敌意。如果在小时候和她交了朋友，那她将永远认定你为朋友。
 			}
 
+			ShortfuseCrab: {
+				// DisplayName: Shortfuse Crab
+				// BestiaryFlavorText: The bomb on its back may be defused, but you probably shouldn't let it go near fire anyway.
+			}
+
 			CuteSlimes: {
 				SpawnConditionType: {
 					Forest: {
@@ -2848,6 +2863,16 @@ Mods: {
 			// PetDreadnautilusShotProj.DisplayName: "{$Projectiles.PetDreadnautilusProj.DisplayName} Shot"
 			// PetCloudfishShotProj.DisplayName: "{$Projectiles.PetCloudfishProj.DisplayName} Shot"
 			// KingGuppyShotProj.DisplayName: "{$Projectiles.KingGuppyProj.DisplayName} Shot"
+
+			ShortfuseCrabProj: {
+				// Yellow.Tooltip: Yellow
+				// Orange.Tooltip: Orange
+				// Red.Tooltip: Red
+				// Blue.Tooltip: Blue
+				// Black.Tooltip: Black
+				// Gold.Tooltip: Gold
+				// DisplayName: "{$Items.ShortfuseCrabItem.DisplayName}"
+			}
 		}
 
 		Tiles: {

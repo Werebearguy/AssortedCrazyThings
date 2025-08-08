@@ -273,6 +273,13 @@ namespace AssortedCrazyThings
 						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().kingGuppyType,
 						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().kingGuppyType = (byte)CircleUI.returned
 					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().ShortfuseCrab,
+						uiConf: PetPlayer.GetShortfuseCrabConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().shortfuseCrabType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().shortfuseCrabType = (byte)CircleUI.returned
+					),
 					//ALTERNATE
 					//    new CircleUIHandler(
 					//    triggerItem: ModContent.ItemType<VanitySelector>(),

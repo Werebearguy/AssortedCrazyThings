@@ -28,7 +28,7 @@ namespace AssortedCrazyThings
 
 		public int numSlimePets = 0;
 
-		private const int altTextureCountLoaded = 28; //IMPORTANT TO INCREMENT THIS EACH TIME A NEW ALT TEXTURE IS ADDED 
+		private const int altTextureCountLoaded = 29; //IMPORTANT TO INCREMENT THIS EACH TIME A NEW ALT TEXTURE IS ADDED 
 
 		//Alt texture types
 		public byte mechFrogType = 0;
@@ -61,6 +61,7 @@ namespace AssortedCrazyThings
 		public byte youngHarpyType = 0;
 		public byte joyousSlimeType = 0;
 		public byte kingGuppyType = 0;
+		public byte shortfuseCrabType = 0;
 
 		//ALTERNATE
 		////name pet texture
@@ -167,6 +168,7 @@ namespace AssortedCrazyThings
 		public bool Woby_AoMM = false;
 		public bool KingGuppy = false;
 		public bool PetDreadnautilus = false;
+		public bool ShortfuseCrab = false;
 		//ALTERNATE
 		//public bool ClassName = false;
 
@@ -273,6 +275,7 @@ namespace AssortedCrazyThings
 			Woby_AoMM = false;
 			KingGuppy = false;
 			PetDreadnautilus = false;
+			ShortfuseCrab = false;
 			//ALTERNATE
 			//ClassName = false;
 		}
@@ -348,7 +351,8 @@ namespace AssortedCrazyThings
 
 				{ "youngHarpyType", youngHarpyType },
 				{ "joyousSlimeType", joyousSlimeType },
-				{ "kingGuppyType", kingGuppyType }
+				{ "kingGuppyType", kingGuppyType },
+				{ "shortfuseCrabType", shortfuseCrabType }
 			};
 
 			tag.Add("petTags", petTags);
@@ -431,6 +435,7 @@ namespace AssortedCrazyThings
 				youngHarpyType = petTags.GetByte("youngHarpyType");
 				joyousSlimeType = petTags.GetByte("joyousSlimeType");
 				kingGuppyType = petTags.GetByte("kingGuppyType");
+				shortfuseCrabType = petTags.GetByte("shortfuseCrabType");
 			}
 		}
 
@@ -1143,6 +1148,13 @@ namespace AssortedCrazyThings
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<KingGuppyProj>(), tooltips);
 		}
 
+		public static CircleUIConf GetShortfuseCrabConf(bool loading)
+		{
+			List<string> tooltips = new List<string>() { "Yellow", "Orange", "Red", "Blue", "Black", "Gold" };
+
+			return CircleUIHandler.PetConf(ModContent.ProjectileType<ShortfuseCrabProj>(), tooltips);
+		}
+
 		//ALTERNATE
 		//public static CircleUIConf GetClassNameConf(bool loading)
 		//{
@@ -1185,6 +1197,7 @@ namespace AssortedCrazyThings
 			youngHarpyType = 0;
 			joyousSlimeType = 0;
 			kingGuppyType = 0;
+			shortfuseCrabType = 0;
 
 			petAccessoriesBySlots = new (byte, byte)[4]; //C# initializes the array as (0,0)
 			lastPetAccessoriesBySlots = new (byte, byte)[4];
@@ -1235,6 +1248,7 @@ namespace AssortedCrazyThings
 			youngHarpyType = ClonedTypes[index++];
 			joyousSlimeType = ClonedTypes[index++];
 			kingGuppyType = ClonedTypes[index++];
+			shortfuseCrabType = ClonedTypes[index++];
 		}
 
 		/// <summary>
@@ -1276,6 +1290,7 @@ namespace AssortedCrazyThings
 				ClonedTypes[++index] = youngHarpyType;
 				ClonedTypes[++index] = joyousSlimeType;
 				ClonedTypes[++index] = kingGuppyType;
+				ClonedTypes[++index] = shortfuseCrabType;
 				//ALTERNATE
 				//ClonedTypes[++index] = classNameType;
 			}
