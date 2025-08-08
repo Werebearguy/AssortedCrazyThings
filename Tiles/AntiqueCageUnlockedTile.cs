@@ -1,10 +1,10 @@
-﻿using AssortedCrazyThings.Base;
-using AssortedCrazyThings.Base.Netcode.Packets;
+﻿using AssortedCrazyThings.Base.Netcode.Packets;
 using AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Tiles
@@ -13,9 +13,15 @@ namespace AssortedCrazyThings.Tiles
 	{
 		public const int FrameCount = 3;
 
+		public static LocalizedText NotInDungeonText { get; private set; }
+		public static LocalizedText AlreadyAliveText { get; private set; }
+
 		public override void SafeSetStaticDefaults()
 		{
 			AnimationFrameHeight = FrameHeight;
+
+			NotInDungeonText = this.GetLocalization("NotInDungeon");
+			AlreadyAliveText = this.GetLocalization("AlreadyAlive");
 
 			InteractableCageTypes.Add(Type);
 		}
@@ -53,13 +59,13 @@ namespace AssortedCrazyThings.Tiles
 			Player player = Main.LocalPlayer;
 			if (!BabyHarvesterHandler.ValidPlayer(player))
 			{
-				Main.NewText("Cannot open cage, not in dungeon", Color.OrangeRed);
+				Main.NewText(NotInDungeonText.ToString(), Color.OrangeRed);
 				return true;
 			}
 
 			if (BabyHarvesterHandler.TryFindBabyHarvester(out _, out _) || NPC.npcsFoundForCheckActive[AssortedCrazyThings.harvester])
 			{
-				Main.NewText("Soul Harvester is already alive, cage cannot be opened", Color.OrangeRed);
+				Main.NewText(AlreadyAliveText.ToString(), Color.OrangeRed);
 				return true;
 			}
 

@@ -1,9 +1,9 @@
 ﻿using AssortedCrazyThings.Base;
-using AssortedCrazyThings.Base.Chatter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings
@@ -178,27 +178,31 @@ namespace AssortedCrazyThings
 				return concat[0..^1];
 			}
 
-			return contentType switch
+			string key = contentType switch
 			{
 				ContentType.Always => string.Empty,
 				ContentType.Bosses => "Bosses",
-				ContentType.CuteSlimes => "Cute Slimes",
-				ContentType.HostileNPCs => "Hostile NPCs",
-				ContentType.FriendlyNPCs => "Friendly NPCs",
-				ContentType.DroppedPets => "Dropped Pets",
-				ContentType.OtherPets => "Other Pets",
+				ContentType.CuteSlimes => "CuteSlimes",
+				ContentType.HostileNPCs => "HostileNPCs",
+				ContentType.FriendlyNPCs => "FriendlyNPCs",
+				ContentType.DroppedPets => "DroppedPets",
+				ContentType.OtherPets => "OtherPets",
 				ContentType.Weapons => "Weapons",
 				ContentType.Tools => "Tools",
-				ContentType.PlaceablesFunctional => "Placeables (functional)",
-				ContentType.PlaceablesDecorative => "Placeables (decorative)",
+				ContentType.PlaceablesFunctional => "PlaceablesFunctional",
+				ContentType.PlaceablesDecorative => "PlaceablesDecorative",
 				ContentType.Armor => "Armor",
-				ContentType.VanityArmor => "Vanity Armor",
+				ContentType.VanityArmor => "VanityArmor",
 				ContentType.Accessories => "Accessories",
-				ContentType.VanityAccessories => "Vanity Accessories",
-				ContentType.BossConsolation => "Boss Consolation Items",
-				ContentType.AommSupport => "'The Amulet Of Many Minions' content",
+				ContentType.VanityAccessories => "VanityAccessories",
+				ContentType.BossConsolation => "BossConsolation",
+				ContentType.AommSupport => "AommSupport",
 				_ => string.Empty,
 			};
+
+			key = AssUtils.Instance.GetLocalizationKey($"Configs.ContentConfig.{key}.Label");
+
+			return Language.GetTextValue(key);
 		}
 
 		public static bool ExactlyOneFlagSet(ContentType contentType)

@@ -2150,6 +2150,11 @@ Mods: {
 				Retinazer: 激光眼
 				Cobballoon: 石化眼
 			}
+
+			UnloadedItem: {
+				// AommDisabled: "'The Amulet Of Many Minions' mod is not enabled"
+				// DisabledByConfig: Disabled by the '{0}' config setting
+			}
 		}
 
 		NPCs: {
@@ -2895,6 +2900,11 @@ Mods: {
 				WorkProperly: 要使其正常工作，请不要选择任何物品
 				NoCostumesFoundPet: 没有找到该一般宠物的替代服饰
 				NoCostumesFoundLightPet: 没有找到该照明宠物的替代服饰
+			}
+
+			AntiqueCageUnlockedTile: {
+				// NotInDungeon: Cannot open cage, not in dungeon
+				// AlreadyAlive: "{$NPCs.HarvesterBoss.DisplayName} is already alive, cage cannot be opened"
 			}
 		}
 

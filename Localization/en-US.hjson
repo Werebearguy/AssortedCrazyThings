@@ -2149,6 +2149,11 @@ Mods: {
 				Retinazer: Retinazer
 				Cobballoon: Cobballoon
 			}
+
+			UnloadedItem: {
+				AommDisabled: "'The Amulet Of Many Minions' mod is not enabled"
+				DisabledByConfig: Disabled by the '{0}' config setting
+			}
 		}
 
 		NPCs: {
@@ -2894,6 +2899,11 @@ Mods: {
 				WorkProperly: For this to work properly, don't have any item selected
 				NoCostumesFoundPet: No alt costumes found for pet
 				NoCostumesFoundLightPet: No alt costumes found for light pet
+			}
+
+			AntiqueCageUnlockedTile: {
+				NotInDungeon: Cannot open cage, not in dungeon
+				AlreadyAlive: "{$NPCs.HarvesterBoss.DisplayName} is already alive, cage cannot be opened"
 			}
 		}
 

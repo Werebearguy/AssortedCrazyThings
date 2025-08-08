@@ -2149,6 +2149,11 @@ Mods: {
 				Retinazer: Śiatkówczak
 				Cobballoon: Kamienialon
 			}
+
+			UnloadedItem: {
+				// AommDisabled: "'The Amulet Of Many Minions' mod is not enabled"
+				// DisabledByConfig: Disabled by the '{0}' config setting
+			}
 		}
 
 		NPCs: {
@@ -2894,6 +2899,11 @@ Mods: {
 				WorkProperly: Aby działało poprawnie, wybierz pusty slot w ekwipunku
 				NoCostumesFoundPet: Nie znaleziono alternatywnych kostiumów dla chowańca!
 				NoCostumesFoundLightPet: Nie znaleziono alternatywnych kostiumów dla chowańca światła!
+			}
+
+			AntiqueCageUnlockedTile: {
+				// NotInDungeon: Cannot open cage, not in dungeon
+				// AlreadyAlive: "{$NPCs.HarvesterBoss.DisplayName} is already alive, cage cannot be opened"
 			}
 		}
 
