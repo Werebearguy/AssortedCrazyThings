@@ -57,7 +57,7 @@ namespace AssortedCrazyThings.Tiles
 				return true;
 			}
 
-			if (BabyHarvesterHandler.TryFindBabyHarvester(out _, out _) || NPC.AnyNPCs(AssortedCrazyThings.harvester))
+			if (BabyHarvesterHandler.TryFindBabyHarvester(out _, out _) || NPC.npcsFoundForCheckActive[AssortedCrazyThings.harvester])
 			{
 				Main.NewText("Soul Harvester is already alive, cage cannot be opened", Color.OrangeRed);
 				return true;

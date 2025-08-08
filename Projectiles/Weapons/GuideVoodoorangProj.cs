@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 		{
 			if (Projectile.lavaWet)
 			{
-				if (Main.netMode != NetmodeID.MultiplayerClient && !NPC.AnyNPCs(NPCID.WallofFlesh))
+				if (Main.netMode != NetmodeID.MultiplayerClient && !NPC.npcsFoundForCheckActive[NPCID.WallofFlesh])
 				{
 					for (int i = 0; i < Main.maxNPCs; i++)
 					{

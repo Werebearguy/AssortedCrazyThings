@@ -276,7 +276,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 				return;
 			}
 
-			if (!NPC.downedBoss3 || AssWorld.downedHarvester || NPC.AnyNPCs(AssortedCrazyThings.harvester))
+			if (!NPC.downedBoss3 || AssWorld.downedHarvester || NPC.npcsFoundForCheckActive[AssortedCrazyThings.harvester])
 			{
 				//Do not spawn if skele isn't slain yet or harvester is already slain or alive
 				return;

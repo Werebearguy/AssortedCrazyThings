@@ -369,9 +369,18 @@ namespace AssortedCrazyThings.Base
 		/// Like NPC.AnyNPC, but checks for each type in the passed array.
 		/// If one exists, returns true
 		/// </summary>
-		public static bool AnyNPCs(int[] types)
+		public static bool AnyNPCs(int[] types, bool sameTickIgnore = true)
 		{
 			//Like AnyNPCs but checks for an array
+			if (sameTickIgnore)
+			{
+				for (int i = 0; i < types.Length; i++)
+				{
+					if (NPC.npcsFoundForCheckActive[types[i]]) return true;
+				}
+				return false;
+			}
+
 			for (int i = 0; i < types.Length; i++)
 			{
 				if (NPC.AnyNPCs(types[i])) return true;

@@ -56,7 +56,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			if (!NPC.AnyNPCs(NPC.type))
+			if (!NPC.npcsFoundForCheckActive[NPC.type])
 			{
 				return SpawnCondition.Ocean.Chance * 0.0005f;
 			}

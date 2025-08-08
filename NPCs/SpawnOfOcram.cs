@@ -47,7 +47,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			if (NPC.downedGolemBoss && !NPC.AnyNPCs(NPC.type))
+			if (NPC.downedGolemBoss && !NPC.npcsFoundForCheckActive[NPC.type])
 			{
 				return SpawnCondition.OverworldNightMonster.Chance * 0.005f;
 			}
