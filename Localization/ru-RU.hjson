@@ -1878,6 +1878,44 @@ Mods: {
 				}
 			}
 
+			PetAccessoryDress: {
+				AccessoryNames: {
+					// Red: "{$Items.PetAccessory.Colors.Red}"
+					// Orange: "{$Items.PetAccessory.Colors.Orange}"
+					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					// Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					// Green: "{$Items.PetAccessory.Colors.Green}"
+					// Blue: "{$Items.PetAccessory.Colors.Blue}"
+					// Purple: "{$Items.PetAccessory.Colors.Purple}"
+					// Pink: "{$Items.PetAccessory.Colors.Pink}"
+					// White: "{$Items.PetAccessory.Colors.White}"
+					// Gray: "{$Items.PetAccessory.Colors.Gray}"
+					// Black: "{$Items.PetAccessory.Colors.Black}"
+				}
+
+				// ShortName: Dress
+				// DisplayName: Cute {$ShortName}
+				// Tooltip: "'An elegant dress for your cute slime to wear on her body'"
+			}
+
+			PetAccessoryGlasses: {
+				// ShortName: Glasses
+				// DisplayName: Cute {$ShortName}
+				// Tooltip: "'A slick pair of glasses for your cute slime to wear on her head'"
+			}
+
+			PetAccessorySkullMask: {
+				// ShortName: Skull Mask
+				// DisplayName: Cute {$ShortName}
+				// Tooltip: "'A mask for your cute slime to wear on her head'"
+			}
+
+			PetAccessoryTikiMask: {
+				// ShortName: Tiki Mask
+				// DisplayName: Cute {$ShortName}
+				// Tooltip: "'A mask for your cute slime to wear on her head'"
+			}
+
 			AntiqueCageItem: {
 				DisplayName: Антикварная клетка
 				Tooltip: ""

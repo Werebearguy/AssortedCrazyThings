@@ -33,6 +33,16 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	}
 
+	public class PetAccessoryDress : PetAccessoryItem
+	{
+
+	}
+
+	public class PetAccessoryGlasses : PetAccessoryItem
+	{
+
+	}
+
 	public class PetAccessoryMetalHelmet : PetAccessoryItem
 	{
 
@@ -63,6 +73,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	}
 
+	public class PetAccessorySkullMask : PetAccessoryItem
+	{
+
+	}
+
 	public class PetAccessorySlimeHead : PetAccessoryItem
 	{
 
@@ -83,6 +98,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			recipe.AddIngredient(ModContent.ItemType<PetAccessorySwallowedKey>());
 			recipe.Register();
 		}
+	}
+
+	public class PetAccessoryTikiMask : PetAccessoryItem
+	{
+
 	}
 
 	public class PetAccessoryTophat : PetAccessoryItem
@@ -297,6 +317,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			Add(mod, new PetAccessory(mod, SlotType.Body, name: "Bowtie", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
 			Add(mod, new PetAccessory(mod, SlotType.Body, name: "ToyBreastplate", altTextures: new List<string>() { "Iron", "Gold" }));
 			Add(mod, new PetAccessory(mod, SlotType.Body, name: "BunnySuit", altTextures: new List<string>() { "Black", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Red" }));
+			Add(mod, new PetAccessory(mod, SlotType.Body, name: "Dress", altTextures: new List<string>() { "White", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "Black", "Gray", "Red" }));
 
 			//HAT SLOT ACCESSORIES GO HERE
 			//------------------------------------------------
@@ -313,6 +334,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "PumpkinMask", useNoHair: true,
 				altTextures: new List<string> { "SOrange", "IOrange", "SGreen", "IGreen", "SWhite", "IWhite", "SPurple", "IPurple", "SMelon", "IMelon" },
 				altTextureNameOverrides: new List<string> { "Sinister Orange", "Innocent Orange", "Sinister Green", "Innocent Green", "Sinister White", "Innocent White", "Sinister Purple", "Innocent Purple", "Sinister Melon", "Innocent Melon" }));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "Glasses"));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "SkullMask", useNoHair: true));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "TikiMask"));
 
 			//CARRIED SLOT ACCESSORIES GO HERE
 			//------------------------------------------------
