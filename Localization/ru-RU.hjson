@@ -2492,6 +2492,16 @@ Mods: {
 					Honey.Honey: Медовая
 				}
 			}
+
+			ChloroSlime: {
+				// DisplayName: Chloro Slime
+				// BestiaryFlavorText: ""
+			}
+
+			MudSlime: {
+				// DisplayName: Mud Slime
+				// BestiaryFlavorText: ""
+			}
 		}
 
 		Projectiles: {

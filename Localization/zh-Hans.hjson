@@ -2493,6 +2493,16 @@ Mods: {
 					Honey.Honey: 蜂蜜
 				}
 			}
+
+			ChloroSlime: {
+				// DisplayName: Chloro Slime
+				// BestiaryFlavorText: ""
+			}
+
+			MudSlime: {
+				// DisplayName: Mud Slime
+				// BestiaryFlavorText: ""
+			}
 		}
 
 		Projectiles: {
