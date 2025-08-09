@@ -61,7 +61,7 @@ namespace AssortedCrazyThings.NPCs
 			};
 			if (NPC.life > 0)
 			{
-				for (int i = 0; i < hit.Damage / NPC.lifeMax * 100f; i++)
+				for (int i = 0; i < hit.Damage / (float)NPC.lifeMax * 50f; i++)
 				{
 					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, hit.HitDirection, -1f, NPC.alpha, color);
 				}
