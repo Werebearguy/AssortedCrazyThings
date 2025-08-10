@@ -1335,6 +1335,9 @@ namespace AssortedCrazyThings.Base
 
 		#endregion
 
+		/// <summary>
+		/// Uses ai0
+		/// </summary>
 		public static void ModifiedGoldfishAI(NPC npc, float scareRange, bool faceAway = true)
 		{
 			if (npc.direction == 0)

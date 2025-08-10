@@ -2472,6 +2472,11 @@ Mods: {
 				BestiaryFlavorText: Animated mud that is happy to share a wet hug with anyone it comes across.
 			}
 
+			MutantFlinxfin: {
+				DisplayName: Mutant Flinxfin
+				BestiaryFlavorText: Its waterproof fur keeps it warm and relatively dry in the frigid waters it inhabits.
+			}
+
 			CuteSlimes: {
 				SpawnConditionType: {
 					Forest: {
