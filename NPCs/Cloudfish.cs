@@ -1,6 +1,5 @@
 using AssortedCrazyThings.Base;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -29,7 +28,7 @@ namespace AssortedCrazyThings.NPCs
 			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.Shimmerfly;
 
 			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
-			NPCID.Sets.TakesDamageFromHostilesWithoutBeingFriendly[NPC.type] = true;
+			//NPCID.Sets.TakesDamageFromHostilesWithoutBeingFriendly[NPC.type] = true;
 		}
 
 		public override void SetDefaults()
@@ -42,8 +41,8 @@ namespace AssortedCrazyThings.NPCs
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.knockBackResist = 0.25f;
-			NPC.aiStyle = -1; //custom
-			AIType = NPCID.Goldfish;
+			NPC.aiStyle = -1;
+			AIType = NPCID.Goldfish;  //Needed so the fish turns around for some reason
 			AnimationType = NPCID.Goldfish;
 			NPC.noGravity = true;
 			NPC.catchItem = ItemID.Cloudfish;
@@ -53,39 +52,13 @@ namespace AssortedCrazyThings.NPCs
 		{
 			if (spawnInfo.Player.ZoneSkyHeight)
 			{
-				int x = spawnInfo.SpawnTileX;
-				int y = spawnInfo.SpawnTileY;
-				if (Main.tile[x, y].LiquidAmount == 0)
+				if (spawnInfo.Water)
 				{
-					return 0f;
-				}
-				else if (
-				   !WorldGen.SolidTile(x, y) &&
-				   !WorldGen.SolidTile(x, y + 1) &&
-				   !WorldGen.SolidTile(x, y + 2))
-				{
-					return SpawnCondition.Sky.Chance * 4f; //0.05f before, 100f now because water check
+					return SpawnCondition.Sky.Chance * 4.2f;
 				}
 			}
 			return 0f;
 		}
-
-		//public override int SpawnNPC(int tileX, int tileY)
-		//{
-		//    if (Main.tile[tileX, tileY].LiquidAmount == 0)
-		//    {
-		//        return 0;
-		//    }
-		//    else if (
-		//       !WorldGen.SolidTile(tileX, tileY) &&
-		//       !WorldGen.SolidTile(tileX, tileY + 1) &&
-		//       !WorldGen.SolidTile(tileX, tileY + 2))
-		//    {
-		//        //actually spawn
-		//        return base.SpawnNPC(tileX, tileY);
-		//    }
-		//    return 0;
-		//}
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{

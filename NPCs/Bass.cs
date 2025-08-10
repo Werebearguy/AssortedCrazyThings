@@ -1,6 +1,5 @@
 using AssortedCrazyThings.Base;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -28,7 +27,7 @@ namespace AssortedCrazyThings.NPCs
 			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.Shimmerfly;
 
 			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
-			NPCID.Sets.TakesDamageFromHostilesWithoutBeingFriendly[NPC.type] = true;
+			//NPCID.Sets.TakesDamageFromHostilesWithoutBeingFriendly[NPC.type] = true;
 		}
 
 		public override void SetDefaults()
@@ -41,8 +40,8 @@ namespace AssortedCrazyThings.NPCs
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.knockBackResist = 0.25f;
-			NPC.aiStyle = -1; //custom
-			AIType = NPCID.Goldfish;
+			NPC.aiStyle = -1;
+			AIType = NPCID.Goldfish; //Needed so the fish turns around for some reason
 			AnimationType = NPCID.Goldfish;
 			NPC.noGravity = true;
 		}
@@ -55,7 +54,7 @@ namespace AssortedCrazyThings.NPCs
 			}
 			else
 			{
-				return SpawnCondition.TownWaterCritter.Chance * 0.05f;
+				return SpawnCondition.TownWaterCritter.Chance * 0.1f;
 			}
 		}
 
