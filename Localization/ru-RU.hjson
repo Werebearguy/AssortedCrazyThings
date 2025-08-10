@@ -2462,6 +2462,16 @@ Mods: {
 				// BestiaryFlavorText: The bomb on its back may be defused, but you probably shouldn't let it go near fire anyway.
 			}
 
+			ChloroSlime: {
+				// DisplayName: Chloro Slime
+				// BestiaryFlavorText: Chlorophyte is a mineral that spreads like weeds, which this poor slime found out the hard way.
+			}
+
+			MudSlime: {
+				// DisplayName: Mud Slime
+				// BestiaryFlavorText: Animated mud that is happy to share a wet hug with anyone it comes across.
+			}
+
 			CuteSlimes: {
 				SpawnConditionType: {
 					Forest: {
@@ -2491,16 +2501,6 @@ Mods: {
 					Xmas.Xmas: Рождественская
 					Honey.Honey: Медовая
 				}
-			}
-
-			ChloroSlime: {
-				// DisplayName: Chloro Slime
-				// BestiaryFlavorText: ""
-			}
-
-			MudSlime: {
-				// DisplayName: Mud Slime
-				// BestiaryFlavorText: ""
 			}
 		}
 
