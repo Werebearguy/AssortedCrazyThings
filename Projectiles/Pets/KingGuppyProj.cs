@@ -225,11 +225,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			if (Exploding)
 			{
 				Projectile.alpha = 255;
-				Projectile.Resize(explWidth + (int)(4 * Level), explHeight + (int)(3 * Level));
+				Projectile.Resize(explWidth + (int)(5 * Level), explHeight + (int)(4 * Level));
 			}
 			else
 			{
-				Projectile.scale = Utils.Remap((float)Math.Sin(Main.GlobalTimeWrappedHourly / 1.5f * MathHelper.TwoPi), -1f, 1f, 0.9f, 1.2f);
+				float baseScale = 1.05f + Level * 0.05f;
+				float scaleRange = 0.15f;
+				Projectile.scale = Utils.Remap((float)Math.Sin(Main.GlobalTimeWrappedHourly / 1.5f * MathHelper.TwoPi), -1f, 1f, baseScale - scaleRange, baseScale + scaleRange);
 				if (Main.rand.NextBool(16))
 				{
 					Dust dust = Main.dust[Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 15, 0f, 0f, 100, default(Color), 1.7f)];
