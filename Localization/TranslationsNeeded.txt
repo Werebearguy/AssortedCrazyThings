@@ -1,7 +1,7 @@
-en-US, 1591/1591, 100%, missing 0
-de-DE, 0/1591, 0%, missing 1591
-fr-FR, 0/1591, 0%, missing 1591
-es-ES, 356/1591, 22%, missing 1235
-ru-RU, 1537/1591, 97%, missing 54
-zh-Hans, 1533/1591, 96%, missing 58
-pl-PL, 1536/1591, 97%, missing 55
+en-US, 1595/1595, 100%, missing 0
+de-DE, 0/1595, 0%, missing 1595
+fr-FR, 0/1595, 0%, missing 1595
+es-ES, 356/1595, 22%, missing 1239
+ru-RU, 1537/1595, 96%, missing 58
+zh-Hans, 1533/1595, 96%, missing 62
+pl-PL, 1536/1595, 96%, missing 59

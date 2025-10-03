@@ -602,6 +602,11 @@ Mods: {
 				You are protected from Wyverns
 				Harpy feathers don't knock you away
 				'''
+
+			GoblinMinerBuff: {
+				DisplayName: Goblin Miner Buff
+				Description: Mods.AssortedCrazyThings.Buffs.GoblinMinerBuff.Description
+			}
 		}
 
 		Common: {
@@ -2192,6 +2197,11 @@ Mods: {
 				AommDisabled: "'The Amulet Of Many Minions' mod is not enabled"
 				DisabledByConfig: Disabled by the '{0}' config setting
 			}
+
+			GoblinMinerItem: {
+				DisplayName: Goblin Miner Item
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -2930,6 +2940,8 @@ Mods: {
 				Gold.Tooltip: Gold
 				DisplayName: "{$Items.ShortfuseCrabItem.DisplayName}"
 			}
+
+			GoblinMinerProj.DisplayName: Goblin Miner Proj
 		}
 
 		Tiles: {

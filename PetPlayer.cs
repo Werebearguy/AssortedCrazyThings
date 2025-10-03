@@ -169,6 +169,7 @@ namespace AssortedCrazyThings
 		public bool KingGuppy = false;
 		public bool PetDreadnautilus = false;
 		public bool ShortfuseCrab = false;
+		public bool GoblinMiner = false;
 		//ALTERNATE
 		//public bool ClassName = false;
 
@@ -276,6 +277,7 @@ namespace AssortedCrazyThings
 			KingGuppy = false;
 			PetDreadnautilus = false;
 			ShortfuseCrab = false;
+			GoblinMiner = false;
 			//ALTERNATE
 			//ClassName = false;
 		}

@@ -503,15 +503,15 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			Projectile.damage = (int)(allDamage.CombineWith(tieredSummoner).ApplyTo(originalDamage) * postMLMult);
 		}
 
-		private Vector2 GetIdleLocation(Player player)
+		public static Vector2 GetIdleLocation(Projectile projectile, Player player, int minionPos)
 		{
 			//Projectile will align on the right side of the default location
 			Vector2 defaultLocation = player.Center;
 			int distIdle = 48;
-			int offset = Projectile.width / 2;
+			int offset = projectile.width / 2;
 			defaultLocation.X -= (player.width / 2) * player.direction;
 			//Projectile.minionPos calculations not necessary because you can't summon more than 1. Instead, use custom minionPos only for underlings
-			float minionOffsetX = minionPos * (Projectile.width + 6) * player.direction;
+			float minionOffsetX = minionPos * (projectile.width + 6) * player.direction;
 			if (player.direction == 1)
 			{
 				defaultLocation.X -= distIdle;
@@ -649,7 +649,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			int rangedAttackRangeFromProj = (int)(256 * tier.rangedRangeMultiplier); //16 * 16
 			float awayDistMax = 500f;
 			float awayDistYMax = 400f; //300, increased to reduce amount of "bouncing" when player is standing on far up tiles or hooked up
-			Vector2 destination = GetIdleLocation(player);
+			Vector2 destination = GetIdleLocation(Projectile, player, minionPos);
 			idleLocation = destination;
 
 			bool ranged = true;
