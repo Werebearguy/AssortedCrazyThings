@@ -3,13 +3,13 @@
 		"Terraria": {
 			"commandName": "Executable",
 			"executablePath": "$(DotNetName)/dotnet",
-			"commandLineArgs": "$(tMLPath) -skipselect",",
+			"commandLineArgs": "$(tMLPath)",
 			"workingDirectory": "$(tMLSteamPath)"
 		},
 		"TerrariaFast": {
 			"commandName": "Executable",
 			"executablePath": "$(DotNetName)/dotnet",
-			"commandLineArgs": "$(tMLPath) -skipselect",",
+			"commandLineArgs": "$(tMLPath) -skipselect",
 			"workingDirectory": "$(tMLSteamPath)"
 		},
 		"TerrariaServer": {
