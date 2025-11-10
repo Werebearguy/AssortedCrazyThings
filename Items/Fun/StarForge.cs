@@ -19,7 +19,7 @@ namespace AssortedCrazyThings.Items.Fun
 		{
 			CreateRecipe(1).
 				AddIngredient(ItemID.FallenStar, 500)
-				.AddTile(TileID.Anvils)
+				.AddTile(TileID.CrystalBall)
 				.Register();
 		}
 	}
